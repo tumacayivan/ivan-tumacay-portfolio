@@ -1,73 +1,79 @@
-# Welcome to your Lovable project
+# Ivan Tumacay Portfolio
 
-## Project info
+Professional portfolio website showcasing my work as a Full-Stack Developer, Software Engineer, and Digital Operations Specialist.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## About
 
-## How can I edit this code?
+Ivan Tumacay is an experienced Full-Stack Developer with **10+ years of freelance development** and **5 years of corporate experience** in enterprise software development. Specializing in:
 
-There are several ways of editing your application.
+- Full-stack development (React, Node.js, Laravel, VueJS, Angular, Python/Django/Flask)
+- Enterprise system architecture and API integrations
+- AI automation and workflow systems
+- Virtual assistant and digital operations services
+- Security, performance optimization, and scalability
 
-**Use Lovable**
+## Project Information
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+**Live URL**: https://ivan-tumacay-6.onrender.com  
+**GitHub**: https://github.com/tumacayivan  
+**Email**: tumacayivan@gmail.com
 
-Changes made via Lovable will be committed automatically to this repo.
+## Getting Started
 
-**Use your preferred IDE**
+### Prerequisites
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+### Installation
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# Step 1: Clone the repository
+git clone https://github.com/tumacayivan/ivan-tumacay-portfolio.git
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Step 2: Navigate to the project directory
+cd ivan-tumacay-portfolio
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Step 3: Install dependencies
+npm install
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Step 4: Start the development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The application will be available at `http://localhost:8080`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
+## Technologies Used
 
 This project is built with:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- **Vite** - Next generation frontend tooling
+- **TypeScript** - Type-safe JavaScript
+- **React** - UI library
+- **shadcn-ui** - High-quality component library
+- **Tailwind CSS** - Utility-first CSS framework
+- **Framer Motion** - Animation library
 
-## How can I deploy this project?
+## Available Scripts
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+- `npm test` - Run tests
 
-## Can I connect a custom domain to my Lovable project?
+## Deployment
 
-Yes, you can!
+This project can be deployed to various platforms:
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+- **Render** (currently deployed)
+- **Vercel**
+- **Netlify**
+- **AWS Amplify**
+- Any static hosting service
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+## Contact
+
+- **Email**: tumacayivan@gmail.com
+- **GitHub**: [@tumacayivan](https://github.com/tumacayivan)
+- **Website**: https://ivan-tumacay-6.onrender.com
+- **Location**: Philippines

@@ -4,9 +4,16 @@ import { useEffect, useState } from "react";
 const ThemeToggle = () => {
   const [dark, setDark] = useState(() => {
     if (typeof window !== "undefined") {
-      return localStorage.getItem("theme") === "dark";
+      const stored = localStorage.getItem("theme");
+      if (stored === "dark") return true;
+      if (stored === "light") return false;
+
+      // Default to dark mode when no preference is stored
+      return true;
     }
-    return false;
+
+    // On the server / very first paint, default to dark
+    return true;
   });
 
   useEffect(() => {
