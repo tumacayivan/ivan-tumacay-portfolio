@@ -8,12 +8,12 @@ const ThemeToggle = () => {
       if (stored === "dark") return true;
       if (stored === "light") return false;
 
-      // Default to dark mode when no preference is stored
-      return true;
+      // Default to light mode when no preference is stored
+      return false;
     }
 
-    // On the server / very first paint, default to dark
-    return true;
+    // On the server / very first paint, default to light
+    return false;
   });
 
   useEffect(() => {
