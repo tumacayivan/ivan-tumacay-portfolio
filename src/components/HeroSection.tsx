@@ -9,10 +9,10 @@ const HeroSection = () => {
       <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-primary/5 blur-[100px] animate-float" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-primary/10 blur-[120px] animate-float" style={{ animationDelay: '3s' }} />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 w-full h-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-stretch h-full min-h-screen">
           {/* Left - Info */}
-          <div className="order-2 lg:order-1">
+          <div className="order-2 lg:order-1 flex flex-col justify-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -91,17 +91,17 @@ const HeroSection = () => {
 
           {/* Right - Image */}
           <motion.div
-            className="order-1 lg:order-2 flex justify-center lg:justify-end"
+            className="order-1 lg:order-2 h-full w-full flex items-center justify-center lg:justify-end"
             initial={{ opacity: 0, scale: 0.85, x: 40 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
             transition={{ duration: 0.9, delay: 0.2 }}
           >
-            <div className="relative">
-              <div className="absolute -inset-4 rounded-3xl bg-primary/10 blur-[60px] animate-float" />
+            <div className="relative w-full h-full min-h-[400px] lg:min-h-screen flex items-center justify-center lg:justify-end">
+              <div className="absolute inset-0 lg:inset-4 rounded-3xl bg-primary/10 blur-[60px] animate-float" />
               <img
                 src={johnDoeAvatar}
                 alt="Ivan Tumacay - Software Engineer & Digital Operations Specialist"
-                className="relative w-72 sm:w-80 md:w-96 lg:w-[28rem] xl:w-[32rem] h-auto rounded-2xl border-2 border-border/30 shadow-2xl"
+                className="relative w-full h-full min-h-[400px] lg:min-h-screen object-cover lg:object-cover lg:object-center rounded-2xl border-2 border-border/30 shadow-2xl"
               />
             </div>
           </motion.div>

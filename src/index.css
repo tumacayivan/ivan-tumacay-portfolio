@@ -146,11 +146,11 @@
   }
 
   .animate-marquee-left {
-    animation: marquee-left 60s linear infinite;
+    animation: marquee-left 120s linear infinite;
   }
 
   .animate-marquee-right {
-    animation: marquee-right 60s linear infinite;
+    animation: marquee-right 120s linear infinite;
   }
 
   .marquee-container:hover .animate-marquee-left,
