@@ -41,21 +41,21 @@ const createItem = (fileId: string, title: string, link: string, type: "image" |
 
 // Graphics items
 const graphicItems = [
+  createItem("1toQYy3AdaVkTnPFw7WNjev34y_ta7VGA", "Graphic Design 7", "https://drive.google.com/file/d/1toQYy3AdaVkTnPFw7WNjev34y_ta7VGA/view?usp=sharing", "image"),
+  createItem("1PIoQxv2kctT17fze6M4XW4b-aFmRZtY7", "Graphic Design 8", "https://drive.google.com/file/d/1PIoQxv2kctT17fze6M4XW4b-aFmRZtY7/view?usp=drive_link", "image"),
+  createItem("16KEm2YmSU-TmI3oGJUdh8qUdujcFltns", "Graphic Design 9", "https://drive.google.com/file/d/16KEm2YmSU-TmI3oGJUdh8qUdujcFltns/view?usp=sharing", "image"),
+  createItem("1Q-PnhubB8mA6rZYzJg9w_AWs5uugMxAU", "Graphic Design 10", "https://drive.google.com/file/d/1Q-PnhubB8mA6rZYzJg9w_AWs5uugMxAU/view?usp=drive_link", "image"),
+  createItem("1I_MSaFLM5ZQG2QNOpSTEgo8w3pLca5mL", "Graphic Design 11", "https://drive.google.com/file/d/1I_MSaFLM5ZQG2QNOpSTEgo8w3pLca5mL/view?usp=sharing", "image"),
+  createItem("1BAomqVwLSMmxhOIq6irJRIazQF_iTmOT", "Graphic Design 12", "https://drive.google.com/file/d/1BAomqVwLSMmxhOIq6irJRIazQF_iTmOT/view?usp=drive_link", "image"),
+  createItem("1iKplJOsbZanEf7iLl7reAuILwJryBv9c", "Graphic Design 5", "https://drive.google.com/file/d/1iKplJOsbZanEf7iLl7reAuILwJryBv9c/view?usp=drive_link", "image"),
+  createItem("1aAEvUGRLKIk8_TWEf9G0zzhunUvFyTS2", "Graphic Design 6", "https://drive.google.com/file/d/1aAEvUGRLKIk8_TWEf9G0zzhunUvFyTS2/view?usp=drive_link", "image"),
+  createItem("18lf40HCgUyvSpkKHHXamjwcNpo0HDANG", "Graphic Design 13", "https://drive.google.com/file/d/18lf40HCgUyvSpkKHHXamjwcNpo0HDANG/view?usp=drive_link", "image"),
+  createItem("11ze9IpA_WaDx1covaqOcC-6WSfiCoZGD", "Graphic Design 14", "https://drive.google.com/file/d/11ze9IpA_WaDx1covaqOcC-6WSfiCoZGD/view?usp=drive_link", "image"),
+  createItem("1otn-5yWqn7mW5IIq507xDhVqUNu22JSP", "Graphic Design 15", "https://drive.google.com/file/d/1otn-5yWqn7mW5IIq507xDhVqUNu22JSP/view?usp=drive_link", "image"),
   createItem("14E1CHWwKNuqwcE3Y5Os9DdJ3EDv_YA3Z", "Graphic Design 1", "https://drive.google.com/file/d/14E1CHWwKNuqwcE3Y5Os9DdJ3EDv_YA3Z/view?usp=drive_link", "image"),
   createItem("1qLs86u9entGSnPg3dCo1u5PTQVcLq3FZ", "Graphic Design 2", "https://drive.google.com/file/d/1qLs86u9entGSnPg3dCo1u5PTQVcLq3FZ/view?usp=drive_link", "image"),
   createItem("1IsDzHHcNdcLg4bLshjKzp581SYpujwSR", "Graphic Design 3", "https://drive.google.com/file/d/1IsDzHHcNdcLg4bLshjKzp581SYpujwSR/view?usp=drive_link", "image"),
   createItem("1j0GnAG0c4C3IE74fV5QO1iQEFbI2_6rl", "Graphic Design 4", "https://drive.google.com/file/d/1j0GnAG0c4C3IE74fV5QO1iQEFbI2_6rl/view?usp=drive_link", "image"),
-  createItem("1iKplJOsbZanEf7iLl7reAuILwJryBv9c", "Graphic Design 5", "https://drive.google.com/file/d/1iKplJOsbZanEf7iLl7reAuILwJryBv9c/view?usp=drive_link", "image"),
-  createItem("1aAEvUGRLKIk8_TWEf9G0zzhunUvFyTS2", "Graphic Design 6", "https://drive.google.com/file/d/1aAEvUGRLKIk8_TWEf9G0zzhunUvFyTS2/view?usp=drive_link", "image"),
-  createItem("1R8Sbd5GY1c64_pV9bliF94H86uSDmoXM", "Graphic Design 7", "https://drive.google.com/file/d/1R8Sbd5GY1c64_pV9bliF94H86uSDmoXM/view?usp=drive_link", "image"),
-  createItem("1UHOD3X23GOsg32l5RCZLg6Sy8rnB6ctE", "Graphic Design 8", "https://drive.google.com/file/d/1UHOD3X23GOsg32l5RCZLg6Sy8rnB6ctE/view?usp=drive_link", "image"),
-  createItem("1jg1dcsF7I3MvYnZT6alM63KipQn8FNIw", "Graphic Design 9", "https://drive.google.com/file/d/1jg1dcsF7I3MvYnZT6alM63KipQn8FNIw/view?usp=drive_link", "image"),
-  createItem("1orZ-fuDXVQnAbr3WzRN0v0nagV0_OjfF", "Graphic Design 10", "https://drive.google.com/file/d/1orZ-fuDXVQnAbr3WzRN0v0nagV0_OjfF/view?usp=drive_link", "image"),
-  createItem("1BML-JWVPaBK5D-orQncaj2F3OlqkWSJH", "Graphic Design 11", "https://drive.google.com/file/d/1BML-JWVPaBK5D-orQncaj2F3OlqkWSJH/view?usp=drive_link", "image"),
-  createItem("1tRTq_MlkcwUuA6iyDSefhTOH40QKv2ww", "Graphic Design 12", "https://drive.google.com/file/d/1tRTq_MlkcwUuA6iyDSefhTOH40QKv2ww/view?usp=drive_link", "image"),
-  createItem("18lf40HCgUyvSpkKHHXamjwcNpo0HDANG", "Graphic Design 13", "https://drive.google.com/file/d/18lf40HCgUyvSpkKHHXamjwcNpo0HDANG/view?usp=drive_link", "image"),
-  createItem("11ze9IpA_WaDx1covaqOcC-6WSfiCoZGD", "Graphic Design 14", "https://drive.google.com/file/d/11ze9IpA_WaDx1covaqOcC-6WSfiCoZGD/view?usp=drive_link", "image"),
-  createItem("1otn-5yWqn7mW5IIq507xDhVqUNu22JSP", "Graphic Design 15", "https://drive.google.com/file/d/1otn-5yWqn7mW5IIq507xDhVqUNu22JSP/view?usp=drive_link", "image"),
 ];
 
 // Video items - Ad Edits
