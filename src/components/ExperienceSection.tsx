@@ -74,12 +74,12 @@ const ExperienceSection = () => {
   return (
     <section id="experience" className="relative py-20 sm:py-28 bg-paper-beige border-y-2 border-double border-ink overflow-hidden">
       <div className="absolute inset-0 pointer-events-none flex items-start justify-start overflow-hidden">
-        <div className="watermark text-[14vw] leading-none rotate-[-3deg] ml-[-2vw] mt-12">
+        <div className="watermark text-[16.1vw] leading-none rotate-[-3deg] ml-[-2vw] mt-12">
           FIELD OPS
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 relative">
+      <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-20 relative">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -89,30 +89,30 @@ const ExperienceSection = () => {
         >
           <div>
             <div className="flex items-center gap-3 mb-3">
-              <MapPin className="w-5 h-5 text-stamp-red" />
-              <span className="font-blackops text-sm tracking-[0.3em] text-stamp-red">
+              <MapPin className="w-5 h-5 text-ink" />
+              <span className="font-blackops text-base tracking-[0.3em] text-ink">
                 SECTION 05 // FIELD OPERATIONS TIMELINE
               </span>
             </div>
-            <p className="font-courier text-xs tracking-[0.35em] text-ink-brown mb-2 uppercase">
+            <p className="font-courier text-sm tracking-[0.35em] text-ink-brown mb-2 uppercase">
               Career // Operational History
             </p>
-            <h2 className="font-blackops text-5xl sm:text-7xl md:text-8xl text-ink leading-[0.9] tracking-tight">
-              WORK <span className="text-stamp-red">EXPERIENCE</span>
+            <h2 className="font-blackops text-6xl sm:text-8xl md:text-9xl text-ink leading-[0.9] tracking-tight">
+              WORK <span className="text-ink">EXPERIENCE</span>
             </h2>
           </div>
           <div className="paper-card-cream p-4 relative">
-            <div className="absolute -top-3 left-4 stamp stamp-blue text-[10px] p-1">SUMMARY BRIEFING</div>
-            <p className="font-typewriter text-base text-ink leading-relaxed mt-1">
-              Extensive experience in <span className="font-bold text-stamp-red underline decoration-wavy">creative design</span>, <span className="font-bold text-stamp-red underline decoration-wavy">video production</span>, <span className="font-bold text-stamp-red underline decoration-wavy">social media management</span>, and <span className="font-bold text-stamp-red underline decoration-wavy">enterprise software engineering</span> across multiple industries.
+            <div className="absolute -top-3 left-4 stamp stamp-blue text-[13px] p-1">SUMMARY BRIEFING</div>
+            <p className="font-typewriter text-lg text-ink leading-relaxed mt-1">
+              Extensive experience in <span className="font-bold text-ink underline">creative design</span>, <span className="font-bold text-ink underline">video production</span>, <span className="font-bold text-ink underline">social media management</span>, and <span className="font-bold text-ink underline">enterprise software engineering</span> across multiple industries.
             </p>
           </div>
         </motion.div>
 
         <div className="relative">
           <div className="absolute left-4 sm:left-6 top-2 bottom-2 w-[2px] bg-[hsl(var(--stamp-red))] opacity-70" />
-          <div className="absolute left-[7px] sm:left-[15px] top-0 w-5 h-5 border-2 border-stamp-red bg-paper rotate-45" />
-          <div className="absolute left-[7px] sm:left-[15px] bottom-0 w-5 h-5 border-2 border-stamp-red bg-paper rotate-45" />
+          <div className="absolute left-[7px] sm:left-[15px] top-0 w-5 h-5 border-2 border-ink bg-paper rotate-45" />
+          <div className="absolute left-[7px] sm:left-[15px] bottom-0 w-5 h-5 border-2 border-ink bg-paper rotate-45" />
 
           <div className="space-y-6">
             {experiences.map((exp, i) => {
@@ -126,7 +126,7 @@ const ExperienceSection = () => {
                   transition={{ duration: 0.5, delay: i * 0.04 }}
                   className="relative pl-12 sm:pl-20"
                 >
-                  <div className="absolute left-2 sm:left-4 top-6 w-6 h-6 rounded-full bg-stamp-red border-2 border-paper shadow-md flex items-center justify-center">
+                  <div className="absolute left-2 sm:left-4 top-6 w-6 h-6 rounded-full bg-ink border-2 border-paper shadow-md flex items-center justify-center">
                     <div className="w-1.5 h-1.5 rounded-full bg-paper" />
                   </div>
 
@@ -139,36 +139,36 @@ const ExperienceSection = () => {
                     <div className="tape tape-clear w-10 h-3 -top-1.5 right-6 rotate-[3deg]" />
 
                     <div className="flex items-center justify-between border-b-2 border-dashed-ink pb-2 mb-3">
-                      <span className="font-courier text-[10px] tracking-widest text-ink-brown">
+                      <span className="font-courier text-[13px] tracking-widest text-ink-brown">
                         OP-FILE-{String(i + 1).padStart(3, "0")}
                       </span>
                       <div className="flex items-center gap-2">
-                        <Briefcase className="w-3.5 h-3.5 text-stamp-red" />
-                        <span className="font-blackops text-[10px] tracking-widest text-stamp-red">FIELD REPORT</span>
+                        <Briefcase className="w-3.5 h-3.5 text-ink" />
+                        <span className="font-blackops text-[13px] tracking-widest text-ink">FIELD REPORT</span>
                       </div>
                     </div>
 
                     <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-1">
-                      <h3 className="font-blackops text-base sm:text-lg text-ink uppercase tracking-[0.04em] leading-tight">
+                      <h3 className="font-blackops text-lg sm:text-xl text-ink uppercase tracking-[0.04em] leading-tight">
                         {exp.role}
                       </h3>
                       {exp.period && (
-                        <span className="font-courier text-xs text-stamp-red tracking-widest border border-stamp-red px-2 py-0.5 whitespace-nowrap">
+                        <span className="font-courier text-sm text-ink tracking-widest border border-ink px-2 py-0.5 whitespace-nowrap">
                           {exp.period}
                         </span>
                       )}
                     </div>
 
-                    <p className="font-typewriter text-base text-ink mb-3 underline decoration-stamp-red/60 underline-offset-2">
+                    <p className="font-typewriter text-lg text-ink mb-3 underline">
                       · {exp.company}
                     </p>
 
-                    <p className="font-courier text-sm text-ink/85 leading-relaxed">
-                      <span className="font-blackops text-[10px] tracking-widest text-stamp-blue">DEBRIEF //</span>{" "}
+                    <p className="font-courier text-base text-ink/85 leading-relaxed">
+                      <span className="font-blackops text-[13px] tracking-widest text-ink">DEBRIEF //</span>{" "}
                       {exp.description}
                     </p>
 
-                    <div className="mt-4 pt-2 border-t border-dashed-ink flex items-center justify-between font-courier text-[10px] tracking-widest text-ink-brown">
+                    <div className="mt-4 pt-2 border-t border-dashed-ink flex items-center justify-between font-courier text-[13px] tracking-widest text-ink-brown">
                       <span>OPERATIVE: IT-X</span>
                       <span>SIGNED</span>
                     </div>
@@ -179,7 +179,7 @@ const ExperienceSection = () => {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-wrap items-center justify-between gap-3 font-courier text-[10px] text-ink-brown tracking-widest border-t-2 border-double border-ink pt-3">
+        <div className="mt-10 flex flex-wrap items-center justify-between gap-3 font-courier text-[13px] text-ink-brown tracking-widest border-t-2 border-double border-ink pt-3">
           <span>TIMELINE ARCHIVED · INVESTIGATIVE WALL COMPLETE</span>
           <span>{experiences.length} DOCUMENTED ENGAGEMENTS</span>
         </div>

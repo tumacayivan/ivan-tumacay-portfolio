@@ -33,11 +33,11 @@ const allSkills: Skill[] = [
 
 const SkillPill = ({ icon: Icon, label, idx }: Skill & { idx: number }) => (
   <div className="flex items-center gap-2 px-4 py-2 bg-paper border-2 border-ink shrink-0 relative">
-    <span className="font-courier text-[9px] tracking-widest text-ink-brown border-r border-ink pr-2">
+    <span className="font-courier text-[11px] tracking-widest text-ink-brown border-r border-ink pr-2">
       {String(idx).padStart(3, "0")}
     </span>
-    <Icon className="w-4 h-4 text-stamp-red shrink-0" />
-    <span className="font-blackops text-[11px] sm:text-xs text-ink whitespace-nowrap uppercase tracking-[0.12em]">
+    <Icon className="w-4 h-4 text-ink shrink-0" />
+    <span className="font-blackops text-[14px] sm:text-sm text-ink whitespace-nowrap uppercase tracking-[0.12em]">
       {label}
     </span>
   </div>
@@ -48,14 +48,14 @@ const SkillsMarquee = () => {
 
   return (
     <section className="relative py-10 sm:py-14 overflow-hidden border-y-4 border-double border-ink bg-paper-beige paper-grain">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between mb-6">
+      <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-20 flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
           <span className="status-pulse" />
-          <span className="font-blackops text-xs sm:text-sm tracking-[0.28em] text-stamp-red uppercase">
+          <span className="font-blackops text-sm sm:text-base tracking-[0.28em] text-ink uppercase">
             INTEL TICKER - OPERATIONAL CAPABILITIES STREAM
           </span>
         </div>
-        <div className="hidden sm:flex items-center gap-3 font-courier text-[10px] text-ink-brown tracking-widest">
+        <div className="hidden sm:flex items-center gap-3 font-courier text-[13px] text-ink-brown tracking-widest">
           <span>FREQ 19.875 MHz</span>
           <span className="diag-stripes-red w-12 h-2 inline-block" />
         </div>
@@ -69,7 +69,7 @@ const SkillsMarquee = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 mt-6 flex items-center justify-between font-courier text-[10px] text-ink-brown tracking-widest">
+      <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-20 mt-6 flex items-center justify-between font-courier text-[13px] text-ink-brown tracking-widest">
         <span>TRANSMISSION OPEN</span>
         <span>SIGNAL VERIFIED - NO BREAK</span>
       </div>

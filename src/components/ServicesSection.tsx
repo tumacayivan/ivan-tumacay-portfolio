@@ -187,12 +187,12 @@ const ServicesSection = () => {
       <div className="absolute inset-0 tactical-grid opacity-[0.15] pointer-events-none" />
 
       <div className="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden">
-        <div className="watermark text-[18vw] leading-none rotate-[-4deg] opacity-50">
+        <div className="watermark text-[20.7vw] leading-none rotate-[-4deg] opacity-50">
           OPERATIONS
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 relative">
+      <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-20 relative">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -203,28 +203,28 @@ const ServicesSection = () => {
           <div className="flex items-center justify-between mb-3 pb-2 border-b-2 border-ink">
             <div className="flex items-center gap-3">
               <span className="status-pulse" />
-              <span className="font-blackops text-sm tracking-[0.3em] text-stamp-red">
+              <span className="font-blackops text-base tracking-[0.3em] text-ink">
                 SECTION 03 // TACTICAL OPERATIONS BOARD
               </span>
             </div>
-            <span className="font-courier text-[10px] text-ink-brown tracking-widest hidden sm:inline">
+            <span className="font-courier text-[13px] text-ink-brown tracking-widest hidden sm:inline">
               {services.length} CAPABILITIES LOGGED
             </span>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-6 items-end">
             <div>
-              <p className="font-courier text-xs tracking-[0.35em] text-ink-brown mb-2 uppercase">
+              <p className="font-courier text-sm tracking-[0.35em] text-ink-brown mb-2 uppercase">
                 Expertise // OPERATIONAL CAPABILITIES
               </p>
-              <h2 className="font-blackops text-5xl sm:text-7xl md:text-8xl text-ink leading-[0.9] tracking-tight">
-                WHAT I <span className="text-stamp-red">OFFER</span>
+              <h2 className="font-blackops text-6xl sm:text-8xl md:text-9xl text-ink leading-[0.9] tracking-tight">
+                WHAT I <span className="text-ink">OFFER</span>
               </h2>
             </div>
             <div className="paper-card-cream p-4 relative">
-              <div className="absolute -top-3 left-4 stamp stamp-black !text-[10px] !p-1">FIELD BRIEFING</div>
-              <p className="font-typewriter text-base sm:text-lg text-ink leading-relaxed mt-2">
-                Comprehensive <span className="font-bold text-stamp-red underline decoration-wavy">virtual assistant</span>, <span className="font-bold text-stamp-red underline decoration-wavy">digital operations</span>, and <span className="font-bold text-stamp-red underline decoration-wavy">software engineering</span> services designed to help your business scale.
+              <div className="absolute -top-3 left-4 stamp stamp-black !text-[13px] !p-1">FIELD BRIEFING</div>
+              <p className="font-typewriter text-lg sm:text-xl text-ink leading-relaxed mt-2">
+                Comprehensive <span className="font-bold text-ink underline">virtual assistant</span>, <span className="font-bold text-ink underline">digital operations</span>, and <span className="font-bold text-ink underline">software engineering</span> services designed to help your business scale.
               </p>
             </div>
           </div>
@@ -236,7 +236,7 @@ const ServicesSection = () => {
           ))}
         </div>
 
-        <div className="mt-10 flex flex-wrap items-center justify-between gap-3 font-courier text-[10px] text-ink-brown tracking-widest border-t-2 border-double border-ink pt-3">
+        <div className="mt-10 flex flex-wrap items-center justify-between gap-3 font-courier text-[13px] text-ink-brown tracking-widest border-t-2 border-double border-ink pt-3">
           <span>BOARD UPDATED · ALL ASSETS VERIFIED</span>
           <span>OPERATIONS DIRECTORATE / IT</span>
         </div>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Cutive+Mono&family=Black+Ops+One&family=Stardos+Stencil:wght@400;700&family=Special+Elite&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Cutive+Mono&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,138 +6,125 @@
 
 @layer base {
   :root {
-    /* CLASSIFIED DOSSIER — LIGHT PAPER THEME */
-    --background: 42 32% 93%;          /* aged paper white #F5F1E8 */
-    --foreground: 0 0% 10%;            /* charcoal ink #1A1A1A */
+    /* PURE DECLASSIFIED DOCUMENT - BLACK INK ON AGED PAPER */
+    --background: 42 28% 90%;          /* aged photocopy paper */
+    --foreground: 0 0% 8%;             /* black ink */
 
-    --card: 38 36% 86%;                /* archive beige #E8E0D0 */
-    --card-foreground: 0 0% 10%;
+    --card: 38 26% 84%;
+    --card-foreground: 0 0% 8%;
 
-    --popover: 38 36% 86%;
-    --popover-foreground: 0 0% 10%;
+    --popover: 38 26% 84%;
+    --popover-foreground: 0 0% 8%;
 
-    --primary: 0 79% 26%;              /* classified stamp red #7A0E0E */
-    --primary-foreground: 42 32% 93%;
+    --primary: 0 0% 8%;                /* black */
+    --primary-foreground: 42 28% 90%;
 
-    --secondary: 36 20% 75%;           /* document gray #D7D2C8 */
-    --secondary-foreground: 0 0% 10%;
+    --secondary: 36 14% 75%;
+    --secondary-foreground: 0 0% 8%;
 
-    --muted: 38 20% 84%;
-    --muted-foreground: 25 18% 36%;    /* muted military brown #6B5B4D */
+    --muted: 38 16% 82%;
+    --muted-foreground: 0 0% 28%;
 
-    --accent: 209 17% 36%;             /* faded ink blue #4B5D6B */
-    --accent-foreground: 42 32% 93%;
+    --accent: 0 0% 8%;
+    --accent-foreground: 42 28% 90%;
 
-    --destructive: 0 79% 26%;
-    --destructive-foreground: 42 32% 93%;
+    --destructive: 0 0% 8%;
+    --destructive-foreground: 42 28% 90%;
 
-    --border: 30 18% 60%;
-    --input: 30 18% 60%;
-    --ring: 0 79% 26%;
+    --border: 0 0% 12%;
+    --input: 0 0% 12%;
+    --ring: 0 0% 8%;
 
-    --radius: 0.125rem;
+    --radius: 0rem;
 
-    --sidebar-background: 38 36% 86%;
-    --sidebar-foreground: 0 0% 10%;
-    --sidebar-primary: 0 79% 26%;
-    --sidebar-primary-foreground: 42 32% 93%;
-    --sidebar-accent: 36 20% 75%;
-    --sidebar-accent-foreground: 0 0% 10%;
-    --sidebar-border: 30 18% 60%;
-    --sidebar-ring: 0 79% 26%;
+    --sidebar-background: 38 26% 84%;
+    --sidebar-foreground: 0 0% 8%;
+    --sidebar-primary: 0 0% 8%;
+    --sidebar-primary-foreground: 42 28% 90%;
+    --sidebar-accent: 36 14% 75%;
+    --sidebar-accent-foreground: 0 0% 8%;
+    --sidebar-border: 0 0% 12%;
+    --sidebar-ring: 0 0% 8%;
 
-    --gold-glow: 0 79% 26%;
-    --surface-hover: 38 28% 80%;
+    --gold-glow: 0 0% 8%;
+    --surface-hover: 38 22% 80%;
 
-    /* Dossier-specific tokens */
-    --paper: 42 32% 93%;
-    --paper-cream: 38 33% 89%;          /* faded paper cream #EFE7D8 */
-    --paper-beige: 38 36% 86%;
-    --paper-gray: 36 20% 75%;
-    --ink-charcoal: 0 0% 10%;
-    --ink-brown: 25 18% 36%;
-    --stamp-red: 0 79% 26%;
-    --stamp-blue: 209 17% 36%;
+    /* Single ink colour. Aliases retained for compatibility. */
+    --paper: 42 28% 90%;
+    --paper-cream: 38 26% 86%;
+    --paper-beige: 38 24% 82%;
+    --paper-gray: 36 14% 75%;
+    --ink-charcoal: 0 0% 8%;
+    --ink-brown: 0 0% 20%;
+    --stamp-red: 0 0% 8%;
+    --stamp-blue: 0 0% 8%;
   }
 
   .dark {
-    /* Even in "dark" we keep paper aesthetic — slightly darker archival paper */
-    --background: 30 12% 14%;
-    --foreground: 42 32% 88%;
+    --background: 0 0% 12%;
+    --foreground: 42 28% 88%;
 
-    --card: 30 10% 18%;
-    --card-foreground: 42 32% 88%;
+    --card: 0 0% 16%;
+    --card-foreground: 42 28% 88%;
 
-    --popover: 30 10% 18%;
-    --popover-foreground: 42 32% 88%;
+    --popover: 0 0% 16%;
+    --popover-foreground: 42 28% 88%;
 
-    --primary: 0 65% 45%;
-    --primary-foreground: 42 32% 93%;
+    --primary: 42 28% 88%;
+    --primary-foreground: 0 0% 12%;
 
-    --secondary: 30 10% 22%;
-    --secondary-foreground: 42 32% 88%;
+    --secondary: 0 0% 20%;
+    --secondary-foreground: 42 28% 88%;
 
-    --muted: 30 10% 22%;
-    --muted-foreground: 38 20% 65%;
+    --muted: 0 0% 20%;
+    --muted-foreground: 42 18% 65%;
 
-    --accent: 209 25% 50%;
-    --accent-foreground: 42 32% 93%;
+    --accent: 42 28% 88%;
+    --accent-foreground: 0 0% 12%;
 
-    --destructive: 0 65% 45%;
-    --destructive-foreground: 42 32% 93%;
+    --destructive: 42 28% 88%;
+    --destructive-foreground: 0 0% 12%;
 
-    --border: 30 10% 30%;
-    --input: 30 10% 30%;
-    --ring: 0 65% 45%;
+    --border: 0 0% 30%;
+    --input: 0 0% 30%;
+    --ring: 42 28% 88%;
 
-    --gold-glow: 0 65% 45%;
-    --surface-hover: 30 10% 24%;
+    --gold-glow: 42 28% 88%;
+    --surface-hover: 0 0% 22%;
 
-    --sidebar-background: 30 12% 14%;
-    --sidebar-foreground: 42 32% 88%;
-    --sidebar-primary: 0 65% 45%;
-    --sidebar-primary-foreground: 42 32% 93%;
-    --sidebar-accent: 30 10% 22%;
-    --sidebar-accent-foreground: 42 32% 88%;
-    --sidebar-border: 30 10% 30%;
-    --sidebar-ring: 0 65% 45%;
+    --sidebar-background: 0 0% 12%;
+    --sidebar-foreground: 42 28% 88%;
+    --sidebar-primary: 42 28% 88%;
+    --sidebar-primary-foreground: 0 0% 12%;
+    --sidebar-accent: 0 0% 20%;
+    --sidebar-accent-foreground: 42 28% 88%;
+    --sidebar-border: 0 0% 30%;
+    --sidebar-ring: 42 28% 88%;
   }
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
+  * { @apply border-border; }
 
-  html {
-    background-color: hsl(var(--paper));
-  }
+  html { background-color: hsl(var(--paper)); }
 
   body {
     @apply bg-background text-foreground font-body antialiased;
     background-color: hsl(var(--paper));
     background-image:
-      /* paper grain */
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.10  0 0 0 0 0.07  0 0 0 0 0.05  0 0 0 0.08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"),
-      /* faint horizontal lines */
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.07  0 0 0 0 0.05  0 0 0 0 0.03  0 0 0 0.10 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"),
       repeating-linear-gradient(
         to bottom,
         transparent 0,
         transparent 31px,
-        hsl(var(--ink-brown) / 0.045) 31px,
-        hsl(var(--ink-brown) / 0.045) 32px
-      ),
-      /* subtle paper tint */
-      radial-gradient(at 20% 10%, hsl(var(--paper-cream)) 0%, transparent 60%),
-      radial-gradient(at 80% 90%, hsl(var(--paper-beige)) 0%, transparent 70%);
-    background-attachment: fixed, fixed, fixed, fixed;
+        hsl(0 0% 0% / 0.04) 31px,
+        hsl(0 0% 0% / 0.04) 32px
+      );
+    background-attachment: fixed, fixed;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-heading;
-  }
+  h1, h2, h3, h4, h5, h6 { @apply font-heading; }
 
-  /* Faint coffee stains scattered (decorative) */
   body::before {
     content: "";
     position: fixed;
@@ -145,65 +132,66 @@
     pointer-events: none;
     z-index: 0;
     background:
-      radial-gradient(circle at 14% 18%, hsl(25 30% 35% / 0.06) 0%, transparent 8%),
-      radial-gradient(circle at 86% 72%, hsl(25 30% 35% / 0.05) 0%, transparent 9%),
-      radial-gradient(circle at 50% 50%, hsl(25 30% 35% / 0.03) 0%, transparent 10%);
+      radial-gradient(circle at 14% 18%, hsl(0 0% 0% / 0.04) 0%, transparent 8%),
+      radial-gradient(circle at 86% 72%, hsl(0 0% 0% / 0.03) 0%, transparent 9%),
+      radial-gradient(circle at 50% 50%, hsl(0 0% 0% / 0.02) 0%, transparent 10%);
   }
 }
 
 @layer utilities {
-  /* ─── TYPOGRAPHY UTILITIES ─── */
+  /* All typography is typewriter / courier */
   .font-typewriter { font-family: 'Special Elite', 'Courier Prime', monospace; }
   .font-courier    { font-family: 'Courier Prime', 'Cutive Mono', monospace; }
   .font-cutive     { font-family: 'Cutive Mono', 'Courier Prime', monospace; }
-  .font-stencil    { font-family: 'Stardos Stencil', 'Black Ops One', sans-serif; letter-spacing: 0.05em; }
-  .font-blackops   { font-family: 'Black Ops One', 'Stardos Stencil', sans-serif; letter-spacing: 0.04em; }
+  .font-stencil    { font-family: 'Courier Prime', 'Special Elite', monospace; font-weight: 700; letter-spacing: 0.05em; }
+  .font-blackops   { font-family: 'Courier Prime', 'Special Elite', monospace; font-weight: 700; letter-spacing: 0.04em; }
 
-  /* ─── COLOR UTILITIES ─── */
-  .text-stamp-red  { color: hsl(var(--stamp-red)); }
-  .text-stamp-blue { color: hsl(var(--stamp-blue)); }
+  /* All ink is black */
+  .text-stamp-red, .text-stamp-blue  { color: hsl(var(--ink-charcoal)); }
   .text-ink        { color: hsl(var(--ink-charcoal)); }
   .text-ink-brown  { color: hsl(var(--ink-brown)); }
+
   .bg-paper        { background-color: hsl(var(--paper)); }
   .bg-paper-cream  { background-color: hsl(var(--paper-cream)); }
   .bg-paper-beige  { background-color: hsl(var(--paper-beige)); }
   .bg-paper-gray   { background-color: hsl(var(--paper-gray)); }
-  .border-ink      { border-color: hsl(var(--ink-charcoal)); }
-  .border-stamp    { border-color: hsl(var(--stamp-red)); }
 
-  /* ─── PAPER / DOCUMENT EFFECTS ─── */
+  .border-ink      { border-color: hsl(var(--ink-charcoal)); }
+  .border-stamp    { border-color: hsl(var(--ink-charcoal)); }
+  .bg-ink          { background-color: hsl(var(--ink-charcoal)); }
+  .bg-stamp-red    { background-color: hsl(var(--ink-charcoal)); }
+
+  /* Paper cards - pure photocopy aesthetic */
   .paper-card {
     background-color: hsl(var(--paper-cream));
     background-image:
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.10  0 0 0 0 0.07  0 0 0 0 0.04  0 0 0 0.10 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    border: 1px solid hsl(var(--ink-brown) / 0.35);
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.07  0 0 0 0 0.05  0 0 0 0 0.03  0 0 0 0.12 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    border: 1px solid hsl(0 0% 12% / 0.65);
     box-shadow:
-      0 1px 0 hsl(var(--ink-brown) / 0.08),
-      0 6px 14px -8px hsl(var(--ink-charcoal) / 0.25),
-      inset 0 0 80px hsl(var(--paper-beige) / 0.4);
+      0 1px 0 hsl(0 0% 0% / 0.10),
+      0 4px 10px -6px hsl(0 0% 0% / 0.30);
     position: relative;
   }
 
   .paper-card-cream {
     background-color: hsl(var(--paper));
     background-image:
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.10  0 0 0 0 0.07  0 0 0 0 0.04  0 0 0 0.08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    border: 1px solid hsl(var(--ink-brown) / 0.35);
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.07  0 0 0 0 0.05  0 0 0 0 0.03  0 0 0 0.10 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    border: 1px solid hsl(0 0% 12% / 0.60);
     box-shadow:
-      0 1px 0 hsl(var(--ink-brown) / 0.08),
-      0 8px 18px -10px hsl(var(--ink-charcoal) / 0.30);
+      0 1px 0 hsl(0 0% 0% / 0.08),
+      0 6px 14px -8px hsl(0 0% 0% / 0.30);
   }
 
   .paper-folder {
-    background-color: hsl(38 36% 80%);
+    background-color: hsl(38 22% 80%);
     background-image:
-      linear-gradient(180deg, hsl(38 38% 76%) 0%, hsl(38 36% 82%) 8%, hsl(38 33% 86%) 100%),
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.20  0 0 0 0 0.14  0 0 0 0 0.08  0 0 0 0.10 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.10  0 0 0 0 0.08  0 0 0 0 0.05  0 0 0 0.14 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
     background-blend-mode: multiply;
-    border: 1px solid hsl(25 25% 40% / 0.55);
+    border: 1px solid hsl(0 0% 12% / 0.70);
     box-shadow:
-      0 1px 0 hsl(38 30% 70%),
-      0 14px 30px -16px hsl(var(--ink-charcoal) / 0.35);
+      0 1px 0 hsl(0 0% 0% / 0.10),
+      0 10px 22px -12px hsl(0 0% 0% / 0.40);
   }
 
   .paper-grain::after {
@@ -212,33 +200,26 @@
     inset: 0;
     pointer-events: none;
     background-image:
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.10  0 0 0 0 0.07  0 0 0 0 0.04  0 0 0 0.07 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    opacity: 0.5;
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.07  0 0 0 0 0.05  0 0 0 0 0.03  0 0 0 0.08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    opacity: 0.55;
     mix-blend-mode: multiply;
   }
 
-  /* Worn / torn edges */
-  .edge-worn {
-    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='m'><feTurbulence type='fractalNoise' baseFrequency='0.02' numOctaves='2'/><feDisplacementMap in='SourceGraphic' scale='6'/></filter><rect width='400' height='400' fill='black' filter='url(%23m)'/></svg>");
-    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='m'><feTurbulence type='fractalNoise' baseFrequency='0.02' numOctaves='2'/><feDisplacementMap in='SourceGraphic' scale='6'/></filter><rect width='400' height='400' fill='black' filter='url(%23m)'/></svg>");
-  }
-
-  /* ─── CLASSIFIED STAMP ─── */
+  /* RUBBER STAMP - BLACK INK ONLY */
   .stamp {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Stardos Stencil', 'Black Ops One', sans-serif;
+    font-family: 'Courier Prime', monospace;
     font-weight: 700;
-    color: hsl(var(--stamp-red));
-    border: 4px double hsl(var(--stamp-red));
-    padding: 0.4rem 1.1rem;
-    letter-spacing: 0.18em;
+    color: hsl(var(--ink-charcoal));
+    border: 3px double hsl(var(--ink-charcoal));
+    padding: 0.35rem 1rem;
+    letter-spacing: 0.20em;
     text-transform: uppercase;
-    transform: rotate(-6deg);
-    background: hsl(var(--paper) / 0.0);
-    text-shadow: 0.5px 0.5px 0 hsl(var(--paper));
-    box-shadow: inset 0 0 0 2px hsl(var(--paper) / 0.0);
+    transform: rotate(-4deg);
+    background: transparent;
+    text-shadow: 0.5px 0 0 hsl(var(--paper));
     position: relative;
   }
   .stamp::after {
@@ -246,88 +227,67 @@
     position: absolute;
     inset: 0;
     background-image:
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.6' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.95  0 0 0 0 0.94  0 0 0 0 0.91  0 0 0 0.95 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.6' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.95  0 0 0 0 0.93  0 0 0 0 0.89  0 0 0 0.92 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
     mix-blend-mode: screen;
     opacity: 0.55;
     pointer-events: none;
   }
-  .stamp-blue {
-    color: hsl(var(--stamp-blue));
-    border-color: hsl(var(--stamp-blue));
-    transform: rotate(3deg);
-  }
-  .stamp-black {
+  .stamp-blue, .stamp-black {
     color: hsl(var(--ink-charcoal));
     border-color: hsl(var(--ink-charcoal));
   }
   .stamp-straight { transform: rotate(0deg); }
 
-  /* Watermark / huge faded background text */
+  /* Watermark - black faded */
   .watermark {
-    font-family: 'Stardos Stencil', 'Black Ops One', sans-serif;
+    font-family: 'Courier Prime', monospace;
     font-weight: 700;
-    color: hsl(var(--stamp-red) / 0.07);
+    color: hsl(0 0% 0% / 0.06);
     letter-spacing: 0.05em;
     text-transform: uppercase;
     pointer-events: none;
     user-select: none;
     white-space: nowrap;
   }
-  .watermark-dark {
-    color: hsl(var(--ink-charcoal) / 0.05);
-  }
+  .watermark-dark { color: hsl(0 0% 0% / 0.05); }
 
-  /* Redaction bar */
   .redacted {
     background-color: hsl(var(--ink-charcoal));
     color: hsl(var(--ink-charcoal));
     padding: 0 0.35em;
     user-select: none;
-    box-shadow:
-      0 0 0 1px hsl(var(--ink-charcoal)),
-      inset 0 0 6px hsl(0 0% 0% / 0.4);
   }
 
-  /* Tape (scotch / masking) */
+  /* Tape - subtle paper tone, no colour */
   .tape {
     position: absolute;
-    background: hsl(45 50% 80% / 0.7);
-    border: 1px solid hsl(45 30% 65% / 0.45);
-    box-shadow: 0 1px 3px hsl(0 0% 0% / 0.15);
+    background: hsl(38 20% 78% / 0.7);
+    border: 1px solid hsl(0 0% 0% / 0.18);
+    box-shadow: 0 1px 2px hsl(0 0% 0% / 0.15);
   }
-  .tape-yellow { background: hsl(45 70% 75% / 0.75); }
-  .tape-clear  { background: hsl(0 0% 100% / 0.35); }
+  .tape-yellow, .tape-clear { background: hsl(38 20% 78% / 0.65); }
 
-  /* Paperclip simulated via box */
   .paperclip {
     position: absolute;
     width: 14px;
     height: 36px;
-    border: 2px solid hsl(0 0% 55%);
+    border: 2px solid hsl(0 0% 30%);
     border-radius: 7px;
     background: transparent;
-    box-shadow: inset 0 0 0 1px hsl(0 0% 75%);
   }
 
-  /* Stitched / dashed border */
-  .border-dashed-ink {
-    border: 1.5px dashed hsl(var(--ink-charcoal) / 0.55);
-  }
-  .border-dotted-ink {
-    border: 2px dotted hsl(var(--ink-brown) / 0.6);
-  }
+  .border-dashed-ink { border: 1.5px dashed hsl(0 0% 12% / 0.7); }
+  .border-dotted-ink { border: 2px dotted hsl(0 0% 12% / 0.6); }
 
-  /* Photocopy / scan effect */
   .photocopy {
-    filter: grayscale(100%) contrast(1.25) brightness(0.95);
+    filter: grayscale(100%) contrast(1.35) brightness(0.92);
     mix-blend-mode: multiply;
   }
   .photocopy-strong {
-    filter: grayscale(100%) contrast(1.6) brightness(0.85);
+    filter: grayscale(100%) contrast(1.7) brightness(0.82);
     mix-blend-mode: multiply;
   }
 
-  /* Scanner lines overlay */
   .scanline-overlay::after {
     content: "";
     position: absolute;
@@ -337,34 +297,30 @@
       0deg,
       transparent 0,
       transparent 3px,
-      hsl(0 0% 0% / 0.04) 3px,
-      hsl(0 0% 0% / 0.04) 4px
+      hsl(0 0% 0% / 0.05) 3px,
+      hsl(0 0% 0% / 0.05) 4px
     );
     mix-blend-mode: multiply;
   }
 
-  /* Halftone dots */
   .halftone {
     background-image: radial-gradient(hsl(var(--ink-charcoal) / 0.55) 1px, transparent 1.5px);
     background-size: 4px 4px;
   }
 
-  /* Crosshatch background */
   .crosshatch-bg {
     background-image:
-      repeating-linear-gradient(45deg, hsl(var(--ink-charcoal) / 0.08) 0 1px, transparent 1px 6px),
-      repeating-linear-gradient(-45deg, hsl(var(--ink-charcoal) / 0.06) 0 1px, transparent 1px 8px);
+      repeating-linear-gradient(45deg, hsl(0 0% 0% / 0.08) 0 1px, transparent 1px 6px),
+      repeating-linear-gradient(-45deg, hsl(0 0% 0% / 0.06) 0 1px, transparent 1px 8px);
   }
 
-  /* Grid + crosshair */
   .tactical-grid {
     background-image:
-      linear-gradient(hsl(var(--ink-brown) / 0.18) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--ink-brown) / 0.18) 1px, transparent 1px);
+      linear-gradient(hsl(0 0% 0% / 0.12) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(0 0% 0% / 0.12) 1px, transparent 1px);
     background-size: 40px 40px;
   }
 
-  /* Bullet / dossier number */
   .dossier-num {
     font-family: 'Courier Prime', monospace;
     font-weight: 700;
@@ -373,56 +329,46 @@
     font-size: 0.75rem;
   }
 
-  /* Sticky note */
+  /* Sticky note - now a plain memo slip, no colour */
   .sticky-note {
-    background: hsl(48 80% 80%);
-    background-image:
-      linear-gradient(180deg, hsl(48 85% 82%) 0%, hsl(48 78% 75%) 100%);
+    background: hsl(38 22% 82%);
     box-shadow:
-      0 1px 0 hsl(45 50% 60%),
-      0 8px 16px -6px hsl(0 0% 0% / 0.25);
+      0 1px 0 hsl(0 0% 0% / 0.15),
+      0 6px 12px -6px hsl(0 0% 0% / 0.25);
     font-family: 'Special Elite', cursive;
-    color: hsl(0 0% 15%);
+    color: hsl(0 0% 12%);
     padding: 0.75rem 1rem;
     position: relative;
+    border: 1px solid hsl(0 0% 0% / 0.25);
   }
-  .sticky-pink { background: hsl(350 80% 86%); }
-  .sticky-blue { background: hsl(200 70% 82%); }
+  .sticky-pink, .sticky-blue { background: hsl(38 22% 82%); }
 
-  /* Handwritten */
   .handwritten {
     font-family: 'Special Elite', cursive;
-    color: hsl(var(--stamp-blue));
+    color: hsl(var(--ink-charcoal));
     transform: rotate(-1.5deg);
     display: inline-block;
   }
   .handwritten-red {
     font-family: 'Special Elite', cursive;
-    color: hsl(var(--stamp-red));
+    color: hsl(var(--ink-charcoal));
   }
 
-  /* Status indicators */
   .status-pulse::before {
     content: "";
     display: inline-block;
-    width: 0.65em;
-    height: 0.65em;
+    width: 0.55em;
+    height: 0.55em;
     margin-right: 0.5em;
-    background: hsl(var(--stamp-red));
+    background: hsl(var(--ink-charcoal));
     border-radius: 50%;
-    box-shadow: 0 0 0 2px hsl(var(--stamp-red) / 0.25);
     animation: pulse-classified 1.6s ease-in-out infinite;
     vertical-align: middle;
   }
 
-  /* ─── ANIMATIONS ─── */
-  @keyframes typewriter {
-    from { width: 0; }
-    to   { width: 100%; }
-  }
-  @keyframes blink-caret {
-    50% { border-color: transparent; }
-  }
+  /* Animations */
+  @keyframes typewriter { from { width: 0; } to { width: 100%; } }
+  @keyframes blink-caret { 50% { border-color: transparent; } }
   .typewriter-text {
     display: inline-block;
     overflow: hidden;
@@ -432,44 +378,31 @@
   }
 
   @keyframes stamp-impact {
-    0%   { opacity: 0; transform: rotate(-22deg) scale(2.6); }
+    0%   { opacity: 0; transform: rotate(-18deg) scale(2.4); }
     30%  { opacity: 1; }
-    60%  { transform: rotate(-6deg) scale(1.05); }
-    100% { transform: rotate(-6deg) scale(1); opacity: 1; }
+    60%  { transform: rotate(-4deg) scale(1.05); }
+    100% { transform: rotate(-4deg) scale(1); opacity: 1; }
   }
   .animate-stamp { animation: stamp-impact 0.9s cubic-bezier(.2,.7,.2,1) 0.4s both; }
   .animate-stamp-blue { animation: stamp-impact 0.9s cubic-bezier(.2,.7,.2,1) 0.7s both; }
-  .animate-stamp-blue { --final-rot: 4deg; }
 
   @keyframes scanner-flicker {
     0%, 100% { opacity: 0.05; }
-    45%      { opacity: 0.18; }
-    50%      { opacity: 0.04; }
-    55%      { opacity: 0.20; }
+    45% { opacity: 0.16; } 50% { opacity: 0.04; } 55% { opacity: 0.18; }
   }
   .scanner-flicker { animation: scanner-flicker 3.4s ease-in-out infinite; }
 
   @keyframes pulse-classified {
-    0%, 100% { opacity: 1; }
-    50%      { opacity: 0.25; }
+    0%, 100% { opacity: 1; } 50% { opacity: 0.25; }
   }
   .animate-pulse-classified { animation: pulse-classified 1.4s ease-in-out infinite; }
 
   @keyframes scan-down {
-    0%   { transform: translateY(-100%); }
-    100% { transform: translateY(120%); }
+    0% { transform: translateY(-100%); } 100% { transform: translateY(120%); }
   }
   .scan-bar {
-    position: absolute;
-    left: 0; right: 0;
-    height: 30px;
-    pointer-events: none;
-    background: linear-gradient(
-      to bottom,
-      hsl(0 0% 100% / 0) 0%,
-      hsl(0 0% 100% / 0.5) 50%,
-      hsl(0 0% 100% / 0) 100%
-    );
+    position: absolute; left: 0; right: 0; height: 30px; pointer-events: none;
+    background: linear-gradient(to bottom, hsl(0 0% 100% / 0) 0%, hsl(0 0% 100% / 0.35) 50%, hsl(0 0% 100% / 0) 100%);
     mix-blend-mode: overlay;
     animation: scan-down 5s ease-in-out infinite;
   }
@@ -480,56 +413,38 @@
   }
   .paper-rise { animation: paper-rise 0.8s ease-out both; }
 
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50%      { transform: translateY(-10px); }
-  }
+  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
   .animate-float { animation: float 6s ease-in-out infinite; }
 
-  @keyframes pulse-gold {
-    0%, 100% { opacity: 0.4; }
-    50%      { opacity: 1; }
-  }
+  @keyframes pulse-gold { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
   .animate-pulse-gold { animation: pulse-gold 3s ease-in-out infinite; }
 
-  /* Legacy compatibility — repurposed but kept named */
-  .text-gradient-gold {
-    color: hsl(var(--stamp-red));
-    text-shadow: 0.5px 0.5px 0 hsl(var(--paper));
-  }
-  .border-gradient-gold {
-    border-color: hsl(var(--stamp-red) / 0.45);
-  }
+  .text-gradient-gold { color: hsl(var(--ink-charcoal)); }
+  .border-gradient-gold { border-color: hsl(var(--ink-charcoal)); }
   .glow-gold {
     box-shadow:
-      0 1px 0 hsl(var(--ink-brown) / 0.1),
-      0 10px 20px -10px hsl(var(--ink-charcoal) / 0.35);
+      0 1px 0 hsl(0 0% 0% / 0.10),
+      0 8px 18px -10px hsl(0 0% 0% / 0.35);
   }
   .glass-card {
     background-color: hsl(var(--paper-cream));
     background-image:
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.10  0 0 0 0 0.07  0 0 0 0 0.04  0 0 0 0.08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    border: 1px solid hsl(var(--ink-brown) / 0.4);
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.07  0 0 0 0 0.05  0 0 0 0 0.03  0 0 0 0.10 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    border: 1px solid hsl(0 0% 12% / 0.65);
     box-shadow:
-      0 1px 0 hsl(var(--ink-brown) / 0.10),
-      0 8px 18px -10px hsl(var(--ink-charcoal) / 0.30);
+      0 1px 0 hsl(0 0% 0% / 0.10),
+      0 8px 18px -10px hsl(0 0% 0% / 0.30);
     backdrop-filter: none;
   }
   .grid-pattern {
     background-image:
-      linear-gradient(hsl(var(--ink-brown) / 0.18) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--ink-brown) / 0.18) 1px, transparent 1px);
+      linear-gradient(hsl(0 0% 0% / 0.12) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(0 0% 0% / 0.12) 1px, transparent 1px);
     background-size: 50px 50px;
   }
 
-  @keyframes marquee-left {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-  @keyframes marquee-right {
-    0%   { transform: translateX(-50%); }
-    100% { transform: translateX(0); }
-  }
+  @keyframes marquee-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+  @keyframes marquee-right { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
   .animate-marquee-left  { animation: marquee-left 120s linear infinite; }
   .animate-marquee-right { animation: marquee-right 120s linear infinite; }
 
@@ -538,10 +453,8 @@
     animation-play-state: paused;
   }
 
-  /* Ticker-tape (faster) */
   .animate-ticker { animation: marquee-left 45s linear infinite; }
 
-  /* Diagonal classification header banner */
   .diag-stripes {
     background-image: repeating-linear-gradient(
       45deg,
@@ -552,12 +465,11 @@
   .diag-stripes-red {
     background-image: repeating-linear-gradient(
       45deg,
-      hsl(var(--stamp-red)) 0 12px,
-      hsl(var(--paper)) 12px 24px
+      hsl(var(--ink-charcoal)) 0 10px,
+      hsl(var(--paper)) 10px 20px
     );
   }
 
-  /* Barcode look */
   .barcode {
     background-image: repeating-linear-gradient(
       90deg,

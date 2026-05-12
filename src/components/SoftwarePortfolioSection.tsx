@@ -133,12 +133,12 @@ const SoftwarePortfolioSection = () => {
   return (
     <section id="software-portfolio" className="relative py-20 sm:py-28 overflow-hidden paper-grain">
       <div className="absolute inset-0 pointer-events-none flex items-center justify-end overflow-hidden">
-        <div className="watermark text-[14vw] leading-none rotate-[4deg] -mr-10">
+        <div className="watermark text-[16.1vw] leading-none rotate-[4deg] -mr-10">
           MISSIONS
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 relative">
+      <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-20 relative">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -147,24 +147,24 @@ const SoftwarePortfolioSection = () => {
           className="mb-12"
         >
           <div className="flex items-center gap-3 mb-3">
-            <Folder className="w-5 h-5 text-stamp-red" />
-            <span className="font-blackops text-sm tracking-[0.3em] text-stamp-red">
+            <Folder className="w-5 h-5 text-ink" />
+            <span className="font-blackops text-base tracking-[0.3em] text-ink">
               ANNEX 01 // SOFTWARE DEVELOPMENT PORTFOLIO
             </span>
-            <span className="font-courier text-[10px] text-ink-brown tracking-widest hidden sm:inline">
+            <span className="font-courier text-[13px] text-ink-brown tracking-widest hidden sm:inline">
               · {totalProjects} OPERATIONS LOGGED
             </span>
           </div>
-          <p className="font-courier text-xs tracking-[0.35em] text-ink-brown mb-2 uppercase">
+          <p className="font-courier text-sm tracking-[0.35em] text-ink-brown mb-2 uppercase">
             Software Development Portfolio
           </p>
-          <h2 className="font-blackops text-5xl sm:text-7xl md:text-8xl text-ink leading-[0.9] tracking-tight">
-            PROJECT <span className="text-stamp-red">SHOWCASE</span>
+          <h2 className="font-blackops text-6xl sm:text-8xl md:text-9xl text-ink leading-[0.9] tracking-tight">
+            PROJECT <span className="text-ink">SHOWCASE</span>
           </h2>
           <div className="mt-4 paper-card-cream p-4 max-w-3xl relative">
-            <div className="absolute -top-3 left-4 stamp stamp-black !text-[10px] !p-1">MISSION SUMMARY</div>
-            <p className="font-typewriter text-lg text-ink leading-relaxed mt-1">
-              A curated selection of projects delivered for <span className="font-bold text-stamp-red underline decoration-wavy">clients</span> and <span className="font-bold text-stamp-red underline decoration-wavy">enterprise organizations</span>, showcasing expertise across industries and technologies.
+            <div className="absolute -top-3 left-4 stamp stamp-black !text-[13px] !p-1">MISSION SUMMARY</div>
+            <p className="font-typewriter text-xl text-ink leading-relaxed mt-1">
+              A curated selection of projects delivered for <span className="font-bold text-ink underline">clients</span> and <span className="font-bold text-ink underline">enterprise organizations</span>, showcasing expertise across industries and technologies.
             </p>
           </div>
         </motion.div>
@@ -181,20 +181,20 @@ const SoftwarePortfolioSection = () => {
               <div className="flex items-center gap-3 sm:gap-5 mb-6">
                 <div className="diag-stripes-red h-2 w-12 sm:w-20" />
                 <div className="paper-card-cream px-4 py-2 flex items-center gap-3 relative">
-                  <div className="absolute -top-2 -left-2 w-3 h-3 border-l-2 border-t-2 border-stamp-red" />
-                  <div className="absolute -top-2 -right-2 w-3 h-3 border-r-2 border-t-2 border-stamp-red" />
-                  <div className="absolute -bottom-2 -left-2 w-3 h-3 border-l-2 border-b-2 border-stamp-red" />
-                  <div className="absolute -bottom-2 -right-2 w-3 h-3 border-r-2 border-b-2 border-stamp-red" />
-                  <span className="font-courier text-[10px] tracking-widest text-ink-brown">YEAR</span>
-                  <h3 className="font-blackops text-4xl sm:text-5xl text-ink tracking-tight leading-none">
+                  <div className="absolute -top-2 -left-2 w-3 h-3 border-l-2 border-t-2 border-ink" />
+                  <div className="absolute -top-2 -right-2 w-3 h-3 border-r-2 border-t-2 border-ink" />
+                  <div className="absolute -bottom-2 -left-2 w-3 h-3 border-l-2 border-b-2 border-ink" />
+                  <div className="absolute -bottom-2 -right-2 w-3 h-3 border-r-2 border-b-2 border-ink" />
+                  <span className="font-courier text-[13px] tracking-widest text-ink-brown">YEAR</span>
+                  <h3 className="font-blackops text-5xl sm:text-6xl text-ink tracking-tight leading-none">
                     {yearGroup.year}
                   </h3>
-                  <span className="font-courier text-[10px] tracking-widest text-stamp-red">
+                  <span className="font-courier text-[13px] tracking-widest text-ink">
                     {yearGroup.count} {yearGroup.count === 1 ? "MISSION" : "MISSIONS"}
                   </span>
                 </div>
                 <div className="flex-1 border-t-2 border-double border-ink" />
-                <span className="hidden md:inline font-courier text-[10px] tracking-widest text-ink-brown">
+                <span className="hidden md:inline font-courier text-[13px] tracking-widest text-ink-brown">
                   ARCHIVE-Y{yearGroup.year}
                 </span>
               </div>
@@ -217,31 +217,31 @@ const SoftwarePortfolioSection = () => {
                       <div className="tape tape-yellow w-10 h-3 -top-1.5 left-6 rotate-[-4deg]" />
 
                       <div className="flex items-center justify-between border-b-2 border-dashed-ink pb-2 mb-3">
-                        <span className="font-courier text-[10px] tracking-widest text-ink-brown">
+                        <span className="font-courier text-[13px] tracking-widest text-ink-brown">
                           M-{yearGroup.year}-{String(projectIndex + 1).padStart(2, "0")}
                         </span>
-                        <span className="font-blackops text-[10px] tracking-widest text-stamp-red">{project.category.toUpperCase()}</span>
+                        <span className="font-blackops text-[13px] tracking-widest text-ink">{project.category.toUpperCase()}</span>
                       </div>
 
                       <div className="flex items-start gap-3 mb-3">
-                        <div className="p-2 border-2 border-ink bg-paper text-stamp-red shrink-0">
+                        <div className="p-2 border-2 border-ink bg-paper text-ink shrink-0">
                           <Icon className="w-4 h-4" />
                         </div>
                         <div className="min-w-0 flex-1">
-                          <h4 className="font-blackops text-sm sm:text-base text-ink uppercase tracking-[0.04em] leading-tight group-hover:text-stamp-red transition-colors">
+                          <h4 className="font-blackops text-base sm:text-lg text-ink uppercase tracking-[0.04em] leading-tight group-hover:text-ink transition-colors">
                             {project.name}
                           </h4>
                         </div>
                       </div>
 
-                      <p className="font-courier text-sm text-ink/80 leading-relaxed border-t border-dashed-ink pt-2">
-                        <span className="font-blackops text-[10px] tracking-widest text-stamp-blue">SYS //</span>{" "}
+                      <p className="font-courier text-base text-ink/80 leading-relaxed border-t border-dashed-ink pt-2">
+                        <span className="font-blackops text-[13px] tracking-widest text-ink">SYS //</span>{" "}
                         {project.description}
                       </p>
 
-                      <div className="mt-3 flex items-center justify-between font-courier text-[9px] tracking-widest text-ink-brown">
+                      <div className="mt-3 flex items-center justify-between font-courier text-[11px] tracking-widest text-ink-brown">
                         <span><FileText className="w-3 h-3 inline mr-1 -mt-0.5" />MISSION RECORD</span>
-                        <span className="text-stamp-red">VERIFIED</span>
+                        <span className="text-ink">VERIFIED</span>
                       </div>
                     </motion.div>
                   );
@@ -251,7 +251,7 @@ const SoftwarePortfolioSection = () => {
           ))}
         </div>
 
-        <div className="mt-12 flex flex-wrap items-center justify-between gap-3 font-courier text-[10px] text-ink-brown tracking-widest border-t-2 border-double border-ink pt-3">
+        <div className="mt-12 flex flex-wrap items-center justify-between gap-3 font-courier text-[13px] text-ink-brown tracking-widest border-t-2 border-double border-ink pt-3">
           <span>END OF MISSIONS ANNEX</span>
           <span>TOTAL ENGAGEMENTS: {totalProjects}</span>
           <span>FILED BY OPERATIONS DIRECTORATE</span>

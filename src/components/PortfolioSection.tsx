@@ -193,18 +193,18 @@ const Lightbox = ({
     >
       <div className="absolute inset-0 tactical-grid opacity-[0.12] pointer-events-none" />
 
-      <div className="absolute top-0 left-0 right-0 bg-paper border-b-2 border-stamp-red px-4 py-2 flex items-center justify-between z-10">
-        <span className="font-blackops text-stamp-red text-xs tracking-[0.3em]">
+      <div className="absolute top-0 left-0 right-0 bg-paper border-b-2 border-ink px-4 py-2 flex items-center justify-between z-10">
+        <span className="font-blackops text-ink text-sm tracking-[0.3em]">
           EVIDENCE VIEWER · FILE {String(currentIndex + 1).padStart(3, "0")} / {String(items.length).padStart(3, "0")}
         </span>
-        <span className="font-courier text-[10px] text-ink-brown tracking-widest hidden sm:inline">
+        <span className="font-courier text-[13px] text-ink-brown tracking-widest hidden sm:inline">
           REF: {item.fileId.slice(0, 10)}
         </span>
       </div>
 
       <button
         onClick={onClose}
-        className="absolute top-14 right-4 p-2 bg-paper border-2 border-stamp-red text-stamp-red hover:bg-stamp-red hover:text-paper transition-colors z-10"
+        className="absolute top-14 right-4 p-2 bg-paper border-2 border-ink text-ink hover:bg-ink hover:text-paper transition-colors z-10"
         aria-label="Close"
       >
         <X className="w-5 h-5" />
@@ -231,10 +231,10 @@ const Lightbox = ({
         onClick={(e) => e.stopPropagation()}
       >
         <div className="relative paper-card-cream p-2 sm:p-3">
-          <div className="absolute -top-1 -left-1 w-4 h-4 border-l-2 border-t-2 border-stamp-red" />
-          <div className="absolute -top-1 -right-1 w-4 h-4 border-r-2 border-t-2 border-stamp-red" />
-          <div className="absolute -bottom-1 -left-1 w-4 h-4 border-l-2 border-b-2 border-stamp-red" />
-          <div className="absolute -bottom-1 -right-1 w-4 h-4 border-r-2 border-b-2 border-stamp-red" />
+          <div className="absolute -top-1 -left-1 w-4 h-4 border-l-2 border-t-2 border-ink" />
+          <div className="absolute -top-1 -right-1 w-4 h-4 border-r-2 border-t-2 border-ink" />
+          <div className="absolute -bottom-1 -left-1 w-4 h-4 border-l-2 border-b-2 border-ink" />
+          <div className="absolute -bottom-1 -right-1 w-4 h-4 border-r-2 border-b-2 border-ink" />
 
           {isVideo && item.embedUrl ? (
             <motion.div
@@ -269,8 +269,8 @@ const Lightbox = ({
         </div>
 
         <div className="paper-card-cream px-4 py-2 flex items-center gap-3">
-          <span className="font-blackops text-stamp-red text-xs tracking-widest">EVIDENCE TAG:</span>
-          <p className="font-typewriter text-base text-ink uppercase tracking-wide">{item.title}</p>
+          <span className="font-blackops text-ink text-sm tracking-widest">EVIDENCE TAG:</span>
+          <p className="font-typewriter text-lg text-ink uppercase tracking-wide">{item.title}</p>
         </div>
 
         {item.link && (
@@ -278,7 +278,7 @@ const Lightbox = ({
             href={item.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-1 px-5 py-2 bg-stamp-red text-paper border-2 border-stamp-red font-blackops text-xs tracking-[0.18em] uppercase hover:bg-paper hover:text-stamp-red transition-colors flex items-center gap-2"
+            className="mt-1 px-5 py-2 bg-ink text-paper border-2 border-ink font-blackops text-sm tracking-[0.18em] uppercase hover:bg-paper hover:text-ink transition-colors flex items-center gap-2"
             onClick={(e) => e.stopPropagation()}
           >
             ACCESS SECURE ARCHIVE
@@ -320,7 +320,7 @@ const MarqueeRow = ({
               }}
               onClick={() => onItemClick(item)}
             >
-              <div className="absolute -top-2 left-3 bg-paper border border-ink px-2 py-0.5 font-courier text-[9px] tracking-widest text-ink z-10 rotate-[-2deg]">
+              <div className="absolute -top-2 left-3 bg-paper border border-ink px-2 py-0.5 font-courier text-[11px] tracking-widest text-ink z-10 rotate-[-2deg]">
                 EVIDENCE-{String(i + 1).padStart(3, "0")}
               </div>
               <div className="tape tape-yellow w-12 h-4 -top-2 right-6 rotate-[5deg] z-10" />
@@ -358,7 +358,7 @@ const MarqueeRow = ({
                 <div className="absolute bottom-2 left-2 w-4 h-4 border-l-2 border-b-2 border-[hsl(var(--paper))]" />
                 <div className="absolute bottom-2 right-2 w-4 h-4 border-r-2 border-b-2 border-[hsl(var(--paper))]" />
 
-                <div className="absolute top-2 right-6 stamp-black stamp text-[10px] !p-1 !rotate-0">
+                <div className="absolute top-2 right-6 stamp-black stamp text-[13px] !p-1 !rotate-0">
                   {type === "video" ? "VIDEO REC" : "PHOTO REF"}
                 </div>
 
@@ -372,16 +372,16 @@ const MarqueeRow = ({
                       <ImageIcon className="w-5 h-5 text-paper" />
                     </div>
                   )}
-                  <span className="font-blackops text-sm text-paper text-center tracking-widest uppercase">
+                  <span className="font-blackops text-base text-paper text-center tracking-widest uppercase">
                     REVIEW EVIDENCE
                   </span>
-                  <span className="font-courier text-[10px] text-paper/70 tracking-widest">
+                  <span className="font-courier text-[13px] text-paper/70 tracking-widest">
                     {item.title}
                   </span>
                 </div>
               </div>
 
-              <div className="mt-1.5 flex items-center justify-between font-courier text-[10px] tracking-widest text-ink">
+              <div className="mt-1.5 flex items-center justify-between font-courier text-[13px] tracking-widest text-ink">
                 <span className="truncate uppercase">{item.title}</span>
                 <span className="text-ink-brown shrink-0 ml-2">{item.fileId.slice(0, 8)}</span>
               </div>
@@ -415,12 +415,12 @@ const PortfolioSection = () => {
     <>
       <section id="portfolio" className="relative py-20 sm:py-28 overflow-hidden paper-grain">
         <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-start justify-end">
-          <div className="watermark watermark-dark text-[14vw] leading-none -rotate-6 -mr-10 mt-10">
+          <div className="watermark watermark-dark text-[16.1vw] leading-none -rotate-6 -mr-10 mt-10">
             CASE FILES
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 relative">
+        <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-20 relative">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -429,30 +429,30 @@ const PortfolioSection = () => {
             className="mb-12 relative"
           >
             <div className="flex items-center gap-3 mb-3">
-              <Folder className="w-5 h-5 text-stamp-red" />
-              <span className="font-blackops text-sm tracking-[0.3em] text-stamp-red">
+              <Folder className="w-5 h-5 text-ink" />
+              <span className="font-blackops text-base tracking-[0.3em] text-ink">
                 SECTION 04 // PORTFOLIO
               </span>
-              <span className="font-courier text-xs text-ink-brown tracking-widest hidden sm:inline">CLASSIFIED MISSIONS ARCHIVE</span>
+              <span className="font-courier text-sm text-ink-brown tracking-widest hidden sm:inline">CLASSIFIED MISSIONS ARCHIVE</span>
             </div>
-            <h2 className="font-blackops text-5xl sm:text-7xl md:text-8xl text-ink leading-[0.9] tracking-tight">
-              FEATURED <span className="text-stamp-red">WORK</span>
+            <h2 className="font-blackops text-6xl sm:text-8xl md:text-9xl text-ink leading-[0.9] tracking-tight">
+              FEATURED <span className="text-ink">WORK</span>
             </h2>
             <div className="mt-4 flex items-start gap-4 max-w-3xl">
-              <div className="stamp stamp-black text-[11px] !p-1.5 hidden sm:inline-flex">FILE 04</div>
-              <p className="font-typewriter text-lg sm:text-xl text-ink leading-relaxed">
-                A selection of <span className="font-bold text-stamp-red underline decoration-wavy">graphics design</span>, <span className="font-bold text-stamp-red underline decoration-wavy">video editing</span>, and multimedia projects delivered for clients. <span className="font-bold underline">Click any item</span> to view full screen.
+              <div className="stamp stamp-black text-[14px] !p-1.5 hidden sm:inline-flex">FILE 04</div>
+              <p className="font-typewriter text-xl sm:text-2xl text-ink leading-relaxed">
+                A selection of <span className="font-bold text-ink underline">graphics design</span>, <span className="font-bold text-ink underline">video editing</span>, and multimedia projects delivered for clients. <span className="font-bold underline">Click any item</span> to view full screen.
               </p>
             </div>
           </motion.div>
 
           <div className="mb-3 flex items-center gap-3">
             <Camera className="w-5 h-5 text-ink" />
-            <h3 className="font-blackops text-2xl sm:text-3xl text-ink uppercase tracking-[0.1em]">
+            <h3 className="font-blackops text-3xl sm:text-4xl text-ink uppercase tracking-[0.1em]">
               Graphics Design
             </h3>
             <span className="flex-1 h-px border-t border-dashed-ink" />
-            <span className="font-courier text-[10px] text-ink-brown tracking-widest">
+            <span className="font-courier text-[13px] text-ink-brown tracking-widest">
               {graphicItems.length} ARTIFACTS
             </span>
           </div>
@@ -462,13 +462,13 @@ const PortfolioSection = () => {
           <MarqueeRow items={graphicItems} direction="left" type="graphic" onItemClick={openLightbox} />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 mb-3 flex items-center gap-3">
+        <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-20 mb-3 flex items-center gap-3">
           <Play className="w-5 h-5 text-ink" />
-          <h3 className="font-blackops text-2xl sm:text-3xl text-ink uppercase tracking-[0.1em]">
+          <h3 className="font-blackops text-3xl sm:text-4xl text-ink uppercase tracking-[0.1em]">
             Video Editing &amp; Multimedia
           </h3>
           <span className="flex-1 h-px border-t border-dashed-ink" />
-          <span className="font-courier text-[10px] text-ink-brown tracking-widest">
+          <span className="font-courier text-[13px] text-ink-brown tracking-widest">
             {videoItems.length} REELS
           </span>
         </div>
@@ -477,7 +477,7 @@ const PortfolioSection = () => {
           <MarqueeRow items={videoItems} direction="right" type="video" onItemClick={openLightbox} />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 mt-10 flex flex-wrap items-center justify-between gap-3 font-courier text-[10px] text-ink-brown tracking-widest">
+        <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-20 mt-10 flex flex-wrap items-center justify-between gap-3 font-courier text-[13px] text-ink-brown tracking-widest">
           <span>EVIDENCE LIVE-FEED ENGAGED</span>
           <span>{allItems.length} TOTAL ARTIFACTS LOGGED</span>
           <span>HOVER PAUSES TRANSMISSION</span>
