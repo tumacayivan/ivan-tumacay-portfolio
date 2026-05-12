@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Code2, Globe, Smartphone, Zap } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 interface Project {
   name: string;
@@ -112,115 +113,82 @@ const portfolioData: YearGroup[] = [
   },
 ];
 
-const getCategoryIcon = (category: Project["category"]) => {
-  switch (category) {
-    case "Web":
-      return Globe;
-    case "Automation":
-      return Zap;
-    case "API":
-      return Code2;
-    case "Mobile":
-      return Smartphone;
-    default:
-      return Code2;
-  }
+const categoryIcons: Record<Project["category"], LucideIcon> = {
+  Web: Globe,
+  Automation: Zap,
+  API: Code2,
+  Mobile: Smartphone,
 };
 
-const getCategoryColor = (category: Project["category"]) => {
-  switch (category) {
-    case "Web":
-      return "text-blue-500 bg-blue-500/10";
-    case "Automation":
-      return "text-purple-500 bg-purple-500/10";
-    case "API":
-      return "text-green-500 bg-green-500/10";
-    case "Mobile":
-      return "text-orange-500 bg-orange-500/10";
-    default:
-      return "text-primary bg-primary/10";
-  }
+const categoryStyles: Record<Project["category"], string> = {
+  Web: "border-primary/40 bg-primary/10 text-primary",
+  Automation: "border-accent/40 bg-accent/10 text-accent",
+  API: "border-emerald-500/40 bg-emerald-500/10 text-emerald-400",
+  Mobile: "border-amber-500/40 bg-amber-500/10 text-amber-300",
 };
 
 const SoftwarePortfolioSection = () => {
   return (
-    <section id="software-portfolio" className="relative py-24 sm:py-32">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+    <section id="software-portfolio" className="relative py-24 sm:py-28">
+      <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
+          transition={{ duration: 0.55 }}
+          className="mb-14 max-w-4xl"
         >
-          <p className="text-primary font-heading text-lg font-black tracking-widest uppercase mb-4">
-            Software Development Portfolio
-          </p>
-          <h2 className="text-5xl sm:text-6xl md:text-7xl font-heading font-black tracking-tighter mb-6">
-            PROJECT <span className="text-gradient-gold">SHOWCASE</span>
+          <p className="case-label mb-4">Field Log / Software</p>
+          <h2 className="text-4xl font-black leading-tight sm:text-5xl md:text-6xl">
+            Systems delivered across <span className="text-gradient-red">nine years of builds.</span>
           </h2>
-          <p className="text-muted-foreground max-w-3xl text-xl sm:text-2xl font-semibold">
-            A curated selection of projects delivered for <span className="text-foreground font-bold">clients</span> and <span className="text-foreground font-bold">enterprise organizations</span>, showcasing expertise across industries and technologies.
+          <p className="mt-5 max-w-3xl text-lg font-semibold leading-relaxed text-muted-foreground sm:text-xl">
+            Client and enterprise projects grouped by year, from early web applications to AI automation and operational platforms.
           </p>
         </motion.div>
 
-        <div className="space-y-16">
+        <div className="space-y-12">
           {portfolioData.map((yearGroup, groupIndex) => (
             <motion.div
               key={yearGroup.year}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: groupIndex * 0.1 }}
+              transition={{ duration: 0.5, delay: groupIndex * 0.04 }}
+              className="grid gap-5 lg:grid-cols-[180px_1fr]"
             >
-              {/* Year Header */}
-              <div className="flex items-center gap-4 mb-8">
-                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-border to-transparent" />
-                <div className="flex items-center gap-4">
-                  <h3 className="text-4xl sm:text-5xl font-heading font-black text-foreground tracking-tighter">
-                    {yearGroup.year}
-                  </h3>
-                  <span className="text-lg font-bold text-muted-foreground uppercase tracking-wider">
-                    {yearGroup.count} {yearGroup.count === 1 ? "project" : "projects"}
-                  </span>
-                </div>
-                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-border to-transparent" />
+              <div className="border border-border/70 bg-card/70 p-5 lg:sticky lg:top-24 lg:h-fit">
+                <p className="font-mono text-xs font-bold text-muted-foreground">YEAR FILE</p>
+                <h3 className="mt-2 text-5xl font-black text-foreground">{yearGroup.year}</h3>
+                <p className="mt-2 font-mono text-xs font-bold text-primary">
+                  {yearGroup.count} {yearGroup.count === 1 ? "project" : "projects"}
+                </p>
               </div>
 
-              {/* Projects Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
                 {yearGroup.projects.map((project, projectIndex) => {
-                  const Icon = getCategoryIcon(project.category);
-                  const colorClass = getCategoryColor(project.category);
+                  const Icon = categoryIcons[project.category];
+                  const colorClass = categoryStyles[project.category];
 
                   return (
-                    <motion.div
+                    <motion.article
                       key={`${yearGroup.year}-${project.name}-${projectIndex}`}
-                      initial={{ opacity: 0, y: 20 }}
+                      initial={{ opacity: 0, y: 18 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: projectIndex * 0.05 }}
-                      className="glass-card rounded-xl p-6 hover:border-primary/30 transition-all duration-300 hover:glow-gold group"
+                      transition={{ duration: 0.35, delay: projectIndex * 0.03 }}
+                      className="group border border-border/70 bg-card/70 p-5 transition-colors hover:border-primary/60 hover:bg-surface-hover"
                     >
-                      <div className="flex items-start gap-4 mb-4">
-                        <div className={`p-3 rounded-lg ${colorClass} shrink-0`}>
-                          <Icon className="w-5 h-5" />
-                        </div>
-                        <div className="min-w-0 flex-1">
-                          <div className="flex items-center gap-2 mb-2">
-                            <span className={`text-xs font-black uppercase tracking-wider px-2 py-1 rounded ${colorClass}`}>
-                              {project.category}
-                            </span>
-                          </div>
-                          <h4 className="font-heading font-extrabold text-lg text-foreground mb-2 group-hover:text-primary transition-colors">
-                            {project.name}
-                          </h4>
-                        </div>
+                      <div className="mb-4 flex items-center justify-between gap-3">
+                        <span className={`inline-flex items-center gap-2 border px-2.5 py-1.5 font-mono text-xs font-bold ${colorClass}`}>
+                          <Icon className="h-3.5 w-3.5" />
+                          {project.category}
+                        </span>
+                        <span className="h-px flex-1 bg-border/70" />
                       </div>
-                      <p className="text-sm font-medium text-muted-foreground leading-relaxed">
-                        {project.description}
-                      </p>
-                    </motion.div>
+                      <h4 className="text-lg font-black leading-tight text-foreground transition-colors group-hover:text-primary">{project.name}</h4>
+                      <p className="mt-3 text-sm font-semibold leading-relaxed text-muted-foreground">{project.description}</p>
+                    </motion.article>
                   );
                 })}
               </div>

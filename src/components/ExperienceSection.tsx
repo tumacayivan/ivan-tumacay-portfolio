@@ -1,131 +1,159 @@
 import { motion } from "framer-motion";
-import { Briefcase } from "lucide-react";
+import { Briefcase, CalendarDays, Clapperboard, Code2 } from "lucide-react";
 
 const experiences = [
-  // VA / Creative Roles
   {
     role: "Web Designer",
     company: "Exoskill Creatives",
-    period: "",
-    description: "Created and developed websites that were both visually engaging and user-friendly, customized to meet each client's needs. Focused on blending creativity with functionality, ensuring every site offered a smooth user experience while staying true to the client's brand identity.",
+    period: "Creative systems",
+    track: "Creative",
+    description:
+      "Created and developed websites that were visually engaging, user-friendly, and shaped around each client's brand identity and business goals.",
   },
   {
     role: "Graphic Designer & Video Editor",
-    company: "Freelance (Handled Multiple Clients)",
-    period: "",
-    description: "Partnered with a wide range of clients including content creators, small businesses, marketing agencies, and independent filmmakers. Work centers on producing visually captivating and emotionally resonant videos that align with each client's specific objectives.",
+    company: "Freelance - Multiple Clients",
+    period: "Ongoing",
+    track: "Creative",
+    description:
+      "Partnered with content creators, small businesses, marketing agencies, and independent filmmakers to produce polished visuals and emotionally resonant edits.",
   },
   {
     role: "Graphic Designer, Social Media Manager & Video Editor",
-    company: "Next Generation Church (Jesus Culture)",
-    period: "",
-    description: "Inspired believers worldwide by uniting in faith through powerful and engaging worship experiences. Produced content providing opportunities for worship, fellowship, and authentic connection, touching the lives of people from diverse backgrounds.",
+    company: "Next Generation Church - Jesus Culture",
+    period: "Creative operations",
+    track: "Creative",
+    description:
+      "Produced worship, fellowship, and community content across digital channels, aligning visual storytelling with the organization's mission and audience.",
   },
   {
     role: "Graphic Designer and Video Editor",
     company: "Rovawork Philippines",
-    period: "",
-    description: "Collaborated with a dynamic creative team to produce engaging video content for corporate clients, marketing initiatives, and digital platforms. Transformed raw footage into polished, high-quality visual narratives that reflected client branding and strategic goals.",
+    period: "Client production",
+    track: "Creative",
+    description:
+      "Collaborated with a creative team to turn raw footage into branded video content for corporate clients, marketing campaigns, and digital platforms.",
   },
-  // Software Engineering Roles
   {
-    role: "Software Engineer – Full Stack Developer",
+    role: "Software Engineer - Full Stack Developer",
     company: "Enprat Learning School",
-    period: "July 2023 – December 2023",
-    description: "Developed digital platforms and management systems supporting educational programs, administrative functions, and student management processes.",
+    period: "July 2023 - December 2023",
+    track: "Systems",
+    description:
+      "Developed digital platforms and management systems supporting education programs, administration, and student management workflows.",
   },
   {
-    role: "Software Engineer – Full Stack Developer",
+    role: "Software Engineer - Full Stack Developer",
     company: "Enprat Philippines Holdings",
-    period: "July 2023 – December 2023",
-    description: "Worked on enterprise platforms supporting business operations and internal system management. Responsible for system architecture design, application development, and deployment processes.",
+    period: "July 2023 - December 2023",
+    track: "Systems",
+    description:
+      "Worked on enterprise platforms supporting business operations and internal system management, from architecture to deployment coordination.",
   },
   {
-    role: "Software Engineer – Full Stack Developer",
+    role: "Software Engineer - Full Stack Developer",
     company: "Bio Blooms Manufacturing Company",
-    period: "June 2022 – 2023",
-    description: "Developed enterprise-level systems to streamline manufacturing operations and data management. Designed scalable web applications that improved internal workflow automation.",
+    period: "June 2022 - 2023",
+    track: "Systems",
+    description:
+      "Built enterprise-level systems that streamlined manufacturing operations, data management, and internal workflow automation.",
   },
   {
-    role: "Software Engineer – Full Stack Developer",
+    role: "Software Engineer - Full Stack Developer",
     company: "Payshare Pharmaceutical Trading International Inc.",
-    period: "October 2021 – 2022",
-    description: "Built full stack enterprise applications supporting business operations, inventory systems, and internal management tools. Worked on both frontend interfaces and backend services.",
+    period: "October 2021 - 2022",
+    track: "Systems",
+    description:
+      "Delivered full-stack enterprise applications for inventory, internal management, and business operations across frontend and backend services.",
   },
   {
-    role: "Software Engineer – Back End Developer",
-    company: "AltPayNet – Digital Payment Solutions",
-    period: "October 2020 – 2021",
-    description: "Developed backend services and secure APIs supporting digital payment processing platforms. Implemented scalable systems and integrated secure authentication and financial transaction workflows.",
+    role: "Software Engineer - Back End Developer",
+    company: "AltPayNet - Digital Payment Solutions",
+    period: "October 2020 - 2021",
+    track: "Systems",
+    description:
+      "Developed backend services and secure APIs supporting digital payment processing, authentication, and financial transaction workflows.",
   },
   {
-    role: "Software Engineer – Front End & Back End Developer",
+    role: "Software Engineer - Front End & Back End Developer",
     company: "St. Paul Technological Institute of Cavite",
-    period: "January 2019 – 2020",
-    description: "Designed and developed institutional web applications supporting administrative and academic processes. Worked across the full software development lifecycle.",
+    period: "January 2019 - 2020",
+    track: "Systems",
+    description:
+      "Designed and developed institutional web applications supporting administrative and academic processes across the software lifecycle.",
   },
   {
-    role: "Software Engineer – Web Application & API Developer",
+    role: "Software Engineer - Web Application & API Developer",
     company: "VNR Construction",
-    period: "January 2019 – 2020",
-    description: "Developed and maintained web-based systems and APIs supporting internal business operations. Responsibilities included back end development, database integration, and system optimization.",
+    period: "January 2019 - 2020",
+    track: "Systems",
+    description:
+      "Developed and maintained web systems and APIs for internal operations, including backend services, database integration, and optimization.",
   },
 ];
 
+const getTrackIcon = (track: string) => (track === "Creative" ? Clapperboard : Code2);
+
 const ExperienceSection = () => {
   return (
-    <section id="experience" className="relative py-24 sm:py-32">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+    <section id="experience" className="relative py-24 sm:py-28">
+      <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
+          transition={{ duration: 0.55 }}
+          className="mb-14 max-w-4xl"
         >
-          <p className="text-primary font-heading text-lg font-black tracking-widest uppercase mb-4">Career</p>
-          <h2 className="text-5xl sm:text-6xl md:text-7xl font-heading font-black tracking-tighter mb-6">
-            WORK <span className="text-gradient-gold">EXPERIENCE</span>
+          <p className="case-label mb-4">Archive / Experience</p>
+          <h2 className="text-4xl font-black leading-tight sm:text-5xl md:text-6xl">
+            Missions executed across <span className="text-gradient-red">creative and technical fronts.</span>
           </h2>
-          <p className="text-muted-foreground max-w-3xl text-xl sm:text-2xl font-semibold">
-            Extensive experience in <span className="text-foreground font-bold">creative design</span>, <span className="text-foreground font-bold">video production</span>, <span className="text-foreground font-bold">social media management</span>, and <span className="text-foreground font-bold">enterprise software engineering</span> across multiple industries.
+          <p className="mt-5 max-w-3xl text-lg font-semibold leading-relaxed text-muted-foreground sm:text-xl">
+            A career record spanning enterprise systems, backend platforms, visual campaigns, social content, and client-facing operations.
           </p>
         </motion.div>
 
         <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-6 top-0 bottom-0 w-px bg-border/50 hidden md:block" />
+          <div className="absolute bottom-0 left-5 top-0 hidden w-px bg-border/70 md:block" />
 
-          <div className="space-y-6">
-            {experiences.map((exp, i) => (
-              <motion.div
-                key={`${exp.company}-${i}`}
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: i * 0.05 }}
-                className="relative md:pl-16"
-              >
-                {/* Timeline dot */}
-                <div className="absolute left-[18px] top-7 w-3 h-3 rounded-full bg-primary border-2 border-background hidden md:block" />
+          <div className="grid gap-4">
+            {experiences.map((exp, i) => {
+              const Icon = getTrackIcon(exp.track);
 
-                <div className="glass-card rounded-xl p-7 hover:border-primary/30 transition-all duration-300 hover:glow-gold">
-                  <div className="flex items-start gap-4 mb-3">
-                    <div className="p-3 rounded-lg bg-primary/10 text-primary shrink-0 md:hidden">
-                      <Briefcase className="w-5 h-5" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-2">
-                        <h3 className="font-heading font-extrabold text-xl text-foreground tracking-tight">{exp.role}</h3>
-                        {exp.period && <span className="text-sm font-bold text-primary uppercase tracking-wider whitespace-nowrap">{exp.period}</span>}
+              return (
+                <motion.article
+                  key={`${exp.company}-${i}`}
+                  initial={{ opacity: 0, x: -24 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.45, delay: i * 0.03 }}
+                  className="relative md:pl-14"
+                >
+                  <span className="absolute left-[14px] top-6 hidden h-3 w-3 border-2 border-background bg-primary md:block" />
+
+                  <div className="border border-border/70 bg-card/70 p-5 transition-colors hover:border-primary/60 hover:bg-surface-hover">
+                    <div className="grid gap-4 lg:grid-cols-[1fr_180px]">
+                      <div className="flex items-start gap-4">
+                        <span className="flex h-11 w-11 shrink-0 items-center justify-center border border-primary/40 bg-primary/10 text-primary">
+                          <Icon className="h-5 w-5" />
+                        </span>
+                        <div className="min-w-0">
+                          <p className="font-mono text-xs font-bold text-muted-foreground">{exp.track.toUpperCase()} FILE</p>
+                          <h3 className="mt-1 text-xl font-black leading-tight text-foreground">{exp.role}</h3>
+                          <p className="mt-1 text-base font-bold text-foreground/80">{exp.company}</p>
+                          <p className="mt-3 text-sm font-semibold leading-relaxed text-muted-foreground sm:text-base">{exp.description}</p>
+                        </div>
                       </div>
-                      <p className="text-lg font-bold text-foreground/80 mb-2">{exp.company}</p>
-                      <p className="text-base font-medium text-muted-foreground leading-relaxed">{exp.description}</p>
+                      <div className="flex items-center gap-2 border border-border/60 bg-background/50 px-3 py-2 font-mono text-xs font-bold text-muted-foreground lg:justify-center">
+                        {exp.period ? <CalendarDays className="h-4 w-4 text-primary" /> : <Briefcase className="h-4 w-4 text-primary" />}
+                        {exp.period || "Active"}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.article>
+              );
+            })}
           </div>
         </div>
       </div>

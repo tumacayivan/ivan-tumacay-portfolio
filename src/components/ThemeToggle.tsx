@@ -8,12 +8,10 @@ const ThemeToggle = () => {
       if (stored === "dark") return true;
       if (stored === "light") return false;
 
-      // Default to light mode when no preference is stored
-      return false;
+      return true;
     }
 
-    // On the server / very first paint, default to light
-    return false;
+    return true;
   });
 
   useEffect(() => {
@@ -24,7 +22,7 @@ const ThemeToggle = () => {
   return (
     <button
       onClick={() => setDark(!dark)}
-      className="p-2 rounded-full border border-border bg-card/50 backdrop-blur-sm text-foreground hover:bg-surface-hover transition-colors"
+      className="p-2 border border-border bg-card/70 text-foreground transition-colors hover:bg-surface-hover"
       aria-label="Toggle theme"
     >
       {dark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}

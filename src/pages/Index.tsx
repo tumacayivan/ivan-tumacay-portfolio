@@ -11,7 +11,7 @@ import FooterSection from "@/components/FooterSection";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen overflow-hidden bg-background text-foreground selection:bg-primary/30 selection:text-foreground">
       <Navbar />
       <HeroSection />
       <SkillsMarquee />

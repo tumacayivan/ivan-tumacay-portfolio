@@ -218,7 +218,7 @@ const Lightbox = ({
       {/* Close */}
       <button
         onClick={onClose}
-        className="absolute top-6 right-6 p-3 rounded-full bg-card/80 border border-border/50 text-foreground hover:text-primary transition-colors z-10"
+        className="absolute right-5 top-5 z-10 border border-border/70 bg-card/90 p-3 text-foreground transition-colors hover:border-primary hover:text-primary"
       >
         <X className="w-6 h-6" />
       </button>
@@ -226,7 +226,7 @@ const Lightbox = ({
       {/* Prev */}
       <button
         onClick={(e) => { e.stopPropagation(); onPrev(); }}
-        className="absolute left-4 sm:left-8 p-3 rounded-full bg-card/80 border border-border/50 text-foreground hover:text-primary transition-colors z-10"
+        className="absolute left-3 z-10 border border-border/70 bg-card/90 p-3 text-foreground transition-colors hover:border-primary hover:text-primary sm:left-8"
       >
         <ChevronLeft className="w-6 h-6" />
       </button>
@@ -234,7 +234,7 @@ const Lightbox = ({
       {/* Next */}
       <button
         onClick={(e) => { e.stopPropagation(); onNext(); }}
-        className="absolute right-4 sm:right-8 p-3 rounded-full bg-card/80 border border-border/50 text-foreground hover:text-primary transition-colors z-10"
+        className="absolute right-3 z-10 border border-border/70 bg-card/90 p-3 text-foreground transition-colors hover:border-primary hover:text-primary sm:right-8"
       >
         <ChevronRight className="w-6 h-6" />
       </button>
@@ -250,7 +250,7 @@ const Lightbox = ({
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3 }}
-            className="w-full max-w-6xl aspect-video rounded-xl border border-border/30 shadow-2xl overflow-hidden bg-black"
+            className="aspect-video w-full max-w-6xl overflow-hidden border border-border/70 bg-black shadow-2xl"
           >
             <iframe
               src={item.embedUrl}
@@ -268,14 +268,14 @@ const Lightbox = ({
             transition={{ duration: 0.3 }}
             src={item.src}
             alt={item.title}
-            className="max-w-full max-h-[75vh] object-contain rounded-xl border border-border/30 shadow-2xl"
+            className="max-h-[75vh] max-w-full border border-border/70 object-contain shadow-2xl"
             onError={(e) => {
               // Fallback to thumbnail if main image fails
               (e.target as HTMLImageElement).src = item.thumbnail;
             }}
           />
         )}
-        <p className="text-lg font-heading font-bold text-foreground uppercase tracking-wide">
+        <p className="font-heading text-lg font-black text-foreground">
           {item.title}
         </p>
         <p className="text-sm font-semibold text-muted-foreground">
@@ -286,7 +286,7 @@ const Lightbox = ({
             href={item.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-2 px-6 py-2 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors flex items-center gap-2"
+            className="mt-2 flex items-center gap-2 border border-primary bg-primary px-5 py-2 font-black text-primary-foreground transition-colors hover:border-foreground hover:bg-foreground hover:text-background"
             onClick={(e) => e.stopPropagation()}
           >
             {isVideo ? "Watch on Google Drive" : "View on Google Drive"}
@@ -319,7 +319,7 @@ const MarqueeRow = ({
         {doubled.map((item, i) => (
           <div
             key={`${item.title}-${i}`}
-            className="group relative shrink-0 overflow-hidden rounded-xl border border-border/40 bg-card/40 cursor-pointer"
+            className="group relative shrink-0 cursor-pointer overflow-hidden border border-border/60 bg-card/50"
             style={{ width: type === "graphic" ? 420 : 520, height: type === "graphic" ? 320 : 300 }}
             onClick={() => onItemClick(item)}
           >
@@ -330,7 +330,7 @@ const MarqueeRow = ({
               loading="lazy"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
-                let retryCount = parseInt(target.dataset.retryCount || '0');
+                const retryCount = parseInt(target.dataset.retryCount || '0');
                 
                 // Google Drive thumbnail fallback chain
                 if (retryCount === 0) {
@@ -356,17 +356,17 @@ const MarqueeRow = ({
               }}
             />
             {/* Overlay */}
-            <div className="absolute inset-0 bg-background/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-2">
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-background/75 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
               {type === "video" ? (
-                <div className="w-12 h-12 rounded-full bg-primary/90 flex items-center justify-center">
+                <div className="flex h-12 w-12 items-center justify-center border border-primary bg-primary/90">
                   <Play className="w-5 h-5 text-primary-foreground ml-0.5" />
                 </div>
               ) : (
-                <div className="w-12 h-12 rounded-full bg-primary/90 flex items-center justify-center">
+                <div className="flex h-12 w-12 items-center justify-center border border-primary bg-primary/90">
                   <ImageIcon className="w-5 h-5 text-primary-foreground" />
                 </div>
               )}
-              <span className="text-sm font-bold font-heading text-foreground text-center px-4 uppercase tracking-wide">
+              <span className="px-4 text-center font-heading text-sm font-black text-foreground">
                 {item.title}
               </span>
             </div>
@@ -398,29 +398,28 @@ const PortfolioSection = () => {
 
   return (
     <>
-      <section id="portfolio" className="relative py-24 sm:py-32 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 mb-16">
+      <section id="portfolio" className="relative overflow-hidden py-24 sm:py-28">
+        <div className="absolute inset-0 operation-grid opacity-20" />
+        <div className="relative z-10 mx-auto mb-14 max-w-7xl px-5 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <p className="text-primary font-heading text-lg font-black tracking-widest uppercase mb-4">
-              Portfolio
-            </p>
-            <h2 className="text-5xl sm:text-6xl md:text-7xl font-heading font-black tracking-tighter mb-6">
-              FEATURED <span className="text-gradient-gold">WORK</span>
+            <p className="case-label mb-4">Evidence / Portfolio</p>
+            <h2 className="max-w-4xl text-4xl font-black leading-tight sm:text-5xl md:text-6xl">
+              Proof files from the <span className="text-gradient-red">creative command room.</span>
             </h2>
-            <p className="text-muted-foreground max-w-3xl text-xl sm:text-2xl font-semibold">
-              A selection of <span className="text-foreground font-bold">graphics design</span>, <span className="text-foreground font-bold">video editing</span>, and multimedia projects delivered for clients. <span className="text-foreground font-bold">Click any item</span> to view full screen.
+            <p className="mt-5 max-w-3xl text-lg font-semibold leading-relaxed text-muted-foreground sm:text-xl">
+              Graphic design, motion edits, ad assets, reels, real estate cuts, podcasts, and multimedia work arranged like an evidence wall.
             </p>
           </motion.div>
         </div>
 
         {/* Graphics Marquee */}
         <div className="mb-12">
-          <div className="max-w-7xl mx-auto px-6 lg:px-10 mb-4">
+          <div className="mx-auto mb-4 max-w-7xl px-5 lg:px-8">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -428,7 +427,7 @@ const PortfolioSection = () => {
               className="flex items-center gap-3"
             >
               <ImageIcon className="w-5 h-5 text-primary" />
-              <h3 className="font-heading font-extrabold text-2xl text-foreground uppercase tracking-tight">Graphics Design</h3>
+              <h3 className="font-heading text-2xl font-black text-foreground">Graphic Evidence</h3>
             </motion.div>
           </div>
           <MarqueeRow items={graphicItems} direction="left" type="graphic" onItemClick={openLightbox} />
@@ -436,7 +435,7 @@ const PortfolioSection = () => {
 
         {/* Video Marquee */}
         <div>
-          <div className="max-w-7xl mx-auto px-6 lg:px-10 mb-4">
+          <div className="mx-auto mb-4 max-w-7xl px-5 lg:px-8">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -444,7 +443,7 @@ const PortfolioSection = () => {
               className="flex items-center gap-3"
             >
               <Play className="w-5 h-5 text-primary" />
-              <h3 className="font-heading font-extrabold text-2xl text-foreground uppercase tracking-tight">Video Editing & Multimedia</h3>
+              <h3 className="font-heading text-2xl font-black text-foreground">Motion Files</h3>
             </motion.div>
           </div>
           <MarqueeRow items={videoItems} direction="right" type="video" onItemClick={openLightbox} />

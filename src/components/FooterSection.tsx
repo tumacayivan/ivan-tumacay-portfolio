@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight, MapPin, Mail, Globe, Github } from "lucide-react";
+import { ArrowUpRight, Github, Mail, MapPin, RadioTower } from "lucide-react";
 
 const personalInfo = [
   { icon: MapPin, label: "Location", value: "Philippines" },
@@ -9,63 +9,65 @@ const personalInfo = [
 
 const FooterSection = () => {
   return (
-    <section id="contact" className="relative py-24 sm:py-32">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+    <section id="contact" className="relative overflow-hidden border-t border-border/50 py-24 sm:py-28">
+      <div className="absolute inset-0 film-lines opacity-20" />
+      <div className="relative z-10 mx-auto max-w-7xl px-5 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.55 }}
+          className="mb-14 max-w-4xl"
         >
-          <h2 className="text-5xl sm:text-6xl md:text-7xl font-heading font-black tracking-tighter mb-6">
-            LET'S <span className="text-gradient-gold">CONNECT</span>
+          <p className="case-label mb-4">Contact / Briefing</p>
+          <h2 className="text-4xl font-black leading-tight sm:text-5xl md:text-6xl">
+            Ready to map the next <span className="text-gradient-red">operation?</span>
           </h2>
-          <p className="text-muted-foreground max-w-lg mx-auto mb-10 text-xl sm:text-2xl font-semibold">
-            Need a <span className="text-foreground font-bold">software engineer</span>, <span className="text-foreground font-bold">virtual assistant</span>, or <span className="text-foreground font-bold">digital operations specialist</span>? Let's talk.
+          <p className="mt-5 max-w-3xl text-lg font-semibold leading-relaxed text-muted-foreground sm:text-xl">
+            Bring the system, automation, creative, or support mission. I will help convert it into a clean execution path.
           </p>
           <a
             href="mailto:tumacayivan@gmail.com"
-            className="inline-flex items-center gap-2.5 px-10 py-4 rounded-full bg-primary text-primary-foreground font-heading font-black text-lg uppercase tracking-wider hover:opacity-90 transition-opacity glow-gold"
+            className="mt-8 inline-flex items-center gap-2 border border-primary bg-primary px-5 py-3 font-black text-primary-foreground transition-colors hover:border-foreground hover:bg-foreground hover:text-background"
           >
-            Get in Touch
-            <ArrowUpRight className="w-5 h-5" />
+            Send Mission Brief
+            <ArrowUpRight className="h-5 w-5" />
           </a>
         </motion.div>
 
-        {/* Personal Info */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12"
+          transition={{ duration: 0.45 }}
+          className="mb-12 grid grid-cols-1 gap-4 sm:grid-cols-3"
         >
           {personalInfo.map(({ icon: Icon, label, value, href }) => (
-            <div key={label} className="glass-card rounded-xl p-6 flex items-center gap-4">
-              <div className="p-3 rounded-lg bg-primary/10 text-primary shrink-0">
-                <Icon className="w-5 h-5" />
+            <div key={label} className="border border-border/70 bg-card/70 p-5">
+              <div className="mb-4 flex items-center gap-3">
+                <span className="flex h-10 w-10 items-center justify-center border border-primary/40 bg-primary/10 text-primary">
+                  <Icon className="h-5 w-5" />
+                </span>
+                <p className="font-mono text-xs font-bold text-muted-foreground">{label}</p>
               </div>
-              <div>
-                <p className="text-sm font-bold text-muted-foreground uppercase tracking-wider">{label}</p>
-                {href ? (
-                  <a href={href} target="_blank" rel="noopener noreferrer" className="text-base font-bold text-foreground hover:text-primary transition-colors">
-                    {value}
-                  </a>
-                ) : (
-                  <p className="text-base font-bold text-foreground">{value}</p>
-                )}
-              </div>
+              {href ? (
+                <a href={href} target="_blank" rel="noopener noreferrer" className="break-words text-base font-black text-foreground transition-colors hover:text-primary">
+                  {value}
+                </a>
+              ) : (
+                <p className="text-base font-black text-foreground">{value}</p>
+              )}
             </div>
           ))}
         </motion.div>
 
-        <div className="border-t border-border/50 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="flex flex-col gap-4 border-t border-border/50 pt-7 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm font-bold text-muted-foreground">
-            © {new Date().getFullYear()} Ivan Tumacay. All rights reserved.
+            Copyright {new Date().getFullYear()} Ivan Tumacay. All rights reserved.
           </p>
-          <p className="text-sm font-bold text-muted-foreground uppercase tracking-wider">
-            Software Engineer & Digital Operations Specialist
+          <p className="flex items-center gap-2 font-mono text-xs font-bold text-muted-foreground">
+            <RadioTower className="h-4 w-4 text-primary" />
+            Software Engineer and Digital Operations Specialist
           </p>
         </div>
       </div>
