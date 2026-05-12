@@ -7,7 +7,6 @@ const HeroSection = () => {
 
   return (
     <section className="relative overflow-hidden pt-24 sm:pt-28 pb-16 paper-grain">
-      {/* GIANT MOST WANTED watermark backdrop */}
       <div className="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden">
         <div className="watermark text-[32.2vw] sm:text-[27.6vw] leading-[0.8] -rotate-3 select-none whitespace-nowrap">
           MOST WANTED
@@ -16,7 +15,6 @@ const HeroSection = () => {
 
       <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-20 relative z-10">
 
-        {/* HEADER BAND - the WANTED poster header */}
         <div className="relative border-y-[6px] border-double border-ink py-3 sm:py-5 mb-6 bg-paper-cream text-center">
           <div className="absolute -top-3 left-4 sm:left-8 bg-paper px-3 py-0.5 font-courier text-[13px] sm:text-sm tracking-[0.3em] border border-ink">
             BUREAU OF DIGITAL OPERATIONS
@@ -28,7 +26,7 @@ const HeroSection = () => {
           <div className="font-courier text-[13px] sm:text-sm tracking-[0.4em] text-ink-brown uppercase mb-1">
             ◉ NOTICE OF SUBJECT INTEREST ◉
           </div>
-          <h1 className="font-blackops text-[16.1vw] sm:text-[11.5vw] md:text-[10.3vw] lg:text-[9.8vw] leading-[0.85] tracking-[-0.02em] text-ink uppercase">
+          <h1 className="font-blackops text-[16.1vw] sm:text-[11.5vw] md:text-[10.4vw] lg:text-[9.8vw] leading-[0.85] tracking-[-0.02em] text-ink uppercase">
             MOST WANTED
           </h1>
           <div className="font-courier text-[13px] sm:text-sm tracking-[0.4em] text-ink-brown uppercase mt-1">
@@ -36,29 +34,24 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Coordinates strip */}
         <div className="hidden sm:flex items-center justify-between font-courier text-[13px] text-ink-brown tracking-widest mb-4">
           <span className="flex items-center gap-2"><Crosshair className="w-3.5 h-3.5" /> 34.0522 N / 118.2437 W</span>
           <span>SECTION I · COVER PAGE</span>
           <span>DATE FILED: {today}</span>
         </div>
 
-        {/* MAIN GRID — IMAGE DOMINATES */}
         <div className="grid grid-cols-1 lg:grid-cols-[1.55fr_1fr] gap-6 lg:gap-10 items-start">
 
-          {/* LEFT - GIGANTIC SUBJECT PHOTO */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 18 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.15 }}
             className="relative w-full"
           >
-            {/* Tape on top corners */}
             <div className="tape tape-yellow w-32 h-8 -top-4 -left-2 rotate-[-7deg] z-30" />
             <div className="tape tape-yellow w-28 h-7 -top-4 right-8 rotate-[6deg] z-30" />
 
             <div className="paper-folder p-3 sm:p-5 relative">
-              {/* Folder tab */}
               <div className="absolute -top-7 left-6 sm:left-10 px-6 py-1.5 bg-paper-cream border border-ink border-b-0 font-blackops text-sm sm:text-lg tracking-[0.25em] text-ink">
                 SUBJECT FILE
               </div>
@@ -69,27 +62,22 @@ const HeroSection = () => {
               <div className="relative paper-card-cream p-2 sm:p-3 scanline-overlay">
                 <div className="absolute inset-0 scan-bar" />
 
-                {/* Evidence tag */}
                 <div className="absolute -top-4 right-4 z-20 bg-paper border border-ink px-3 py-1 font-courier text-[13px] sm:text-sm tracking-widest text-ink rotate-[2deg]">
                   EVIDENCE PHOTO 01 OF 01
                 </div>
 
-                {/* THE BIG PHOTO with mugshot height bars */}
                 <div className="relative overflow-hidden border-[3px] border-ink flex">
-                  {/* left height ruler (mugshot style) */}
-                  <div className="hidden sm:flex flex-col items-center justify-between bg-paper-beige border-r-2 border-ink px-1.5 py-3 font-courier text-[11px] text-ink tracking-widest">
+                  <div className="hidden sm:flex flex-col items-center justify-between bg-paper-beige border-r-2 border-ink px-1.5 py-3 font-courier text-[12px] text-ink tracking-widest">
                     <span>7</span><span>6</span><span>5</span><span>4</span><span>3</span><span>2</span>
                   </div>
 
-                  {/* the photo */}
                   <div className="relative flex-1">
                     <img
                       src={johnDoeAvatar}
                       alt="Ivan Tumacay - Software Engineer & Digital Operations Specialist"
-                      className="w-full h-[600px] xs:h-[680px] sm:h-[760px] md:h-[820px] lg:h-[900px] object-cover object-top photocopy-strong"
+                      className="w-full h-[600px] sm:h-[760px] md:h-[820px] lg:h-[900px] object-cover object-top photocopy-strong"
                     />
 
-                    {/* MASSIVE stamps over photo */}
                     <div className="absolute top-8 right-5 stamp animate-stamp font-blackops text-4xl sm:text-6xl md:text-7xl !p-3 sm:!p-4">
                       WANTED
                     </div>
@@ -100,25 +88,21 @@ const HeroSection = () => {
                       CLASSIFIED
                     </div>
 
-                    {/* corner markers */}
                     <div className="absolute top-3 left-3 w-10 h-10 border-l-[3px] border-t-[3px] border-paper" />
                     <div className="absolute top-3 right-3 w-10 h-10 border-r-[3px] border-t-[3px] border-paper" />
                     <div className="absolute bottom-3 left-3 w-10 h-10 border-l-[3px] border-b-[3px] border-paper" />
                     <div className="absolute bottom-3 right-3 w-10 h-10 border-r-[3px] border-b-[3px] border-paper" />
 
-                    {/* center crosshair */}
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-50">
                       <Crosshair className="w-16 h-16 text-paper" />
                     </div>
 
-                    {/* bottom mugshot ID plate */}
                     <div className="absolute left-1/2 -translate-x-1/2 bottom-4 bg-paper border-2 border-ink px-4 py-1 font-blackops text-sm sm:text-base tracking-[0.35em] text-ink">
                       ID · IT — 26 — 001
                     </div>
                   </div>
                 </div>
 
-                {/* below-photo metadata strip */}
                 <div className="mt-3 grid grid-cols-3 gap-2 font-courier text-[13px] sm:text-sm tracking-widest text-ink">
                   <div className="border border-ink p-2 text-center">FRONT · 0001</div>
                   <div className="border border-ink p-2 text-center">CAPTURED · {today}</div>
@@ -127,7 +111,6 @@ const HeroSection = () => {
               </div>
             </div>
 
-            {/* Sticky memo */}
             <div className="hidden sm:block absolute -bottom-10 -right-4 sticky-note rotate-3 w-56 z-20 text-base">
               <span className="handwritten-red font-bold">⟶ HIGH PRIORITY</span>
               <div className="mt-1 text-[14px] leading-snug">
@@ -136,7 +119,6 @@ const HeroSection = () => {
             </div>
           </motion.div>
 
-          {/* RIGHT - DOSSIER DATA (narrower column) */}
           <div className="relative flex flex-col">
 
             <motion.div
@@ -148,10 +130,10 @@ const HeroSection = () => {
               <div className="font-courier text-[13px] sm:text-sm tracking-[0.45em] text-ink-brown mb-2 uppercase">
                 ◉ NAME OF SUBJECT ◉
               </div>
-              <h2 className="font-blackops text-[20.7vw] sm:text-[14.9vw] lg:text-[9.8vw] leading-[0.85] tracking-[-0.02em] text-ink uppercase">
+              <h2 className="font-blackops text-[20.7vw] sm:text-[15vw] lg:text-[9.8vw] leading-[0.85] tracking-[-0.02em] text-ink uppercase">
                 IVAN
               </h2>
-              <h2 className="font-blackops text-[20.7vw] sm:text-[14.9vw] lg:text-[9.8vw] leading-[0.85] tracking-[-0.02em] text-ink uppercase relative">
+              <h2 className="font-blackops text-[20.7vw] sm:text-[15vw] lg:text-[9.8vw] leading-[0.85] tracking-[-0.02em] text-ink uppercase relative">
                 TUMACAY
                 <span className="absolute -bottom-1 left-0 right-0 h-[5px] bg-ink" />
               </h2>
@@ -163,7 +145,7 @@ const HeroSection = () => {
               transition={{ duration: 0.4, delay: 0.5 }}
               className="border-y-[6px] border-double border-ink py-3 sm:py-4 mb-4"
             >
-              <p className="font-typewriter text-lg sm:text-2xl md:text-3xl text-ink leading-tight tracking-tight">
+              <p className="font-typewriter text-xl sm:text-2xl md:text-3xl text-ink leading-tight tracking-tight">
                 <span className="font-bold">SUBJECT IS:</span> Software Engineer &amp; <span className="font-bold underline">Digital Operations Specialist</span>
               </p>
             </motion.div>

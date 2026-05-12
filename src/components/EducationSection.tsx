@@ -77,7 +77,7 @@ const EducationSection = () => {
                   <div className="p-2 border-2 border-ink bg-paper text-ink">
                     <GraduationCap className="w-5 h-5" />
                   </div>
-                  <div className="stamp stamp-blue text-[11px] p-1 rotate-[4deg]">CERTIFIED</div>
+                  <div className="stamp stamp-blue text-[12px] p-1 rotate-[4deg]">CERTIFIED</div>
                 </div>
 
                 <div className="mb-3">
@@ -111,7 +111,7 @@ const EducationSection = () => {
         </div>
 
         <div className="mt-10 flex flex-wrap items-center justify-between gap-3 font-courier text-[13px] text-ink-brown tracking-widest">
-          <span>ARCHIVE BUREAU · CREDENTIALS DESK</span>
+          <span>ARCHIVE BUREAU - CREDENTIALS DESK</span>
           <span>END OF ACADEMIC FILE</span>
         </div>
       </div>

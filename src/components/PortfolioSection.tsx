@@ -2,30 +2,17 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Play, Image as ImageIcon, X, ChevronLeft, ChevronRight, ExternalLink, Folder, Camera } from "lucide-react";
 import { useState, useCallback } from "react";
 
-const extractFileId = (link: string): string | null => {
-  const match = link.match(/\/d\/([a-zA-Z0-9_-]+)/);
-  return match ? match[1] : null;
-};
-
-const getGoogleDriveThumbnail = (fileId: string, size: number = 1000): string => {
-  return `https://drive.google.com/thumbnail?id=${fileId}&sz=w${size}`;
-};
-
-const getImageUrl = (fileId: string): string => {
-  return `https://drive.google.com/uc?export=view&id=${fileId}`;
-};
-
-const getVideoEmbedUrl = (fileId: string): string => {
-  return `https://drive.google.com/file/d/${fileId}/preview`;
-};
+const getGoogleDriveThumbnail = (fileId: string, size: number = 1000): string =>
+  `https://drive.google.com/thumbnail?id=${fileId}&sz=w${size}`;
+const getImageUrl = (fileId: string): string =>
+  `https://drive.google.com/uc?export=view&id=${fileId}`;
+const getVideoEmbedUrl = (fileId: string): string =>
+  `https://drive.google.com/file/d/${fileId}/preview`;
 
 const createItem = (fileId: string, title: string, link: string, type: "image" | "video") => ({
   thumbnail: getGoogleDriveThumbnail(fileId, 1000),
   src: type === "image" ? getImageUrl(fileId) : getGoogleDriveThumbnail(fileId, 1000),
-  title,
-  link,
-  fileId,
-  type,
+  title, link, fileId, type,
   embedUrl: type === "video" ? getVideoEmbedUrl(fileId) : null,
 });
 
@@ -142,52 +129,30 @@ const vlogsItems = [
 ];
 
 const videoItems = [
-  ...adEditsItems,
-  ...aiVideosItems,
-  ...digitalProductsItems,
-  ...montageVideosItems,
-  ...movieEditsItems,
-  ...musicVideosItems,
-  ...podcastItems,
-  ...realEstateItems,
-  ...reelsTikTokItems,
-  ...sportsHighlightsItems,
-  ...vlogsItems,
+  ...adEditsItems, ...aiVideosItems, ...digitalProductsItems, ...montageVideosItems,
+  ...movieEditsItems, ...musicVideosItems, ...podcastItems, ...realEstateItems,
+  ...reelsTikTokItems, ...sportsHighlightsItems, ...vlogsItems,
 ];
 
 const allItems = [...graphicItems, ...videoItems];
 
 type PortfolioItem = {
-  src: string;
-  thumbnail: string;
-  title: string;
-  link: string;
-  fileId: string;
-  type: "image" | "video";
-  embedUrl: string | null;
+  src: string; thumbnail: string; title: string; link: string;
+  fileId: string; type: "image" | "video"; embedUrl: string | null;
 };
 
 const Lightbox = ({
-  items,
-  currentIndex,
-  onClose,
-  onPrev,
-  onNext,
+  items, currentIndex, onClose, onPrev, onNext,
 }: {
-  items: PortfolioItem[];
-  currentIndex: number;
-  onClose: () => void;
-  onPrev: () => void;
-  onNext: () => void;
+  items: PortfolioItem[]; currentIndex: number;
+  onClose: () => void; onPrev: () => void; onNext: () => void;
 }) => {
   const item = items[currentIndex];
   const isVideo = item.type === "video";
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+      initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
       className="fixed inset-0 z-[100] flex items-center justify-center bg-[hsl(var(--ink-charcoal)/0.92)]"
       onClick={onClose}
     >
@@ -202,34 +167,20 @@ const Lightbox = ({
         </span>
       </div>
 
-      <button
-        onClick={onClose}
-        className="absolute top-14 right-4 p-2 bg-paper border-2 border-ink text-ink hover:bg-ink hover:text-paper transition-colors z-10"
-        aria-label="Close"
-      >
+      <button onClick={onClose} aria-label="Close"
+        className="absolute top-14 right-4 p-2 bg-paper border-2 border-ink text-ink hover:bg-ink hover:text-paper transition-colors z-10">
         <X className="w-5 h-5" />
       </button>
-
-      <button
-        onClick={(e) => { e.stopPropagation(); onPrev(); }}
-        className="absolute left-4 sm:left-8 p-2 bg-paper border-2 border-ink text-ink hover:bg-ink hover:text-paper transition-colors z-10"
-        aria-label="Previous"
-      >
+      <button onClick={(e) => { e.stopPropagation(); onPrev(); }} aria-label="Previous"
+        className="absolute left-4 sm:left-8 p-2 bg-paper border-2 border-ink text-ink hover:bg-ink hover:text-paper transition-colors z-10">
         <ChevronLeft className="w-6 h-6" />
       </button>
-
-      <button
-        onClick={(e) => { e.stopPropagation(); onNext(); }}
-        className="absolute right-4 sm:right-8 p-2 bg-paper border-2 border-ink text-ink hover:bg-ink hover:text-paper transition-colors z-10"
-        aria-label="Next"
-      >
+      <button onClick={(e) => { e.stopPropagation(); onNext(); }} aria-label="Next"
+        className="absolute right-4 sm:right-8 p-2 bg-paper border-2 border-ink text-ink hover:bg-ink hover:text-paper transition-colors z-10">
         <ChevronRight className="w-6 h-6" />
       </button>
 
-      <div
-        className="relative max-w-[92vw] max-h-[82vh] flex flex-col items-center gap-3 mt-10"
-        onClick={(e) => e.stopPropagation()}
-      >
+      <div className="relative max-w-[92vw] max-h-[82vh] flex flex-col items-center gap-3 mt-10" onClick={(e) => e.stopPropagation()}>
         <div className="relative paper-card-cream p-2 sm:p-3">
           <div className="absolute -top-1 -left-1 w-4 h-4 border-l-2 border-t-2 border-ink" />
           <div className="absolute -top-1 -right-1 w-4 h-4 border-r-2 border-t-2 border-ink" />
@@ -237,34 +188,15 @@ const Lightbox = ({
           <div className="absolute -bottom-1 -right-1 w-4 h-4 border-r-2 border-b-2 border-ink" />
 
           {isVideo && item.embedUrl ? (
-            <motion.div
-              key={item.fileId}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.3 }}
-              className="w-full max-w-6xl aspect-video border-2 border-ink overflow-hidden bg-black"
-            >
-              <iframe
-                src={item.embedUrl}
-                className="w-full h-full"
-                allow="autoplay; encrypted-media"
-                allowFullScreen
-                title={item.title}
-              />
+            <motion.div key={item.fileId} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.3 }}
+              className="w-full max-w-6xl aspect-video border-2 border-ink overflow-hidden bg-black">
+              <iframe src={item.embedUrl} className="w-full h-full" allow="autoplay; encrypted-media" allowFullScreen title={item.title} />
             </motion.div>
           ) : (
-            <motion.img
-              key={item.src}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.3 }}
-              src={item.src}
-              alt={item.title}
+            <motion.img key={item.src} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.3 }}
+              src={item.src} alt={item.title}
               className="max-w-full max-h-[68vh] object-contain border-2 border-ink"
-              onError={(e) => {
-                (e.target as HTMLImageElement).src = item.thumbnail;
-              }}
-            />
+              onError={(e) => { (e.target as HTMLImageElement).src = item.thumbnail; }} />
           )}
         </div>
 
@@ -274,13 +206,8 @@ const Lightbox = ({
         </div>
 
         {item.link && (
-          <a
-            href={item.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-1 px-5 py-2 bg-ink text-paper border-2 border-ink font-blackops text-sm tracking-[0.18em] uppercase hover:bg-paper hover:text-ink transition-colors flex items-center gap-2"
-            onClick={(e) => e.stopPropagation()}
-          >
+          <a href={item.link} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}
+            className="mt-1 px-5 py-2 bg-ink text-paper border-2 border-ink font-blackops text-sm tracking-[0.18em] uppercase hover:bg-paper hover:text-ink transition-colors flex items-center gap-2">
             ACCESS SECURE ARCHIVE
             <ExternalLink className="w-4 h-4" />
           </a>
@@ -291,15 +218,10 @@ const Lightbox = ({
 };
 
 const MarqueeRow = ({
-  items,
-  direction = "left",
-  type,
-  onItemClick,
+  items, direction = "left", type, onItemClick,
 }: {
-  items: PortfolioItem[];
-  direction?: "left" | "right";
-  type: "graphic" | "video";
-  onItemClick: (item: PortfolioItem) => void;
+  items: PortfolioItem[]; direction?: "left" | "right";
+  type: "graphic" | "video"; onItemClick: (item: PortfolioItem) => void;
 }) => {
   const doubled = [...items, ...items];
   const animClass = direction === "left" ? "animate-marquee-left" : "animate-marquee-right";
@@ -310,8 +232,7 @@ const MarqueeRow = ({
         {doubled.map((item, i) => {
           const rot = ((i * 37) % 7) - 3;
           return (
-            <div
-              key={`${item.title}-${i}`}
+            <div key={`${item.title}-${i}`}
               className="group relative shrink-0 paper-card-cream p-2 cursor-pointer transition-transform duration-300 hover:!rotate-0 hover:-translate-y-1"
               style={{
                 width: type === "graphic" ? 420 : 520,
@@ -320,43 +241,29 @@ const MarqueeRow = ({
               }}
               onClick={() => onItemClick(item)}
             >
-              <div className="absolute -top-2 left-3 bg-paper border border-ink px-2 py-0.5 font-courier text-[11px] tracking-widest text-ink z-10 rotate-[-2deg]">
+              <div className="absolute -top-2 left-3 bg-paper border border-ink px-2 py-0.5 font-courier text-[12px] tracking-widest text-ink z-10 rotate-[-2deg]">
                 EVIDENCE-{String(i + 1).padStart(3, "0")}
               </div>
               <div className="tape tape-yellow w-12 h-4 -top-2 right-6 rotate-[5deg] z-10" />
 
               <div className="relative w-full h-full overflow-hidden border-2 border-ink">
-                <img
-                  src={item.thumbnail}
-                  alt={item.title}
+                <img src={item.thumbnail} alt={item.title} loading="lazy"
                   className="w-full h-full object-cover photocopy transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
-                    let retryCount = parseInt(target.dataset.retryCount || '0');
-
-                    if (retryCount === 0) {
-                      target.dataset.retryCount = '1';
-                      target.src = `https://drive.google.com/thumbnail?id=${item.fileId}&sz=w800`;
-                    } else if (retryCount === 1) {
-                      target.dataset.retryCount = '2';
-                      target.src = `https://drive.google.com/uc?export=view&id=${item.fileId}`;
-                    } else if (retryCount === 2) {
-                      target.dataset.retryCount = '3';
-                      target.src = `https://drive.google.com/thumbnail?id=${item.fileId}&sz=w1000&authuser=0`;
-                    } else if (retryCount === 3) {
-                      target.dataset.retryCount = '4';
-                      target.src = `https://drive.google.com/uc?export=download&id=${item.fileId}`;
-                    } else {
-                      target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%23E8E0D0' width='400' height='300'/%3E%3Ctext fill='%231A1A1A' font-family='monospace' font-size='14' dy='10.5' font-weight='bold' x='50%25' y='50%25' text-anchor='middle'%3E" + encodeURIComponent(item.title) + "%3C/text%3E%3C/svg%3E";
-                    }
+                    const retryCount = parseInt(target.dataset.retryCount || "0");
+                    if (retryCount === 0) { target.dataset.retryCount = "1"; target.src = `https://drive.google.com/thumbnail?id=${item.fileId}&sz=w800`; }
+                    else if (retryCount === 1) { target.dataset.retryCount = "2"; target.src = `https://drive.google.com/uc?export=view&id=${item.fileId}`; }
+                    else if (retryCount === 2) { target.dataset.retryCount = "3"; target.src = `https://drive.google.com/thumbnail?id=${item.fileId}&sz=w1000&authuser=0`; }
+                    else if (retryCount === 3) { target.dataset.retryCount = "4"; target.src = `https://drive.google.com/uc?export=download&id=${item.fileId}`; }
+                    else { target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%23E8E0D0' width='400' height='300'/%3E%3Ctext fill='%231A1A1A' font-family='monospace' font-size='14' dy='10.5' font-weight='bold' x='50%25' y='50%25' text-anchor='middle'%3E" + encodeURIComponent(item.title) + "%3C/text%3E%3C/svg%3E"; }
                   }}
                 />
 
-                <div className="absolute top-2 left-2 w-4 h-4 border-l-2 border-t-2 border-[hsl(var(--paper))]" />
-                <div className="absolute top-2 right-2 w-4 h-4 border-r-2 border-t-2 border-[hsl(var(--paper))]" />
-                <div className="absolute bottom-2 left-2 w-4 h-4 border-l-2 border-b-2 border-[hsl(var(--paper))]" />
-                <div className="absolute bottom-2 right-2 w-4 h-4 border-r-2 border-b-2 border-[hsl(var(--paper))]" />
+                <div className="absolute top-2 left-2 w-4 h-4 border-l-2 border-t-2 border-paper" />
+                <div className="absolute top-2 right-2 w-4 h-4 border-r-2 border-t-2 border-paper" />
+                <div className="absolute bottom-2 left-2 w-4 h-4 border-l-2 border-b-2 border-paper" />
+                <div className="absolute bottom-2 right-2 w-4 h-4 border-r-2 border-b-2 border-paper" />
 
                 <div className="absolute top-2 right-6 stamp-black stamp text-[13px] !p-1 !rotate-0">
                   {type === "video" ? "VIDEO REC" : "PHOTO REF"}
@@ -400,13 +307,10 @@ const PortfolioSection = () => {
     const idx = allItems.findIndex((i) => i.fileId === item.fileId);
     setLightboxIndex(idx >= 0 ? idx : 0);
   }, []);
-
   const closeLightbox = useCallback(() => setLightboxIndex(null), []);
-
   const goPrev = useCallback(() => {
     setLightboxIndex((prev) => (prev !== null ? (prev - 1 + allItems.length) % allItems.length : null));
   }, []);
-
   const goNext = useCallback(() => {
     setLightboxIndex((prev) => (prev !== null ? (prev + 1) % allItems.length : null));
   }, []);
@@ -421,13 +325,7 @@ const PortfolioSection = () => {
         </div>
 
         <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-20 relative">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-12 relative"
-          >
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="mb-12 relative">
             <div className="flex items-center gap-3 mb-3">
               <Folder className="w-5 h-5 text-ink" />
               <span className="font-blackops text-base tracking-[0.3em] text-ink">
@@ -486,13 +384,7 @@ const PortfolioSection = () => {
 
       <AnimatePresence>
         {lightboxIndex !== null && (
-          <Lightbox
-            items={allItems}
-            currentIndex={lightboxIndex}
-            onClose={closeLightbox}
-            onPrev={goPrev}
-            onNext={goNext}
-          />
+          <Lightbox items={allItems} currentIndex={lightboxIndex} onClose={closeLightbox} onPrev={goPrev} onNext={goNext} />
         )}
       </AnimatePresence>
     </>

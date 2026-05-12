@@ -129,7 +129,6 @@ const ExperienceSection = () => {
                   <div className="absolute left-2 sm:left-4 top-6 w-6 h-6 rounded-full bg-ink border-2 border-paper shadow-md flex items-center justify-center">
                     <div className="w-1.5 h-1.5 rounded-full bg-paper" />
                   </div>
-
                   <div className="absolute left-8 sm:left-10 top-9 w-4 sm:w-10 h-px border-t border-dashed-ink" />
 
                   <div
@@ -153,13 +152,13 @@ const ExperienceSection = () => {
                         {exp.role}
                       </h3>
                       {exp.period && (
-                        <span className="font-courier text-sm text-ink tracking-widest border border-ink px-2 py-0.5 whitespace-nowrap">
+                        <span className="font-courier text-base text-ink tracking-widest border border-ink px-2 py-0.5 whitespace-nowrap">
                           {exp.period}
                         </span>
                       )}
                     </div>
 
-                    <p className="font-typewriter text-lg text-ink mb-3 underline">
+                    <p className="font-typewriter text-lg text-ink mb-3 underline underline-offset-2">
                       · {exp.company}
                     </p>
 

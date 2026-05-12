@@ -37,7 +37,7 @@ const SkillPill = ({ icon: Icon, label, idx }: Skill & { idx: number }) => (
       {String(idx).padStart(3, "0")}
     </span>
     <Icon className="w-4 h-4 text-ink shrink-0" />
-    <span className="font-blackops text-[14px] sm:text-sm text-ink whitespace-nowrap uppercase tracking-[0.12em]">
+    <span className="font-blackops text-[14px] sm:text-base text-ink whitespace-nowrap uppercase tracking-[0.12em]">
       {label}
     </span>
   </div>
@@ -51,7 +51,7 @@ const SkillsMarquee = () => {
       <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-20 flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
           <span className="status-pulse" />
-          <span className="font-blackops text-sm sm:text-base tracking-[0.28em] text-ink uppercase">
+          <span className="font-blackops text-base sm:text-base tracking-[0.28em] text-ink uppercase">
             INTEL TICKER - OPERATIONAL CAPABILITIES STREAM
           </span>
         </div>

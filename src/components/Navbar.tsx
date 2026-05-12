@@ -62,9 +62,9 @@ const Navbar = () => {
               <a
                 key={item.label}
                 href={item.href}
-                className="group relative px-3 py-2 font-stencil text-sm lg:text-base text-ink uppercase tracking-[0.18em] hover:text-ink transition-colors"
+                className="group relative px-3 py-2 font-stencil text-base lg:text-base text-ink uppercase tracking-[0.18em] hover:text-ink transition-colors"
               >
-                <span className="absolute -top-1 left-1/2 -translate-x-1/2 font-courier text-[10px] text-ink-brown opacity-60">
+                <span className="absolute -top-1 left-1/2 -translate-x-1/2 font-courier text-[11px] text-ink-brown opacity-60">
                   {item.code}
                 </span>
                 {item.label}
@@ -72,7 +72,7 @@ const Navbar = () => {
             ))}
             <a
               href="#contact"
-              className="ml-2 px-4 py-2 border-2 border-[hsl(var(--stamp-red))] bg-[hsl(var(--stamp-red))] text-[hsl(var(--paper))] font-blackops text-sm tracking-[0.18em] uppercase hover:bg-[hsl(var(--paper))] hover:text-ink transition-colors"
+              className="ml-2 px-4 py-2 border-2 border-[hsl(var(--ink-charcoal))] bg-[hsl(var(--ink-charcoal))] text-[hsl(var(--paper))] font-blackops text-sm tracking-[0.18em] uppercase hover:bg-[hsl(var(--paper))] hover:text-ink transition-colors"
             >
               INITIATE CONTACT
             </a>
@@ -109,7 +109,7 @@ const Navbar = () => {
               ))}
               <a
                 href="#contact"
-                className="mt-2 px-4 py-2.5 border-2 border-[hsl(var(--stamp-red))] bg-[hsl(var(--stamp-red))] text-[hsl(var(--paper))] font-blackops text-sm tracking-[0.18em] uppercase text-center"
+                className="mt-2 px-4 py-2.5 border-2 border-[hsl(var(--ink-charcoal))] bg-[hsl(var(--ink-charcoal))] text-[hsl(var(--paper))] font-blackops text-sm tracking-[0.18em] uppercase text-center"
                 onClick={() => setMobileOpen(false)}
               >
                 INITIATE CONTACT
