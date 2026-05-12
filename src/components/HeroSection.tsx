@@ -94,7 +94,7 @@ const HeroSection = () => {
                     <div className="absolute bottom-3 right-3 w-10 h-10 border-r-[3px] border-b-[3px] border-paper" />
 
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-50">
-                      <Crosshair className="w-16 h-16 text-paper" />
+                      {/* <Crosshair className="w-16 h-16 text-paper" /> */}
                     </div>
 
                     <div className="absolute left-1/2 -translate-x-1/2 bottom-4 bg-paper border-2 border-ink px-4 py-1 font-blackops text-sm sm:text-base tracking-[0.35em] text-ink">
