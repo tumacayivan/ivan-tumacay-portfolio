@@ -14,8 +14,13 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ['"Inter Tight"', 'system-ui', 'sans-serif'],
-        body: ['"Inter Tight"', 'system-ui', 'sans-serif'],
+        heading: ['"Stardos Stencil"', '"Black Ops One"', 'system-ui', 'sans-serif'],
+        body: ['"Courier Prime"', '"Special Elite"', 'monospace'],
+        typewriter: ['"Special Elite"', '"Courier Prime"', 'monospace'],
+        courier: ['"Courier Prime"', '"Cutive Mono"', 'monospace'],
+        cutive: ['"Cutive Mono"', '"Courier Prime"', 'monospace'],
+        stencil: ['"Stardos Stencil"', '"Black Ops One"', 'sans-serif'],
+        blackops: ['"Black Ops One"', '"Stardos Stencil"', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",

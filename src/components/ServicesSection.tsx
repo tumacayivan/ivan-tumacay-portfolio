@@ -9,7 +9,6 @@ import {
 } from "lucide-react";
 
 const services = [
-  // Virtual Assistant & Digital Operations
   {
     title: "Administrative Virtual Assistant",
     description: "Professional support for daily business operations and administrative workflows.",
@@ -180,165 +179,66 @@ const services = [
       "Client relationship support",
     ],
   },
-  // Software Engineering
-  // {
-  //   title: "Front End Development",
-  //   description: "Building responsive, performant, and visually polished user interfaces.",
-  //   icon: Globe,
-  //   services: [
-  //     "React & Next.js applications", "TypeScript & JavaScript development",
-  //     "Responsive & mobile-first design", "Component library development",
-  //     "State management & optimization", "Progressive Web Applications",
-  //     "Cross-browser compatibility", "UI/UX implementation",
-  //   ],
-  //   tools: "React, Next.js, TypeScript, Tailwind CSS, Vue.js",
-  // },
-  // {
-  //   title: "Back End Development",
-  //   description: "Designing and building robust server-side systems and APIs.",
-  //   icon: Server,
-  //   services: [
-  //     "RESTful & GraphQL API development", "Microservices architecture",
-  //     "Authentication & authorization systems", "Server-side logic & business rules",
-  //     "Third-party API integrations", "Background job processing",
-  //     "Real-time data with WebSockets", "Performance optimization",
-  //   ],
-  //   tools: "Node.js, Python, PHP, Laravel, Express.js",
-  // },
-  // {
-  //   title: "Database & Data Management",
-  //   description: "Designing scalable database architectures and data pipelines.",
-  //   icon: Database,
-  //   services: [
-  //     "Database design & modeling", "SQL & NoSQL implementations",
-  //     "Data migration & ETL processes", "Query optimization & indexing",
-  //     "Database replication & backups", "Data integrity & validation",
-  //   ],
-  //   tools: "PostgreSQL, MySQL, MongoDB, Redis, Firebase",
-  // },
-  // {
-  //   title: "Cloud Infrastructure",
-  //   description: "Deploying and managing scalable cloud-based systems.",
-  //   icon: Cloud,
-  //   services: [
-  //     "Cloud deployment & DevOps", "CI/CD pipeline setup",
-  //     "Container orchestration (Docker)", "Serverless architecture",
-  //     "Infrastructure as Code", "Load balancing & auto-scaling",
-  //     "Monitoring & logging systems",
-  //   ],
-  //   tools: "AWS, GCP, Azure, Docker, Vercel, DigitalOcean",
-  // },
-  // {
-  //   title: "Enterprise Software Systems",
-  //   description: "Building large-scale enterprise applications for business operations.",
-  //   icon: Layers,
-  //   services: [
-  //     "Enterprise web applications", "Business management systems",
-  //     "Inventory & supply chain systems", "Internal tools & dashboards",
-  //     "Workflow automation platforms", "ERP system development",
-  //     "Multi-tenant architectures",
-  //   ],
-  // },
-  // {
-  //   title: "FinTech & Payment Systems",
-  //   description: "Developing secure financial technology and payment processing solutions.",
-  //   icon: CreditCard,
-  //   services: [
-  //     "Payment processing APIs", "Financial transaction workflows",
-  //     "Secure authentication systems", "Digital payment platforms",
-  //     "Financial reporting systems", "Compliance & security protocols",
-  //   ],
-  // },
-  // {
-  //   title: "Mobile Application Development",
-  //   description: "Creating cross-platform and native mobile applications.",
-  //   icon: Smartphone,
-  //   services: [
-  //     "React Native development", "Cross-platform mobile apps",
-  //     "Mobile UI/UX implementation", "Push notifications & offline support",
-  //     "App Store deployment", "Mobile API integration",
-  //   ],
-  //   tools: "React Native, Flutter, Expo",
-  // },
-  // {
-  //   title: "API Development & Integration",
-  //   description: "Building and integrating scalable APIs for modern applications.",
-  //   icon: GitBranch,
-  //   services: [
-  //     "RESTful API design", "GraphQL implementation",
-  //     "Webhook integrations", "OAuth & JWT authentication",
-  //     "API documentation", "Rate limiting & security",
-  //     "Third-party service integration",
-  //   ],
-  // },
-  // {
-  //   title: "Security & Architecture",
-  //   description: "Implementing secure, scalable software architecture.",
-  //   icon: Shield,
-  //   services: [
-  //     "Security audit & implementation", "Encryption & data protection",
-  //     "Secure coding practices", "System architecture design",
-  //     "Performance & scalability planning", "Code review & best practices",
-  //   ],
-  // },
-  // {
-  //   title: "Automation & AI Integration",
-  //   description: "Building intelligent automation and AI-powered systems.",
-  //   icon: Bot,
-  //   services: [
-  //     "Business process automation", "AI workflow integration",
-  //     "Chatbot & AI agent development", "Data processing automation",
-  //     "Machine learning pipelines", "AI-powered productivity tools",
-  //   ],
-  //   tools: "OpenAI, LangChain, Zapier, n8n, Make",
-  // },
-  // {
-  //   title: "Full Stack Engineering",
-  //   description: "End-to-end software development from concept to deployment.",
-  //   icon: Code2,
-  //   services: [
-  //     "Full project lifecycle management", "System design & architecture",
-  //     "Technical documentation", "Code optimization & refactoring",
-  //     "Testing & quality assurance", "Deployment & maintenance",
-  //   ],
-  // },
-  // {
-  //   title: "DevOps & Workflow Optimization",
-  //   description: "Streamlining development workflows and operations.",
-  //   icon: Workflow,
-  //   services: [
-  //     "CI/CD pipeline automation", "Git workflow optimization",
-  //     "Development environment setup", "Automated testing frameworks",
-  //     "Performance monitoring", "Incident management processes",
-  //   ],
-  //   tools: "GitHub Actions, Jenkins, Docker, Kubernetes",
-  // },
 ];
 
 const ServicesSection = () => {
   return (
-    <section id="services" className="relative py-24 sm:py-32">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+    <section id="services" className="relative py-20 sm:py-28 bg-paper-beige border-y-2 border-double border-ink overflow-hidden">
+      <div className="absolute inset-0 tactical-grid opacity-[0.15] pointer-events-none" />
+
+      <div className="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden">
+        <div className="watermark text-[18vw] leading-none rotate-[-4deg] opacity-50">
+          OPERATIONS
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 relative">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="mb-12 relative"
         >
-          <p className="text-primary font-heading text-lg font-black tracking-widest uppercase mb-4">Expertise</p>
-          <h2 className="text-5xl sm:text-6xl md:text-7xl font-heading font-black tracking-tighter mb-6">
-            WHAT I <span className="text-gradient-gold">OFFER</span>
-          </h2>
-          <p className="text-muted-foreground max-w-3xl text-xl sm:text-2xl font-semibold">
-            Comprehensive <span className="text-foreground font-bold">virtual assistant</span>, <span className="text-foreground font-bold">digital operations</span>, and <span className="text-foreground font-bold">software engineering</span> services designed to help your business scale.
-          </p>
+          <div className="flex items-center justify-between mb-3 pb-2 border-b-2 border-ink">
+            <div className="flex items-center gap-3">
+              <span className="status-pulse" />
+              <span className="font-blackops text-sm tracking-[0.3em] text-stamp-red">
+                SECTION 03 // TACTICAL OPERATIONS BOARD
+              </span>
+            </div>
+            <span className="font-courier text-[10px] text-ink-brown tracking-widest hidden sm:inline">
+              {services.length} CAPABILITIES LOGGED
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-6 items-end">
+            <div>
+              <p className="font-courier text-xs tracking-[0.35em] text-ink-brown mb-2 uppercase">
+                Expertise // OPERATIONAL CAPABILITIES
+              </p>
+              <h2 className="font-blackops text-5xl sm:text-7xl md:text-8xl text-ink leading-[0.9] tracking-tight">
+                WHAT I <span className="text-stamp-red">OFFER</span>
+              </h2>
+            </div>
+            <div className="paper-card-cream p-4 relative">
+              <div className="absolute -top-3 left-4 stamp stamp-black !text-[10px] !p-1">FIELD BRIEFING</div>
+              <p className="font-typewriter text-base sm:text-lg text-ink leading-relaxed mt-2">
+                Comprehensive <span className="font-bold text-stamp-red underline decoration-wavy">virtual assistant</span>, <span className="font-bold text-stamp-red underline decoration-wavy">digital operations</span>, and <span className="font-bold text-stamp-red underline decoration-wavy">software engineering</span> services designed to help your business scale.
+              </p>
+            </div>
+          </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {services.map((service, i) => (
             <ServiceCard key={service.title} {...service} index={i} />
           ))}
+        </div>
+
+        <div className="mt-10 flex flex-wrap items-center justify-between gap-3 font-courier text-[10px] text-ink-brown tracking-widest border-t-2 border-double border-ink pt-3">
+          <span>BOARD UPDATED · ALL ASSETS VERIFIED</span>
+          <span>OPERATIONS DIRECTORATE / IT</span>
         </div>
       </div>
     </section>

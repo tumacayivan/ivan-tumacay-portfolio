@@ -11,33 +11,53 @@ interface ServiceCardProps {
 }
 
 const ServiceCard = ({ title, description, services, icon: Icon, tools, index }: ServiceCardProps) => {
+  // Mild rotation for variety
+  const rot = (index % 3) - 1;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay: index * 0.05 }}
+      transition={{ duration: 0.5, delay: index * 0.04 }}
       className="group h-full"
+      style={{ transform: `rotate(${rot * 0.4}deg)` }}
     >
-      <div className="glass-card rounded-xl p-7 h-full flex flex-col hover:border-primary/30 transition-all duration-300 hover:glow-gold">
+      <div className="paper-card-cream p-6 h-full flex flex-col relative paper-grain transition-transform duration-300 hover:!rotate-0 hover:-translate-y-1">
+        {/* tape pieces */}
+        <div className="tape tape-yellow w-12 h-3 -top-1.5 left-4 rotate-[-3deg]" />
+
+        {/* dossier number */}
+        <span className="absolute top-2 right-3 font-courier text-[10px] tracking-widest text-ink-brown">
+          OPS-{String(index + 1).padStart(3, "0")}
+        </span>
+
         {/* Header */}
-        <div className="flex items-start gap-4 mb-5">
-          <div className="p-3 rounded-lg bg-primary/10 text-primary shrink-0">
-            <Icon className="w-6 h-6" />
+        <div className="flex items-start gap-3 mb-4 border-b-2 border-dashed-ink pb-3">
+          <div className="p-2 border-2 border-ink bg-paper text-stamp-red shrink-0">
+            <Icon className="w-5 h-5" />
           </div>
           <div className="min-w-0">
-            <h3 className="font-heading font-extrabold text-xl text-foreground mb-1.5 tracking-tight">{title}</h3>
-            <p className="text-base text-muted-foreground font-medium">{description}</p>
+            <h3 className="font-blackops text-base sm:text-lg text-ink uppercase tracking-[0.05em] leading-tight mb-1">
+              {title}
+            </h3>
+            <p className="font-typewriter text-sm text-ink/80 leading-snug">{description}</p>
           </div>
         </div>
 
-        {/* Services list - always visible */}
-        <div className="border-t border-border/50 pt-5 flex-1">
-          <ul className="grid grid-cols-1 gap-2">
+        {/* Capabilities */}
+        <div className="flex-1">
+          <div className="font-blackops text-[10px] tracking-[0.25em] text-stamp-red mb-2">
+            ▣ VERIFIED CAPABILITIES
+          </div>
+          <ul className="grid grid-cols-1 gap-1.5">
             {services.map((service) => (
-              <li key={service} className="flex items-start gap-2.5 text-base font-medium text-secondary-foreground">
-                <span className="w-2 h-2 rounded-full bg-primary mt-2 shrink-0" />
-                {service}
+              <li
+                key={service}
+                className="flex items-start gap-2 font-courier text-sm text-ink leading-snug"
+              >
+                <span className="font-blackops text-stamp-red shrink-0 mt-0.5">▸</span>
+                <span>{service}</span>
               </li>
             ))}
           </ul>
@@ -45,12 +65,21 @@ const ServiceCard = ({ title, description, services, icon: Icon, tools, index }:
 
         {/* Tools footer */}
         {tools && (
-          <div className="mt-5 pt-4 border-t border-border/30">
-            <p className="text-sm font-semibold text-muted-foreground">
-              <span className="text-primary font-bold">Tools:</span> {tools}
+          <div className="mt-4 pt-3 border-t border-dashed-ink">
+            <p className="font-courier text-xs text-ink">
+              <span className="font-blackops text-[10px] tracking-widest text-stamp-red">
+                ◉ TOOLKIT:
+              </span>{" "}
+              {tools}
             </p>
           </div>
         )}
+
+        {/* status footer */}
+        <div className="mt-3 flex items-center justify-between font-courier text-[9px] tracking-widest text-ink-brown border-t border-ink/30 pt-2">
+          <span>◉ APPROVED FOR DEPLOYMENT</span>
+          <span className="text-stamp-red">CLEARANCE ✓</span>
+        </div>
       </div>
     </motion.div>
   );
