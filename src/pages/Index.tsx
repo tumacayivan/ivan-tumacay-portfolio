@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import BackgroundMusic from "@/components/BackgroundMusic";
 import HeroSection from "@/components/HeroSection";
 import SubjectProfileSection from "@/components/SubjectProfileSection";
 import SkillsMarquee from "@/components/SkillsMarquee";
@@ -13,6 +14,7 @@ import FooterSection from "@/components/FooterSection";
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      <BackgroundMusic />
       <Navbar />
       <HeroSection />
       <SubjectProfileSection />
