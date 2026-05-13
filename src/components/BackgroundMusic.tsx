@@ -5,14 +5,17 @@ import soundtrack3 from "@/assets/soundtrack3.mp3";
 /**
  * BackgroundMusic
  *
- * Plays soundtrack3.mp3 on loop in the background. Because most browsers
- * block autoplay of audio until the user interacts with the page, we wait
- * for the first user gesture (scroll, mouse wheel, click, key press, or
- * touch on mobile devices) before starting playback.
+ * Modern browsers block audio with sound from auto-playing on page load
+ * unless the user has interacted with the page first. They DO, however,
+ * allow muted autoplay.
  *
- * A small floating toggle button in the bottom-right lets the user pause
- * or resume the music at any time. Once the user pauses manually, the
- * gesture auto-start is disabled so we don't override their preference.
+ * Strategy:
+ *  1. On mount, start the audio MUTED and immediately call play(). Browsers
+ *     allow this — so the audio element is already running on page load.
+ *  2. On the first user gesture (scroll, click, tap, key, mouse wheel),
+ *     unmute the audio. The sound starts the instant the user interacts.
+ *  3. A floating toggle button lets the user pause/resume at any time.
+ *     A manual pause is remembered so we don't override the user's choice.
  */
 const BackgroundMusic = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -20,6 +23,7 @@ const BackgroundMusic = () => {
   // auto-resume on user gestures.
   const userPausedRef = useRef<boolean>(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
 
   useEffect(() => {
     // Create the audio element programmatically so it lives outside the
@@ -28,6 +32,7 @@ const BackgroundMusic = () => {
     audio.loop = true;
     audio.preload = "auto";
     audio.volume = 0.5; // moderate background volume
+    audio.muted = true; // start muted so autoplay is allowed
     audioRef.current = audio;
 
     const handlePlay = () => setIsPlaying(true);
@@ -35,59 +40,56 @@ const BackgroundMusic = () => {
     audio.addEventListener("play", handlePlay);
     audio.addEventListener("pause", handlePause);
 
-    const startPlayback = () => {
-      // If the user has manually paused, respect that and don't auto-resume.
-      if (userPausedRef.current) {
-        removeListeners();
-        return;
-      }
-      if (!audio.paused) {
-        removeListeners();
-        return;
-      }
-
-      const playPromise = audio.play();
-      if (playPromise && typeof playPromise.then === "function") {
-        playPromise
-          .then(() => {
-            removeListeners();
-          })
-          .catch(() => {
-            // Autoplay was blocked — allow another gesture to try again.
-          });
-      } else {
-        removeListeners();
-      }
-    };
-
-    const removeListeners = () => {
-      window.removeEventListener("scroll", startPlayback);
-      window.removeEventListener("wheel", startPlayback);
-      window.removeEventListener("click", startPlayback);
-      window.removeEventListener("touchstart", startPlayback);
-      window.removeEventListener("keydown", startPlayback);
-    };
-
-    // Try to start playback immediately on load. Most browsers will block
-    // this without a prior user gesture, so we also register gesture
-    // listeners as a fallback.
+    // Kick off autoplay (muted) immediately. Browsers permit this.
     const tryAutoplay = () => {
       const playPromise = audio.play();
       if (playPromise && typeof playPromise.catch === "function") {
         playPromise.catch(() => {
-          // Autoplay blocked — gesture listeners below will pick it up.
+          // Even muted autoplay can be blocked in rare cases — the
+          // gesture handler below will start it instead.
         });
       }
     };
     tryAutoplay();
 
-    // Listen for any of the user gestures that should start the music.
-    // `passive: true` keeps scroll/touch performance smooth.
-    window.addEventListener("scroll", startPlayback, { passive: true });
-    window.addEventListener("wheel", startPlayback, { passive: true });
-    window.addEventListener("click", startPlayback);
-    window.addEventListener("touchstart", startPlayback, { passive: true });
-    window.addEventListener("keydown", startPlayback);
+    const onFirstGesture = () => {
+      // Respect a manual pause if it somehow happened before this fired.
+      if (userPausedRef.current) {
+        removeListeners();
+        return;
+      }
+
+      // Unmute and ensure playback is actually running.
+      audio.muted = false;
+      setIsMuted(false);
+      if (audio.paused) {
+        const playPromise = audio.play();
+        if (playPromise && typeof playPromise.then === "function") {
+          playPromise.then(() => removeListeners()).catch(() => {
+            // Leave listeners attached so a subsequent gesture can retry.
+          });
+          return;
+        }
+      }
+      removeListeners();
+    };
+
+    const removeListeners = () => {
+      window.removeEventListener("scroll", onFirstGesture);
+      window.removeEventListener("wheel", onFirstGesture);
+      window.removeEventListener("click", onFirstGesture);
+      window.removeEventListener("touchstart", onFirstGesture);
+      window.removeEventListener("keydown", onFirstGesture);
+      window.removeEventListener("pointerdown", onFirstGesture);
+    };
+
+    // Listen for any user gesture so we can unmute and ensure playback.
+    window.addEventListener("scroll", onFirstGesture, { passive: true });
+    window.addEventListener("wheel", onFirstGesture, { passive: true });
+    window.addEventListener("click", onFirstGesture);
+    window.addEventListener("touchstart", onFirstGesture, { passive: true });
+    window.addEventListener("keydown", onFirstGesture);
+    window.addEventListener("pointerdown", onFirstGesture);
 
     return () => {
       removeListeners();
@@ -106,26 +108,34 @@ const BackgroundMusic = () => {
     if (audio.paused) {
       // User explicitly resumed — clear the manual-pause flag.
       userPausedRef.current = false;
+      audio.muted = false;
+      setIsMuted(false);
       const playPromise = audio.play();
       if (playPromise && typeof playPromise.catch === "function") {
         playPromise.catch(() => {
           // ignore — user can click again
         });
       }
+    } else if (audio.muted) {
+      // It's playing but muted — clicking should unmute.
+      audio.muted = false;
+      setIsMuted(false);
     } else {
       userPausedRef.current = true;
       audio.pause();
     }
   };
 
+  const showAsOn = isPlaying && !isMuted;
+
   return (
     <button
       onClick={toggle}
-      aria-label={isPlaying ? "Pause background music" : "Play background music"}
-      title={isPlaying ? "Pause music" : "Play music"}
+      aria-label={showAsOn ? "Pause background music" : "Play background music"}
+      title={showAsOn ? "Pause music" : "Play music"}
       className="fixed bottom-4 right-4 z-50 p-2 border-2 border-ink bg-paper text-ink hover:bg-ink hover:text-paper transition-colors shadow-md"
     >
-      {isPlaying ? (
+      {showAsOn ? (
         <Volume2 className="w-4 h-4" />
       ) : (
         <VolumeX className="w-4 h-4" />
