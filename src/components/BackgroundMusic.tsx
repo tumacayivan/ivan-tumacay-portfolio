@@ -68,6 +68,19 @@ const BackgroundMusic = () => {
       window.removeEventListener("keydown", startPlayback);
     };
 
+    // Try to start playback immediately on load. Most browsers will block
+    // this without a prior user gesture, so we also register gesture
+    // listeners as a fallback.
+    const tryAutoplay = () => {
+      const playPromise = audio.play();
+      if (playPromise && typeof playPromise.catch === "function") {
+        playPromise.catch(() => {
+          // Autoplay blocked — gesture listeners below will pick it up.
+        });
+      }
+    };
+    tryAutoplay();
+
     // Listen for any of the user gestures that should start the music.
     // `passive: true` keeps scroll/touch performance smooth.
     window.addEventListener("scroll", startPlayback, { passive: true });
