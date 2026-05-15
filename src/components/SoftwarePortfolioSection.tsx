@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Code2, Globe, Smartphone, Zap, Folder, FileText, ExternalLink, MonitorPlay } from "lucide-react";
+import ivanTumacayGroup from "@/assets/ivan-tumacay-group-website.png";
 import marketHacker1 from "@/assets/market-hacker-website1.png";
 import marketHacker2 from "@/assets/market-hacker-website2.png";
 import ivanSwarmAi from "@/assets/ivan-swarm-ai-website.png";
@@ -29,6 +30,14 @@ interface LiveSite {
 }
 
 const liveSites: LiveSite[] = [
+  {
+    name: "Ivan Tumacay Group",
+    tagline: "Corporate Holdings & Ventures",
+    description: "Flagship corporate site for the Ivan Tumacay Group, presenting the holdings portfolio, ventures, and strategic initiatives across software, AI, and enterprise.",
+    image: ivanTumacayGroup,
+    url: "https://ivan-tumacay-group.onrender.com/",
+    stack: "React · Web · Corporate",
+  },
   {
     name: "Market Hacker",
     tagline: "Trading Intelligence Platform",
