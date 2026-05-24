@@ -1,12 +1,32 @@
 import { motion } from "framer-motion";
+import { useRef, useState } from "react";
 import { ArrowDown, Code2, Headphones, Globe, Palette, Bot, Megaphone, Crosshair } from "lucide-react";
 import johnDoeAvatar from "@/assets/john-doe-avatar.png";
+import HeroEffects from "./HeroEffects";
 
 const HeroSection = () => {
   const today = new Date().toISOString().slice(0, 10);
+  const photoRef = useRef<HTMLDivElement | null>(null);
+  const [magnifier, setMagnifier] = useState<{ x: number; y: number; visible: boolean }>({
+    x: 0,
+    y: 0,
+    visible: false,
+  });
+
+  const onPhotoMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = photoRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    setMagnifier({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+      visible: true,
+    });
+  };
+  const onPhotoLeave = () => setMagnifier((m) => ({ ...m, visible: false }));
 
   return (
     <section className="relative overflow-hidden pt-24 sm:pt-28 pb-16 paper-grain">
+      <HeroEffects />
       <div className="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden">
         <div className="watermark text-[32.2vw] sm:text-[27.6vw] leading-[0.8] -rotate-3 select-none whitespace-nowrap">
           MOST WANTED
@@ -71,12 +91,68 @@ const HeroSection = () => {
                     <span>7</span><span>6</span><span>5</span><span>4</span><span>3</span><span>2</span>
                   </div>
 
-                  <div className="relative flex-1">
+                  <div
+                    className="relative flex-1 group/photo"
+                    ref={photoRef}
+                    onMouseMove={onPhotoMove}
+                    onMouseLeave={onPhotoLeave}
+                    data-spy-label="MAGNIFY"
+                  >
                     <img
                       src={johnDoeAvatar}
                       alt="Ivan Tumacay - Software Engineer & Digital Operations Specialist"
                       className="w-full h-[600px] sm:h-[760px] md:h-[820px] lg:h-[900px] object-cover object-top photocopy-strong"
                     />
+
+                    {magnifier.visible && (
+                      <div
+                        aria-hidden
+                        className="hidden md:block absolute pointer-events-none z-30"
+                        style={{
+                          left: magnifier.x - 90,
+                          top: magnifier.y - 90,
+                          width: 180,
+                          height: 180,
+                          borderRadius: "50%",
+                          border: "3px solid hsl(var(--ink-charcoal))",
+                          boxShadow:
+                            "0 0 0 1px hsl(0 0% 100% / 0.55) inset, 0 10px 30px hsl(0 0% 0% / 0.45), 0 0 0 6px hsl(0 0% 100% / 0.18) inset",
+                          backgroundImage: `url(${johnDoeAvatar})`,
+                          backgroundRepeat: "no-repeat",
+                          backgroundSize: `${(photoRef.current?.clientWidth || 0) * 2.4}px auto`,
+                          backgroundPosition: `-${magnifier.x * 2.4 - 90}px -${magnifier.y * 2.4 - 90}px`,
+                          filter: "grayscale(100%) contrast(1.45) brightness(0.92)",
+                          mixBlendMode: "multiply",
+                        }}
+                      >
+                        <div
+                          className="absolute inset-0 pointer-events-none"
+                          style={{
+                            background:
+                              "linear-gradient(to right, transparent 49.4%, hsl(var(--ink-charcoal)) 49.6%, hsl(var(--ink-charcoal)) 50.4%, transparent 50.6%)," +
+                              "linear-gradient(to bottom, transparent 49.4%, hsl(var(--ink-charcoal)) 49.6%, hsl(var(--ink-charcoal)) 50.4%, transparent 50.6%)",
+                          }}
+                        />
+                      </div>
+                    )}
+
+                    {magnifier.visible && (
+                      <div
+                        aria-hidden
+                        className="hidden md:block absolute pointer-events-none z-30"
+                        style={{
+                          left: magnifier.x + 56,
+                          top: magnifier.y + 56,
+                          width: 8,
+                          height: 60,
+                          background: "hsl(var(--ink-charcoal))",
+                          transform: "rotate(-45deg)",
+                          transformOrigin: "top left",
+                          borderRadius: 2,
+                          boxShadow: "0 4px 10px hsl(0 0% 0% / 0.4)",
+                        }}
+                      />
+                    )}
 
                     <div className="absolute top-8 right-5 stamp animate-stamp font-blackops text-4xl sm:text-6xl md:text-7xl !p-3 sm:!p-4">
                       WANTED
@@ -199,6 +275,7 @@ const HeroSection = () => {
             >
               <a
                 href="#experience"
+                data-spy-label="REVIEW DOSSIER"
                 className="bg-ink text-paper border-2 border-ink hover:bg-paper hover:text-ink transition-colors p-4 sm:p-5 flex flex-col justify-center"
               >
                 <div className="font-courier text-[13px] sm:text-sm tracking-[0.3em] uppercase opacity-80 mb-1">

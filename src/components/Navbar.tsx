@@ -62,6 +62,7 @@ const Navbar = () => {
               <a
                 key={item.label}
                 href={item.href}
+                data-spy-label={`GOTO · ${item.code}`}
                 className="group relative px-3 py-2 font-stencil text-base lg:text-base text-ink uppercase tracking-[0.18em] hover:text-ink transition-colors"
               >
                 <span className="absolute -top-1 left-1/2 -translate-x-1/2 font-courier text-[11px] text-ink-brown opacity-60">
@@ -72,6 +73,7 @@ const Navbar = () => {
             ))}
             <a
               href="#contact"
+              data-spy-label="ESTABLISH COMMS"
               className="ml-2 px-4 py-2 border-2 border-[hsl(var(--ink-charcoal))] bg-[hsl(var(--ink-charcoal))] text-[hsl(var(--paper))] font-blackops text-sm tracking-[0.18em] uppercase hover:bg-[hsl(var(--paper))] hover:text-ink transition-colors"
             >
               INITIATE CONTACT

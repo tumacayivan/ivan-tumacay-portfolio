@@ -233,13 +233,20 @@ const MarqueeRow = ({
           const rot = ((i * 37) % 7) - 3;
           return (
             <div key={`${item.title}-${i}`}
-              className="group relative shrink-0 paper-card-cream p-2 cursor-pointer transition-transform duration-300 hover:!rotate-0 hover:-translate-y-1"
+              className="group relative shrink-0 paper-card-cream p-2 cursor-pointer card-lift hover:!rotate-0 spotlight-paper"
               style={{
                 width: type === "graphic" ? 420 : 520,
                 height: type === "graphic" ? 360 : 340,
                 transform: `rotate(${rot}deg)`,
               }}
               onClick={() => onItemClick(item)}
+              onMouseMove={(e) => {
+                const r = (e.currentTarget as HTMLDivElement).getBoundingClientRect();
+                (e.currentTarget as HTMLDivElement).style.setProperty("--mx", `${e.clientX - r.left}px`);
+                (e.currentTarget as HTMLDivElement).style.setProperty("--my", `${e.clientY - r.top}px`);
+              }}
+              data-spy-hot
+              data-spy-label={type === "video" ? "PLAY EVIDENCE" : "OPEN FILE"}
             >
               <div className="absolute -top-2 left-3 bg-paper border border-ink px-2 py-0.5 font-courier text-[12px] tracking-widest text-ink z-10 rotate-[-2deg]">
                 EVIDENCE-{String(i + 1).padStart(3, "0")}
@@ -333,8 +340,14 @@ const PortfolioSection = () => {
               </span>
               <span className="font-courier text-sm text-ink-brown tracking-widest hidden sm:inline">CLASSIFIED MISSIONS ARCHIVE</span>
             </div>
-            <h2 className="font-blackops text-6xl sm:text-8xl md:text-9xl text-ink leading-[0.9] tracking-tight">
+            <h2 className="font-blackops text-6xl sm:text-8xl md:text-9xl text-ink leading-[0.9] tracking-tight relative">
               FEATURED <span className="text-ink">WORK</span>
+              <span
+                className="absolute -top-4 -right-2 sm:top-2 sm:right-8 stamp stamp-drop-hard font-blackops text-xl sm:text-3xl !p-2 !rotate-[8deg] hidden sm:inline-flex"
+                style={{ animationDelay: "0.4s" }}
+              >
+                DECLASSIFIED
+              </span>
             </h2>
             <div className="mt-4 flex items-start gap-4 max-w-3xl">
               <div className="stamp stamp-black text-[14px] !p-1.5 hidden sm:inline-flex">FILE 04</div>
