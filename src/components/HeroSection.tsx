@@ -54,8 +54,6 @@ const HeroSection = () => {
           </div>
           <h1 className="font-display text-[17vw] sm:text-[12vw] md:text-[11vw] lg:text-[10.4vw] leading-[0.84] tracking-[-0.005em] uppercase">
             <span className="text-[hsl(var(--accent-bone))]">MOST WANTED</span>
-            {/* {" "} */}
-            {/* <span className="text-[hsl(var(--accent-red))] drop-shadow-[0_0_28px_hsl(358_70%_45%/0.55)]">WANTED</span> */}
           </h1>
           <div className="font-courier text-[11px] sm:text-[13px] tracking-[0.4em] text-[hsl(var(--ink-brown))] uppercase mt-2">
             BY EMPLOYERS · STARTUPS · AGENCIES · CREATIVE STUDIOS
@@ -70,7 +68,7 @@ const HeroSection = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-[1.55fr_1fr] gap-8 lg:gap-12 items-start">
-          {/* The Professor's surveillance photo — vault-grade frame */}
+          {/* Surveillance photo — vault-grade frame */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96, y: 24 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -191,15 +189,6 @@ const HeroSection = () => {
                     <div className="absolute bottom-3 left-3 w-12 h-12 border-l-[3px] border-b-[3px] border-[hsl(var(--accent-red))]" />
                     <div className="absolute bottom-3 right-3 w-12 h-12 border-r-[3px] border-b-[3px] border-[hsl(var(--accent-red))]" />
 
-                    {/* Targeting lock brackets — pulsing, off-center on face */}
-                    {/* <div className="absolute top-[22%] left-[28%] w-16 h-16 pointer-events-none animate-pulse-classified opacity-70">
-                      <div className="absolute top-0 left-0 w-4 h-4 border-l-2 border-t-2 border-[hsl(var(--accent-red))]" />
-                      <div className="absolute top-0 right-0 w-4 h-4 border-r-2 border-t-2 border-[hsl(var(--accent-red))]" />
-                      <div className="absolute bottom-0 left-0 w-4 h-4 border-l-2 border-b-2 border-[hsl(var(--accent-red))]" />
-                      <div className="absolute bottom-0 right-0 w-4 h-4 border-r-2 border-b-2 border-[hsl(var(--accent-red))]" />
-                      <div className="absolute -top-3 left-0 font-courier text-[9px] tracking-[0.2em] text-[hsl(var(--accent-red))] whitespace-nowrap">LOCK · 98.7%</div>
-                    </div> */}
-
                     {/* Mugshot slate board at the bottom */}
                     <div className="absolute left-1/2 -translate-x-1/2 bottom-5 z-10 flex items-stretch border-2 border-[hsl(var(--accent-red))] bg-[hsl(0_0%_3%)] shadow-[0_0_22px_hsl(var(--accent-red)/0.4)] overflow-hidden">
                       <div className="bg-[hsl(var(--accent-red))] text-[hsl(40_22%_96%)] font-blackops text-[10px] sm:text-[11px] tracking-[0.28em] px-2 py-1 flex flex-col items-center justify-center leading-none">
@@ -226,7 +215,7 @@ const HeroSection = () => {
               </div>
             </div>
 
-            {/* Floating sticky note — Professor's warning */}
+            {/* Floating sticky note — high-priority warning */}
             <div className="hidden sm:block absolute -bottom-10 -right-4 sticky-note rotate-3 w-60 z-20 text-base">
               <span className="handwritten-red font-bold uppercase tracking-wider">⟶ HIGH PRIORITY</span>
               <div className="mt-1 text-[14px] leading-snug text-[hsl(40_22%_96%)]">
@@ -373,118 +362,6 @@ const HeroSection = () => {
         </div>
       </div>
     </section>
-  );
-};
-
-export default HeroSection;
-
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.7 }}
-              className="mb-5"
-            >
-              <div className="section-eyebrow mb-3">
-                ALIASES · KNOWN AS
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {[
-                  { icon: Code2, label: "Full Stack Dev" },
-                  { icon: Headphones, label: "Virtual Assistant" },
-                  { icon: Bot, label: "AI & Automation" },
-                  { icon: Palette, label: "Graphics & Video" },
-                  { icon: Megaphone, label: "Digital Marketing" },
-                  { icon: Globe, label: "Cloud & APIs" },
-                ].map(({ icon: Icon, label }) => (
-                  <div
-                    key={label}
-                    className="flex items-center gap-2 px-3 py-1.5 bg-[hsl(0_0%_5%)] border border-[hsl(var(--accent-red)/0.45)] font-blackops text-[13px] sm:text-sm uppercase tracking-[0.18em] text-[hsl(var(--ink-charcoal))] hover:border-[hsl(var(--accent-red))] hover:text-[hsl(var(--accent-red))] transition-colors group"
-                  >
-                    <Icon className="w-3.5 h-3.5 text-[hsl(var(--accent-red))]" />
-                    {label}
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.85 }}
-              className="paper-card-cream p-5 mb-5 relative"
-            >
-              <div className="absolute -top-3 left-4 stamp stamp-black !text-[13px] !p-1 !rotate-0 bg-[hsl(0_0%_7%)]">DESCRIPTION</div>
-              <p className="font-typewriter text-lg sm:text-xl text-[hsl(var(--ink-charcoal))] leading-relaxed mt-2">
-                Combining{" "}
-                <span className="font-bold text-[hsl(var(--accent-bone))] underline decoration-[hsl(var(--accent-red))] underline-offset-4">full-stack development</span>,{" "}
-                <span className="font-bold text-[hsl(var(--accent-bone))] underline decoration-[hsl(var(--accent-red))] underline-offset-4">enterprise systems</span>,{" "}
-                <span className="font-bold text-[hsl(var(--accent-bone))] underline decoration-[hsl(var(--accent-red))] underline-offset-4">AI &amp; automation</span>, and comprehensive{" "}
-                <span className="font-bold text-[hsl(var(--accent-bone))] underline decoration-[hsl(var(--accent-red))] underline-offset-4">digital operations services</span> with nearly 10 years of experience.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 1 }}
-              className="grid grid-cols-1 sm:grid-cols-[1.3fr_1fr] gap-3 items-stretch"
-            >
-              <a
-                href="#experience"
-                className="dossier-cta justify-between text-base !py-5 !px-5 group"
-              >
-                <div className="flex flex-col items-start gap-1">
-                  <div className="font-courier text-[11px] tracking-[0.32em] uppercase opacity-90">
-                    REWARD FOR ENGAGEMENT
-                  </div>
-                  <div className="font-blackops text-xl sm:text-2xl tracking-[0.14em] uppercase flex items-center gap-2">
-                    REVIEW THE FILE
-                    <ArrowDown className="w-5 h-5 animate-bounce" />
-                  </div>
-                  <div className="font-courier text-[10px] tracking-[0.25em] opacity-80">
-                    ALL EXPERIENCE DOCUMENTED · FILES INSIDE
-                  </div>
-                </div>
-              </a>
-
-              <div className="border border-[hsl(var(--accent-red)/0.45)] p-4 sm:p-5 bg-[hsl(0_0%_5%)] relative overflow-hidden">
-                <div className="absolute -top-3 left-3 bg-[hsl(0_0%_5%)] px-2 font-courier text-[11px] tracking-[0.3em] text-[hsl(var(--accent-red))]">
-                  STATUS
-                </div>
-                <div className="flex items-center gap-2 font-blackops text-lg sm:text-xl tracking-[0.14em] uppercase text-[hsl(var(--accent-bone))]">
-                  <span className="status-pulse" /> AT LARGE
-                </div>
-                <div className="mt-1 font-courier text-[11px] sm:text-[12px] tracking-[0.3em] text-[hsl(var(--ink-brown))] uppercase">
-                  Accepting new missions
-                </div>
-                <div className="mt-3 flex items-center gap-1.5">
-                  <span className="rivet" />
-                  <span className="rivet" />
-                  <span className="rivet" />
-                  <span className="rivet" />
-                  <span className="rivet" />
-                </div>
-                <div className="mt-2 font-courier text-[11px] tracking-[0.28em] text-[hsl(var(--accent-red))]">
-                  CLEARANCE LVL 5 / 5
-                </div>
-              </div>
-            </motion.div>
-
-            <div className="mt-6 flex items-end justify-between gap-4">
-              <div className="barcode h-10 w-40 sm:w-56" />
-              <div className="font-courier text-[11px] sm:text-[12px] text-[hsl(var(--ink-brown))] tracking-[0.28em] text-right uppercase">
-                End of cover page · Dossier continues ↓
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-export default HeroSection;
-ction>
   );
 };
 
