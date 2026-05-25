@@ -26,10 +26,10 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section id="services" className="relative py-20 sm:py-28 bg-paper-beige border-y-2 border-double border-ink overflow-hidden">
-      <div className="absolute inset-0 tactical-grid opacity-[0.15] pointer-events-none" />
+    <section id="services" className="relative py-20 sm:py-28 bg-[hsl(var(--paper))] border-y border-[hsl(var(--accent-red)/0.25)] overflow-hidden">
+      <div className="absolute inset-0 tactical-grid opacity-[0.5] pointer-events-none" />
       <div className="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden">
-        <div className="watermark text-[20.7vw] leading-none rotate-[-4deg] opacity-50">
+        <div className="watermark text-[22vw] leading-none rotate-[-4deg]">
           OPERATIONS
         </div>
       </div>
@@ -42,31 +42,32 @@ const ServicesSection = () => {
           transition={{ duration: 0.6 }}
           className="mb-12 relative"
         >
-          <div className="flex items-center justify-between mb-3 pb-2 border-b-2 border-ink">
-            <div className="flex items-center gap-3">
+          <div className="flex items-center justify-between mb-4 pb-3 border-b border-[hsl(var(--accent-red)/0.4)]">
+            <div className="section-eyebrow">
               <span className="status-pulse" />
-              <span className="font-blackops text-base tracking-[0.3em] text-ink">
-                SECTION 03 // TACTICAL OPERATIONS BOARD
-              </span>
+              SECTION 03 // TACTICAL OPERATIONS BOARD
             </div>
-            <span className="font-courier text-[13px] text-ink-brown tracking-widest hidden sm:inline">
+            <span className="font-courier text-[12px] text-[hsl(var(--accent-red))] tracking-[0.3em] hidden sm:inline">
               {services.length} CAPABILITIES LOGGED
             </span>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-6 items-end">
             <div>
-              <p className="font-courier text-sm tracking-[0.35em] text-ink-brown mb-2 uppercase">
-                Expertise // OPERATIONAL CAPABILITIES
+              <p className="font-courier text-[12px] tracking-[0.4em] text-[hsl(var(--accent-red))] mb-3 uppercase">
+                Expertise · Operational Capabilities
               </p>
-              <h2 className="font-blackops text-6xl sm:text-8xl md:text-9xl text-ink leading-[0.9] tracking-tight">
-                WHAT I <span className="text-ink">OFFER</span>
+              <h2 className="display-title text-6xl sm:text-8xl md:text-9xl uppercase">
+                WHAT I <span className="accent">OFFER</span>
               </h2>
             </div>
-            <div className="paper-card-cream p-4 relative">
-              <div className="absolute -top-3 left-4 stamp stamp-black !text-[13px] !p-1">FIELD BRIEFING</div>
-              <p className="font-typewriter text-lg sm:text-xl text-ink leading-relaxed mt-2">
-                Comprehensive <span className="font-bold text-ink underline">virtual assistant</span>, <span className="font-bold text-ink underline">digital operations</span>, and <span className="font-bold text-ink underline">software engineering</span> services designed to help your business scale.
+            <div className="paper-card-cream p-5 relative">
+              <div className="absolute -top-3 left-4 stamp stamp-black !text-[12px] !p-1 !rotate-0 bg-[hsl(var(--paper))]">FIELD BRIEFING</div>
+              <p className="font-typewriter text-lg sm:text-xl text-[hsl(var(--ink-charcoal))] leading-relaxed mt-2">
+                Comprehensive{" "}
+                <span className="font-bold text-[hsl(var(--accent-bone))] underline decoration-[hsl(var(--accent-red))] underline-offset-4">virtual assistant</span>,{" "}
+                <span className="font-bold text-[hsl(var(--accent-bone))] underline decoration-[hsl(var(--accent-red))] underline-offset-4">digital operations</span>, and{" "}
+                <span className="font-bold text-[hsl(var(--accent-bone))] underline decoration-[hsl(var(--accent-red))] underline-offset-4">software engineering</span> services designed to help your business scale.
               </p>
             </div>
           </div>
@@ -78,8 +79,8 @@ const ServicesSection = () => {
           ))}
         </div>
 
-        <div className="mt-10 flex flex-wrap items-center justify-between gap-3 font-courier text-[13px] text-ink-brown tracking-widest border-t-2 border-double border-ink pt-3">
-          <span>BOARD UPDATED · ALL ASSETS VERIFIED</span>
+        <div className="mt-10 flex flex-wrap items-center justify-between gap-3 font-courier text-[11px] text-[hsl(var(--ink-brown))] tracking-[0.3em] border-t border-[hsl(var(--accent-red)/0.3)] pt-3 uppercase">
+          <span><span className="text-[hsl(var(--accent-red))]">◉</span> BOARD UPDATED · ALL ASSETS VERIFIED</span>
           <span>OPERATIONS DIRECTORATE / IT</span>
         </div>
       </div>

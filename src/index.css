@@ -1,130 +1,153 @@
-@import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Cutive+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Anton&family=JetBrains+Mono:wght@400;500;700&family=Special+Elite&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Cutive+Mono&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* =====================================================================
+   MOST WANTED — TOP-SECRET INTELLIGENCE DOSSIER DESIGN SYSTEM
+   Cinematic classified-noir aesthetic.
+   Dark concrete + urgent red + bone white. Every utility class is kept
+   for backward compatibility, but completely re-skinned.
+   ===================================================================== */
+
 @layer base {
   :root {
-    /* PURE DECLASSIFIED DOCUMENT - BLACK INK ON AGED PAPER */
-    --background: 42 28% 90%;          /* aged photocopy paper */
-    --foreground: 0 0% 8%;             /* black ink */
+    /* CORE PALETTE — concrete noir base, bone foreground, classified red */
+    --background: 0 0% 7%;             /* deep concrete noir */
+    --foreground: 40 18% 92%;          /* bone white */
 
-    --card: 38 26% 84%;
-    --card-foreground: 0 0% 8%;
+    --card: 0 0% 11%;
+    --card-foreground: 40 18% 92%;
 
-    --popover: 38 26% 84%;
-    --popover-foreground: 0 0% 8%;
+    --popover: 0 0% 11%;
+    --popover-foreground: 40 18% 92%;
 
-    --primary: 0 0% 8%;                /* black */
-    --primary-foreground: 42 28% 90%;
+    --primary: 358 79% 51%;            /* CLASSIFIED RED */
+    --primary-foreground: 40 22% 96%;
 
-    --secondary: 36 14% 75%;
-    --secondary-foreground: 0 0% 8%;
+    --secondary: 0 0% 14%;
+    --secondary-foreground: 40 18% 92%;
 
-    --muted: 38 16% 82%;
-    --muted-foreground: 0 0% 28%;
+    --muted: 0 0% 16%;
+    --muted-foreground: 38 8% 65%;
 
-    --accent: 0 0% 8%;
-    --accent-foreground: 42 28% 90%;
+    --accent: 358 79% 51%;             /* RED accent */
+    --accent-foreground: 40 22% 96%;
 
-    --destructive: 0 0% 8%;
-    --destructive-foreground: 42 28% 90%;
+    --destructive: 358 79% 51%;
+    --destructive-foreground: 40 22% 96%;
 
-    --border: 0 0% 12%;
-    --input: 0 0% 12%;
-    --ring: 0 0% 8%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 358 79% 51%;
 
     --radius: 0rem;
 
-    --sidebar-background: 38 26% 84%;
-    --sidebar-foreground: 0 0% 8%;
-    --sidebar-primary: 0 0% 8%;
-    --sidebar-primary-foreground: 42 28% 90%;
-    --sidebar-accent: 36 14% 75%;
-    --sidebar-accent-foreground: 0 0% 8%;
-    --sidebar-border: 0 0% 12%;
-    --sidebar-ring: 0 0% 8%;
+    --sidebar-background: 0 0% 9%;
+    --sidebar-foreground: 40 18% 92%;
+    --sidebar-primary: 358 79% 51%;
+    --sidebar-primary-foreground: 40 22% 96%;
+    --sidebar-accent: 0 0% 14%;
+    --sidebar-accent-foreground: 40 18% 92%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 358 79% 51%;
 
-    --gold-glow: 0 0% 8%;
-    --surface-hover: 38 22% 80%;
+    --gold-glow: 358 79% 51%;
+    --surface-hover: 0 0% 14%;
 
-    /* Single ink colour. Aliases retained for compatibility. */
-    --paper: 42 28% 90%;
-    --paper-cream: 38 26% 86%;
-    --paper-beige: 38 24% 82%;
-    --paper-gray: 36 14% 75%;
-    --ink-charcoal: 0 0% 8%;
-    --ink-brown: 0 0% 20%;
-    --stamp-red: 0 0% 8%;
-    --stamp-blue: 0 0% 8%;
+    /* SEMANTIC ALIASES — utility classes throughout the app reference
+       these. We invert them: "paper" becomes dark concrete, "ink"
+       becomes bone-white. Anything stamped "red" stays iconic red. */
+    --paper: 0 0% 7%;
+    --paper-cream: 0 0% 11%;
+    --paper-beige: 0 0% 9%;
+    --paper-gray: 0 0% 14%;
+    --ink-charcoal: 40 18% 92%;        /* bone — main "ink" foreground */
+    --ink-brown: 38 8% 65%;             /* muted bone */
+    --stamp-red: 358 79% 51%;           /* THE RED */
+    --stamp-blue: 358 70% 42%;          /* deeper red (kept name) */
+
+    /* Classified-specific tokens */
+    --accent-red: 358 79% 51%;
+    --accent-red-deep: 358 75% 38%;
+    --accent-red-bright: 0 92% 62%;
+    --accent-bone: 40 22% 94%;
+    --accent-concrete: 0 0% 11%;
+    --accent-graphite: 0 0% 18%;
+    --accent-blueprint: 195 65% 60%;
   }
 
+  /* Light mode is intentionally a near-identical, slightly elevated
+     variant so the classified aesthetic stays consistent regardless of
+     system theme. The site is fundamentally a nocturnal experience. */
   .dark {
-    --background: 0 0% 12%;
-    --foreground: 42 28% 88%;
+    --background: 0 0% 5%;
+    --foreground: 40 22% 95%;
 
-    --card: 0 0% 16%;
-    --card-foreground: 42 28% 88%;
+    --card: 0 0% 9%;
+    --card-foreground: 40 22% 95%;
 
-    --popover: 0 0% 16%;
-    --popover-foreground: 42 28% 88%;
+    --popover: 0 0% 9%;
+    --popover-foreground: 40 22% 95%;
 
-    --primary: 42 28% 88%;
-    --primary-foreground: 0 0% 12%;
+    --primary: 358 82% 54%;
+    --primary-foreground: 40 22% 96%;
 
-    --secondary: 0 0% 20%;
-    --secondary-foreground: 42 28% 88%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 40 22% 95%;
 
-    --muted: 0 0% 20%;
-    --muted-foreground: 42 18% 65%;
+    --muted: 0 0% 14%;
+    --muted-foreground: 38 8% 62%;
 
-    --accent: 42 28% 88%;
-    --accent-foreground: 0 0% 12%;
+    --accent: 358 82% 54%;
+    --accent-foreground: 40 22% 96%;
 
-    --destructive: 42 28% 88%;
-    --destructive-foreground: 0 0% 12%;
+    --destructive: 358 82% 54%;
+    --destructive-foreground: 40 22% 96%;
 
-    --border: 0 0% 30%;
-    --input: 0 0% 30%;
-    --ring: 42 28% 88%;
+    --border: 0 0% 22%;
+    --input: 0 0% 22%;
+    --ring: 358 82% 54%;
 
-    --gold-glow: 42 28% 88%;
-    --surface-hover: 0 0% 22%;
+    --gold-glow: 358 82% 54%;
+    --surface-hover: 0 0% 12%;
 
-    --sidebar-background: 0 0% 12%;
-    --sidebar-foreground: 42 28% 88%;
-    --sidebar-primary: 42 28% 88%;
-    --sidebar-primary-foreground: 0 0% 12%;
-    --sidebar-accent: 0 0% 20%;
-    --sidebar-accent-foreground: 42 28% 88%;
-    --sidebar-border: 0 0% 30%;
-    --sidebar-ring: 42 28% 88%;
+    --paper: 0 0% 5%;
+    --paper-cream: 0 0% 9%;
+    --paper-beige: 0 0% 7%;
+    --paper-gray: 0 0% 12%;
+    --ink-charcoal: 40 22% 95%;
+    --ink-brown: 38 8% 62%;
+    --stamp-red: 358 82% 54%;
+    --stamp-blue: 358 72% 44%;
   }
 }
 
 @layer base {
   * { @apply border-border; }
 
-  html { background-color: hsl(var(--paper)); }
+  html {
+    background-color: hsl(var(--paper));
+    color-scheme: dark;
+  }
 
   body {
     @apply bg-background text-foreground font-body antialiased;
+    color: hsl(var(--ink-charcoal));
     background-color: hsl(var(--paper));
+    /* Concrete texture + faint warm light from below */
     background-image:
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.07  0 0 0 0 0.05  0 0 0 0 0.03  0 0 0 0.10 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"),
-      repeating-linear-gradient(
-        to bottom,
-        transparent 0,
-        transparent 31px,
-        hsl(0 0% 0% / 0.04) 31px,
-        hsl(0 0% 0% / 0.04) 32px
-      );
-    background-attachment: fixed, fixed;
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.95  0 0 0 0 0.90  0 0 0 0.05 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"),
+      radial-gradient(ellipse at 50% 110%, hsl(358 70% 22% / 0.22) 0%, transparent 55%),
+      radial-gradient(ellipse at 50% -10%, hsl(0 0% 14% / 0.85) 0%, transparent 60%),
+      linear-gradient(to bottom, hsl(0 0% 6%) 0%, hsl(0 0% 8%) 100%);
+    background-attachment: fixed;
   }
 
   h1, h2, h3, h4, h5, h6 { @apply font-heading; }
 
+  /* Ambient surveillance vignette + horizontal scanline shimmer */
   body::before {
     content: "";
     position: fixed;
@@ -132,160 +155,289 @@
     pointer-events: none;
     z-index: 0;
     background:
-      radial-gradient(circle at 14% 18%, hsl(0 0% 0% / 0.04) 0%, transparent 8%),
-      radial-gradient(circle at 86% 72%, hsl(0 0% 0% / 0.03) 0%, transparent 9%),
-      radial-gradient(circle at 50% 50%, hsl(0 0% 0% / 0.02) 0%, transparent 10%);
+      radial-gradient(circle at 14% 18%, hsl(358 60% 30% / 0.08) 0%, transparent 12%),
+      radial-gradient(circle at 86% 72%, hsl(358 60% 30% / 0.06) 0%, transparent 14%);
   }
+
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 2px,
+      hsl(0 0% 0% / 0.18) 3px,
+      transparent 3px,
+      transparent 4px
+    );
+    mix-blend-mode: multiply;
+    opacity: 0.45;
+  }
+
+  /* Selection color = classified red */
+  ::selection {
+    background: hsl(var(--accent-red));
+    color: hsl(var(--accent-bone));
+  }
+
+  /* Custom scrollbar — narrow red */
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: hsl(0 0% 6%); }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--accent-red) / 0.65);
+    border: 2px solid hsl(0 0% 6%);
+  }
+  ::-webkit-scrollbar-thumb:hover { background: hsl(var(--accent-red)); }
 }
 
 @layer utilities {
-  /* All typography is typewriter / courier */
+  /* ===== TYPOGRAPHY =====
+     Display: Bebas Neue / Anton — bold cinematic-poster condensed caps
+     Body / data: Courier Prime, JetBrains Mono — surveillance terminal
+     Handwritten: Special Elite — Professor's notebook
+  */
   .font-typewriter { font-family: 'Special Elite', 'Courier Prime', monospace; }
-  .font-courier    { font-family: 'Courier Prime', 'Cutive Mono', monospace; }
+  .font-courier    { font-family: 'JetBrains Mono', 'Courier Prime', 'Cutive Mono', monospace; letter-spacing: -0.005em; }
   .font-cutive     { font-family: 'Cutive Mono', 'Courier Prime', monospace; }
-  .font-stencil    { font-family: 'Courier Prime', 'Special Elite', monospace; font-weight: 700; letter-spacing: 0.05em; }
-  .font-blackops   { font-family: 'Courier Prime', 'Special Elite', monospace; font-weight: 700; letter-spacing: 0.04em; }
+  .font-stencil    { font-family: 'Oswald', 'Bebas Neue', sans-serif; font-weight: 600; letter-spacing: 0.08em; }
+  .font-blackops   { font-family: 'Bebas Neue', 'Anton', 'Oswald', sans-serif; font-weight: 400; letter-spacing: 0.04em; }
+  .font-display    { font-family: 'Anton', 'Bebas Neue', sans-serif; font-weight: 400; letter-spacing: -0.005em; }
 
-  /* All ink is black */
-  .text-stamp-red, .text-stamp-blue  { color: hsl(var(--ink-charcoal)); }
+  /* ===== COLORS =====
+     "ink" = the foreground (now bone white).
+     "stamp-red/blue" = the urgent classified red.
+     "paper-*" = dark concrete surfaces.
+  */
   .text-ink        { color: hsl(var(--ink-charcoal)); }
   .text-ink-brown  { color: hsl(var(--ink-brown)); }
+  .text-stamp-red  { color: hsl(var(--accent-red)); }
+  .text-stamp-blue { color: hsl(var(--accent-red-deep)); }
+  .text-classified-red  { color: hsl(var(--accent-red)); }
+  .text-classified-bright { color: hsl(var(--accent-red-bright)); }
+  .text-blueprint  { color: hsl(var(--accent-blueprint)); }
+  .text-bone       { color: hsl(var(--accent-bone)); }
 
   .bg-paper        { background-color: hsl(var(--paper)); }
   .bg-paper-cream  { background-color: hsl(var(--paper-cream)); }
   .bg-paper-beige  { background-color: hsl(var(--paper-beige)); }
   .bg-paper-gray   { background-color: hsl(var(--paper-gray)); }
+  .bg-classified-red    { background-color: hsl(var(--accent-red)); }
+  .bg-classified-red-deep { background-color: hsl(var(--accent-red-deep)); }
+  .bg-classified-bone   { background-color: hsl(var(--accent-bone)); }
+  .bg-concrete     { background-color: hsl(var(--accent-concrete)); }
 
-  .border-ink      { border-color: hsl(var(--ink-charcoal)); }
-  .border-stamp    { border-color: hsl(var(--ink-charcoal)); }
+  .border-ink         { border-color: hsl(var(--ink-charcoal)); }
+  .border-stamp       { border-color: hsl(var(--accent-red)); }
+  .border-classified-red   { border-color: hsl(var(--accent-red)); }
+  .border-bone        { border-color: hsl(var(--accent-bone)); }
+
   .bg-ink          { background-color: hsl(var(--ink-charcoal)); }
-  .bg-stamp-red    { background-color: hsl(var(--ink-charcoal)); }
+  .bg-stamp-red    { background-color: hsl(var(--accent-red)); }
 
-  /* Paper cards - pure photocopy aesthetic */
+  /* ===== CARDS / SURFACES =====
+     The dossier cards become concrete dossier slabs with a faint red
+     left-edge accent and a subtle interior grain. Every paper-card
+     hover lifts and warms with a red glow.
+  */
   .paper-card {
+    position: relative;
     background-color: hsl(var(--paper-cream));
     background-image:
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.07  0 0 0 0 0.05  0 0 0 0 0.03  0 0 0 0.12 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    border: 1px solid hsl(0 0% 12% / 0.65);
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.95  0 0 0 0 0.90  0 0 0 0.04 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    border: 1px solid hsl(40 12% 90% / 0.10);
     box-shadow:
-      0 1px 0 hsl(0 0% 0% / 0.10),
-      0 4px 10px -6px hsl(0 0% 0% / 0.30);
-    position: relative;
+      inset 0 1px 0 hsl(40 18% 96% / 0.04),
+      0 1px 0 hsl(0 0% 0% / 0.6),
+      0 12px 28px -16px hsl(0 0% 0% / 0.8);
   }
 
   .paper-card-cream {
-    background-color: hsl(var(--paper));
+    position: relative;
+    background-color: hsl(var(--paper-cream));
     background-image:
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.07  0 0 0 0 0.05  0 0 0 0 0.03  0 0 0 0.10 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    border: 1px solid hsl(0 0% 12% / 0.60);
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.95  0 0 0 0 0.90  0 0 0 0.045 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    border: 1px solid hsl(40 12% 90% / 0.10);
     box-shadow:
-      0 1px 0 hsl(0 0% 0% / 0.08),
-      0 6px 14px -8px hsl(0 0% 0% / 0.30);
+      inset 0 1px 0 hsl(40 18% 96% / 0.05),
+      inset 4px 0 0 hsl(var(--accent-red) / 0.0),
+      0 1px 0 hsl(0 0% 0% / 0.6),
+      0 16px 32px -20px hsl(0 0% 0% / 0.85);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+  }
+  .paper-card-cream::before {
+    content: "";
+    position: absolute;
+    top: 0; bottom: 0; left: 0;
+    width: 3px;
+    background: linear-gradient(180deg,
+      hsl(var(--accent-red) / 0.0) 0%,
+      hsl(var(--accent-red) / 0.55) 22%,
+      hsl(var(--accent-red) / 0.55) 78%,
+      hsl(var(--accent-red) / 0.0) 100%);
+    pointer-events: none;
+    transition: background 0.35s ease, width 0.25s ease;
+  }
+  .paper-card-cream:hover {
+    border-color: hsl(var(--accent-red) / 0.45);
+    box-shadow:
+      inset 0 1px 0 hsl(40 18% 96% / 0.07),
+      0 1px 0 hsl(0 0% 0% / 0.6),
+      0 0 0 1px hsl(var(--accent-red) / 0.18),
+      0 28px 50px -24px hsl(358 60% 18% / 0.55),
+      0 18px 30px -22px hsl(0 0% 0% / 0.9);
+  }
+  .paper-card-cream:hover::before {
+    background: linear-gradient(180deg,
+      hsl(var(--accent-red)) 0%,
+      hsl(var(--accent-red-bright)) 50%,
+      hsl(var(--accent-red)) 100%);
+    width: 4px;
   }
 
+  /* Vault folder — heavier concrete slab for the hero's subject file */
   .paper-folder {
-    background-color: hsl(38 22% 80%);
+    position: relative;
+    background-color: hsl(0 0% 8%);
     background-image:
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.10  0 0 0 0 0.08  0 0 0 0 0.05  0 0 0 0.14 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    background-blend-mode: multiply;
-    border: 1px solid hsl(0 0% 12% / 0.70);
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.95  0 0 0 0 0.88  0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    border: 1px solid hsl(40 12% 90% / 0.15);
     box-shadow:
-      0 1px 0 hsl(0 0% 0% / 0.10),
-      0 10px 22px -12px hsl(0 0% 0% / 0.40);
+      inset 0 1px 0 hsl(40 18% 96% / 0.06),
+      inset 0 -1px 0 hsl(0 0% 0% / 0.7),
+      0 30px 60px -28px hsl(0 0% 0% / 0.95);
   }
 
+  /* Subtle photocopier/concrete grain overlay */
   .paper-grain::after {
     content: "";
     position: absolute;
     inset: 0;
     pointer-events: none;
     background-image:
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.07  0 0 0 0 0.05  0 0 0 0 0.03  0 0 0 0.08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    opacity: 0.55;
-    mix-blend-mode: multiply;
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.95  0 0 0 0 0.88  0 0 0 0.04 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    opacity: 0.3;
+    mix-blend-mode: screen;
   }
 
-  /* RUBBER STAMP - BLACK INK ONLY */
+  /* ===== CLASSIFIED RUBBER STAMP =====
+     Iconic red ink stamp — slightly rotated, distressed.
+  */
   .stamp {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Courier Prime', monospace;
-    font-weight: 700;
-    color: hsl(var(--ink-charcoal));
-    border: 3px double hsl(var(--ink-charcoal));
+    font-family: 'Bebas Neue', 'Anton', sans-serif;
+    font-weight: 400;
+    color: hsl(var(--accent-red));
+    border: 3px double hsl(var(--accent-red));
     padding: 0.35rem 1rem;
     letter-spacing: 0.20em;
     text-transform: uppercase;
     transform: rotate(-4deg);
     background: transparent;
-    text-shadow: 0.5px 0 0 hsl(var(--paper));
+    text-shadow: 0 0 1px hsl(var(--accent-red) / 0.4);
     position: relative;
+    box-shadow: 0 0 18px hsl(var(--accent-red) / 0.18);
   }
   .stamp::after {
     content: "";
     position: absolute;
     inset: 0;
     background-image:
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.6' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.95  0 0 0 0 0.93  0 0 0 0 0.89  0 0 0 0.92 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    mix-blend-mode: screen;
-    opacity: 0.55;
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.6' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.05  0 0 0 0 0.05  0 0 0 0 0.05  0 0 0 0.85 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    mix-blend-mode: multiply;
+    opacity: 0.30;
     pointer-events: none;
   }
-  .stamp-blue, .stamp-black {
-    color: hsl(var(--ink-charcoal));
-    border-color: hsl(var(--ink-charcoal));
+  .stamp-blue {
+    color: hsl(var(--accent-red-deep));
+    border-color: hsl(var(--accent-red-deep));
+    box-shadow: 0 0 18px hsl(var(--accent-red-deep) / 0.18);
+  }
+  .stamp-black {
+    color: hsl(var(--accent-bone));
+    border-color: hsl(var(--accent-bone));
+    box-shadow: 0 0 12px hsl(40 18% 90% / 0.08);
   }
   .stamp-straight { transform: rotate(0deg); }
 
-  /* Watermark - black faded */
+  /* Watermark — faded red CLASSIFIED poster behind sections */
   .watermark {
-    font-family: 'Courier Prime', monospace;
-    font-weight: 700;
-    color: hsl(0 0% 0% / 0.06);
-    letter-spacing: 0.05em;
+    font-family: 'Anton', 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    color: hsl(var(--accent-red) / 0.05);
+    letter-spacing: -0.01em;
     text-transform: uppercase;
     pointer-events: none;
     user-select: none;
     white-space: nowrap;
+    text-shadow:
+      0 0 1px hsl(var(--accent-red) / 0.10),
+      0 0 24px hsl(var(--accent-red) / 0.06);
   }
-  .watermark-dark { color: hsl(0 0% 0% / 0.05); }
+  .watermark-dark { color: hsl(40 18% 92% / 0.035); text-shadow: none; }
 
+  /* Redacted bar — now a classified-red censor bar */
   .redacted {
-    background-color: hsl(var(--ink-charcoal));
-    color: hsl(var(--ink-charcoal));
+    background-color: hsl(var(--accent-red));
+    color: hsl(var(--accent-red));
     padding: 0 0.35em;
     user-select: none;
+    box-shadow: 0 0 8px hsl(var(--accent-red) / 0.5);
   }
 
-  /* Tape - subtle paper tone, no colour */
+  /* ===== TAPE =====
+     Red duct tape securing dossier corners. Faintly translucent.
+  */
   .tape {
     position: absolute;
-    background: hsl(38 20% 78% / 0.7);
-    border: 1px solid hsl(0 0% 0% / 0.18);
-    box-shadow: 0 1px 2px hsl(0 0% 0% / 0.15);
+    background: hsl(var(--accent-red) / 0.85);
+    border: 1px solid hsl(var(--accent-red-deep) / 0.7);
+    box-shadow:
+      0 1px 2px hsl(0 0% 0% / 0.45),
+      inset 0 1px 0 hsl(var(--accent-red-bright) / 0.3),
+      inset 0 -1px 0 hsl(var(--accent-red-deep) / 0.5);
+    background-image: repeating-linear-gradient(
+      90deg,
+      transparent 0 2px,
+      hsl(var(--accent-red-deep) / 0.18) 2px 3px
+    );
   }
-  .tape-yellow, .tape-clear { background: hsl(38 20% 78% / 0.65); }
+  .tape-yellow { background: hsl(358 79% 51% / 0.85); }
+  .tape-clear  {
+    background: hsl(40 12% 90% / 0.08);
+    border: 1px solid hsl(40 12% 90% / 0.3);
+    box-shadow: 0 1px 2px hsl(0 0% 0% / 0.3);
+  }
 
+  /* Steel paperclip */
   .paperclip {
     position: absolute;
     width: 14px;
     height: 36px;
-    border: 2px solid hsl(0 0% 30%);
+    border: 2px solid hsl(40 8% 75%);
     border-radius: 7px;
     background: transparent;
+    box-shadow: 0 2px 4px hsl(0 0% 0% / 0.5);
   }
 
-  .border-dashed-ink { border: 1.5px dashed hsl(0 0% 12% / 0.7); }
-  .border-dotted-ink { border: 2px dotted hsl(0 0% 12% / 0.6); }
+  .border-dashed-ink { border: 1.5px dashed hsl(40 12% 90% / 0.28); }
+  .border-dotted-ink { border: 2px dotted hsl(40 12% 90% / 0.25); }
 
+  /* ===== PHOTO / IMAGE TREATMENTS =====
+     Cinematic noir grade — deep contrast, slight cold cast, scanline
+     for a surveillance-camera feel.
+  */
   .photocopy {
-    filter: grayscale(100%) contrast(1.35) brightness(0.92);
-    mix-blend-mode: multiply;
+    filter: grayscale(85%) contrast(1.1) brightness(0.85) sepia(0.05);
+    mix-blend-mode: normal;
   }
   .photocopy-strong {
-    filter: grayscale(100%) contrast(1.7) brightness(0.82);
-    mix-blend-mode: multiply;
+    filter: grayscale(55%) contrast(1.18) brightness(0.86) saturate(0.85);
+    mix-blend-mode: normal;
   }
 
   .scanline-overlay::after {
@@ -297,51 +449,89 @@
       0deg,
       transparent 0,
       transparent 3px,
-      hsl(0 0% 0% / 0.05) 3px,
-      hsl(0 0% 0% / 0.05) 4px
+      hsl(0 0% 0% / 0.18) 3px,
+      hsl(0 0% 0% / 0.18) 4px
     );
     mix-blend-mode: multiply;
   }
 
   .halftone {
-    background-image: radial-gradient(hsl(var(--ink-charcoal) / 0.55) 1px, transparent 1.5px);
+    background-image: radial-gradient(hsl(var(--accent-red) / 0.55) 1px, transparent 1.5px);
     background-size: 4px 4px;
   }
 
   .crosshatch-bg {
     background-image:
-      repeating-linear-gradient(45deg, hsl(0 0% 0% / 0.08) 0 1px, transparent 1px 6px),
-      repeating-linear-gradient(-45deg, hsl(0 0% 0% / 0.06) 0 1px, transparent 1px 8px);
+      repeating-linear-gradient(45deg, hsl(40 18% 92% / 0.05) 0 1px, transparent 1px 6px),
+      repeating-linear-gradient(-45deg, hsl(var(--accent-red) / 0.045) 0 1px, transparent 1px 8px);
   }
 
+  /* ===== TACTICAL / BLUEPRINT GRID =====
+     The Professor's planning room reads. Subtle red+bone lattice.
+  */
   .tactical-grid {
     background-image:
-      linear-gradient(hsl(0 0% 0% / 0.12) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(0 0% 0% / 0.12) 1px, transparent 1px);
-    background-size: 40px 40px;
+      linear-gradient(hsl(40 18% 92% / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(40 18% 92% / 0.05) 1px, transparent 1px),
+      linear-gradient(hsl(var(--accent-red) / 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--accent-red) / 0.04) 1px, transparent 1px);
+    background-size: 40px 40px, 40px 40px, 200px 200px, 200px 200px;
   }
 
+  .blueprint-grid {
+    background-color: hsl(0 0% 6%);
+    background-image:
+      linear-gradient(hsl(var(--accent-blueprint) / 0.12) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--accent-blueprint) / 0.12) 1px, transparent 1px),
+      linear-gradient(hsl(var(--accent-blueprint) / 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--accent-blueprint) / 0.06) 1px, transparent 1px);
+    background-size: 80px 80px, 80px 80px, 16px 16px, 16px 16px;
+  }
+
+  /* ===== RED THREAD =====
+     Connecting clues on the Professor's board.
+  */
+  .red-thread {
+    position: relative;
+  }
+  .red-thread::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -28px;
+    width: 1px;
+    height: 28px;
+    background: linear-gradient(to bottom,
+      hsl(var(--accent-red) / 0.0),
+      hsl(var(--accent-red) / 0.6));
+    box-shadow: 0 0 6px hsl(var(--accent-red) / 0.45);
+  }
+
+  /* ===== DOSSIER NUM =====
+     Mission code text styling.
+  */
   .dossier-num {
-    font-family: 'Courier Prime', monospace;
+    font-family: 'JetBrains Mono', monospace;
     font-weight: 700;
     color: hsl(var(--ink-brown));
     letter-spacing: 0.15em;
     font-size: 0.75rem;
   }
 
-  /* Sticky note - now a plain memo slip, no colour */
+  /* ===== STICKY NOTES — Professor's handwritten warnings ===== */
   .sticky-note {
-    background: hsl(38 22% 82%);
+    background: hsl(var(--accent-red));
+    color: hsl(40 22% 96%);
     box-shadow:
-      0 1px 0 hsl(0 0% 0% / 0.15),
-      0 6px 12px -6px hsl(0 0% 0% / 0.25);
+      0 1px 0 hsl(0 0% 0% / 0.25),
+      0 12px 22px -10px hsl(358 60% 12% / 0.85),
+      inset 0 1px 0 hsl(var(--accent-red-bright) / 0.35);
     font-family: 'Special Elite', cursive;
-    color: hsl(0 0% 12%);
     padding: 0.75rem 1rem;
     position: relative;
-    border: 1px solid hsl(0 0% 0% / 0.25);
+    border: 1px solid hsl(var(--accent-red-deep));
   }
-  .sticky-pink, .sticky-blue { background: hsl(38 22% 82%); }
+  .sticky-pink, .sticky-blue { background: hsl(var(--accent-red-deep)); }
 
   .handwritten {
     font-family: 'Special Elite', cursive;
@@ -351,35 +541,40 @@
   }
   .handwritten-red {
     font-family: 'Special Elite', cursive;
-    color: hsl(var(--ink-charcoal));
+    color: hsl(40 22% 96%);
+    text-shadow: 0 0 6px hsl(var(--accent-red) / 0.6);
   }
 
+  /* ===== STATUS PULSE — red live indicator ===== */
   .status-pulse::before {
     content: "";
     display: inline-block;
-    width: 0.55em;
-    height: 0.55em;
+    width: 0.6em;
+    height: 0.6em;
     margin-right: 0.5em;
-    background: hsl(var(--ink-charcoal));
+    background: hsl(var(--accent-red));
     border-radius: 50%;
+    box-shadow:
+      0 0 0 0 hsl(var(--accent-red) / 0.9),
+      0 0 8px hsl(var(--accent-red) / 0.6);
     animation: pulse-classified 1.6s ease-in-out infinite;
     vertical-align: middle;
   }
 
-  /* Animations */
+  /* ===== ANIMATIONS ===== */
   @keyframes typewriter { from { width: 0; } to { width: 100%; } }
   @keyframes blink-caret { 50% { border-color: transparent; } }
   .typewriter-text {
     display: inline-block;
     overflow: hidden;
     white-space: nowrap;
-    border-right: 2px solid hsl(var(--ink-charcoal));
+    border-right: 2px solid hsl(var(--accent-red));
     animation: typewriter 2.6s steps(40, end) 0.3s 1 both, blink-caret 0.85s step-end infinite;
   }
 
   @keyframes stamp-impact {
-    0%   { opacity: 0; transform: rotate(-18deg) scale(2.4); }
-    30%  { opacity: 1; }
+    0%   { opacity: 0; transform: rotate(-18deg) scale(2.4); filter: blur(2px); }
+    30%  { opacity: 1; filter: blur(0); }
     60%  { transform: rotate(-4deg) scale(1.05); }
     100% { transform: rotate(-4deg) scale(1); opacity: 1; }
   }
@@ -387,13 +582,20 @@
   .animate-stamp-blue { animation: stamp-impact 0.9s cubic-bezier(.2,.7,.2,1) 0.7s both; }
 
   @keyframes scanner-flicker {
-    0%, 100% { opacity: 0.05; }
-    45% { opacity: 0.16; } 50% { opacity: 0.04; } 55% { opacity: 0.18; }
+    0%, 100% { opacity: 0.08; }
+    45% { opacity: 0.22; } 50% { opacity: 0.05; } 55% { opacity: 0.24; }
   }
   .scanner-flicker { animation: scanner-flicker 3.4s ease-in-out infinite; }
 
   @keyframes pulse-classified {
-    0%, 100% { opacity: 1; } 50% { opacity: 0.25; }
+    0%, 100% {
+      opacity: 1;
+      box-shadow: 0 0 0 0 hsl(var(--accent-red) / 0.6), 0 0 10px hsl(var(--accent-red) / 0.7);
+    }
+    70% {
+      opacity: 0.85;
+      box-shadow: 0 0 0 8px hsl(var(--accent-red) / 0), 0 0 6px hsl(var(--accent-red) / 0.5);
+    }
   }
   .animate-pulse-classified { animation: pulse-classified 1.4s ease-in-out infinite; }
 
@@ -401,10 +603,14 @@
     0% { transform: translateY(-100%); } 100% { transform: translateY(120%); }
   }
   .scan-bar {
-    position: absolute; left: 0; right: 0; height: 30px; pointer-events: none;
-    background: linear-gradient(to bottom, hsl(0 0% 100% / 0) 0%, hsl(0 0% 100% / 0.35) 50%, hsl(0 0% 100% / 0) 100%);
-    mix-blend-mode: overlay;
+    position: absolute; left: 0; right: 0; height: 36px; pointer-events: none;
+    background: linear-gradient(to bottom,
+      hsl(var(--accent-red) / 0) 0%,
+      hsl(var(--accent-red) / 0.18) 50%,
+      hsl(var(--accent-red) / 0) 100%);
+    mix-blend-mode: screen;
     animation: scan-down 5s ease-in-out infinite;
+    filter: blur(2px);
   }
 
   @keyframes paper-rise {
@@ -419,27 +625,38 @@
   @keyframes pulse-gold { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
   .animate-pulse-gold { animation: pulse-gold 3s ease-in-out infinite; }
 
-  .text-gradient-gold { color: hsl(var(--ink-charcoal)); }
-  .border-gradient-gold { border-color: hsl(var(--ink-charcoal)); }
+  .text-gradient-gold {
+    background: linear-gradient(180deg, hsl(var(--accent-red-bright)) 0%, hsl(var(--accent-red)) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .border-gradient-gold { border-color: hsl(var(--accent-red)); }
   .glow-gold {
     box-shadow:
-      0 1px 0 hsl(0 0% 0% / 0.10),
-      0 8px 18px -10px hsl(0 0% 0% / 0.35);
+      0 0 0 1px hsl(var(--accent-red) / 0.4),
+      0 8px 22px -8px hsl(var(--accent-red) / 0.45),
+      0 16px 32px -16px hsl(0 0% 0% / 0.9);
+  }
+  .glow-red {
+    box-shadow:
+      0 0 0 1px hsl(var(--accent-red) / 0.4),
+      0 0 22px hsl(var(--accent-red) / 0.4),
+      0 16px 32px -16px hsl(0 0% 0% / 0.9);
   }
   .glass-card {
-    background-color: hsl(var(--paper-cream));
-    background-image:
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.07  0 0 0 0 0.05  0 0 0 0 0.03  0 0 0 0.10 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    border: 1px solid hsl(0 0% 12% / 0.65);
+    position: relative;
+    background-color: hsl(var(--paper-cream) / 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid hsl(40 12% 90% / 0.10);
     box-shadow:
-      0 1px 0 hsl(0 0% 0% / 0.10),
-      0 8px 18px -10px hsl(0 0% 0% / 0.30);
-    backdrop-filter: none;
+      inset 0 1px 0 hsl(40 18% 96% / 0.05),
+      0 16px 32px -18px hsl(0 0% 0% / 0.85);
   }
   .grid-pattern {
     background-image:
-      linear-gradient(hsl(0 0% 0% / 0.12) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(0 0% 0% / 0.12) 1px, transparent 1px);
+      linear-gradient(hsl(40 18% 92% / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(40 18% 92% / 0.05) 1px, transparent 1px);
     background-size: 50px 50px;
   }
 
@@ -455,29 +672,191 @@
 
   .animate-ticker { animation: marquee-left 45s linear infinite; }
 
+  /* Classified warning stripes (red+black) */
   .diag-stripes {
     background-image: repeating-linear-gradient(
       45deg,
-      hsl(var(--ink-charcoal)) 0 12px,
-      hsl(var(--paper)) 12px 24px
+      hsl(var(--accent-red)) 0 14px,
+      hsl(0 0% 6%) 14px 28px
     );
+    box-shadow: inset 0 -1px 0 hsl(0 0% 0% / 0.7), inset 0 1px 0 hsl(0 0% 0% / 0.7);
   }
   .diag-stripes-red {
     background-image: repeating-linear-gradient(
       45deg,
-      hsl(var(--ink-charcoal)) 0 10px,
-      hsl(var(--paper)) 10px 20px
+      hsl(var(--accent-red-bright)) 0 10px,
+      hsl(0 0% 8%) 10px 20px
     );
   }
 
+  /* Bone-colored barcode (legible on dark surfaces) */
   .barcode {
     background-image: repeating-linear-gradient(
       90deg,
-      hsl(var(--ink-charcoal)) 0 1px, transparent 1px 3px,
-      hsl(var(--ink-charcoal)) 3px 5px, transparent 5px 6px,
-      hsl(var(--ink-charcoal)) 6px 8px, transparent 8px 11px,
-      hsl(var(--ink-charcoal)) 11px 12px, transparent 12px 15px,
-      hsl(var(--ink-charcoal)) 15px 17px, transparent 17px 20px
+      hsl(var(--accent-bone)) 0 1px, transparent 1px 3px,
+      hsl(var(--accent-bone)) 3px 5px, transparent 5px 6px,
+      hsl(var(--accent-bone)) 6px 8px, transparent 8px 11px,
+      hsl(var(--accent-bone)) 11px 12px, transparent 12px 15px,
+      hsl(var(--accent-bone)) 15px 17px, transparent 17px 20px
     );
+  }
+
+  /* ===== CLASSIFIED-SPECIFIC NEW UTILITIES ===== */
+
+  /* Surveillance corner brackets — anchor critical content */
+  .surveillance-frame {
+    position: relative;
+  }
+  .surveillance-frame::before,
+  .surveillance-frame::after,
+  .surveillance-frame > .sv-tl,
+  .surveillance-frame > .sv-tr {
+    content: "";
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    border: 2px solid hsl(var(--accent-red));
+    pointer-events: none;
+  }
+  .surveillance-frame::before { top: -2px; left: -2px; border-right: 0; border-bottom: 0; }
+  .surveillance-frame::after  { bottom: -2px; right: -2px; border-left: 0; border-top: 0; }
+
+  /* Vault rivet — small steel circle marker */
+  .rivet {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, hsl(40 8% 80%) 0%, hsl(40 6% 50%) 60%, hsl(40 6% 30%) 100%);
+    box-shadow: inset 0 -1px 1px hsl(0 0% 0% / 0.6), 0 1px 1px hsl(0 0% 0% / 0.4);
+    display: inline-block;
+  }
+
+  /* Cash-money pattern overlay */
+  .money-pattern {
+    background-image:
+      repeating-linear-gradient(
+        90deg,
+        hsl(var(--accent-red) / 0.04) 0 1px,
+        transparent 1px 8px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        hsl(var(--accent-red) / 0.04) 0 1px,
+        transparent 1px 8px
+      );
+  }
+
+  /* Glitch text shake — used sparingly */
+  @keyframes glitch-shake {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-1px, 1px); }
+    40% { transform: translate(-1px, -1px); }
+    60% { transform: translate(1px, 1px); }
+    80% { transform: translate(1px, -1px); }
+  }
+  .glitch:hover { animation: glitch-shake 0.25s linear; }
+
+  /* Classified CTA — primary button (red urgent) */
+  .dossier-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: hsl(var(--accent-red));
+    color: hsl(40 22% 96%);
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.18em;
+    padding: 0.85rem 1.25rem;
+    border: 1px solid hsl(var(--accent-red-deep));
+    box-shadow:
+      inset 0 1px 0 hsl(var(--accent-red-bright) / 0.45),
+      inset 0 -1px 0 hsl(0 0% 0% / 0.3),
+      0 0 22px hsl(var(--accent-red) / 0.45),
+      0 16px 28px -14px hsl(358 70% 12% / 0.7);
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+  }
+  .dossier-cta:hover {
+    background: hsl(var(--accent-red-bright));
+    box-shadow:
+      inset 0 1px 0 hsl(var(--accent-red-bright) / 0.7),
+      inset 0 -1px 0 hsl(0 0% 0% / 0.4),
+      0 0 32px hsl(var(--accent-red) / 0.7),
+      0 18px 36px -14px hsl(358 70% 12% / 0.9);
+    transform: translateY(-1px);
+  }
+
+  /* Ghost CTA — outlined secondary */
+  .dossier-cta-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: transparent;
+    color: hsl(var(--ink-charcoal));
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.18em;
+    padding: 0.85rem 1.25rem;
+    border: 1px solid hsl(40 18% 92% / 0.25);
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+  }
+  .dossier-cta-ghost:hover {
+    border-color: hsl(var(--accent-red));
+    color: hsl(var(--accent-red));
+    box-shadow: 0 0 18px hsl(var(--accent-red) / 0.25);
+  }
+
+  /* Section header eyebrow with red bracket icon */
+  .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: hsl(var(--ink-brown));
+  }
+  .section-eyebrow::before {
+    content: "[";
+    color: hsl(var(--accent-red));
+    font-weight: 700;
+  }
+  .section-eyebrow::after {
+    content: "]";
+    color: hsl(var(--accent-red));
+    font-weight: 700;
+  }
+
+  /* Display heading — Anton-driven cinematic title with subtle gradient */
+  .display-title {
+    font-family: 'Anton', 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 0.86;
+    color: hsl(var(--accent-bone));
+    text-shadow:
+      0 1px 0 hsl(0 0% 0% / 0.6),
+      0 8px 32px hsl(0 0% 0% / 0.45);
+  }
+  .display-title .accent {
+    color: hsl(var(--accent-red));
+    text-shadow: 0 0 30px hsl(var(--accent-red) / 0.45);
+  }
+  .display-title .stroke {
+    color: transparent;
+    -webkit-text-stroke: 1.5px hsl(var(--accent-bone));
+  }
+
+  /* Map pin / red dot marker */
+  .red-pin {
+    position: relative;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, hsl(var(--accent-red-bright)) 0%, hsl(var(--accent-red)) 60%, hsl(var(--accent-red-deep)) 100%);
+    box-shadow: 0 0 0 2px hsl(0 0% 0% / 0.55), 0 0 12px hsl(var(--accent-red) / 0.6);
   }
 }

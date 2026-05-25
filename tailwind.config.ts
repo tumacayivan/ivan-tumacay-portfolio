@@ -14,13 +14,14 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ['"Courier Prime"', '"Special Elite"', 'monospace'],
-        body: ['"Courier Prime"', '"Special Elite"', 'monospace'],
-        typewriter: ['"Special Elite"', '"Courier Prime"', 'monospace'],
-        courier: ['"Courier Prime"', '"Cutive Mono"', 'monospace'],
-        cutive: ['"Cutive Mono"', '"Courier Prime"', 'monospace'],
-        stencil: ['"Courier Prime"', '"Special Elite"', 'monospace'],
-        blackops: ['"Courier Prime"', '"Special Elite"', 'monospace'],
+        heading: ['"Bebas Neue"', '"Anton"', '"Oswald"', "sans-serif"],
+        body: ['"JetBrains Mono"', '"Courier Prime"', "monospace"],
+        typewriter: ['"Special Elite"', '"Courier Prime"', "monospace"],
+        courier: ['"JetBrains Mono"', '"Courier Prime"', '"Cutive Mono"', "monospace"],
+        cutive: ['"Cutive Mono"', '"Courier Prime"', "monospace"],
+        stencil: ['"Oswald"', '"Bebas Neue"', "sans-serif"],
+        blackops: ['"Bebas Neue"', '"Anton"', '"Oswald"', "sans-serif"],
+        display: ['"Anton"', '"Bebas Neue"', "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -55,6 +56,15 @@ export default {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
+        },
+        classified: {
+          red: "hsl(var(--accent-red))",
+          "red-deep": "hsl(var(--accent-red-deep))",
+          "red-bright": "hsl(var(--accent-red-bright))",
+          bone: "hsl(var(--accent-bone))",
+          concrete: "hsl(var(--accent-concrete))",
+          graphite: "hsl(var(--accent-graphite))",
+          blueprint: "hsl(var(--accent-blueprint))",
         },
         "gold-glow": "hsl(var(--gold-glow))",
         "surface-hover": "hsl(var(--surface-hover))",
@@ -95,6 +105,10 @@ export default {
           "0%, 100%": { opacity: "0.4" },
           "50%": { opacity: "1" },
         },
+        "siren": {
+          "0%, 100%": { opacity: "1", filter: "drop-shadow(0 0 10px hsl(var(--accent-red) / 0.6))" },
+          "50%": { opacity: "0.6", filter: "drop-shadow(0 0 18px hsl(var(--accent-red) / 0.9))" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -102,6 +116,7 @@ export default {
         "fade-in": "fade-in 0.6s ease-out forwards",
         "float": "float 6s ease-in-out infinite",
         "pulse-gold": "pulse-gold 3s ease-in-out infinite",
+        "siren": "siren 1.6s ease-in-out infinite",
       },
     },
   },

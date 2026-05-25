@@ -153,63 +153,65 @@ const Lightbox = ({
   return (
     <motion.div
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-[hsl(var(--ink-charcoal)/0.92)]"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-[hsl(0_0%_3%/0.96)]"
       onClick={onClose}
     >
-      <div className="absolute inset-0 tactical-grid opacity-[0.12] pointer-events-none" />
+      <div className="absolute inset-0 tactical-grid opacity-[0.5] pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-1 diag-stripes" />
 
-      <div className="absolute top-0 left-0 right-0 bg-paper border-b-2 border-ink px-4 py-2 flex items-center justify-between z-10">
-        <span className="font-blackops text-ink text-sm tracking-[0.3em]">
+      <div className="absolute top-1 left-0 right-0 bg-[hsl(0_0%_5%)] border-b border-[hsl(var(--accent-red)/0.45)] px-4 py-2.5 flex items-center justify-between z-10">
+        <span className="font-blackops text-[hsl(var(--accent-red))] text-sm tracking-[0.3em] flex items-center gap-2">
+          <span className="status-pulse" />
           EVIDENCE VIEWER · FILE {String(currentIndex + 1).padStart(3, "0")} / {String(items.length).padStart(3, "0")}
         </span>
-        <span className="font-courier text-[13px] text-ink-brown tracking-widest hidden sm:inline">
+        <span className="font-courier text-[12px] text-[hsl(var(--ink-brown))] tracking-[0.3em] hidden sm:inline">
           REF: {item.fileId.slice(0, 10)}
         </span>
       </div>
 
       <button onClick={onClose} aria-label="Close"
-        className="absolute top-14 right-4 p-2 bg-paper border-2 border-ink text-ink hover:bg-ink hover:text-paper transition-colors z-10">
+        className="absolute top-16 right-4 p-2 bg-[hsl(0_0%_5%)] border border-[hsl(var(--accent-red))] text-[hsl(var(--accent-red))] hover:bg-[hsl(var(--accent-red))] hover:text-[hsl(40_22%_96%)] transition-colors z-10 glow-red">
         <X className="w-5 h-5" />
       </button>
       <button onClick={(e) => { e.stopPropagation(); onPrev(); }} aria-label="Previous"
-        className="absolute left-4 sm:left-8 p-2 bg-paper border-2 border-ink text-ink hover:bg-ink hover:text-paper transition-colors z-10">
+        className="absolute left-4 sm:left-8 p-2.5 bg-[hsl(0_0%_5%)] border border-[hsl(var(--accent-red))] text-[hsl(var(--accent-red))] hover:bg-[hsl(var(--accent-red))] hover:text-[hsl(40_22%_96%)] transition-colors z-10">
         <ChevronLeft className="w-6 h-6" />
       </button>
       <button onClick={(e) => { e.stopPropagation(); onNext(); }} aria-label="Next"
-        className="absolute right-4 sm:right-8 p-2 bg-paper border-2 border-ink text-ink hover:bg-ink hover:text-paper transition-colors z-10">
+        className="absolute right-4 sm:right-8 p-2.5 bg-[hsl(0_0%_5%)] border border-[hsl(var(--accent-red))] text-[hsl(var(--accent-red))] hover:bg-[hsl(var(--accent-red))] hover:text-[hsl(40_22%_96%)] transition-colors z-10">
         <ChevronRight className="w-6 h-6" />
       </button>
 
       <div className="relative max-w-[92vw] max-h-[82vh] flex flex-col items-center gap-3 mt-10" onClick={(e) => e.stopPropagation()}>
         <div className="relative paper-card-cream p-2 sm:p-3">
-          <div className="absolute -top-1 -left-1 w-4 h-4 border-l-2 border-t-2 border-ink" />
-          <div className="absolute -top-1 -right-1 w-4 h-4 border-r-2 border-t-2 border-ink" />
-          <div className="absolute -bottom-1 -left-1 w-4 h-4 border-l-2 border-b-2 border-ink" />
-          <div className="absolute -bottom-1 -right-1 w-4 h-4 border-r-2 border-b-2 border-ink" />
+          <div className="absolute -top-1 -left-1 w-5 h-5 border-l-2 border-t-2 border-[hsl(var(--accent-red))]" />
+          <div className="absolute -top-1 -right-1 w-5 h-5 border-r-2 border-t-2 border-[hsl(var(--accent-red))]" />
+          <div className="absolute -bottom-1 -left-1 w-5 h-5 border-l-2 border-b-2 border-[hsl(var(--accent-red))]" />
+          <div className="absolute -bottom-1 -right-1 w-5 h-5 border-r-2 border-b-2 border-[hsl(var(--accent-red))]" />
 
           {isVideo && item.embedUrl ? (
             <motion.div key={item.fileId} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.3 }}
-              className="w-full max-w-6xl aspect-video border-2 border-ink overflow-hidden bg-black">
+              className="w-full max-w-6xl aspect-video border-2 border-[hsl(var(--accent-red)/0.5)] overflow-hidden bg-black">
               <iframe src={item.embedUrl} className="w-full h-full" allow="autoplay; encrypted-media" allowFullScreen title={item.title} />
             </motion.div>
           ) : (
             <motion.img key={item.src} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.3 }}
               src={item.src} alt={item.title}
-              className="max-w-full max-h-[68vh] object-contain border-2 border-ink"
+              className="max-w-full max-h-[68vh] object-contain border-2 border-[hsl(var(--accent-red)/0.5)]"
               onError={(e) => { (e.target as HTMLImageElement).src = item.thumbnail; }} />
           )}
         </div>
 
         <div className="paper-card-cream px-4 py-2 flex items-center gap-3">
-          <span className="font-blackops text-ink text-sm tracking-widest">EVIDENCE TAG:</span>
-          <p className="font-typewriter text-lg text-ink uppercase tracking-wide">{item.title}</p>
+          <span className="font-blackops text-[hsl(var(--accent-red))] text-sm tracking-[0.3em]">EVIDENCE TAG:</span>
+          <p className="font-typewriter text-lg text-[hsl(var(--accent-bone))] uppercase tracking-wide">{item.title}</p>
         </div>
 
         {item.link && (
           <a href={item.link} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}
-            className="mt-1 px-5 py-2 bg-ink text-paper border-2 border-ink font-blackops text-sm tracking-[0.18em] uppercase hover:bg-paper hover:text-ink transition-colors flex items-center gap-2">
-            ACCESS SECURE ARCHIVE
+            className="dossier-cta mt-1 text-sm">
             <ExternalLink className="w-4 h-4" />
+            ACCESS SECURE ARCHIVE
           </a>
         )}
       </div>
@@ -233,7 +235,7 @@ const MarqueeRow = ({
           const rot = ((i * 37) % 7) - 3;
           return (
             <div key={`${item.title}-${i}`}
-              className="group relative shrink-0 paper-card-cream p-2 cursor-pointer transition-transform duration-300 hover:!rotate-0 hover:-translate-y-1"
+              className="group relative shrink-0 paper-card-cream p-2 cursor-pointer transition-all duration-300 hover:!rotate-0 hover:-translate-y-1.5"
               style={{
                 width: type === "graphic" ? 420 : 520,
                 height: type === "graphic" ? 360 : 340,
@@ -241,12 +243,12 @@ const MarqueeRow = ({
               }}
               onClick={() => onItemClick(item)}
             >
-              <div className="absolute -top-2 left-3 bg-paper border border-ink px-2 py-0.5 font-courier text-[12px] tracking-widest text-ink z-10 rotate-[-2deg]">
-                EVIDENCE-{String(i + 1).padStart(3, "0")}
+              <div className="absolute -top-2 left-3 bg-[hsl(0_0%_5%)] border border-[hsl(var(--accent-red))] px-2 py-0.5 font-courier text-[11px] tracking-[0.28em] text-[hsl(var(--accent-red))] z-10 rotate-[-2deg]">
+                EVIDENCE·{String(i + 1).padStart(3, "0")}
               </div>
-              <div className="tape tape-yellow w-12 h-4 -top-2 right-6 rotate-[5deg] z-10" />
+              <div className="tape w-12 h-4 -top-2 right-6 rotate-[5deg] z-10" />
 
-              <div className="relative w-full h-full overflow-hidden border-2 border-ink">
+              <div className="relative w-full h-full overflow-hidden border border-[hsl(var(--accent-red)/0.4)] group-hover:border-[hsl(var(--accent-red))] transition-colors">
                 <img src={item.thumbnail} alt={item.title} loading="lazy"
                   className="w-full h-full object-cover photocopy transition-transform duration-500 group-hover:scale-105"
                   onError={(e) => {
@@ -256,41 +258,44 @@ const MarqueeRow = ({
                     else if (retryCount === 1) { target.dataset.retryCount = "2"; target.src = `https://drive.google.com/uc?export=view&id=${item.fileId}`; }
                     else if (retryCount === 2) { target.dataset.retryCount = "3"; target.src = `https://drive.google.com/thumbnail?id=${item.fileId}&sz=w1000&authuser=0`; }
                     else if (retryCount === 3) { target.dataset.retryCount = "4"; target.src = `https://drive.google.com/uc?export=download&id=${item.fileId}`; }
-                    else { target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%23E8E0D0' width='400' height='300'/%3E%3Ctext fill='%231A1A1A' font-family='monospace' font-size='14' dy='10.5' font-weight='bold' x='50%25' y='50%25' text-anchor='middle'%3E" + encodeURIComponent(item.title) + "%3C/text%3E%3C/svg%3E"; }
+                    else { target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%230f0f0f' width='400' height='300'/%3E%3Ctext fill='%23e63946' font-family='monospace' font-size='14' dy='10.5' font-weight='bold' x='50%25' y='50%25' text-anchor='middle'%3E" + encodeURIComponent(item.title) + "%3C/text%3E%3C/svg%3E"; }
                   }}
                 />
 
-                <div className="absolute top-2 left-2 w-4 h-4 border-l-2 border-t-2 border-paper" />
-                <div className="absolute top-2 right-2 w-4 h-4 border-r-2 border-t-2 border-paper" />
-                <div className="absolute bottom-2 left-2 w-4 h-4 border-l-2 border-b-2 border-paper" />
-                <div className="absolute bottom-2 right-2 w-4 h-4 border-r-2 border-b-2 border-paper" />
+                {/* Cinematic noir gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[hsl(0_0%_3%/0.55)] via-transparent to-[hsl(0_0%_3%/0.15)] pointer-events-none" />
 
-                <div className="absolute top-2 right-6 stamp-black stamp text-[13px] !p-1 !rotate-0">
+                <div className="absolute top-2 left-2 w-4 h-4 border-l-2 border-t-2 border-[hsl(var(--accent-red))]" />
+                <div className="absolute top-2 right-2 w-4 h-4 border-r-2 border-t-2 border-[hsl(var(--accent-red))]" />
+                <div className="absolute bottom-2 left-2 w-4 h-4 border-l-2 border-b-2 border-[hsl(var(--accent-red))]" />
+                <div className="absolute bottom-2 right-2 w-4 h-4 border-r-2 border-b-2 border-[hsl(var(--accent-red))]" />
+
+                <div className="absolute top-2 right-6 stamp text-[12px] !p-1 !rotate-0">
                   {type === "video" ? "VIDEO REC" : "PHOTO REF"}
                 </div>
 
-                <div className="absolute inset-0 bg-[hsl(var(--ink-charcoal)/0.78)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-2 px-4">
+                <div className="absolute inset-0 bg-[hsl(0_0%_3%/0.88)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-2 px-4">
                   {type === "video" ? (
-                    <div className="w-12 h-12 border-2 border-paper flex items-center justify-center">
-                      <Play className="w-5 h-5 text-paper ml-0.5" />
+                    <div className="w-14 h-14 border-2 border-[hsl(var(--accent-red))] flex items-center justify-center bg-[hsl(var(--accent-red)/0.18)] glow-red">
+                      <Play className="w-5 h-5 text-[hsl(var(--accent-red))] ml-0.5" />
                     </div>
                   ) : (
-                    <div className="w-12 h-12 border-2 border-paper flex items-center justify-center">
-                      <ImageIcon className="w-5 h-5 text-paper" />
+                    <div className="w-14 h-14 border-2 border-[hsl(var(--accent-red))] flex items-center justify-center bg-[hsl(var(--accent-red)/0.18)] glow-red">
+                      <ImageIcon className="w-5 h-5 text-[hsl(var(--accent-red))]" />
                     </div>
                   )}
-                  <span className="font-blackops text-base text-paper text-center tracking-widest uppercase">
-                    REVIEW EVIDENCE
+                  <span className="font-blackops text-base text-[hsl(var(--accent-bone))] text-center tracking-[0.3em] uppercase">
+                    Review Evidence
                   </span>
-                  <span className="font-courier text-[13px] text-paper/70 tracking-widest">
+                  <span className="font-courier text-[12px] text-[hsl(var(--accent-red))] tracking-[0.2em]">
                     {item.title}
                   </span>
                 </div>
               </div>
 
-              <div className="mt-1.5 flex items-center justify-between font-courier text-[13px] tracking-widest text-ink">
+              <div className="mt-1.5 flex items-center justify-between font-courier text-[12px] tracking-[0.22em] text-[hsl(var(--ink-charcoal))]">
                 <span className="truncate uppercase">{item.title}</span>
-                <span className="text-ink-brown shrink-0 ml-2">{item.fileId.slice(0, 8)}</span>
+                <span className="text-[hsl(var(--accent-red))] shrink-0 ml-2">{item.fileId.slice(0, 8)}</span>
               </div>
             </div>
           );
@@ -318,39 +323,43 @@ const PortfolioSection = () => {
   return (
     <>
       <section id="portfolio" className="relative py-20 sm:py-28 overflow-hidden paper-grain">
+        <div className="absolute inset-0 tactical-grid opacity-[0.35] pointer-events-none" />
         <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-start justify-end">
-          <div className="watermark watermark-dark text-[16.1vw] leading-none -rotate-6 -mr-10 mt-10">
+          <div className="watermark watermark-dark text-[17vw] leading-none -rotate-6 -mr-10 mt-10">
             CASE FILES
           </div>
         </div>
 
         <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-20 relative">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="mb-12 relative">
-            <div className="flex items-center gap-3 mb-3">
-              <Folder className="w-5 h-5 text-ink" />
-              <span className="font-blackops text-base tracking-[0.3em] text-ink">
-                SECTION 04 // PORTFOLIO
-              </span>
-              <span className="font-courier text-sm text-ink-brown tracking-widest hidden sm:inline">CLASSIFIED MISSIONS ARCHIVE</span>
+            <div className="section-eyebrow mb-3">
+              <Folder className="w-4 h-4 text-[hsl(var(--accent-red))]" />
+              SECTION 04 // PORTFOLIO
             </div>
-            <h2 className="font-blackops text-6xl sm:text-8xl md:text-9xl text-ink leading-[0.9] tracking-tight">
-              FEATURED <span className="text-ink">WORK</span>
+            <p className="font-courier text-[12px] tracking-[0.4em] text-[hsl(var(--accent-red))] mb-2 uppercase">
+              Classified Missions Archive
+            </p>
+            <h2 className="display-title text-6xl sm:text-8xl md:text-9xl uppercase">
+              FEATURED <span className="accent">WORK</span>
             </h2>
             <div className="mt-4 flex items-start gap-4 max-w-3xl">
-              <div className="stamp stamp-black text-[14px] !p-1.5 hidden sm:inline-flex">FILE 04</div>
-              <p className="font-typewriter text-xl sm:text-2xl text-ink leading-relaxed">
-                A selection of <span className="font-bold text-ink underline">graphics design</span>, <span className="font-bold text-ink underline">video editing</span>, and multimedia projects delivered for clients. <span className="font-bold underline">Click any item</span> to view full screen.
+              <div className="stamp stamp-black text-[13px] !p-1.5 hidden sm:inline-flex">FILE 04</div>
+              <p className="font-typewriter text-xl sm:text-2xl text-[hsl(var(--ink-charcoal))] leading-relaxed">
+                A selection of{" "}
+                <span className="font-bold text-[hsl(var(--accent-bone))] underline decoration-[hsl(var(--accent-red))] underline-offset-4">graphics design</span>,{" "}
+                <span className="font-bold text-[hsl(var(--accent-bone))] underline decoration-[hsl(var(--accent-red))] underline-offset-4">video editing</span>, and multimedia projects delivered for clients.{" "}
+                <span className="font-bold underline decoration-[hsl(var(--accent-red))] text-[hsl(var(--accent-red))]">Click any item</span> to view full screen.
               </p>
             </div>
           </motion.div>
 
           <div className="mb-3 flex items-center gap-3">
-            <Camera className="w-5 h-5 text-ink" />
-            <h3 className="font-blackops text-3xl sm:text-4xl text-ink uppercase tracking-[0.1em]">
+            <Camera className="w-5 h-5 text-[hsl(var(--accent-red))]" />
+            <h3 className="font-blackops text-3xl sm:text-4xl text-[hsl(var(--accent-bone))] uppercase tracking-[0.14em]">
               Graphics Design
             </h3>
-            <span className="flex-1 h-px border-t border-dashed-ink" />
-            <span className="font-courier text-[13px] text-ink-brown tracking-widest">
+            <span className="flex-1 h-px bg-[hsl(var(--accent-red)/0.5)]" />
+            <span className="font-courier text-[12px] text-[hsl(var(--accent-red))] tracking-[0.3em]">
               {graphicItems.length} ARTIFACTS
             </span>
           </div>
@@ -361,12 +370,12 @@ const PortfolioSection = () => {
         </div>
 
         <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-20 mb-3 flex items-center gap-3">
-          <Play className="w-5 h-5 text-ink" />
-          <h3 className="font-blackops text-3xl sm:text-4xl text-ink uppercase tracking-[0.1em]">
+          <Play className="w-5 h-5 text-[hsl(var(--accent-red))]" />
+          <h3 className="font-blackops text-3xl sm:text-4xl text-[hsl(var(--accent-bone))] uppercase tracking-[0.14em]">
             Video Editing &amp; Multimedia
           </h3>
-          <span className="flex-1 h-px border-t border-dashed-ink" />
-          <span className="font-courier text-[13px] text-ink-brown tracking-widest">
+          <span className="flex-1 h-px bg-[hsl(var(--accent-red)/0.5)]" />
+          <span className="font-courier text-[12px] text-[hsl(var(--accent-red))] tracking-[0.3em]">
             {videoItems.length} REELS
           </span>
         </div>
@@ -375,8 +384,8 @@ const PortfolioSection = () => {
           <MarqueeRow items={videoItems} direction="right" type="video" onItemClick={openLightbox} />
         </div>
 
-        <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-20 mt-10 flex flex-wrap items-center justify-between gap-3 font-courier text-[13px] text-ink-brown tracking-widest">
-          <span>EVIDENCE LIVE-FEED ENGAGED</span>
+        <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-20 mt-10 flex flex-wrap items-center justify-between gap-3 font-courier text-[11px] text-[hsl(var(--ink-brown))] tracking-[0.3em] uppercase border-t border-[hsl(var(--accent-red)/0.3)] pt-3">
+          <span><span className="text-[hsl(var(--accent-red))]">◉</span> EVIDENCE LIVE-FEED ENGAGED</span>
           <span>{allItems.length} TOTAL ARTIFACTS LOGGED</span>
           <span>HOVER PAUSES TRANSMISSION</span>
         </div>

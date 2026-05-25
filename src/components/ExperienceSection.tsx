@@ -72,9 +72,10 @@ const experiences = [
 
 const ExperienceSection = () => {
   return (
-    <section id="experience" className="relative py-20 sm:py-28 bg-paper-beige border-y-2 border-double border-ink overflow-hidden">
+    <section id="experience" className="relative py-20 sm:py-28 bg-[hsl(var(--paper-beige))] border-y border-[hsl(var(--accent-red)/0.25)] overflow-hidden">
+      <div className="absolute inset-0 tactical-grid opacity-[0.4] pointer-events-none" />
       <div className="absolute inset-0 pointer-events-none flex items-start justify-start overflow-hidden">
-        <div className="watermark text-[16.1vw] leading-none rotate-[-3deg] ml-[-2vw] mt-12">
+        <div className="watermark text-[18vw] leading-none rotate-[-3deg] ml-[-2vw] mt-12">
           FIELD OPS
         </div>
       </div>
@@ -88,31 +89,34 @@ const ExperienceSection = () => {
           className="mb-12 grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-6 items-end"
         >
           <div>
-            <div className="flex items-center gap-3 mb-3">
-              <MapPin className="w-5 h-5 text-ink" />
-              <span className="font-blackops text-base tracking-[0.3em] text-ink">
-                SECTION 05 // FIELD OPERATIONS TIMELINE
-              </span>
+            <div className="section-eyebrow mb-3">
+              <MapPin className="w-4 h-4 text-[hsl(var(--accent-red))]" />
+              SECTION 05 // FIELD OPERATIONS TIMELINE
             </div>
-            <p className="font-courier text-sm tracking-[0.35em] text-ink-brown mb-2 uppercase">
-              Career // Operational History
+            <p className="font-courier text-[12px] tracking-[0.4em] text-[hsl(var(--accent-red))] mb-2 uppercase">
+              Career · Operational History
             </p>
-            <h2 className="font-blackops text-6xl sm:text-8xl md:text-9xl text-ink leading-[0.9] tracking-tight">
-              WORK <span className="text-ink">EXPERIENCE</span>
+            <h2 className="display-title text-6xl sm:text-8xl md:text-9xl uppercase">
+              WORK <span className="accent">EXPERIENCE</span>
             </h2>
           </div>
-          <div className="paper-card-cream p-4 relative">
-            <div className="absolute -top-3 left-4 stamp stamp-blue text-[13px] p-1">SUMMARY BRIEFING</div>
-            <p className="font-typewriter text-lg text-ink leading-relaxed mt-1">
-              Extensive experience in <span className="font-bold text-ink underline">creative design</span>, <span className="font-bold text-ink underline">video production</span>, <span className="font-bold text-ink underline">social media management</span>, and <span className="font-bold text-ink underline">enterprise software engineering</span> across multiple industries.
+          <div className="paper-card-cream p-5 relative">
+            <div className="absolute -top-3 left-4 stamp stamp-blue !text-[12px] !p-1 !rotate-0 bg-[hsl(var(--paper-beige))]">SUMMARY BRIEFING</div>
+            <p className="font-typewriter text-lg text-[hsl(var(--ink-charcoal))] leading-relaxed mt-1">
+              Extensive experience in{" "}
+              <span className="font-bold text-[hsl(var(--accent-bone))] underline decoration-[hsl(var(--accent-red))] underline-offset-4">creative design</span>,{" "}
+              <span className="font-bold text-[hsl(var(--accent-bone))] underline decoration-[hsl(var(--accent-red))] underline-offset-4">video production</span>,{" "}
+              <span className="font-bold text-[hsl(var(--accent-bone))] underline decoration-[hsl(var(--accent-red))] underline-offset-4">social media management</span>, and{" "}
+              <span className="font-bold text-[hsl(var(--accent-bone))] underline decoration-[hsl(var(--accent-red))] underline-offset-4">enterprise software engineering</span> across multiple industries.
             </p>
           </div>
         </motion.div>
 
         <div className="relative">
-          <div className="absolute left-4 sm:left-6 top-2 bottom-2 w-[2px] bg-[hsl(var(--stamp-red))] opacity-70" />
-          <div className="absolute left-[7px] sm:left-[15px] top-0 w-5 h-5 border-2 border-ink bg-paper rotate-45" />
-          <div className="absolute left-[7px] sm:left-[15px] bottom-0 w-5 h-5 border-2 border-ink bg-paper rotate-45" />
+          {/* Red thread connecting all missions */}
+          <div className="absolute left-4 sm:left-6 top-2 bottom-2 w-[2px] bg-gradient-to-b from-[hsl(var(--accent-red))] via-[hsl(var(--accent-red-bright))] to-[hsl(var(--accent-red-deep))] shadow-[0_0_8px_hsl(var(--accent-red)/0.5)]" />
+          <div className="absolute left-[7px] sm:left-[15px] top-0 w-5 h-5 border-2 border-[hsl(var(--accent-red))] bg-[hsl(0_0%_5%)] rotate-45 shadow-[0_0_12px_hsl(var(--accent-red)/0.5)]" />
+          <div className="absolute left-[7px] sm:left-[15px] bottom-0 w-5 h-5 border-2 border-[hsl(var(--accent-red))] bg-[hsl(0_0%_5%)] rotate-45 shadow-[0_0_12px_hsl(var(--accent-red)/0.5)]" />
 
           <div className="space-y-6">
             {experiences.map((exp, i) => {
@@ -126,49 +130,50 @@ const ExperienceSection = () => {
                   transition={{ duration: 0.5, delay: i * 0.04 }}
                   className="relative pl-12 sm:pl-20"
                 >
-                  <div className="absolute left-2 sm:left-4 top-6 w-6 h-6 rounded-full bg-ink border-2 border-paper shadow-md flex items-center justify-center">
-                    <div className="w-1.5 h-1.5 rounded-full bg-paper" />
+                  {/* Red node */}
+                  <div className="absolute left-2 sm:left-4 top-6 w-6 h-6 rounded-full bg-[hsl(var(--accent-red))] border-2 border-[hsl(0_0%_5%)] shadow-[0_0_18px_hsl(var(--accent-red)/0.6)] flex items-center justify-center">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[hsl(40_22%_96%)] animate-pulse-classified" />
                   </div>
-                  <div className="absolute left-8 sm:left-10 top-9 w-4 sm:w-10 h-px border-t border-dashed-ink" />
+                  <div className="absolute left-8 sm:left-10 top-9 w-4 sm:w-10 h-px bg-[hsl(var(--accent-red))]" />
 
                   <div
-                    className="paper-card-cream p-5 sm:p-6 relative paper-grain transition-transform duration-300 hover:!rotate-0 hover:-translate-y-0.5"
+                    className="paper-card-cream p-5 sm:p-6 relative paper-grain transition-all duration-300 hover:!rotate-0 hover:-translate-y-0.5"
                     style={{ transform: `rotate(${rot * 0.3}deg)` }}
                   >
                     <div className="tape tape-clear w-10 h-3 -top-1.5 right-6 rotate-[3deg]" />
 
-                    <div className="flex items-center justify-between border-b-2 border-dashed-ink pb-2 mb-3">
-                      <span className="font-courier text-[13px] tracking-widest text-ink-brown">
-                        OP-FILE-{String(i + 1).padStart(3, "0")}
+                    <div className="flex items-center justify-between border-b border-dashed-ink pb-2 mb-3">
+                      <span className="font-courier text-[11px] tracking-[0.3em] text-[hsl(var(--accent-red))]">
+                        OP·{String(i + 1).padStart(3, "0")}
                       </span>
                       <div className="flex items-center gap-2">
-                        <Briefcase className="w-3.5 h-3.5 text-ink" />
-                        <span className="font-blackops text-[13px] tracking-widest text-ink">FIELD REPORT</span>
+                        <Briefcase className="w-3.5 h-3.5 text-[hsl(var(--accent-red))]" />
+                        <span className="font-blackops text-[12px] tracking-[0.3em] text-[hsl(var(--ink-charcoal))]">FIELD REPORT</span>
                       </div>
                     </div>
 
                     <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-1">
-                      <h3 className="font-blackops text-lg sm:text-xl text-ink uppercase tracking-[0.04em] leading-tight">
+                      <h3 className="font-blackops text-lg sm:text-xl text-[hsl(var(--accent-bone))] uppercase tracking-[0.06em] leading-tight">
                         {exp.role}
                       </h3>
                       {exp.period && (
-                        <span className="font-courier text-base text-ink tracking-widest border border-ink px-2 py-0.5 whitespace-nowrap">
+                        <span className="font-courier text-[13px] text-[hsl(var(--accent-red))] tracking-[0.2em] border border-[hsl(var(--accent-red)/0.5)] px-2 py-0.5 whitespace-nowrap bg-[hsl(0_0%_5%)]">
                           {exp.period}
                         </span>
                       )}
                     </div>
 
-                    <p className="font-typewriter text-lg text-ink mb-3 underline underline-offset-2">
+                    <p className="font-typewriter text-lg text-[hsl(var(--ink-charcoal))] mb-3 underline decoration-[hsl(var(--accent-red))] underline-offset-4 decoration-1">
                       · {exp.company}
                     </p>
 
-                    <p className="font-courier text-base text-ink/85 leading-relaxed">
-                      <span className="font-blackops text-[13px] tracking-widest text-ink">DEBRIEF //</span>{" "}
+                    <p className="font-courier text-[14px] text-[hsl(var(--ink-charcoal))]/90 leading-relaxed">
+                      <span className="font-blackops text-[12px] tracking-[0.3em] text-[hsl(var(--accent-red))]">DEBRIEF //</span>{" "}
                       {exp.description}
                     </p>
 
-                    <div className="mt-4 pt-2 border-t border-dashed-ink flex items-center justify-between font-courier text-[13px] tracking-widest text-ink-brown">
-                      <span>OPERATIVE: IT-X</span>
+                    <div className="mt-4 pt-2 border-t border-dashed-ink flex items-center justify-between font-courier text-[11px] tracking-[0.3em] text-[hsl(var(--ink-brown))] uppercase">
+                      <span>OPERATIVE: <span className="text-[hsl(var(--accent-red))]">IT-X</span></span>
                       <span>SIGNED</span>
                     </div>
                   </div>
@@ -178,8 +183,8 @@ const ExperienceSection = () => {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-wrap items-center justify-between gap-3 font-courier text-[13px] text-ink-brown tracking-widest border-t-2 border-double border-ink pt-3">
-          <span>TIMELINE ARCHIVED · INVESTIGATIVE WALL COMPLETE</span>
+        <div className="mt-10 flex flex-wrap items-center justify-between gap-3 font-courier text-[11px] text-[hsl(var(--ink-brown))] tracking-[0.3em] border-t border-[hsl(var(--accent-red)/0.3)] pt-3 uppercase">
+          <span><span className="text-[hsl(var(--accent-red))]">◉</span> TIMELINE ARCHIVED · INVESTIGATIVE WALL COMPLETE</span>
           <span>{experiences.length} DOCUMENTED ENGAGEMENTS</span>
         </div>
       </div>

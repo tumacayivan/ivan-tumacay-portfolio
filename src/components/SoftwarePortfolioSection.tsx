@@ -166,8 +166,9 @@ const SoftwarePortfolioSection = () => {
 
   return (
     <section id="software-portfolio" className="relative py-20 sm:py-28 overflow-hidden paper-grain">
+      <div className="absolute inset-0 tactical-grid opacity-[0.35] pointer-events-none" />
       <div className="absolute inset-0 pointer-events-none flex items-center justify-end overflow-hidden">
-        <div className="watermark text-[16.1vw] leading-none rotate-[4deg] -mr-10">
+        <div className="watermark text-[17vw] leading-none rotate-[4deg] -mr-10">
           MISSIONS
         </div>
       </div>
@@ -180,25 +181,25 @@ const SoftwarePortfolioSection = () => {
           transition={{ duration: 0.6 }}
           className="mb-12"
         >
-          <div className="flex items-center gap-3 mb-3">
-            <Folder className="w-5 h-5 text-ink" />
-            <span className="font-blackops text-base tracking-[0.3em] text-ink">
-              ANNEX 01 // SOFTWARE DEVELOPMENT PORTFOLIO
-            </span>
-            <span className="font-courier text-[13px] text-ink-brown tracking-widest hidden sm:inline">
+          <div className="section-eyebrow mb-3">
+            <Folder className="w-4 h-4 text-[hsl(var(--accent-red))]" />
+            ANNEX 01 // SOFTWARE DEVELOPMENT PORTFOLIO
+            <span className="font-courier text-[11px] text-[hsl(var(--accent-red))] tracking-[0.3em] hidden sm:inline ml-2">
               · {totalProjects} OPERATIONS LOGGED
             </span>
           </div>
-          <p className="font-courier text-sm tracking-[0.35em] text-ink-brown mb-2 uppercase">
+          <p className="font-courier text-[12px] tracking-[0.4em] text-[hsl(var(--accent-red))] mb-3 uppercase">
             Software Development Portfolio
           </p>
-          <h2 className="font-blackops text-6xl sm:text-8xl md:text-9xl text-ink leading-[0.9] tracking-tight">
-            PROJECT <span className="text-ink">SHOWCASE</span>
+          <h2 className="display-title text-6xl sm:text-8xl md:text-9xl uppercase">
+            PROJECT <span className="accent">SHOWCASE</span>
           </h2>
-          <div className="mt-4 paper-card-cream p-4 max-w-3xl relative">
-            <div className="absolute -top-3 left-4 stamp stamp-black !text-[13px] !p-1">MISSION SUMMARY</div>
-            <p className="font-typewriter text-xl text-ink leading-relaxed mt-1">
-              A curated selection of projects delivered for <span className="font-bold text-ink underline">clients</span> and <span className="font-bold text-ink underline">enterprise organizations</span>, showcasing expertise across industries and technologies.
+          <div className="mt-4 paper-card-cream p-5 max-w-3xl relative">
+            <div className="absolute -top-3 left-4 stamp stamp-black !text-[12px] !p-1 !rotate-0 bg-[hsl(var(--paper))]">MISSION SUMMARY</div>
+            <p className="font-typewriter text-xl text-[hsl(var(--ink-charcoal))] leading-relaxed mt-1">
+              A curated selection of projects delivered for{" "}
+              <span className="font-bold text-[hsl(var(--accent-bone))] underline decoration-[hsl(var(--accent-red))] underline-offset-4">clients</span> and{" "}
+              <span className="font-bold text-[hsl(var(--accent-bone))] underline decoration-[hsl(var(--accent-red))] underline-offset-4">enterprise organizations</span>, showcasing expertise across industries and technologies.
             </p>
           </div>
         </motion.div>
@@ -214,22 +215,22 @@ const SoftwarePortfolioSection = () => {
           <div className="flex items-center gap-3 sm:gap-5 mb-6">
             <div className="diag-stripes-red h-2 w-12 sm:w-20" />
             <div className="paper-card-cream px-4 py-2 flex items-center gap-3 relative">
-              <div className="absolute -top-2 -left-2 w-3 h-3 border-l-2 border-t-2 border-ink" />
-              <div className="absolute -top-2 -right-2 w-3 h-3 border-r-2 border-t-2 border-ink" />
-              <div className="absolute -bottom-2 -left-2 w-3 h-3 border-l-2 border-b-2 border-ink" />
-              <div className="absolute -bottom-2 -right-2 w-3 h-3 border-r-2 border-b-2 border-ink" />
-              <MonitorPlay className="w-5 h-5 text-ink" />
-              <span className="font-courier text-[13px] tracking-widest text-ink-brown">FEATURED</span>
-              <h3 className="font-blackops text-3xl sm:text-4xl text-ink tracking-tight leading-none">
+              <div className="absolute -top-2 -left-2 w-3 h-3 border-l-2 border-t-2 border-[hsl(var(--accent-red))]" />
+              <div className="absolute -top-2 -right-2 w-3 h-3 border-r-2 border-t-2 border-[hsl(var(--accent-red))]" />
+              <div className="absolute -bottom-2 -left-2 w-3 h-3 border-l-2 border-b-2 border-[hsl(var(--accent-red))]" />
+              <div className="absolute -bottom-2 -right-2 w-3 h-3 border-r-2 border-b-2 border-[hsl(var(--accent-red))]" />
+              <MonitorPlay className="w-5 h-5 text-[hsl(var(--accent-red))]" />
+              <span className="font-courier text-[11px] tracking-[0.32em] text-[hsl(var(--accent-red))]">FEATURED</span>
+              <h3 className="font-blackops text-3xl sm:text-4xl text-[hsl(var(--accent-bone))] tracking-[0.06em] leading-none">
                 LIVE DEPLOYMENTS
               </h3>
-              <span className="font-courier text-[13px] tracking-widest text-ink">
+              <span className="font-courier text-[12px] tracking-[0.28em] text-[hsl(var(--ink-charcoal))]">
                 {liveSites.length} SITES
               </span>
             </div>
-            <div className="flex-1 border-t-2 border-double border-ink" />
-            <span className="hidden md:inline font-courier text-[13px] tracking-widest text-ink-brown">
-              DEPLOYED · IN PRODUCTION
+            <div className="flex-1 border-t border-[hsl(var(--accent-red)/0.4)]" />
+            <span className="hidden md:flex items-center gap-2 font-courier text-[11px] tracking-[0.32em] text-[hsl(var(--ink-brown))] uppercase">
+              <span className="status-pulse" /> DEPLOYED · IN PRODUCTION
             </span>
           </div>
 
@@ -249,21 +250,21 @@ const SoftwarePortfolioSection = () => {
                   className="paper-card-cream p-4 sm:p-5 paper-grain relative group block transition-transform duration-300 hover:!rotate-0 hover:-translate-y-1"
                   style={{ transform: `rotate(${rot * 0.3}deg)` }}
                 >
-                  <div className="tape tape-yellow w-16 h-4 -top-2 left-8 rotate-[-4deg] z-10" />
+                  <div className="tape w-16 h-4 -top-2 left-8 rotate-[-4deg] z-10" />
                   <div className="tape tape-clear w-12 h-3 -top-1.5 right-10 rotate-[5deg] z-10" />
 
-                  <div className="flex items-center justify-between border-b-2 border-dashed-ink pb-2 mb-3">
-                    <span className="font-courier text-[13px] tracking-widest text-ink-brown">
-                      LIVE-{String(i + 1).padStart(3, "0")}
+                  <div className="flex items-center justify-between border-b border-dashed-ink pb-2 mb-3">
+                    <span className="font-courier text-[11px] tracking-[0.3em] text-[hsl(var(--accent-red))]">
+                      LIVE·{String(i + 1).padStart(3, "0")}
                     </span>
-                    <span className="font-blackops text-[12px] tracking-widest text-ink flex items-center gap-1.5">
+                    <span className="font-blackops text-[12px] tracking-[0.3em] text-[hsl(var(--ink-charcoal))] flex items-center gap-1.5">
                       <span className="status-pulse" /> DEPLOYED
                     </span>
                   </div>
 
-                  <div className="relative overflow-hidden border-2 border-ink mb-4">
-                    <div className="absolute -top-1 left-3 z-10 bg-paper border border-ink px-2 py-0.5 font-courier text-[11px] tracking-widest text-ink rotate-[-2deg]">
-                      EXHIBIT-{String(i + 1).padStart(3, "0")}
+                  <div className="relative overflow-hidden border border-[hsl(var(--accent-red)/0.4)] mb-4 group-hover:border-[hsl(var(--accent-red))] transition-colors">
+                    <div className="absolute -top-1 left-3 z-10 bg-[hsl(0_0%_5%)] border border-[hsl(var(--accent-red))] px-2 py-0.5 font-courier text-[10px] tracking-[0.28em] text-[hsl(var(--accent-red))] rotate-[-2deg]">
+                      EXHIBIT·{String(i + 1).padStart(3, "0")}
                     </div>
 
                     <img
@@ -272,62 +273,65 @@ const SoftwarePortfolioSection = () => {
                       className="w-full h-[260px] sm:h-[300px] md:h-[340px] lg:h-[360px] object-cover object-top photocopy-strong group-hover:scale-[1.02] transition-transform duration-500"
                     />
 
-                    <div className="absolute top-2 left-2 w-5 h-5 border-l-2 border-t-2 border-paper" />
-                    <div className="absolute top-2 right-2 w-5 h-5 border-r-2 border-t-2 border-paper" />
-                    <div className="absolute bottom-2 left-2 w-5 h-5 border-l-2 border-b-2 border-paper" />
-                    <div className="absolute bottom-2 right-2 w-5 h-5 border-r-2 border-b-2 border-paper" />
+                    {/* Cinematic gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[hsl(0_0%_3%/0.5)] via-transparent to-transparent pointer-events-none" />
+
+                    <div className="absolute top-2 left-2 w-5 h-5 border-l-2 border-t-2 border-[hsl(var(--accent-red))]" />
+                    <div className="absolute top-2 right-2 w-5 h-5 border-r-2 border-t-2 border-[hsl(var(--accent-red))]" />
+                    <div className="absolute bottom-2 left-2 w-5 h-5 border-l-2 border-b-2 border-[hsl(var(--accent-red))]" />
+                    <div className="absolute bottom-2 right-2 w-5 h-5 border-r-2 border-b-2 border-[hsl(var(--accent-red))]" />
 
                     <div className="absolute top-3 right-6 stamp !text-[11px] !p-1.5 !rotate-[-6deg]">
                       DEPLOYED
                     </div>
 
-                    <div className="absolute inset-0 bg-[hsl(var(--ink-charcoal)/0.78)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-2 px-4">
-                      <div className="w-14 h-14 border-2 border-paper flex items-center justify-center">
-                        <ExternalLink className="w-6 h-6 text-paper" />
+                    <div className="absolute inset-0 bg-[hsl(0_0%_3%/0.88)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-2 px-4">
+                      <div className="w-16 h-16 border-2 border-[hsl(var(--accent-red))] flex items-center justify-center bg-[hsl(var(--accent-red)/0.18)] glow-red">
+                        <ExternalLink className="w-6 h-6 text-[hsl(var(--accent-red))]" />
                       </div>
-                      <span className="font-blackops text-base text-paper tracking-widest uppercase">
-                        VISIT LIVE SITE
+                      <span className="font-blackops text-base text-[hsl(var(--accent-bone))] tracking-[0.28em] uppercase">
+                        Visit Live Site
                       </span>
                     </div>
                   </div>
 
                   <div className="mb-2">
-                    <div className="font-courier text-[12px] tracking-widest text-ink-brown uppercase mb-1">
+                    <div className="font-courier text-[11px] tracking-[0.3em] text-[hsl(var(--accent-red))] uppercase mb-1">
                       ◉ SUBJECT SITE
                     </div>
-                    <h4 className="font-blackops text-2xl sm:text-3xl text-ink uppercase tracking-tight leading-tight">
+                    <h4 className="font-blackops text-2xl sm:text-3xl text-[hsl(var(--accent-bone))] uppercase tracking-[0.06em] leading-tight">
                       {site.name}
                     </h4>
-                    <p className="font-typewriter text-base text-ink underline decoration-1 underline-offset-2 mt-1">
+                    <p className="font-typewriter text-base text-[hsl(var(--ink-charcoal))] underline decoration-[hsl(var(--accent-red))] underline-offset-4 decoration-1 mt-1">
                       {site.tagline}
                     </p>
                   </div>
 
-                  <p className="font-courier text-base text-ink leading-relaxed border-t border-dashed-ink pt-2 mb-3">
-                    <span className="font-blackops text-[12px] tracking-widest text-ink">DOSSIER //</span>{" "}
+                  <p className="font-courier text-[14px] text-[hsl(var(--ink-charcoal))] leading-relaxed border-t border-dashed-ink pt-2 mb-3">
+                    <span className="font-blackops text-[11px] tracking-[0.3em] text-[hsl(var(--accent-red))]">DOSSIER //</span>{" "}
                     {site.description}
                   </p>
 
-                  <div className="font-courier text-[12px] tracking-widest text-ink-brown border-t border-dashed-ink pt-2 mb-3">
-                    <span className="font-blackops text-ink">STACK ·</span> {site.stack}
+                  <div className="font-courier text-[12px] tracking-[0.22em] text-[hsl(var(--ink-brown))] border-t border-dashed-ink pt-2 mb-3 uppercase">
+                    <span className="font-blackops text-[hsl(var(--accent-red))]">STACK ·</span> {site.stack}
                   </div>
 
-                  <div className="inline-flex w-full sm:w-auto items-center justify-center gap-2 px-5 py-3 bg-ink text-paper border-2 border-ink font-blackops text-sm sm:text-base tracking-[0.18em] uppercase group-hover:bg-paper group-hover:text-ink transition-colors">
+                  <div className="dossier-cta w-full sm:w-auto justify-center text-sm">
                     <ExternalLink className="w-4 h-4" />
                     <span>VISIT LIVE SITE</span>
                   </div>
 
-                  <div className="mt-3 flex items-center justify-between font-courier text-[11px] tracking-widest text-ink-brown">
+                  <div className="mt-3 flex items-center justify-between font-courier text-[10px] tracking-[0.3em] text-[hsl(var(--ink-brown))] uppercase">
                     <span>OPEN-IN-NEW-TAB · ENCRYPTED</span>
-                    <span className="text-ink">VERIFIED</span>
+                    <span className="text-[hsl(var(--accent-red))]">VERIFIED</span>
                   </div>
                 </motion.a>
               );
             })}
           </div>
 
-          <div className="mt-6 flex flex-wrap items-center justify-between gap-3 font-courier text-[12px] text-ink-brown tracking-widest">
-            <span>◉ ALL SITES PUBLICLY ACCESSIBLE · CLEARANCE PUBLIC</span>
+          <div className="mt-6 flex flex-wrap items-center justify-between gap-3 font-courier text-[11px] text-[hsl(var(--ink-brown))] tracking-[0.3em] uppercase">
+            <span><span className="text-[hsl(var(--accent-red))]">◉</span> ALL SITES PUBLICLY ACCESSIBLE · CLEARANCE PUBLIC</span>
             <span>END OF LIVE DEPLOYMENTS SECTION</span>
           </div>
         </motion.div>
@@ -344,20 +348,20 @@ const SoftwarePortfolioSection = () => {
               <div className="flex items-center gap-3 sm:gap-5 mb-6">
                 <div className="diag-stripes-red h-2 w-12 sm:w-20" />
                 <div className="paper-card-cream px-4 py-2 flex items-center gap-3 relative">
-                  <div className="absolute -top-2 -left-2 w-3 h-3 border-l-2 border-t-2 border-ink" />
-                  <div className="absolute -top-2 -right-2 w-3 h-3 border-r-2 border-t-2 border-ink" />
-                  <div className="absolute -bottom-2 -left-2 w-3 h-3 border-l-2 border-b-2 border-ink" />
-                  <div className="absolute -bottom-2 -right-2 w-3 h-3 border-r-2 border-b-2 border-ink" />
-                  <span className="font-courier text-[13px] tracking-widest text-ink-brown">YEAR</span>
-                  <h3 className="font-blackops text-5xl sm:text-6xl text-ink tracking-tight leading-none">
+                  <div className="absolute -top-2 -left-2 w-3 h-3 border-l-2 border-t-2 border-[hsl(var(--accent-red))]" />
+                  <div className="absolute -top-2 -right-2 w-3 h-3 border-r-2 border-t-2 border-[hsl(var(--accent-red))]" />
+                  <div className="absolute -bottom-2 -left-2 w-3 h-3 border-l-2 border-b-2 border-[hsl(var(--accent-red))]" />
+                  <div className="absolute -bottom-2 -right-2 w-3 h-3 border-r-2 border-b-2 border-[hsl(var(--accent-red))]" />
+                  <span className="font-courier text-[11px] tracking-[0.3em] text-[hsl(var(--accent-red))]">YEAR</span>
+                  <h3 className="font-display text-5xl sm:text-6xl text-[hsl(var(--accent-bone))] tracking-tight leading-none">
                     {yearGroup.year}
                   </h3>
-                  <span className="font-courier text-[13px] tracking-widest text-ink">
+                  <span className="font-courier text-[12px] tracking-[0.28em] text-[hsl(var(--ink-charcoal))]">
                     {yearGroup.count} {yearGroup.count === 1 ? "MISSION" : "MISSIONS"}
                   </span>
                 </div>
-                <div className="flex-1 border-t-2 border-double border-ink" />
-                <span className="hidden md:inline font-courier text-[13px] tracking-widest text-ink-brown">
+                <div className="flex-1 border-t border-[hsl(var(--accent-red)/0.4)]" />
+                <span className="hidden md:inline font-courier text-[11px] tracking-[0.3em] text-[hsl(var(--ink-brown))] uppercase">
                   ARCHIVE-Y{yearGroup.year}
                 </span>
               </div>
@@ -373,37 +377,37 @@ const SoftwarePortfolioSection = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.4, delay: projectIndex * 0.04 }}
-                      className="paper-card-cream p-5 paper-grain relative group transition-transform duration-300 hover:!rotate-0 hover:-translate-y-0.5"
+                      className="paper-card-cream p-5 paper-grain relative group transition-all duration-300 hover:!rotate-0 hover:-translate-y-1"
                       style={{ transform: `rotate(${rot * 0.3}deg)` }}
                     >
-                      <div className="tape tape-yellow w-10 h-3 -top-1.5 left-6 rotate-[-4deg]" />
+                      <div className="tape w-10 h-3 -top-1.5 left-6 rotate-[-4deg]" />
 
-                      <div className="flex items-center justify-between border-b-2 border-dashed-ink pb-2 mb-3">
-                        <span className="font-courier text-[13px] tracking-widest text-ink-brown">
+                      <div className="flex items-center justify-between border-b border-dashed-ink pb-2 mb-3">
+                        <span className="font-courier text-[11px] tracking-[0.3em] text-[hsl(var(--accent-red))]">
                           M-{yearGroup.year}-{String(projectIndex + 1).padStart(2, "0")}
                         </span>
-                        <span className="font-blackops text-[13px] tracking-widest text-ink">{project.category.toUpperCase()}</span>
+                        <span className="font-blackops text-[12px] tracking-[0.28em] text-[hsl(var(--ink-charcoal))] px-1.5 border border-[hsl(var(--accent-red)/0.4)]">{project.category.toUpperCase()}</span>
                       </div>
 
                       <div className="flex items-start gap-3 mb-3">
-                        <div className="p-2 border-2 border-ink bg-paper text-ink shrink-0">
+                        <div className="p-2 border border-[hsl(var(--accent-red)/0.5)] bg-[hsl(0_0%_5%)] text-[hsl(var(--accent-red))] shrink-0 group-hover:bg-[hsl(var(--accent-red))] group-hover:text-[hsl(40_22%_96%)] transition-colors">
                           <Icon className="w-4 h-4" />
                         </div>
                         <div className="min-w-0 flex-1">
-                          <h4 className="font-blackops text-base sm:text-lg text-ink uppercase tracking-[0.04em] leading-tight group-hover:text-ink transition-colors">
+                          <h4 className="font-blackops text-base sm:text-lg text-[hsl(var(--accent-bone))] uppercase tracking-[0.06em] leading-tight group-hover:text-[hsl(var(--accent-red))] transition-colors">
                             {project.name}
                           </h4>
                         </div>
                       </div>
 
-                      <p className="font-courier text-base text-ink leading-relaxed border-t border-dashed-ink pt-2">
-                        <span className="font-blackops text-[13px] tracking-widest text-ink">SYS //</span>{" "}
+                      <p className="font-courier text-[14px] text-[hsl(var(--ink-charcoal))] leading-relaxed border-t border-dashed-ink pt-2">
+                        <span className="font-blackops text-[11px] tracking-[0.3em] text-[hsl(var(--accent-red))]">SYS //</span>{" "}
                         {project.description}
                       </p>
 
-                      <div className="mt-3 flex items-center justify-between font-courier text-[11px] tracking-widest text-ink-brown">
-                        <span><FileText className="w-3 h-3 inline mr-1 -mt-0.5" />MISSION RECORD</span>
-                        <span className="text-ink">VERIFIED</span>
+                      <div className="mt-3 flex items-center justify-between font-courier text-[10px] tracking-[0.3em] text-[hsl(var(--ink-brown))] uppercase">
+                        <span><FileText className="w-3 h-3 inline mr-1 -mt-0.5 text-[hsl(var(--accent-red))]" />MISSION RECORD</span>
+                        <span className="text-[hsl(var(--accent-red))]">VERIFIED</span>
                       </div>
                     </motion.div>
                   );
@@ -413,8 +417,8 @@ const SoftwarePortfolioSection = () => {
           ))}
         </div>
 
-        <div className="mt-12 flex flex-wrap items-center justify-between gap-3 font-courier text-[13px] text-ink-brown tracking-widest border-t-2 border-double border-ink pt-3">
-          <span>END OF MISSIONS ANNEX</span>
+        <div className="mt-12 flex flex-wrap items-center justify-between gap-3 font-courier text-[11px] text-[hsl(var(--ink-brown))] tracking-[0.3em] border-t border-[hsl(var(--accent-red)/0.3)] pt-3 uppercase">
+          <span><span className="text-[hsl(var(--accent-red))]">◉</span> END OF MISSIONS ANNEX</span>
           <span>TOTAL ENGAGEMENTS: {totalProjects}</span>
           <span>FILED BY OPERATIONS DIRECTORATE</span>
         </div>
