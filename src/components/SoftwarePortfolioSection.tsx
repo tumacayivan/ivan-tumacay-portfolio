@@ -7,6 +7,7 @@ import ivanSwarmAi from "@/assets/ivan-swarm-ai-website.png";
 import ivanQuantModel from "@/assets/ivan-quant-model-website.png";
 import goldenPearl from "@/assets/golden-south-sea-pearl-website.png";
 import tumacayMotors from "@/assets/tumacay-general-motors-website.png";
+import supercomputer from "@/assets/supercomputer.png";
 
 interface Project {
   name: string;
@@ -85,6 +86,14 @@ const liveSites: LiveSite[] = [
     image: tumacayMotors,
     url: "https://tumacay-general-motors.onrender.com/",
     stack: "Web App · Firebase · Inventory",
+  },
+  {
+    name: "Supercomputer",
+    tagline: "High-Performance Computing Platform",
+    description: "Advanced supercomputing platform delivering massive parallel processing power for complex simulations, AI workloads, and enterprise-scale computation.",
+    image: supercomputer,
+    url: "https://ivan-tumacay-group-supercomputer.onrender.com/",
+    stack: "HPC · Parallel Computing · AI",
   },
 ];
 
