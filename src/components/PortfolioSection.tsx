@@ -530,16 +530,16 @@ const Lightbox = ({
   return (
     <motion.div
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-[hsl(0_0%_3%/0.96)]"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-[hsl(40_30%_16%/0.96)]"
       onClick={onClose}
     >
       <div className="absolute inset-0 tactical-grid opacity-[0.5] pointer-events-none" />
       <div className="absolute inset-x-0 top-0 h-1 diag-stripes" />
 
-      <div className="absolute top-1 left-0 right-0 bg-[hsl(0_0%_5%)] border-b border-[hsl(var(--accent-red)/0.45)] px-4 py-2.5 flex items-center justify-between z-10">
+      <div className="absolute top-1 left-0 right-0 bg-[hsl(45_36%_97%)] border-b border-[hsl(var(--accent-red)/0.45)] px-4 py-2.5 flex items-center justify-between z-10">
         <span className="font-blackops text-[hsl(var(--accent-red))] text-sm tracking-[0.3em] flex items-center gap-2">
           <span className="status-pulse" />
-          EVIDENCE VIEWER · FILE {String(currentIndex + 1).padStart(3, "0")} / {String(items.length).padStart(3, "0")}
+          SHOWREEL · ITEM {String(currentIndex + 1).padStart(3, "0")} / {String(items.length).padStart(3, "0")}
         </span>
         <span className="font-courier text-[12px] text-[hsl(var(--ink-brown))] tracking-[0.3em] hidden sm:inline">
           REF: {item.fileId.slice(0, 10)}
@@ -547,15 +547,15 @@ const Lightbox = ({
       </div>
 
       <button onClick={onClose} aria-label="Close"
-        className="absolute top-16 right-4 p-2 bg-[hsl(0_0%_5%)] border border-[hsl(var(--accent-red))] text-[hsl(var(--accent-red))] hover:bg-[hsl(var(--accent-red))] hover:text-[hsl(40_22%_96%)] transition-colors z-10 glow-red">
+        className="absolute top-16 right-4 p-2 bg-[hsl(45_36%_97%)] border border-[hsl(var(--accent-red))] text-[hsl(var(--accent-red))] hover:bg-[hsl(var(--accent-red))] hover:text-[hsl(40_45%_10%)] transition-colors z-10 glow-red">
         <X className="w-5 h-5" />
       </button>
       <button onClick={(e) => { e.stopPropagation(); onPrev(); }} aria-label="Previous"
-        className="absolute left-4 sm:left-8 p-2.5 bg-[hsl(0_0%_5%)] border border-[hsl(var(--accent-red))] text-[hsl(var(--accent-red))] hover:bg-[hsl(var(--accent-red))] hover:text-[hsl(40_22%_96%)] transition-colors z-10">
+        className="absolute left-4 sm:left-8 p-2.5 bg-[hsl(45_36%_97%)] border border-[hsl(var(--accent-red))] text-[hsl(var(--accent-red))] hover:bg-[hsl(var(--accent-red))] hover:text-[hsl(40_45%_10%)] transition-colors z-10">
         <ChevronLeft className="w-6 h-6" />
       </button>
       <button onClick={(e) => { e.stopPropagation(); onNext(); }} aria-label="Next"
-        className="absolute right-4 sm:right-8 p-2.5 bg-[hsl(0_0%_5%)] border border-[hsl(var(--accent-red))] text-[hsl(var(--accent-red))] hover:bg-[hsl(var(--accent-red))] hover:text-[hsl(40_22%_96%)] transition-colors z-10">
+        className="absolute right-4 sm:right-8 p-2.5 bg-[hsl(45_36%_97%)] border border-[hsl(var(--accent-red))] text-[hsl(var(--accent-red))] hover:bg-[hsl(var(--accent-red))] hover:text-[hsl(40_45%_10%)] transition-colors z-10">
         <ChevronRight className="w-6 h-6" />
       </button>
 
@@ -580,7 +580,7 @@ const Lightbox = ({
         </div>
 
         <div className="paper-card-cream px-4 py-2 flex items-center gap-3">
-          <span className="font-blackops text-[hsl(var(--accent-red))] text-sm tracking-[0.3em]">EVIDENCE TAG:</span>
+          <span className="font-blackops text-[hsl(var(--accent-red))] text-sm tracking-[0.3em]">TITLE:</span>
           <p className="font-typewriter text-lg text-[hsl(var(--accent-bone))] uppercase tracking-wide">{item.title}</p>
         </div>
 
@@ -620,8 +620,8 @@ const MarqueeRow = ({
               }}
               onClick={() => onItemClick(item)}
             >
-              <div className="absolute -top-2 left-3 bg-[hsl(0_0%_5%)] border border-[hsl(var(--accent-red))] px-2 py-0.5 font-courier text-[11px] tracking-[0.28em] text-[hsl(var(--accent-red))] z-10 rotate-[-2deg]">
-                EVIDENCE·{String(i + 1).padStart(3, "0")}
+              <div className="absolute -top-2 left-3 bg-[hsl(45_36%_97%)] border border-[hsl(var(--accent-red))] px-2 py-0.5 font-courier text-[11px] tracking-[0.28em] text-[hsl(var(--accent-red))] z-10 rotate-[-2deg]">
+                PIECE·{String(i + 1).padStart(3, "0")}
               </div>
               <div className="tape w-12 h-4 -top-2 right-6 rotate-[5deg] z-10" />
 
@@ -645,7 +645,7 @@ const MarqueeRow = ({
                 />
 
                 {/* Cinematic noir gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[hsl(0_0%_3%/0.55)] via-transparent to-[hsl(0_0%_3%/0.15)] pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[hsl(40_30%_16%/0.55)] via-transparent to-[hsl(40_30%_16%/0.15)] pointer-events-none" />
 
                 <div className="absolute top-2 left-2 w-4 h-4 border-l-2 border-t-2 border-[hsl(var(--accent-red))]" />
                 <div className="absolute top-2 right-2 w-4 h-4 border-r-2 border-t-2 border-[hsl(var(--accent-red))]" />
@@ -653,10 +653,10 @@ const MarqueeRow = ({
                 <div className="absolute bottom-2 right-2 w-4 h-4 border-r-2 border-b-2 border-[hsl(var(--accent-red))]" />
 
                 <div className="absolute top-2 right-6 stamp text-[12px] !p-1 !rotate-0">
-                  {type === "video" ? "VIDEO REC" : "PHOTO REF"}
+                  {type === "video" ? "VIDEO" : "PRINT"}
                 </div>
 
-                <div className="absolute inset-0 bg-[hsl(0_0%_3%/0.88)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-2 px-4">
+                <div className="absolute inset-0 bg-[hsl(40_30%_16%/0.88)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-2 px-4">
                   {type === "video" ? (
                     <div className="w-14 h-14 border-2 border-[hsl(var(--accent-red))] flex items-center justify-center bg-[hsl(var(--accent-red)/0.18)] glow-red">
                       <Play className="w-5 h-5 text-[hsl(var(--accent-red))] ml-0.5" />
@@ -666,10 +666,10 @@ const MarqueeRow = ({
                       <ImageIcon className="w-5 h-5 text-[hsl(var(--accent-red))]" />
                     </div>
                   )}
-                  <span className="font-blackops text-base text-[hsl(var(--accent-bone))] text-center tracking-[0.3em] uppercase">
-                    Review Evidence
+                  <span className="font-blackops text-base text-[hsl(45_36%_94%)] text-center tracking-[0.3em] uppercase">
+                    View Work
                   </span>
-                  <span className="font-courier text-[12px] text-[hsl(var(--accent-red))] tracking-[0.2em]">
+                  <span className="font-courier text-[12px] text-[hsl(var(--accent-red-bright))] tracking-[0.2em]">
                     {item.title}
                   </span>
                 </div>
@@ -708,7 +708,7 @@ const PortfolioSection = () => {
         <div className="absolute inset-0 tactical-grid opacity-[0.35] pointer-events-none" />
         <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-start justify-end">
           <div className="watermark watermark-dark text-[17vw] leading-none -rotate-6 -mr-10 mt-10">
-            CASE FILES
+            THE BOOK
           </div>
         </div>
 
@@ -716,16 +716,16 @@ const PortfolioSection = () => {
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="mb-12 relative">
             <div className="section-eyebrow mb-3">
               <Folder className="w-4 h-4 text-[hsl(var(--accent-red))]" />
-              SECTION 04 // PORTFOLIO
+              SECTION 04 // THE SHOWREEL
             </div>
             <p className="font-courier text-[12px] tracking-[0.4em] text-[hsl(var(--accent-red))] mb-2 uppercase">
-              Classified Missions Archive
+              The Portfolio · Greatest Hits
             </p>
             <h2 className="display-title text-6xl sm:text-8xl md:text-9xl uppercase">
               FEATURED <span className="accent">WORK</span>
             </h2>
             <div className="mt-4 flex items-start gap-4 max-w-3xl">
-              <div className="stamp stamp-black text-[13px] !p-1.5 hidden sm:inline-flex">FILE 04</div>
+              <div className="stamp stamp-black text-[13px] !p-1.5 hidden sm:inline-flex">THE BOOK</div>
               <p className="font-typewriter text-xl sm:text-2xl text-[hsl(var(--ink-charcoal))] leading-relaxed">
                 A selection of{" "}
                 <span className="font-bold text-[hsl(var(--accent-bone))] underline decoration-[hsl(var(--accent-red))] underline-offset-4">graphics design</span>,{" "}
@@ -742,7 +742,7 @@ const PortfolioSection = () => {
             </h3>
             <span className="flex-1 h-px bg-[hsl(var(--accent-red)/0.5)]" />
             <span className="font-courier text-[12px] text-[hsl(var(--accent-red))] tracking-[0.3em]">
-              {graphicItems.length} ARTIFACTS
+              {graphicItems.length} PIECES
             </span>
           </div>
         </div>
@@ -768,9 +768,9 @@ const PortfolioSection = () => {
         ))}
 
         <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-20 mt-10 flex flex-wrap items-center justify-between gap-3 font-courier text-[11px] text-[hsl(var(--ink-brown))] tracking-[0.3em] uppercase border-t border-[hsl(var(--accent-red)/0.3)] pt-3">
-          <span><span className="text-[hsl(var(--accent-red))]">◉</span> EVIDENCE LIVE-FEED ENGAGED</span>
-          <span>{allItems.length} TOTAL ARTIFACTS LOGGED</span>
-          <span>HOVER PAUSES TRANSMISSION</span>
+          <span><span className="text-[hsl(var(--accent-red))]">◉</span> THE BOOK IS OPEN · LIVE FEED</span>
+          <span>{allItems.length} TOTAL PIECES</span>
+          <span>HOVER TO PAUSE THE TAPE</span>
         </div>
       </section>
 

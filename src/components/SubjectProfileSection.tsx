@@ -5,11 +5,11 @@ const identifiers = [
   { icon: Flag,        label: "NATIONALITY",          value: "FILIPINO",            note: "Republic of the Philippines" },
   { icon: Cake,        label: "DATE OF BIRTH",        value: "1998 · 01 · 28",      note: "Born January 28, 1998" },
   { icon: MapPin,      label: "PLACE OF BIRTH",       value: "MANILA",              note: "National Capital Region, PH" },
-  { icon: Radar,       label: "LAST KNOWN LOCATION",  value: "CAVITE, PHILIPPINES", note: "Signal last triangulated" },
-  { icon: Ruler,       label: "HEIGHT",               value: "5' 11\" / 180.34 CM", note: "Recorded at intake" },
+  { icon: Radar,       label: "BASE OF OPERATIONS",   value: "CAVITE, PHILIPPINES", note: "Where the deals get done" },
+  { icon: Ruler,       label: "HEIGHT",               value: "5' 11\" / 180.34 CM", note: "On the record" },
   { icon: Compass,     label: "TIME ZONE",            value: "UTC +08:00",          note: "Asia / Manila" },
-  { icon: Languages,   label: "LANGUAGES",            value: "FIL · ENG",           note: "Bilingual operator" },
-  { icon: Globe,       label: "OPERATING REGION",     value: "SE ASIA / GLOBAL",    note: "Remote-capable" },
+  { icon: Languages,   label: "LANGUAGES",            value: "FIL · ENG",           note: "Bilingual closer" },
+  { icon: Globe,       label: "MARKETS COVERED",      value: "SE ASIA / GLOBAL",    note: "Remote-capable" },
 ];
 
 const SubjectProfileSection = () => {
@@ -19,7 +19,7 @@ const SubjectProfileSection = () => {
 
       <div className="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden">
         <div className="watermark text-[18vw] leading-none rotate-[-3deg] whitespace-nowrap">
-          SUBJECT PROFILE
+          THE PROFILE
         </div>
       </div>
 
@@ -34,17 +34,17 @@ const SubjectProfileSection = () => {
           <div>
             <div className="section-eyebrow mb-4">
               <Fingerprint className="w-4 h-4 text-[hsl(var(--accent-red))]" />
-              SECTION 01 // SUBJECT RECONNAISSANCE
+              SECTION 01 // THE MAN BEHIND THE NUMBERS
             </div>
             <p className="font-courier text-[12px] tracking-[0.4em] text-[hsl(var(--accent-red))] mb-2 uppercase">
-              Personal Identifiers · Operator Origin
+              Personal Prospectus · Origin Story
             </p>
             <h2 className="display-title text-6xl sm:text-8xl md:text-9xl uppercase">
-              SUBJECT <span className="accent">DOSSIER</span>
+              THE <span className="accent">PROFILE</span>
             </h2>
           </div>
           <div className="paper-card-cream p-5 relative">
-            <div className="absolute -top-3 left-4 stamp stamp-black !text-[12px] !p-1 !rotate-0 bg-[hsl(var(--paper-beige))]">LOCATION INTEL</div>
+            <div className="absolute -top-3 left-4 stamp stamp-black !text-[12px] !p-1 !rotate-0 bg-[hsl(var(--paper-beige))]">ON THE RECORD</div>
             <p className="font-typewriter text-lg sm:text-xl text-[hsl(var(--ink-charcoal))] leading-relaxed mt-2">
               Filipino national. Born{" "}
               <span className="font-bold text-[hsl(var(--accent-bone))] underline decoration-[hsl(var(--accent-red))] underline-offset-4">28 January 1998</span> in{" "}
@@ -81,7 +81,7 @@ const SubjectProfileSection = () => {
                 </div>
 
                 <div className="flex items-start gap-3 mb-2">
-                  <div className="p-2 border border-[hsl(var(--accent-red)/0.5)] bg-[hsl(0_0%_5%)] text-[hsl(var(--accent-red))] shrink-0 group-hover:border-[hsl(var(--accent-red))] group-hover:bg-[hsl(var(--accent-red))] group-hover:text-[hsl(40_22%_96%)] transition-colors">
+                  <div className="p-2 border border-[hsl(var(--accent-red)/0.5)] bg-[hsl(45_36%_97%)] text-[hsl(var(--accent-red))] shrink-0 group-hover:border-[hsl(var(--accent-red))] group-hover:bg-[hsl(var(--accent-red))] group-hover:text-[hsl(40_45%_10%)] transition-colors">
                     <Icon className="w-5 h-5" />
                   </div>
                   <div className="min-w-0 flex-1">
@@ -100,7 +100,7 @@ const SubjectProfileSection = () => {
                 </p>
 
                 <div className="mt-3 flex items-center justify-between font-courier text-[10px] tracking-[0.3em] text-[hsl(var(--ink-brown))]">
-                  <span>◉ INTEL CONFIRMED</span>
+                  <span>◉ ON THE RECORD</span>
                   <span className="text-[hsl(var(--accent-red))]">OK</span>
                 </div>
               </motion.div>
@@ -129,10 +129,10 @@ const SubjectProfileSection = () => {
           </div>
 
           <div className="paper-card-cream p-5 relative">
-            <div className="absolute -top-3 left-4 stamp stamp-black !text-[12px] !p-1 !rotate-0 bg-[hsl(var(--paper-beige))]">SURVEILLANCE</div>
+            <div className="absolute -top-3 left-4 stamp stamp-black !text-[12px] !p-1 !rotate-0 bg-[hsl(var(--paper-beige))]">CONTACT</div>
             <div className="font-courier text-base text-[hsl(var(--ink-charcoal))] leading-relaxed">
               <div className="flex items-center justify-between border-b border-dashed-ink pb-1">
-                <span className="text-[hsl(var(--ink-brown))]">LAST CONTACT</span>
+                <span className="text-[hsl(var(--ink-brown))]">RESPONSE TIME</span>
                 <span className="font-bold uppercase text-[hsl(var(--accent-bone))]">Within 24h</span>
               </div>
               <div className="flex items-center justify-between pt-1">
@@ -142,7 +142,7 @@ const SubjectProfileSection = () => {
               <div className="flex items-center justify-between border-t border-dashed-ink mt-1 pt-1">
                 <span className="text-[hsl(var(--ink-brown))]">STATUS</span>
                 <span className="font-bold uppercase flex items-center gap-2 text-[hsl(var(--accent-red))]">
-                  <span className="status-pulse" /> AT LARGE · ACTIVE
+                  <span className="status-pulse" /> OPEN FOR BUSINESS
                 </span>
               </div>
             </div>
@@ -151,8 +151,8 @@ const SubjectProfileSection = () => {
 
         {/* Footer */}
         <div className="mt-10 flex flex-wrap items-center justify-between gap-3 font-courier text-[11px] text-[hsl(var(--ink-brown))] tracking-[0.3em] border-t border-[hsl(var(--accent-red)/0.3)] pt-3 uppercase">
-          <span><span className="text-[hsl(var(--accent-red))]">◉</span> SUBJECT PROFILE SEALED</span>
-          <span>FILED BY: BUREAU OF INTELLIGENCE</span>
+          <span><span className="text-[hsl(var(--accent-red))]">◉</span> PROFILE ON FILE</span>
+          <span>FILED BY: STRATTON OAKMONT</span>
           <span>END OF SECTION 01</span>
         </div>
       </div>

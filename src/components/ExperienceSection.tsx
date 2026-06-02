@@ -76,7 +76,7 @@ const ExperienceSection = () => {
       <div className="absolute inset-0 tactical-grid opacity-[0.4] pointer-events-none" />
       <div className="absolute inset-0 pointer-events-none flex items-start justify-start overflow-hidden">
         <div className="watermark text-[18vw] leading-none rotate-[-3deg] ml-[-2vw] mt-12">
-          FIELD OPS
+          DEAL FLOW
         </div>
       </div>
 
@@ -91,17 +91,17 @@ const ExperienceSection = () => {
           <div>
             <div className="section-eyebrow mb-3">
               <MapPin className="w-4 h-4 text-[hsl(var(--accent-red))]" />
-              SECTION 05 // FIELD OPERATIONS TIMELINE
+              SECTION 05 // THE TRACK RECORD
             </div>
             <p className="font-courier text-[12px] tracking-[0.4em] text-[hsl(var(--accent-red))] mb-2 uppercase">
-              Career · Operational History
+              Career · Deal History
             </p>
             <h2 className="display-title text-6xl sm:text-8xl md:text-9xl uppercase">
               WORK <span className="accent">EXPERIENCE</span>
             </h2>
           </div>
           <div className="paper-card-cream p-5 relative">
-            <div className="absolute -top-3 left-4 stamp stamp-blue !text-[12px] !p-1 !rotate-0 bg-[hsl(var(--paper-beige))]">SUMMARY BRIEFING</div>
+            <div className="absolute -top-3 left-4 stamp stamp-blue !text-[12px] !p-1 !rotate-0 bg-[hsl(var(--paper-beige))]">THE RUNDOWN</div>
             <p className="font-typewriter text-lg text-[hsl(var(--ink-charcoal))] leading-relaxed mt-1">
               Extensive experience in{" "}
               <span className="font-bold text-[hsl(var(--accent-bone))] underline decoration-[hsl(var(--accent-red))] underline-offset-4">creative design</span>,{" "}
@@ -115,8 +115,8 @@ const ExperienceSection = () => {
         <div className="relative">
           {/* Red thread connecting all missions */}
           <div className="absolute left-4 sm:left-6 top-2 bottom-2 w-[2px] bg-gradient-to-b from-[hsl(var(--accent-red))] via-[hsl(var(--accent-red-bright))] to-[hsl(var(--accent-red-deep))] shadow-[0_0_8px_hsl(var(--accent-red)/0.5)]" />
-          <div className="absolute left-[7px] sm:left-[15px] top-0 w-5 h-5 border-2 border-[hsl(var(--accent-red))] bg-[hsl(0_0%_5%)] rotate-45 shadow-[0_0_12px_hsl(var(--accent-red)/0.5)]" />
-          <div className="absolute left-[7px] sm:left-[15px] bottom-0 w-5 h-5 border-2 border-[hsl(var(--accent-red))] bg-[hsl(0_0%_5%)] rotate-45 shadow-[0_0_12px_hsl(var(--accent-red)/0.5)]" />
+          <div className="absolute left-[7px] sm:left-[15px] top-0 w-5 h-5 border-2 border-[hsl(var(--accent-red))] bg-[hsl(45_36%_97%)] rotate-45 shadow-[0_0_12px_hsl(var(--accent-red)/0.5)]" />
+          <div className="absolute left-[7px] sm:left-[15px] bottom-0 w-5 h-5 border-2 border-[hsl(var(--accent-red))] bg-[hsl(45_36%_97%)] rotate-45 shadow-[0_0_12px_hsl(var(--accent-red)/0.5)]" />
 
           <div className="space-y-6">
             {experiences.map((exp, i) => {
@@ -131,8 +131,8 @@ const ExperienceSection = () => {
                   className="relative pl-12 sm:pl-20"
                 >
                   {/* Red node */}
-                  <div className="absolute left-2 sm:left-4 top-6 w-6 h-6 rounded-full bg-[hsl(var(--accent-red))] border-2 border-[hsl(0_0%_5%)] shadow-[0_0_18px_hsl(var(--accent-red)/0.6)] flex items-center justify-center">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[hsl(40_22%_96%)] animate-pulse-classified" />
+                  <div className="absolute left-2 sm:left-4 top-6 w-6 h-6 rounded-full bg-[hsl(var(--accent-red))] border-2 border-[hsl(45_36%_97%)] shadow-[0_0_18px_hsl(var(--accent-red)/0.6)] flex items-center justify-center">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[hsl(40_45%_10%)] animate-pulse-classified" />
                   </div>
                   <div className="absolute left-8 sm:left-10 top-9 w-4 sm:w-10 h-px bg-[hsl(var(--accent-red))]" />
 
@@ -144,11 +144,11 @@ const ExperienceSection = () => {
 
                     <div className="flex items-center justify-between border-b border-dashed-ink pb-2 mb-3">
                       <span className="font-courier text-[11px] tracking-[0.3em] text-[hsl(var(--accent-red))]">
-                        OP·{String(i + 1).padStart(3, "0")}
+                        DEAL·{String(i + 1).padStart(3, "0")}
                       </span>
                       <div className="flex items-center gap-2">
                         <Briefcase className="w-3.5 h-3.5 text-[hsl(var(--accent-red))]" />
-                        <span className="font-blackops text-[12px] tracking-[0.3em] text-[hsl(var(--ink-charcoal))]">FIELD REPORT</span>
+                        <span className="font-blackops text-[12px] tracking-[0.3em] text-[hsl(var(--ink-charcoal))]">DEAL TICKET</span>
                       </div>
                     </div>
 
@@ -157,7 +157,7 @@ const ExperienceSection = () => {
                         {exp.role}
                       </h3>
                       {exp.period && (
-                        <span className="font-courier text-[13px] text-[hsl(var(--accent-red))] tracking-[0.2em] border border-[hsl(var(--accent-red)/0.5)] px-2 py-0.5 whitespace-nowrap bg-[hsl(0_0%_5%)]">
+                        <span className="font-courier text-[13px] text-[hsl(var(--accent-red))] tracking-[0.2em] border border-[hsl(var(--accent-red)/0.5)] px-2 py-0.5 whitespace-nowrap bg-[hsl(45_36%_97%)]">
                           {exp.period}
                         </span>
                       )}
@@ -168,13 +168,13 @@ const ExperienceSection = () => {
                     </p>
 
                     <p className="font-courier text-[14px] text-[hsl(var(--ink-charcoal))]/90 leading-relaxed">
-                      <span className="font-blackops text-[12px] tracking-[0.3em] text-[hsl(var(--accent-red))]">DEBRIEF //</span>{" "}
+                      <span className="font-blackops text-[12px] tracking-[0.3em] text-[hsl(var(--accent-red))]">THE PLAY //</span>{" "}
                       {exp.description}
                     </p>
 
                     <div className="mt-4 pt-2 border-t border-dashed-ink flex items-center justify-between font-courier text-[11px] tracking-[0.3em] text-[hsl(var(--ink-brown))] uppercase">
-                      <span>OPERATIVE: <span className="text-[hsl(var(--accent-red))]">IT-X</span></span>
-                      <span>SIGNED</span>
+                      <span>BROKER: <span className="text-[hsl(var(--accent-red))]">IVT</span></span>
+                      <span>CLOSED</span>
                     </div>
                   </div>
                 </motion.div>
@@ -184,8 +184,8 @@ const ExperienceSection = () => {
         </div>
 
         <div className="mt-10 flex flex-wrap items-center justify-between gap-3 font-courier text-[11px] text-[hsl(var(--ink-brown))] tracking-[0.3em] border-t border-[hsl(var(--accent-red)/0.3)] pt-3 uppercase">
-          <span><span className="text-[hsl(var(--accent-red))]">◉</span> TIMELINE ARCHIVED · INVESTIGATIVE WALL COMPLETE</span>
-          <span>{experiences.length} DOCUMENTED ENGAGEMENTS</span>
+          <span><span className="text-[hsl(var(--accent-red))]">◉</span> TRACK RECORD LOGGED · EVERY DEAL ON THE BOARD</span>
+          <span>{experiences.length} DEALS CLOSED</span>
         </div>
       </div>
     </section>

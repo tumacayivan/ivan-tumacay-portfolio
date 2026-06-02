@@ -25,7 +25,7 @@ const EducationSection = () => {
       <div className="absolute inset-0 tactical-grid opacity-[0.35] pointer-events-none" />
       <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
         <div className="watermark watermark-dark text-[19vw] leading-none rotate-[6deg]">
-          TRAINING
+          PEDIGREE
         </div>
       </div>
 
@@ -39,16 +39,16 @@ const EducationSection = () => {
         >
           <div className="section-eyebrow mb-3">
             <BookOpen className="w-4 h-4 text-[hsl(var(--accent-red))]" />
-            SECTION 02 // TRAINING RECORDS
+            SECTION 02 // THE CREDENTIALS
           </div>
           <p className="font-courier text-[12px] tracking-[0.4em] text-[hsl(var(--accent-red))] mb-2 uppercase">
-            Academic Records · Where the asset was trained
+            Academic Records · Where the Wolf was trained
           </p>
           <h2 className="display-title text-6xl sm:text-8xl md:text-9xl uppercase">
             <span className="accent">EDUCATION</span>
           </h2>
           <p className="mt-4 font-typewriter text-xl text-[hsl(var(--ink-charcoal))] max-w-2xl">
-            <span className="font-blackops text-[hsl(var(--accent-red))] text-sm tracking-[0.3em]">CERTIFIED ACADEMIC HISTORY //</span>{" "}
+            <span className="font-blackops text-[hsl(var(--accent-red))] text-sm tracking-[0.3em]">VERIFIED ACADEMIC HISTORY //</span>{" "}
             Documented training, formal instruction, and academic credentials.
           </p>
         </motion.div>
@@ -78,10 +78,10 @@ const EducationSection = () => {
                 </div>
 
                 <div className="flex items-start justify-between mb-4">
-                  <div className="p-2.5 border border-[hsl(var(--accent-red)/0.5)] bg-[hsl(0_0%_5%)] text-[hsl(var(--accent-red))]">
+                  <div className="p-2.5 border border-[hsl(var(--accent-red)/0.5)] bg-[hsl(45_36%_97%)] text-[hsl(var(--accent-red))]">
                     <GraduationCap className="w-5 h-5" />
                   </div>
-                  <div className="stamp stamp-blue text-[12px] !p-1 rotate-[4deg]">CERTIFIED</div>
+                  <div className="stamp stamp-blue text-[12px] !p-1 rotate-[4deg]">ACCREDITED</div>
                 </div>
 
                 <div className="mb-3">
@@ -115,7 +115,7 @@ const EducationSection = () => {
         </div>
 
         <div className="mt-10 flex flex-wrap items-center justify-between gap-3 font-courier text-[11px] text-[hsl(var(--ink-brown))] tracking-[0.3em] uppercase border-t border-[hsl(var(--accent-red)/0.3)] pt-3">
-          <span><span className="text-[hsl(var(--accent-red))]">◉</span> ARCHIVE BUREAU · CREDENTIALS DESK</span>
+          <span><span className="text-[hsl(var(--accent-red))]">◉</span> REGISTRAR'S DESK · CREDENTIALS ON FILE</span>
           <span>END OF ACADEMIC FILE</span>
         </div>
       </div>
@@ -123,4 +123,4 @@ const EducationSection = () => {
   );
 };
 
-export default EducationSection;
+export default EducationSection

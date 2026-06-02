@@ -133,7 +133,7 @@ const BackgroundMusic = () => {
       onClick={toggle}
       aria-label={showAsOn ? "Pause background music" : "Play background music"}
       title={showAsOn ? "Pause music" : "Play music"}
-      className="fixed bottom-4 right-4 z-50 p-2.5 border border-[hsl(var(--accent-red))] bg-[hsl(0_0%_5%)] text-[hsl(var(--accent-red))] hover:bg-[hsl(var(--accent-red))] hover:text-[hsl(40_22%_96%)] transition-colors glow-red"
+      className="fixed bottom-4 right-4 z-50 p-2.5 border border-[hsl(var(--accent-red))] bg-[hsl(45_36%_97%)] text-[hsl(var(--accent-red))] hover:bg-[hsl(var(--accent-red))] hover:text-[hsl(40_45%_10%)] transition-colors glow-red"
     >
       {showAsOn ? (
         <Volume2 className="w-4 h-4" />

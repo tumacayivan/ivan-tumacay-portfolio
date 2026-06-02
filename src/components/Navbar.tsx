@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Menu, X, Radio, Lock, Crosshair } from "lucide-react";
+import { Menu, X, TrendingUp, Phone, DollarSign } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const navItems = [
@@ -38,41 +38,41 @@ const Navbar = () => {
       <div className="diag-stripes h-1.5" />
 
       {/* Top classified bar — red live indicator + system time */}
-      <div className="bg-[hsl(0_0%_5%)] text-[hsl(var(--ink-charcoal))] font-courier text-[11px] sm:text-[12px] tracking-[0.35em] py-1.5 px-4 sm:px-6 flex items-center justify-between border-b border-[hsl(var(--accent-red)/0.35)]">
+      <div className="bg-[hsl(45_36%_97%)] text-[hsl(var(--ink-charcoal))] font-courier text-[11px] sm:text-[12px] tracking-[0.35em] py-1.5 px-4 sm:px-6 flex items-center justify-between border-b border-[hsl(var(--accent-red)/0.35)]">
         <span className="flex items-center gap-2">
           <span className="relative inline-block w-2 h-2 rounded-full bg-[hsl(var(--accent-red))] animate-pulse-classified" />
-          <span className="hidden sm:inline">TOP SECRET // EYES ONLY // DOSSIER ACCESS</span>
-          <span className="sm:hidden">TOP SECRET // ACTIVE</span>
+          <span className="hidden sm:inline">NYSE // MEMBER FINRA // TRADING FLOOR OPEN</span>
+          <span className="sm:hidden">MARKETS // OPEN</span>
         </span>
         <span className="hidden md:flex items-center gap-3">
-          <Radio className="w-3 h-3 text-[hsl(var(--accent-red))]" />
-          <span>FREQ 19.875</span>
+          <TrendingUp className="w-3 h-3 text-[hsl(var(--accent-red))]" />
+          <span>S&amp;P ▲ 1.2%</span>
           <span className="text-[hsl(var(--accent-red))]">|</span>
-          <span>SYS-TIME {now}</span>
+          <span>MKT-TIME {now}</span>
         </span>
       </div>
 
       {/* Main bar — concrete black with red brand mark */}
-      <div className="bg-[hsl(0_0%_7%)] border-b border-[hsl(40_12%_90%/0.10)] relative">
+      <div className="bg-[hsl(45_28%_94%)] border-b border-[hsl(40_18%_32%/0.10)] relative">
         {/* Subtle blueprint grid in nav */}
         <div className="absolute inset-0 opacity-[0.05] pointer-events-none"
              style={{
                backgroundImage:
-                 "linear-gradient(hsl(40 18% 92% / 0.6) 1px, transparent 1px), linear-gradient(90deg, hsl(40 18% 92% / 0.6) 1px, transparent 1px)",
+                 "linear-gradient(hsl(40 18% 32% / 0.6) 1px, transparent 1px), linear-gradient(90deg, hsl(40 18% 32% / 0.6) 1px, transparent 1px)",
                backgroundSize: "32px 32px",
              }} />
         <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-20 flex items-center justify-between h-16 sm:h-[72px] relative">
           <a href="#" className="flex items-center gap-3 group">
-            {/* Red mark — the Professor's emblem */}
+            {/* Gold mark — the firm's emblem */}
             <div className="relative shrink-0">
-              <div className="w-9 h-9 sm:w-10 sm:h-10 border-2 border-[hsl(var(--accent-red))] flex items-center justify-center bg-[hsl(0_0%_5%)] glow-red">
-                <Crosshair className="w-4 h-4 sm:w-5 sm:h-5 text-[hsl(var(--accent-red))]" />
+              <div className="w-9 h-9 sm:w-10 sm:h-10 border-2 border-[hsl(var(--accent-red))] flex items-center justify-center bg-[hsl(45_36%_97%)] glow-red">
+                <DollarSign className="w-4 h-4 sm:w-5 sm:h-5 text-[hsl(var(--accent-red))]" />
               </div>
             </div>
 
-            <div className="hidden sm:flex flex-col items-start leading-none pr-3 border-r border-[hsl(40_12%_90%/0.15)]">
-              <span className="font-courier text-[10px] tracking-[0.32em] text-[hsl(var(--ink-brown))]">FILE NO.</span>
-              <span className="font-blackops text-[15px] text-[hsl(var(--accent-red))] tracking-[0.18em]">IT—2026</span>
+            <div className="hidden sm:flex flex-col items-start leading-none pr-3 border-r border-[hsl(40_18%_32%/0.15)]">
+              <span className="font-courier text-[10px] tracking-[0.32em] text-[hsl(var(--ink-brown))]">TICKER</span>
+              <span className="font-blackops text-[15px] text-[hsl(var(--accent-red))] tracking-[0.18em]">IVT</span>
             </div>
 
             <div className="flex flex-col leading-none">
@@ -80,7 +80,7 @@ const Navbar = () => {
                 IVAN <span className="text-[hsl(var(--accent-red))]">TUMACAY</span>
               </span>
               <span className="hidden md:inline font-courier text-[10px] tracking-[0.32em] text-[hsl(var(--ink-brown))] mt-0.5">
-                MOST WANTED · PRIORITY TARGET
+                THE WOLF · CLOSER OF DEALS
               </span>
             </div>
           </a>
@@ -103,14 +103,14 @@ const Navbar = () => {
               href="#contact"
               className="dossier-cta ml-3 text-[13px] !py-2.5 !px-4"
             >
-              <Lock className="w-3.5 h-3.5" />
-              <span>INITIATE CONTACT</span>
+              <Phone className="w-3.5 h-3.5" />
+              <span>RING THE BELL</span>
             </a>
           </div>
 
           <div className="md:hidden flex items-center gap-3">
             <button
-              className="text-[hsl(var(--ink-charcoal))] border border-[hsl(var(--accent-red))] p-2 hover:bg-[hsl(var(--accent-red))] hover:text-[hsl(40_22%_96%)] transition-colors"
+              className="text-[hsl(var(--ink-charcoal))] border border-[hsl(var(--accent-red))] p-2 hover:bg-[hsl(var(--accent-red))] hover:text-[hsl(40_45%_10%)] transition-colors"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle menu"
             >
@@ -123,7 +123,7 @@ const Navbar = () => {
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
-            className="md:hidden border-t border-[hsl(var(--accent-red)/0.35)] bg-[hsl(0_0%_5%)]"
+            className="md:hidden border-t border-[hsl(var(--accent-red)/0.35)] bg-[hsl(45_36%_97%)]"
           >
             <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-20 py-5 flex flex-col gap-3">
               {navItems.map((item) => (
@@ -142,8 +142,8 @@ const Navbar = () => {
                 className="dossier-cta mt-2 justify-center text-sm"
                 onClick={() => setMobileOpen(false)}
               >
-                <Lock className="w-3.5 h-3.5" />
-                INITIATE CONTACT
+                <Phone className="w-3.5 h-3.5" />
+                RING THE BELL
               </a>
             </div>
           </motion.div>

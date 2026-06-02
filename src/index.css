@@ -1,126 +1,126 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Anton&family=JetBrains+Mono:wght@400;500;700&family=Special+Elite&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Cutive+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Anton&family=JetBrains+Mono:wght@400;500;700&family=Special+Elite&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Cutive+Mono&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* =====================================================================
-   MOST WANTED — TOP-SECRET INTELLIGENCE DOSSIER DESIGN SYSTEM
-   Cinematic classified-noir aesthetic.
-   Dark concrete + urgent red + bone white. Every utility class is kept
-   for backward compatibility, but completely re-skinned.
+   THE WOLF — WALL STREET LUXURY DESIGN SYSTEM
+   Cinematic gold-on-black opulence inspired by The Wolf of Wall Street.
+   Deep onyx black + champagne gold + ivory. Every legacy utility class
+   is kept for backward compatibility, but completely re-skinned in gold.
+   (Internal token names still say "red" — they now resolve to GOLD.)
    ===================================================================== */
 
 @layer base {
   :root {
-    /* CORE PALETTE — concrete noir base, bone foreground, classified red */
-    --background: 0 0% 7%;             /* deep concrete noir */
-    --foreground: 40 18% 92%;          /* bone white */
+    /* CORE PALETTE — bright cinema white, near-black ink, poster yellow.
+       Light "now showing" movie-release look (The Wolf of Wall Street). */
+    --background: 45 36% 96%;          /* warm cinema white */
+    --foreground: 40 22% 11%;          /* near-black ink */
 
-    --card: 0 0% 11%;
-    --card-foreground: 40 18% 92%;
+    --card: 45 40% 99%;
+    --card-foreground: 40 22% 11%;
 
-    --popover: 0 0% 11%;
-    --popover-foreground: 40 18% 92%;
+    --popover: 45 40% 99%;
+    --popover-foreground: 40 22% 11%;
 
-    --primary: 358 79% 51%;            /* CLASSIFIED RED */
-    --primary-foreground: 40 22% 96%;
+    --primary: 45 95% 51%;             /* POSTER YELLOW */
+    --primary-foreground: 40 45% 9%;   /* black — printed on yellow */
 
-    --secondary: 0 0% 14%;
-    --secondary-foreground: 40 18% 92%;
+    --secondary: 45 24% 92%;
+    --secondary-foreground: 40 22% 11%;
 
-    --muted: 0 0% 16%;
-    --muted-foreground: 38 8% 65%;
+    --muted: 45 20% 90%;
+    --muted-foreground: 40 10% 38%;
 
-    --accent: 358 79% 51%;             /* RED accent */
-    --accent-foreground: 40 22% 96%;
+    --accent: 45 95% 51%;              /* YELLOW accent */
+    --accent-foreground: 40 45% 9%;
 
-    --destructive: 358 79% 51%;
-    --destructive-foreground: 40 22% 96%;
+    --destructive: 45 95% 51%;
+    --destructive-foreground: 40 45% 9%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 358 79% 51%;
+    --border: 42 16% 80%;
+    --input: 42 16% 80%;
+    --ring: 41 88% 46%;
 
     --radius: 0rem;
 
-    --sidebar-background: 0 0% 9%;
-    --sidebar-foreground: 40 18% 92%;
-    --sidebar-primary: 358 79% 51%;
-    --sidebar-primary-foreground: 40 22% 96%;
-    --sidebar-accent: 0 0% 14%;
-    --sidebar-accent-foreground: 40 18% 92%;
-    --sidebar-border: 0 0% 20%;
-    --sidebar-ring: 358 79% 51%;
+    --sidebar-background: 45 40% 98%;
+    --sidebar-foreground: 40 22% 11%;
+    --sidebar-primary: 45 95% 51%;
+    --sidebar-primary-foreground: 40 45% 9%;
+    --sidebar-accent: 45 24% 92%;
+    --sidebar-accent-foreground: 40 22% 11%;
+    --sidebar-border: 42 16% 80%;
+    --sidebar-ring: 41 88% 46%;
 
-    --gold-glow: 358 79% 51%;
-    --surface-hover: 0 0% 14%;
+    --gold-glow: 45 95% 51%;
+    --surface-hover: 45 28% 93%;
 
     /* SEMANTIC ALIASES — utility classes throughout the app reference
-       these. We invert them: "paper" becomes dark concrete, "ink"
-       becomes bone-white. Anything stamped "red" stays iconic red. */
-    --paper: 0 0% 7%;
-    --paper-cream: 0 0% 11%;
-    --paper-beige: 0 0% 9%;
-    --paper-gray: 0 0% 14%;
-    --ink-charcoal: 40 18% 92%;        /* bone — main "ink" foreground */
-    --ink-brown: 38 8% 65%;             /* muted bone */
-    --stamp-red: 358 79% 51%;           /* THE RED */
-    --stamp-blue: 358 70% 42%;          /* deeper red (kept name) */
+       these. "paper" = light cinema surfaces, "ink" = near-black.
+       Legacy "red/stamp" names resolve to GOLD/YELLOW. */
+    --paper: 45 36% 96%;
+    --paper-cream: 45 40% 99%;
+    --paper-beige: 45 30% 94%;
+    --paper-gray: 45 22% 90%;
+    --ink-charcoal: 40 22% 13%;        /* near-black — main "ink" foreground */
+    --ink-brown: 40 10% 38%;            /* muted warm grey */
+    --stamp-red: 41 88% 46%;            /* readable gold (labels) */
+    --stamp-blue: 38 72% 38%;           /* deeper antique gold (kept name) */
 
-    /* Classified-specific tokens */
-    --accent-red: 358 79% 51%;
-    --accent-red-deep: 358 75% 38%;
-    --accent-red-bright: 0 92% 62%;
-    --accent-bone: 40 22% 94%;
-    --accent-concrete: 0 0% 11%;
-    --accent-graphite: 0 0% 18%;
-    --accent-blueprint: 195 65% 60%;
+    /* Poster gold/yellow tokens (legacy "red" names → gold/yellow values) */
+    --accent-red: 41 88% 46%;          /* rich gold — readable as text on white */
+    --accent-red-deep: 38 74% 38%;     /* antique gold */
+    --accent-red-bright: 45 96% 52%;   /* bright poster yellow — fills */
+    --accent-bone: 40 26% 12%;         /* near-black "highlight" ink */
+    --accent-concrete: 45 40% 99%;
+    --accent-graphite: 45 18% 86%;
+    --accent-blueprint: 150 48% 38%;   /* money green (profit accent) */
   }
 
-  /* Light mode is intentionally a near-identical, slightly elevated
-     variant so the classified aesthetic stays consistent regardless of
-     system theme. The site is fundamentally a nocturnal experience. */
+  /* Kept for the (unused) toggle — also light to preserve the look. */
   .dark {
-    --background: 0 0% 5%;
-    --foreground: 40 22% 95%;
+    --background: 45 36% 96%;
+    --foreground: 40 22% 11%;
 
-    --card: 0 0% 9%;
-    --card-foreground: 40 22% 95%;
+    --card: 45 40% 99%;
+    --card-foreground: 40 22% 11%;
 
-    --popover: 0 0% 9%;
-    --popover-foreground: 40 22% 95%;
+    --popover: 45 40% 99%;
+    --popover-foreground: 40 22% 11%;
 
-    --primary: 358 82% 54%;
-    --primary-foreground: 40 22% 96%;
+    --primary: 45 95% 51%;
+    --primary-foreground: 40 45% 9%;
 
-    --secondary: 0 0% 12%;
-    --secondary-foreground: 40 22% 95%;
+    --secondary: 45 24% 92%;
+    --secondary-foreground: 40 22% 11%;
 
-    --muted: 0 0% 14%;
-    --muted-foreground: 38 8% 62%;
+    --muted: 45 20% 90%;
+    --muted-foreground: 40 10% 38%;
 
-    --accent: 358 82% 54%;
-    --accent-foreground: 40 22% 96%;
+    --accent: 45 95% 51%;
+    --accent-foreground: 40 45% 9%;
 
-    --destructive: 358 82% 54%;
-    --destructive-foreground: 40 22% 96%;
+    --destructive: 45 95% 51%;
+    --destructive-foreground: 40 45% 9%;
 
-    --border: 0 0% 22%;
-    --input: 0 0% 22%;
-    --ring: 358 82% 54%;
+    --border: 42 16% 80%;
+    --input: 42 16% 80%;
+    --ring: 41 88% 46%;
 
-    --gold-glow: 358 82% 54%;
-    --surface-hover: 0 0% 12%;
+    --gold-glow: 45 95% 51%;
+    --surface-hover: 45 28% 93%;
 
-    --paper: 0 0% 5%;
-    --paper-cream: 0 0% 9%;
-    --paper-beige: 0 0% 7%;
-    --paper-gray: 0 0% 12%;
-    --ink-charcoal: 40 22% 95%;
-    --ink-brown: 38 8% 62%;
-    --stamp-red: 358 82% 54%;
-    --stamp-blue: 358 72% 44%;
+    --paper: 45 36% 96%;
+    --paper-cream: 45 40% 99%;
+    --paper-beige: 45 30% 94%;
+    --paper-gray: 45 22% 90%;
+    --ink-charcoal: 40 22% 13%;
+    --ink-brown: 40 10% 38%;
+    --stamp-red: 41 88% 46%;
+    --stamp-blue: 38 72% 38%;
   }
 }
 
@@ -129,25 +129,25 @@
 
   html {
     background-color: hsl(var(--paper));
-    color-scheme: dark;
+    color-scheme: light;
   }
 
   body {
     @apply bg-background text-foreground font-body antialiased;
     color: hsl(var(--ink-charcoal));
     background-color: hsl(var(--paper));
-    /* Concrete texture + faint warm light from below */
+    /* Bright cinema paper — faint warm grain + soft golden glow from top */
     background-image:
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.95  0 0 0 0 0.90  0 0 0 0.05 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"),
-      radial-gradient(ellipse at 50% 110%, hsl(358 70% 22% / 0.22) 0%, transparent 55%),
-      radial-gradient(ellipse at 50% -10%, hsl(0 0% 14% / 0.85) 0%, transparent 60%),
-      linear-gradient(to bottom, hsl(0 0% 6%) 0%, hsl(0 0% 8%) 100%);
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.55  0 0 0 0 0.45  0 0 0 0 0.10  0 0 0 0.04 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"),
+      radial-gradient(ellipse at 50% -8%, hsl(45 95% 60% / 0.18) 0%, transparent 55%),
+      radial-gradient(ellipse at 50% 108%, hsl(45 80% 70% / 0.12) 0%, transparent 55%),
+      linear-gradient(to bottom, hsl(45 38% 97%) 0%, hsl(45 30% 94%) 100%);
     background-attachment: fixed;
   }
 
   h1, h2, h3, h4, h5, h6 { @apply font-heading; }
 
-  /* Ambient surveillance vignette + horizontal scanline shimmer */
+  /* Ambient golden vignette glow */
   body::before {
     content: "";
     position: fixed;
@@ -155,8 +155,8 @@
     pointer-events: none;
     z-index: 0;
     background:
-      radial-gradient(circle at 14% 18%, hsl(358 60% 30% / 0.08) 0%, transparent 12%),
-      radial-gradient(circle at 86% 72%, hsl(358 60% 30% / 0.06) 0%, transparent 14%);
+      radial-gradient(circle at 14% 18%, hsl(45 92% 55% / 0.10) 0%, transparent 12%),
+      radial-gradient(circle at 86% 72%, hsl(45 92% 55% / 0.08) 0%, transparent 14%);
   }
 
   body::after {
@@ -169,26 +169,26 @@
       to bottom,
       transparent 0,
       transparent 2px,
-      hsl(0 0% 0% / 0.18) 3px,
+      hsl(40 20% 30% / 0.05) 3px,
       transparent 3px,
       transparent 4px
     );
     mix-blend-mode: multiply;
-    opacity: 0.45;
+    opacity: 0.4;
   }
 
-  /* Selection color = classified red */
+  /* Selection color = poster yellow */
   ::selection {
-    background: hsl(var(--accent-red));
-    color: hsl(var(--accent-bone));
+    background: hsl(var(--accent-red-bright));
+    color: hsl(40 45% 9%);
   }
 
-  /* Custom scrollbar — narrow red */
+  /* Custom scrollbar — narrow gold on light track */
   ::-webkit-scrollbar { width: 10px; height: 10px; }
-  ::-webkit-scrollbar-track { background: hsl(0 0% 6%); }
+  ::-webkit-scrollbar-track { background: hsl(45 24% 90%); }
   ::-webkit-scrollbar-thumb {
-    background: hsl(var(--accent-red) / 0.65);
-    border: 2px solid hsl(0 0% 6%);
+    background: hsl(var(--accent-red) / 0.7);
+    border: 2px solid hsl(45 24% 90%);
   }
   ::-webkit-scrollbar-thumb:hover { background: hsl(var(--accent-red)); }
 }
@@ -246,25 +246,25 @@
     position: relative;
     background-color: hsl(var(--paper-cream));
     background-image:
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.95  0 0 0 0 0.90  0 0 0 0.04 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    border: 1px solid hsl(40 12% 90% / 0.10);
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.45  0 0 0 0 0.36  0 0 0 0 0.08  0 0 0 0.03 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    border: 1px solid hsl(40 16% 26% / 0.14);
     box-shadow:
-      inset 0 1px 0 hsl(40 18% 96% / 0.04),
-      0 1px 0 hsl(0 0% 0% / 0.6),
-      0 12px 28px -16px hsl(0 0% 0% / 0.8);
+      inset 0 1px 0 hsl(0 0% 100% / 0.7),
+      0 1px 0 hsl(40 20% 30% / 0.05),
+      0 12px 28px -16px hsl(40 30% 25% / 0.28);
   }
 
   .paper-card-cream {
     position: relative;
     background-color: hsl(var(--paper-cream));
     background-image:
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.95  0 0 0 0 0.90  0 0 0 0.045 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    border: 1px solid hsl(40 12% 90% / 0.10);
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.45  0 0 0 0 0.36  0 0 0 0 0.08  0 0 0 0.03 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    border: 1px solid hsl(40 16% 26% / 0.14);
     box-shadow:
-      inset 0 1px 0 hsl(40 18% 96% / 0.05),
+      inset 0 1px 0 hsl(0 0% 100% / 0.7),
       inset 4px 0 0 hsl(var(--accent-red) / 0.0),
-      0 1px 0 hsl(0 0% 0% / 0.6),
-      0 16px 32px -20px hsl(0 0% 0% / 0.85);
+      0 1px 0 hsl(40 20% 30% / 0.05),
+      0 16px 32px -20px hsl(40 30% 25% / 0.3);
     transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
   }
   .paper-card-cream::before {
@@ -274,20 +274,20 @@
     width: 3px;
     background: linear-gradient(180deg,
       hsl(var(--accent-red) / 0.0) 0%,
-      hsl(var(--accent-red) / 0.55) 22%,
-      hsl(var(--accent-red) / 0.55) 78%,
+      hsl(var(--accent-red) / 0.7) 22%,
+      hsl(var(--accent-red) / 0.7) 78%,
       hsl(var(--accent-red) / 0.0) 100%);
     pointer-events: none;
     transition: background 0.35s ease, width 0.25s ease;
   }
   .paper-card-cream:hover {
-    border-color: hsl(var(--accent-red) / 0.45);
+    border-color: hsl(var(--accent-red) / 0.55);
     box-shadow:
-      inset 0 1px 0 hsl(40 18% 96% / 0.07),
-      0 1px 0 hsl(0 0% 0% / 0.6),
-      0 0 0 1px hsl(var(--accent-red) / 0.18),
-      0 28px 50px -24px hsl(358 60% 18% / 0.55),
-      0 18px 30px -22px hsl(0 0% 0% / 0.9);
+      inset 0 1px 0 hsl(0 0% 100% / 0.8),
+      0 1px 0 hsl(40 20% 30% / 0.06),
+      0 0 0 1px hsl(var(--accent-red) / 0.3),
+      0 28px 50px -24px hsl(45 70% 45% / 0.3),
+      0 18px 30px -22px hsl(40 30% 25% / 0.35);
   }
   .paper-card-cream:hover::before {
     background: linear-gradient(180deg,
@@ -297,17 +297,17 @@
     width: 4px;
   }
 
-  /* Vault folder — heavier concrete slab for the hero's subject file */
+  /* Marquee folder — heavier ivory slab for the hero's portrait frame */
   .paper-folder {
     position: relative;
-    background-color: hsl(0 0% 8%);
+    background-color: hsl(45 36% 97%);
     background-image:
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.95  0 0 0 0 0.88  0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    border: 1px solid hsl(40 12% 90% / 0.15);
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.45  0 0 0 0 0.36  0 0 0 0 0.08  0 0 0 0.04 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    border: 1px solid hsl(40 16% 26% / 0.18);
     box-shadow:
-      inset 0 1px 0 hsl(40 18% 96% / 0.06),
-      inset 0 -1px 0 hsl(0 0% 0% / 0.7),
-      0 30px 60px -28px hsl(0 0% 0% / 0.95);
+      inset 0 1px 0 hsl(0 0% 100% / 0.8),
+      inset 0 -1px 0 hsl(40 20% 30% / 0.08),
+      0 30px 60px -28px hsl(40 30% 25% / 0.4);
   }
 
   /* Subtle photocopier/concrete grain overlay */
@@ -322,8 +322,8 @@
     mix-blend-mode: screen;
   }
 
-  /* ===== CLASSIFIED RUBBER STAMP =====
-     Iconic red ink stamp — slightly rotated, distressed.
+  /* ===== POSTER TITLE BLOCK =====
+     Iconic yellow box with black print — the movie-poster signature.
   */
   .stamp {
     display: inline-flex;
@@ -331,56 +331,60 @@
     justify-content: center;
     font-family: 'Bebas Neue', 'Anton', sans-serif;
     font-weight: 400;
-    color: hsl(var(--accent-red));
-    border: 3px double hsl(var(--accent-red));
-    padding: 0.35rem 1rem;
-    letter-spacing: 0.20em;
+    color: hsl(40 45% 9%);
+    border: none;
+    padding: 0.4rem 1.05rem;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     transform: rotate(-4deg);
-    background: transparent;
-    text-shadow: 0 0 1px hsl(var(--accent-red) / 0.4);
+    background: hsl(var(--accent-red-bright));
+    text-shadow: none;
     position: relative;
-    box-shadow: 0 0 18px hsl(var(--accent-red) / 0.18);
+    box-shadow:
+      0 2px 0 hsl(40 60% 30% / 0.35),
+      0 8px 18px -8px hsl(45 80% 40% / 0.5);
   }
   .stamp::after {
     content: "";
     position: absolute;
     inset: 0;
     background-image:
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.6' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.05  0 0 0 0 0.05  0 0 0 0 0.05  0 0 0 0.85 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.6' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.20  0 0 0 0 0.16  0 0 0 0 0.02  0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
     mix-blend-mode: multiply;
-    opacity: 0.30;
+    opacity: 0.18;
     pointer-events: none;
   }
   .stamp-blue {
-    color: hsl(var(--accent-red-deep));
-    border-color: hsl(var(--accent-red-deep));
-    box-shadow: 0 0 18px hsl(var(--accent-red-deep) / 0.18);
+    color: hsl(45 96% 60%);
+    background: hsl(40 30% 12%);
+    box-shadow:
+      0 2px 0 hsl(0 0% 0% / 0.25),
+      0 8px 18px -8px hsl(40 30% 20% / 0.5);
   }
   .stamp-black {
-    color: hsl(var(--accent-bone));
-    border-color: hsl(var(--accent-bone));
-    box-shadow: 0 0 12px hsl(40 18% 90% / 0.08);
+    color: hsl(45 96% 60%);
+    background: hsl(40 30% 12%);
+    box-shadow:
+      0 2px 0 hsl(0 0% 0% / 0.25),
+      0 8px 18px -8px hsl(40 30% 20% / 0.5);
   }
   .stamp-straight { transform: rotate(0deg); }
 
-  /* Watermark — faded red CLASSIFIED poster behind sections */
+  /* Watermark — faded giant title behind sections */
   .watermark {
     font-family: 'Anton', 'Bebas Neue', sans-serif;
     font-weight: 400;
-    color: hsl(var(--accent-red) / 0.05);
+    color: hsl(41 80% 45% / 0.10);
     letter-spacing: -0.01em;
     text-transform: uppercase;
     pointer-events: none;
     user-select: none;
     white-space: nowrap;
-    text-shadow:
-      0 0 1px hsl(var(--accent-red) / 0.10),
-      0 0 24px hsl(var(--accent-red) / 0.06);
+    text-shadow: none;
   }
-  .watermark-dark { color: hsl(40 18% 92% / 0.035); text-shadow: none; }
+  .watermark-dark { color: hsl(40 22% 20% / 0.05); text-shadow: none; }
 
-  /* Redacted bar — now a classified-red censor bar */
+  /* Redacted bar — gold censor bar */
   .redacted {
     background-color: hsl(var(--accent-red));
     color: hsl(var(--accent-red));
@@ -390,53 +394,53 @@
   }
 
   /* ===== TAPE =====
-     Red duct tape securing dossier corners. Faintly translucent.
+     Gold foil tape securing the poster corners. Faintly translucent.
   */
   .tape {
     position: absolute;
-    background: hsl(var(--accent-red) / 0.85);
-    border: 1px solid hsl(var(--accent-red-deep) / 0.7);
+    background: hsl(var(--accent-red-bright) / 0.9);
+    border: 1px solid hsl(var(--accent-red-deep) / 0.5);
     box-shadow:
-      0 1px 2px hsl(0 0% 0% / 0.45),
-      inset 0 1px 0 hsl(var(--accent-red-bright) / 0.3),
-      inset 0 -1px 0 hsl(var(--accent-red-deep) / 0.5);
+      0 1px 2px hsl(40 30% 25% / 0.3),
+      inset 0 1px 0 hsl(48 98% 80% / 0.5),
+      inset 0 -1px 0 hsl(var(--accent-red-deep) / 0.4);
     background-image: repeating-linear-gradient(
       90deg,
       transparent 0 2px,
-      hsl(var(--accent-red-deep) / 0.18) 2px 3px
+      hsl(var(--accent-red-deep) / 0.14) 2px 3px
     );
   }
-  .tape-yellow { background: hsl(358 79% 51% / 0.85); }
+  .tape-yellow { background: hsl(45 96% 52% / 0.9); }
   .tape-clear  {
-    background: hsl(40 12% 90% / 0.08);
-    border: 1px solid hsl(40 12% 90% / 0.3);
-    box-shadow: 0 1px 2px hsl(0 0% 0% / 0.3);
+    background: hsl(40 20% 40% / 0.06);
+    border: 1px solid hsl(40 20% 40% / 0.22);
+    box-shadow: 0 1px 2px hsl(40 30% 25% / 0.2);
   }
 
-  /* Steel paperclip */
+  /* Brass paperclip */
   .paperclip {
     position: absolute;
     width: 14px;
     height: 36px;
-    border: 2px solid hsl(40 8% 75%);
+    border: 2px solid hsl(40 30% 55%);
     border-radius: 7px;
     background: transparent;
-    box-shadow: 0 2px 4px hsl(0 0% 0% / 0.5);
+    box-shadow: 0 2px 4px hsl(40 30% 25% / 0.35);
   }
 
-  .border-dashed-ink { border: 1.5px dashed hsl(40 12% 90% / 0.28); }
-  .border-dotted-ink { border: 2px dotted hsl(40 12% 90% / 0.25); }
+  .border-dashed-ink { border: 1.5px dashed hsl(40 18% 35% / 0.3); }
+  .border-dotted-ink { border: 2px dotted hsl(40 18% 35% / 0.28); }
 
   /* ===== PHOTO / IMAGE TREATMENTS =====
      Cinematic noir grade — deep contrast, slight cold cast, scanline
      for a surveillance-camera feel.
   */
   .photocopy {
-    filter: grayscale(85%) contrast(1.1) brightness(0.85) sepia(0.05);
+    filter: contrast(1.04) saturate(1.02) brightness(1.0);
     mix-blend-mode: normal;
   }
   .photocopy-strong {
-    filter: grayscale(55%) contrast(1.18) brightness(0.86) saturate(0.85);
+    filter: contrast(1.06) saturate(1.0) brightness(1.0);
     mix-blend-mode: normal;
   }
 
@@ -449,8 +453,8 @@
       0deg,
       transparent 0,
       transparent 3px,
-      hsl(0 0% 0% / 0.18) 3px,
-      hsl(0 0% 0% / 0.18) 4px
+      hsl(40 30% 20% / 0.06) 3px,
+      hsl(40 30% 20% / 0.06) 4px
     );
     mix-blend-mode: multiply;
   }
@@ -462,29 +466,29 @@
 
   .crosshatch-bg {
     background-image:
-      repeating-linear-gradient(45deg, hsl(40 18% 92% / 0.05) 0 1px, transparent 1px 6px),
-      repeating-linear-gradient(-45deg, hsl(var(--accent-red) / 0.045) 0 1px, transparent 1px 8px);
+      repeating-linear-gradient(45deg, hsl(40 20% 35% / 0.05) 0 1px, transparent 1px 6px),
+      repeating-linear-gradient(-45deg, hsl(var(--accent-red) / 0.05) 0 1px, transparent 1px 8px);
   }
 
-  /* ===== TACTICAL / BLUEPRINT GRID =====
-     The Professor's planning room reads. Subtle red+bone lattice.
+  /* ===== CINEMATIC LATTICE =====
+     Subtle gold + ink grid behind sections.
   */
   .tactical-grid {
     background-image:
-      linear-gradient(hsl(40 18% 92% / 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(40 18% 92% / 0.05) 1px, transparent 1px),
-      linear-gradient(hsl(var(--accent-red) / 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--accent-red) / 0.04) 1px, transparent 1px);
+      linear-gradient(hsl(40 22% 35% / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(40 22% 35% / 0.05) 1px, transparent 1px),
+      linear-gradient(hsl(var(--accent-red) / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--accent-red) / 0.05) 1px, transparent 1px);
     background-size: 40px 40px, 40px 40px, 200px 200px, 200px 200px;
   }
 
   .blueprint-grid {
-    background-color: hsl(0 0% 6%);
+    background-color: hsl(45 30% 94%);
     background-image:
-      linear-gradient(hsl(var(--accent-blueprint) / 0.12) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--accent-blueprint) / 0.12) 1px, transparent 1px),
-      linear-gradient(hsl(var(--accent-blueprint) / 0.06) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--accent-blueprint) / 0.06) 1px, transparent 1px);
+      linear-gradient(hsl(var(--accent-blueprint) / 0.14) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--accent-blueprint) / 0.14) 1px, transparent 1px),
+      linear-gradient(hsl(var(--accent-blueprint) / 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--accent-blueprint) / 0.07) 1px, transparent 1px);
     background-size: 80px 80px, 80px 80px, 16px 16px, 16px 16px;
   }
 
@@ -520,16 +524,16 @@
 
   /* ===== STICKY NOTES — Professor's handwritten warnings ===== */
   .sticky-note {
-    background: hsl(var(--accent-red));
-    color: hsl(40 22% 96%);
+    background: linear-gradient(180deg, hsl(46 86% 58%) 0%, hsl(43 74% 50%) 100%);
+    color: hsl(40 50% 10%);
     box-shadow:
       0 1px 0 hsl(0 0% 0% / 0.25),
-      0 12px 22px -10px hsl(358 60% 12% / 0.85),
-      inset 0 1px 0 hsl(var(--accent-red-bright) / 0.35);
+      0 12px 22px -10px hsl(40 60% 8% / 0.85),
+      inset 0 1px 0 hsl(48 95% 80% / 0.45);
     font-family: 'Special Elite', cursive;
     padding: 0.75rem 1rem;
     position: relative;
-    border: 1px solid hsl(var(--accent-red-deep));
+    border: 1px solid hsl(46 80% 66%);
   }
   .sticky-pink, .sticky-blue { background: hsl(var(--accent-red-deep)); }
 
@@ -541,8 +545,8 @@
   }
   .handwritten-red {
     font-family: 'Special Elite', cursive;
-    color: hsl(40 22% 96%);
-    text-shadow: 0 0 6px hsl(var(--accent-red) / 0.6);
+    color: hsl(40 50% 10%);
+    text-shadow: 0 1px 0 hsl(48 90% 70% / 0.5);
   }
 
   /* ===== STATUS PULSE — red live indicator ===== */
@@ -634,29 +638,29 @@
   .border-gradient-gold { border-color: hsl(var(--accent-red)); }
   .glow-gold {
     box-shadow:
-      0 0 0 1px hsl(var(--accent-red) / 0.4),
-      0 8px 22px -8px hsl(var(--accent-red) / 0.45),
-      0 16px 32px -16px hsl(0 0% 0% / 0.9);
+      0 0 0 1px hsl(var(--accent-red) / 0.45),
+      0 8px 22px -8px hsl(var(--accent-red) / 0.5),
+      0 16px 32px -16px hsl(40 40% 30% / 0.3);
   }
   .glow-red {
     box-shadow:
-      0 0 0 1px hsl(var(--accent-red) / 0.4),
+      0 0 0 1px hsl(var(--accent-red) / 0.45),
       0 0 22px hsl(var(--accent-red) / 0.4),
-      0 16px 32px -16px hsl(0 0% 0% / 0.9);
+      0 16px 32px -16px hsl(40 40% 30% / 0.3);
   }
   .glass-card {
     position: relative;
     background-color: hsl(var(--paper-cream) / 0.85);
     backdrop-filter: blur(8px);
-    border: 1px solid hsl(40 12% 90% / 0.10);
+    border: 1px solid hsl(40 16% 26% / 0.14);
     box-shadow:
-      inset 0 1px 0 hsl(40 18% 96% / 0.05),
-      0 16px 32px -18px hsl(0 0% 0% / 0.85);
+      inset 0 1px 0 hsl(0 0% 100% / 0.7),
+      0 16px 32px -18px hsl(40 30% 25% / 0.3);
   }
   .grid-pattern {
     background-image:
-      linear-gradient(hsl(40 18% 92% / 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(40 18% 92% / 0.05) 1px, transparent 1px);
+      linear-gradient(hsl(40 22% 35% / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(40 22% 35% / 0.05) 1px, transparent 1px);
     background-size: 50px 50px;
   }
 
@@ -721,13 +725,13 @@
   .surveillance-frame::before { top: -2px; left: -2px; border-right: 0; border-bottom: 0; }
   .surveillance-frame::after  { bottom: -2px; right: -2px; border-left: 0; border-top: 0; }
 
-  /* Vault rivet — small steel circle marker */
+  /* Brass rivet — small gold circle marker */
   .rivet {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, hsl(40 8% 80%) 0%, hsl(40 6% 50%) 60%, hsl(40 6% 30%) 100%);
-    box-shadow: inset 0 -1px 1px hsl(0 0% 0% / 0.6), 0 1px 1px hsl(0 0% 0% / 0.4);
+    background: radial-gradient(circle at 30% 30%, hsl(48 90% 72%) 0%, hsl(43 74% 48%) 60%, hsl(38 64% 34%) 100%);
+    box-shadow: inset 0 -1px 1px hsl(40 40% 20% / 0.5), 0 1px 1px hsl(40 30% 25% / 0.3);
     display: inline-block;
   }
 
@@ -761,29 +765,30 @@
     display: inline-flex;
     align-items: center;
     gap: 0.6rem;
-    background: hsl(var(--accent-red));
-    color: hsl(40 22% 96%);
+    background: linear-gradient(180deg, hsl(46 88% 60%) 0%, hsl(43 74% 50%) 50%, hsl(40 64% 42%) 100%);
+    color: hsl(40 45% 8%);
     font-family: 'Bebas Neue', sans-serif;
+    font-weight: 700;
     letter-spacing: 0.18em;
     padding: 0.85rem 1.25rem;
-    border: 1px solid hsl(var(--accent-red-deep));
+    border: 1px solid hsl(46 80% 68%);
     box-shadow:
-      inset 0 1px 0 hsl(var(--accent-red-bright) / 0.45),
-      inset 0 -1px 0 hsl(0 0% 0% / 0.3),
-      0 0 22px hsl(var(--accent-red) / 0.45),
-      0 16px 28px -14px hsl(358 70% 12% / 0.7);
+      inset 0 1px 0 hsl(48 95% 80% / 0.7),
+      inset 0 -1px 0 hsl(40 60% 25% / 0.5),
+      0 0 22px hsl(var(--accent-red) / 0.4),
+      0 16px 28px -14px hsl(40 70% 10% / 0.8);
     transition: all 0.2s ease;
     text-transform: uppercase;
     position: relative;
     overflow: hidden;
   }
   .dossier-cta:hover {
-    background: hsl(var(--accent-red-bright));
+    background: linear-gradient(180deg, hsl(48 95% 70%) 0%, hsl(46 88% 60%) 50%, hsl(43 74% 50%) 100%);
     box-shadow:
-      inset 0 1px 0 hsl(var(--accent-red-bright) / 0.7),
-      inset 0 -1px 0 hsl(0 0% 0% / 0.4),
-      0 0 32px hsl(var(--accent-red) / 0.7),
-      0 18px 36px -14px hsl(358 70% 12% / 0.9);
+      inset 0 1px 0 hsl(48 98% 85% / 0.85),
+      inset 0 -1px 0 hsl(40 60% 25% / 0.6),
+      0 0 34px hsl(var(--accent-red) / 0.65),
+      0 18px 36px -14px hsl(40 70% 10% / 0.9);
     transform: translateY(-1px);
   }
 
@@ -797,7 +802,7 @@
     font-family: 'Bebas Neue', sans-serif;
     letter-spacing: 0.18em;
     padding: 0.85rem 1.25rem;
-    border: 1px solid hsl(40 18% 92% / 0.25);
+    border: 1px solid hsl(40 22% 35% / 0.3);
     text-transform: uppercase;
     transition: all 0.2s ease;
   }
@@ -829,27 +834,39 @@
     font-weight: 700;
   }
 
-  /* Display heading — Anton-driven cinematic title with subtle gradient */
+  /* Display heading — Anton condensed cinematic title, black ink */
   .display-title {
     font-family: 'Anton', 'Bebas Neue', sans-serif;
     font-weight: 400;
     letter-spacing: -0.01em;
     line-height: 0.86;
-    color: hsl(var(--accent-bone));
-    text-shadow:
-      0 1px 0 hsl(0 0% 0% / 0.6),
-      0 8px 32px hsl(0 0% 0% / 0.45);
+    color: hsl(var(--ink-charcoal));
+    text-shadow: 0 1px 0 hsl(0 0% 100% / 0.5);
   }
+  /* The poster signature — black print inside a yellow box */
   .display-title .accent {
-    color: hsl(var(--accent-red));
-    text-shadow: 0 0 30px hsl(var(--accent-red) / 0.45);
+    background: hsl(var(--accent-red-bright));
+    color: hsl(40 45% 9%);
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    padding: 0 0.12em;
+    text-shadow: none;
+    box-shadow:
+      0 3px 0 hsl(40 62% 32% / 0.35),
+      0 12px 26px -10px hsl(45 80% 42% / 0.45);
   }
   .display-title .stroke {
     color: transparent;
-    -webkit-text-stroke: 1.5px hsl(var(--accent-bone));
+    -webkit-text-stroke: 1.5px hsl(var(--ink-charcoal));
   }
 
-  /* Map pin / red dot marker */
+  /* Elegant serif for opulent sub-headings / wordmarks */
+  .font-luxe {
+    font-family: 'Playfair Display', 'Georgia', serif;
+    letter-spacing: 0.01em;
+  }
+
+  /* Map pin / gold dot marker */
   .red-pin {
     position: relative;
     display: inline-block;

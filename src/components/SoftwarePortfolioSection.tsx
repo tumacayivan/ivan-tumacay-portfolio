@@ -178,7 +178,7 @@ const SoftwarePortfolioSection = () => {
       <div className="absolute inset-0 tactical-grid opacity-[0.35] pointer-events-none" />
       <div className="absolute inset-0 pointer-events-none flex items-center justify-end overflow-hidden">
         <div className="watermark text-[17vw] leading-none rotate-[4deg] -mr-10">
-          MISSIONS
+          PORTFOLIO
         </div>
       </div>
 
@@ -194,7 +194,7 @@ const SoftwarePortfolioSection = () => {
             <Folder className="w-4 h-4 text-[hsl(var(--accent-red))]" />
             ANNEX 01 // SOFTWARE DEVELOPMENT PORTFOLIO
             <span className="font-courier text-[11px] text-[hsl(var(--accent-red))] tracking-[0.3em] hidden sm:inline ml-2">
-              · {totalProjects} OPERATIONS LOGGED
+              · {totalProjects} PROJECTS SHIPPED
             </span>
           </div>
           <p className="font-courier text-[12px] tracking-[0.4em] text-[hsl(var(--accent-red))] mb-3 uppercase">
@@ -204,7 +204,7 @@ const SoftwarePortfolioSection = () => {
             PROJECT <span className="accent">SHOWCASE</span>
           </h2>
           <div className="mt-4 paper-card-cream p-5 max-w-3xl relative">
-            <div className="absolute -top-3 left-4 stamp stamp-black !text-[12px] !p-1 !rotate-0 bg-[hsl(var(--paper))]">MISSION SUMMARY</div>
+            <div className="absolute -top-3 left-4 stamp stamp-black !text-[12px] !p-1 !rotate-0 bg-[hsl(var(--paper))]">THE PITCH</div>
             <p className="font-typewriter text-xl text-[hsl(var(--ink-charcoal))] leading-relaxed mt-1">
               A curated selection of projects delivered for{" "}
               <span className="font-bold text-[hsl(var(--accent-bone))] underline decoration-[hsl(var(--accent-red))] underline-offset-4">clients</span> and{" "}
@@ -272,7 +272,7 @@ const SoftwarePortfolioSection = () => {
                   </div>
 
                   <div className="relative overflow-hidden border border-[hsl(var(--accent-red)/0.4)] mb-4 group-hover:border-[hsl(var(--accent-red))] transition-colors">
-                    <div className="absolute -top-1 left-3 z-10 bg-[hsl(0_0%_5%)] border border-[hsl(var(--accent-red))] px-2 py-0.5 font-courier text-[10px] tracking-[0.28em] text-[hsl(var(--accent-red))] rotate-[-2deg]">
+                    <div className="absolute -top-1 left-3 z-10 bg-[hsl(45_36%_97%)] border border-[hsl(var(--accent-red))] px-2 py-0.5 font-courier text-[10px] tracking-[0.28em] text-[hsl(var(--accent-red))] rotate-[-2deg]">
                       EXHIBIT·{String(i + 1).padStart(3, "0")}
                     </div>
 
@@ -283,7 +283,7 @@ const SoftwarePortfolioSection = () => {
                     />
 
                     {/* Cinematic gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[hsl(0_0%_3%/0.5)] via-transparent to-transparent pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[hsl(40_30%_16%/0.5)] via-transparent to-transparent pointer-events-none" />
 
                     <div className="absolute top-2 left-2 w-5 h-5 border-l-2 border-t-2 border-[hsl(var(--accent-red))]" />
                     <div className="absolute top-2 right-2 w-5 h-5 border-r-2 border-t-2 border-[hsl(var(--accent-red))]" />
@@ -294,11 +294,11 @@ const SoftwarePortfolioSection = () => {
                       DEPLOYED
                     </div>
 
-                    <div className="absolute inset-0 bg-[hsl(0_0%_3%/0.88)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-2 px-4">
+                    <div className="absolute inset-0 bg-[hsl(40_30%_16%/0.88)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-2 px-4">
                       <div className="w-16 h-16 border-2 border-[hsl(var(--accent-red))] flex items-center justify-center bg-[hsl(var(--accent-red)/0.18)] glow-red">
                         <ExternalLink className="w-6 h-6 text-[hsl(var(--accent-red))]" />
                       </div>
-                      <span className="font-blackops text-base text-[hsl(var(--accent-bone))] tracking-[0.28em] uppercase">
+                      <span className="font-blackops text-base text-[hsl(45_36%_94%)] tracking-[0.28em] uppercase">
                         Visit Live Site
                       </span>
                     </div>
@@ -317,7 +317,7 @@ const SoftwarePortfolioSection = () => {
                   </div>
 
                   <p className="font-courier text-[14px] text-[hsl(var(--ink-charcoal))] leading-relaxed border-t border-dashed-ink pt-2 mb-3">
-                    <span className="font-blackops text-[11px] tracking-[0.3em] text-[hsl(var(--accent-red))]">DOSSIER //</span>{" "}
+                    <span className="font-blackops text-[11px] tracking-[0.3em] text-[hsl(var(--accent-red))]">THE PLAY //</span>{" "}
                     {site.description}
                   </p>
 
@@ -331,8 +331,8 @@ const SoftwarePortfolioSection = () => {
                   </div>
 
                   <div className="mt-3 flex items-center justify-between font-courier text-[10px] tracking-[0.3em] text-[hsl(var(--ink-brown))] uppercase">
-                    <span>OPEN-IN-NEW-TAB · ENCRYPTED</span>
-                    <span className="text-[hsl(var(--accent-red))]">VERIFIED</span>
+                    <span>OPEN-IN-NEW-TAB · SECURE</span>
+                    <span className="text-[hsl(var(--accent-red))]">LISTED</span>
                   </div>
                 </motion.a>
               );
@@ -340,7 +340,7 @@ const SoftwarePortfolioSection = () => {
           </div>
 
           <div className="mt-6 flex flex-wrap items-center justify-between gap-3 font-courier text-[11px] text-[hsl(var(--ink-brown))] tracking-[0.3em] uppercase">
-            <span><span className="text-[hsl(var(--accent-red))]">◉</span> ALL SITES PUBLICLY ACCESSIBLE · CLEARANCE PUBLIC</span>
+            <span><span className="text-[hsl(var(--accent-red))]">◉</span> ALL SITES LIVE · PUBLICLY TRADED</span>
             <span>END OF LIVE DEPLOYMENTS SECTION</span>
           </div>
         </motion.div>
@@ -399,7 +399,7 @@ const SoftwarePortfolioSection = () => {
                       </div>
 
                       <div className="flex items-start gap-3 mb-3">
-                        <div className="p-2 border border-[hsl(var(--accent-red)/0.5)] bg-[hsl(0_0%_5%)] text-[hsl(var(--accent-red))] shrink-0 group-hover:bg-[hsl(var(--accent-red))] group-hover:text-[hsl(40_22%_96%)] transition-colors">
+                        <div className="p-2 border border-[hsl(var(--accent-red)/0.5)] bg-[hsl(45_36%_97%)] text-[hsl(var(--accent-red))] shrink-0 group-hover:bg-[hsl(var(--accent-red))] group-hover:text-[hsl(40_45%_10%)] transition-colors">
                           <Icon className="w-4 h-4" />
                         </div>
                         <div className="min-w-0 flex-1">

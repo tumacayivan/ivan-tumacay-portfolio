@@ -30,7 +30,7 @@ const ServicesSection = () => {
       <div className="absolute inset-0 tactical-grid opacity-[0.5] pointer-events-none" />
       <div className="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden">
         <div className="watermark text-[22vw] leading-none rotate-[-4deg]">
-          OPERATIONS
+          THE FLOOR
         </div>
       </div>
 
@@ -45,24 +45,24 @@ const ServicesSection = () => {
           <div className="flex items-center justify-between mb-4 pb-3 border-b border-[hsl(var(--accent-red)/0.4)]">
             <div className="section-eyebrow">
               <span className="status-pulse" />
-              SECTION 03 // TACTICAL OPERATIONS BOARD
+              SECTION 03 // THE TRADING FLOOR
             </div>
             <span className="font-courier text-[12px] text-[hsl(var(--accent-red))] tracking-[0.3em] hidden sm:inline">
-              {services.length} CAPABILITIES LOGGED
+              {services.length} SERVICES ON OFFER
             </span>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-6 items-end">
             <div>
               <p className="font-courier text-[12px] tracking-[0.4em] text-[hsl(var(--accent-red))] mb-3 uppercase">
-                Expertise · Operational Capabilities
+                Expertise · The Product Sheet
               </p>
               <h2 className="display-title text-6xl sm:text-8xl md:text-9xl uppercase">
                 WHAT I <span className="accent">OFFER</span>
               </h2>
             </div>
             <div className="paper-card-cream p-5 relative">
-              <div className="absolute -top-3 left-4 stamp stamp-black !text-[12px] !p-1 !rotate-0 bg-[hsl(var(--paper))]">FIELD BRIEFING</div>
+              <div className="absolute -top-3 left-4 stamp stamp-black !text-[12px] !p-1 !rotate-0 bg-[hsl(var(--paper))]">THE MENU</div>
               <p className="font-typewriter text-lg sm:text-xl text-[hsl(var(--ink-charcoal))] leading-relaxed mt-2">
                 Comprehensive{" "}
                 <span className="font-bold text-[hsl(var(--accent-bone))] underline decoration-[hsl(var(--accent-red))] underline-offset-4">virtual assistant</span>,{" "}
@@ -80,8 +80,8 @@ const ServicesSection = () => {
         </div>
 
         <div className="mt-10 flex flex-wrap items-center justify-between gap-3 font-courier text-[11px] text-[hsl(var(--ink-brown))] tracking-[0.3em] border-t border-[hsl(var(--accent-red)/0.3)] pt-3 uppercase">
-          <span><span className="text-[hsl(var(--accent-red))]">◉</span> BOARD UPDATED · ALL ASSETS VERIFIED</span>
-          <span>OPERATIONS DIRECTORATE / IT</span>
+          <span><span className="text-[hsl(var(--accent-red))]">◉</span> FLOOR UPDATED · EVERY SERVICE LIVE</span>
+          <span>SALES DESK / IVT</span>
         </div>
       </div>
     </section>

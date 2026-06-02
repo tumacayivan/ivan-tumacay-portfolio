@@ -26,11 +26,11 @@ const ServiceCard = ({ title, description, services, icon: Icon, tools, index }:
         <div className="tape w-12 h-3 -top-1.5 left-4 rotate-[-3deg]" />
 
         <span className="absolute top-2 right-3 font-courier text-[11px] tracking-[0.3em] text-[hsl(var(--accent-red))]">
-          OP·{String(index + 1).padStart(3, "0")}
+          DESK·{String(index + 1).padStart(3, "0")}
         </span>
 
         <div className="flex items-start gap-3 mb-4 border-b border-dashed-ink pb-3">
-          <div className="p-2.5 border border-[hsl(var(--accent-red)/0.5)] bg-[hsl(0_0%_5%)] text-[hsl(var(--accent-red))] shrink-0 group-hover:bg-[hsl(var(--accent-red))] group-hover:text-[hsl(40_22%_96%)] transition-colors">
+          <div className="p-2.5 border border-[hsl(var(--accent-red)/0.5)] bg-[hsl(45_36%_97%)] text-[hsl(var(--accent-red))] shrink-0 group-hover:bg-[hsl(var(--accent-red))] group-hover:text-[hsl(40_45%_10%)] transition-colors">
             <Icon className="w-5 h-5" />
           </div>
           <div className="min-w-0">
@@ -44,7 +44,7 @@ const ServiceCard = ({ title, description, services, icon: Icon, tools, index }:
         <div className="flex-1">
           <div className="font-blackops text-[13px] tracking-[0.3em] text-[hsl(var(--accent-red))] mb-2 uppercase flex items-center gap-2">
             <span className="h-[1px] w-4 bg-[hsl(var(--accent-red))]" />
-            VERIFIED CAPABILITIES
+            WHAT'S INCLUDED
           </div>
           <ul className="grid grid-cols-1 gap-1.5">
             {services.map((service) => (
@@ -71,8 +71,8 @@ const ServiceCard = ({ title, description, services, icon: Icon, tools, index }:
         )}
 
         <div className="mt-3 flex items-center justify-between font-courier text-[11px] tracking-[0.3em] text-[hsl(var(--ink-brown))] border-t border-[hsl(var(--ink-charcoal))]/15 pt-2 uppercase">
-          <span>◉ APPROVED FOR DEPLOYMENT</span>
-          <span className="text-[hsl(var(--accent-red))]">CLEARANCE OK</span>
+          <span>◉ READY TO CLOSE</span>
+          <span className="text-[hsl(var(--accent-red))]">SIGNED OFF</span>
         </div>
       </div>
     </motion.div>
