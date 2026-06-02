@@ -80,7 +80,7 @@ const Navbar = () => {
                 IVAN <span className="text-[hsl(var(--accent-red))]">TUMACAY</span>
               </span>
               <span className="hidden md:inline font-courier text-[10px] tracking-[0.32em] text-[hsl(var(--ink-brown))] mt-0.5">
-                THE WOLF · CLOSER OF DEALS
+                THE CLOSER · DEALS DONE RIGHT
               </span>
             </div>
           </a>

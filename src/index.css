@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Anton&family=JetBrains+Mono:wght@400;500;700&family=Special+Elite&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Cutive+Mono&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Anton&family=JetBrains+Mono:wght@400;500;700&family=Special+Elite&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Cutive+Mono&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,600&family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -199,7 +199,8 @@
      Body / data: Courier Prime, JetBrains Mono — surveillance terminal
      Handwritten: Special Elite — Professor's notebook
   */
-  .font-typewriter { font-family: 'Special Elite', 'Courier Prime', monospace; }
+  /* Body / editorial copy — clean premium sans (movie-poster modern) */
+  .font-typewriter { font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; letter-spacing: -0.005em; }
   .font-courier    { font-family: 'JetBrains Mono', 'Courier Prime', 'Cutive Mono', monospace; letter-spacing: -0.005em; }
   .font-cutive     { font-family: 'Cutive Mono', 'Courier Prime', monospace; }
   .font-stencil    { font-family: 'Oswald', 'Bebas Neue', sans-serif; font-weight: 600; letter-spacing: 0.08em; }
@@ -873,7 +874,7 @@
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: radial-gradient(circle at 35% 30%, hsl(var(--accent-red-bright)) 0%, hsl(var(--accent-red)) 60%, hsl(var(--accent-red-deep)) 100%);
+        background: radial-gradient(circle at 35% 30%, hsl(var(--accent-red-bright)) 0%, hsl(var(--accent-red)) 60%, hsl(var(--accent-red-deep)) 100%);
     box-shadow: 0 0 0 2px hsl(0 0% 0% / 0.55), 0 0 12px hsl(var(--accent-red) / 0.6);
   }
 }

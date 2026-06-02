@@ -42,7 +42,7 @@ const EducationSection = () => {
             SECTION 02 // THE CREDENTIALS
           </div>
           <p className="font-courier text-[12px] tracking-[0.4em] text-[hsl(var(--accent-red))] mb-2 uppercase">
-            Academic Records · Where the Wolf was trained
+            Academic Records · Where the Closer was trained
           </p>
           <h2 className="display-title text-6xl sm:text-8xl md:text-9xl uppercase">
             <span className="accent">EDUCATION</span>
@@ -123,4 +123,4 @@ const EducationSection = () => {
   );
 };
 
-export default EducationSection
+export default EducationSection;

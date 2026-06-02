@@ -15,8 +15,8 @@ export default {
     extend: {
       fontFamily: {
         heading: ['"Bebas Neue"', '"Anton"', '"Oswald"', "sans-serif"],
-        body: ['"JetBrains Mono"', '"Courier Prime"', "monospace"],
-        typewriter: ['"Special Elite"', '"Courier Prime"', "monospace"],
+        body: ['"Inter"', '"Helvetica Neue"', "Arial", "sans-serif"],
+        typewriter: ['"Inter"', '"Helvetica Neue"', "Arial", "sans-serif"],
         courier: ['"JetBrains Mono"', '"Courier Prime"', '"Cutive Mono"', "monospace"],
         cutive: ['"Cutive Mono"', '"Courier Prime"', "monospace"],
         stencil: ['"Oswald"', '"Bebas Neue"', "sans-serif"],

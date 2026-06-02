@@ -72,8 +72,8 @@ const HeroSection = () => {
             className="inline-block bg-[hsl(var(--accent-red-bright))] px-6 sm:px-10 py-4 sm:py-5 -rotate-1"
             style={{ boxShadow: "0 6px 0 hsl(40 62% 30% / 0.35), 0 26px 50px -18px hsl(45 80% 40% / 0.5)" }}
           >
-            <h1 className="font-display text-[16vw] sm:text-[12vw] md:text-[10.5vw] lg:text-[8.6vw] leading-[0.78] tracking-tight uppercase text-[hsl(40_45%_8%)]">
-              THE WOLF
+            <h1 className="font-display text-[14vw] sm:text-[10.5vw] md:text-[9vw] lg:text-[7.4vw] leading-[0.78] tracking-tight uppercase text-[hsl(40_45%_8%)]">
+              THE CLOSER
             </h1>
             <div className="font-display text-[5.4vw] sm:text-[4vw] md:text-[3.4vw] lg:text-[2.8vw] leading-none tracking-[0.04em] uppercase text-[hsl(40_45%_8%)] mt-0.5 sm:mt-1">
               OF THE PHILIPPINES
@@ -154,7 +154,7 @@ const HeroSection = () => {
               <div className="absolute left-1/2 -translate-x-1/2 bottom-6 z-10 flex items-stretch bg-[hsl(var(--accent-red-bright))] shadow-[0_6px_18px_-6px_hsl(45_80%_35%/0.6)] overflow-hidden -rotate-1">
                 <div className="bg-[hsl(40_30%_12%)] text-[hsl(45_96%_60%)] font-blackops text-[10px] sm:text-[11px] tracking-[0.28em] px-2 py-1 flex flex-col items-center justify-center leading-none">
                   <span>THE</span>
-                  <span className="opacity-80">WOLF</span>
+                  <span className="opacity-80">CLOSER</span>
                 </div>
                 <div className="flex flex-col leading-none px-3 py-1 justify-center font-courier text-[10px] sm:text-[11px] text-[hsl(40_45%_8%)] tracking-[0.18em] font-bold">
                   <span>TUMACAY, IVAN</span>

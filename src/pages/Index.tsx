@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import BackgroundMusic from "@/components/BackgroundMusic";
 import HeroSection from "@/components/HeroSection";
+import StockTicker from "@/components/StockTicker";
 import SubjectProfileSection from "@/components/SubjectProfileSection";
 import SkillsMarquee from "@/components/SkillsMarquee";
 import ServicesSection from "@/components/ServicesSection";
@@ -17,6 +18,7 @@ const Index = () => {
       <BackgroundMusic />
       <Navbar />
       <HeroSection />
+      <StockTicker />
       <SubjectProfileSection />
       <SkillsMarquee />
       <PortfolioSection />

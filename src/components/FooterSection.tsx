@@ -142,7 +142,7 @@ const FooterSection = () => {
 
         <div className="diag-stripes h-2 mt-0" />
         <div className="bg-[hsl(45_36%_97%)] text-[hsl(var(--accent-red))] font-blackops text-[12px] sm:text-sm tracking-[0.32em] py-2 px-4 text-center border-t border-[hsl(var(--accent-red)/0.3)]">
-          END OF PROSPECTUS · THE WOLF OF WALL STREET
+          END OF PROSPECTUS · THE CLOSER OF THE PHILIPPINES
         </div>
       </div>
     </section>
