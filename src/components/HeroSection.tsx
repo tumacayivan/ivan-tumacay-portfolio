@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
 import {
-  ArrowDown, Code2, Headphones, Globe, Palette, Bot, Megaphone, Star,
+  ArrowDown, ArrowUpRight, Code2, Headphones, Globe, Palette, Bot, Megaphone, Star, FileText,
 } from "lucide-react";
 import wolfPortrait from "@/assets/wolf-portrait-03.jpeg";
+
+const RESUME_URL = "https://drive.google.com/file/d/1N3YPZIZz6KYbY59ud0P5x2tHqC1TKQbW/view?usp=sharing";
 
 /* Decorative gold confetti — echoes the movie poster's falling foil. */
 const confetti = [
@@ -305,6 +307,29 @@ const HeroSection = () => {
                 </div>
               </div>
             </motion.div>
+
+            <motion.a
+              href={RESUME_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1.1 }}
+              className="group mt-3 flex items-center justify-between gap-3 border-2 border-[hsl(var(--accent-red))] bg-[hsl(45_40%_99%)] px-5 py-4 hover:bg-[hsl(var(--accent-red))] transition-colors"
+            >
+              <div className="flex items-center gap-3">
+                <FileText className="w-6 h-6 text-[hsl(var(--accent-red))] group-hover:text-[hsl(40_45%_10%)]" />
+                <div className="flex flex-col items-start leading-none">
+                  <span className="font-courier text-[11px] tracking-[0.32em] uppercase text-[hsl(var(--ink-brown))] group-hover:text-[hsl(40_45%_10%)]">
+                    THE FULL SCRIPT
+                  </span>
+                  <span className="font-blackops text-lg sm:text-xl tracking-[0.14em] uppercase text-[hsl(var(--ink-charcoal))] group-hover:text-[hsl(40_45%_10%)]">
+                    VIEW RÉSUMÉ
+                  </span>
+                </div>
+              </div>
+              <ArrowUpRight className="w-5 h-5 text-[hsl(var(--accent-red))] group-hover:text-[hsl(40_45%_10%)] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            </motion.a>
 
             <div className="mt-6 flex items-end justify-between gap-4">
               <div className="barcode h-10 w-40 sm:w-56" />

@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
-import { Menu, X, TrendingUp, Phone, DollarSign } from "lucide-react";
+import { Menu, X, TrendingUp, Phone, DollarSign, FileText } from "lucide-react";
 import { useState, useEffect } from "react";
+
+const RESUME_URL = "https://drive.google.com/file/d/1N3YPZIZz6KYbY59ud0P5x2tHqC1TKQbW/view?usp=sharing";
 
 const navItems = [
   { label: "Services", href: "#services", code: "SEC 03" },
@@ -100,8 +102,17 @@ const Navbar = () => {
               </a>
             ))}
             <a
+              href={RESUME_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative ml-3 inline-flex items-center gap-2 px-3 lg:px-4 py-2.5 border border-[hsl(var(--accent-red))] font-blackops text-[13px] text-[hsl(var(--ink-charcoal))] uppercase tracking-[0.18em] hover:bg-[hsl(var(--accent-red))] hover:text-[hsl(40_45%_10%)] transition-colors"
+            >
+              <FileText className="w-3.5 h-3.5 text-[hsl(var(--accent-red))] group-hover:text-[hsl(40_45%_10%)]" />
+              <span>RÉSUMÉ</span>
+            </a>
+            <a
               href="#contact"
-              className="dossier-cta ml-3 text-[13px] !py-2.5 !px-4"
+              className="dossier-cta ml-2 text-[13px] !py-2.5 !px-4"
             >
               <Phone className="w-3.5 h-3.5" />
               <span>RING THE BELL</span>
@@ -138,8 +149,18 @@ const Navbar = () => {
                 </a>
               ))}
               <a
+                href={RESUME_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 inline-flex items-center justify-center gap-2 border border-[hsl(var(--accent-red))] font-blackops text-sm uppercase tracking-[0.18em] text-[hsl(var(--ink-charcoal))] py-3 hover:bg-[hsl(var(--accent-red))] hover:text-[hsl(40_45%_10%)] transition-colors"
+                onClick={() => setMobileOpen(false)}
+              >
+                <FileText className="w-3.5 h-3.5" />
+                RÉSUMÉ
+              </a>
+              <a
                 href="#contact"
-                className="dossier-cta mt-2 justify-center text-sm"
+                className="dossier-cta justify-center text-sm"
                 onClick={() => setMobileOpen(false)}
               >
                 <Phone className="w-3.5 h-3.5" />

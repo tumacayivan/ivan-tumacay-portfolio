@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight, MapPin, Mail, Github, Radio, Lock } from "lucide-react";
+import { ArrowUpRight, MapPin, Mail, Github, Radio, Lock, FileText } from "lucide-react";
+
+const RESUME_URL = "https://drive.google.com/file/d/1N3YPZIZz6KYbY59ud0P5x2tHqC1TKQbW/view?usp=sharing";
 
 const personalInfo = [
   { icon: MapPin, label: "Location", value: "Philippines" },
@@ -55,14 +57,25 @@ const FooterSection = () => {
               Let's talk.
             </p>
 
-            <a
-              href="mailto:tumacayivan@gmail.com"
-              className="dossier-cta inline-flex group text-base sm:text-lg !py-4 !px-7"
-            >
-              <span className="status-pulse" />
-              <span>PICK UP THE PHONE</span>
-              <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-            </a>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <a
+                href="mailto:tumacayivan@gmail.com"
+                className="dossier-cta inline-flex group text-base sm:text-lg !py-4 !px-7"
+              >
+                <span className="status-pulse" />
+                <span>PICK UP THE PHONE</span>
+                <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </a>
+              <a
+                href={RESUME_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-2 border-2 border-[hsl(var(--accent-red))] bg-[hsl(45_36%_97%)] font-blackops text-base sm:text-lg uppercase tracking-[0.18em] text-[hsl(var(--ink-charcoal))] !py-4 !px-7 hover:bg-[hsl(var(--accent-red))] hover:text-[hsl(40_45%_10%)] transition-colors"
+              >
+                <FileText className="w-5 h-5 text-[hsl(var(--accent-red))] group-hover:text-[hsl(40_45%_10%)]" />
+                <span>VIEW RÉSUMÉ</span>
+              </a>
+            </div>
             <div className="mt-3 font-courier text-[11px] text-[hsl(var(--ink-brown))] tracking-[0.32em] uppercase">
               · DIRECT LINE · REPLY IMMEDIATE
             </div>
