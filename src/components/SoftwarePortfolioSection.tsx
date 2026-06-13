@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Code2, Globe, Smartphone, Zap, Folder, FileText, ExternalLink, MonitorPlay } from "lucide-react";
 import ivanTumacayGroup from "@/assets/ivan-tumacay-group-website.png";
+import ivanTumacayGroupTrading from "@/assets/ivan-tumacay-group-trading.png";
 import marketHacker1 from "@/assets/market-hacker-website1.png";
 import marketHacker2 from "@/assets/market-hacker-website2.png";
 import ivanSwarmAi from "@/assets/ivan-swarm-ai-website.png";
@@ -38,6 +39,14 @@ const liveSites: LiveSite[] = [
     image: ivanTumacayGroup,
     url: "https://ivan-tumacay-group.onrender.com/",
     stack: "React · Web · Corporate",
+  },
+  {
+    name: "Ivan Tumacay Group Trading",
+    tagline: "Proprietary Trading & Market Operations",
+    description: "Trading arm of the Ivan Tumacay Group, presenting market operations, strategy desks, and the firm's systematic approach to proprietary trading.",
+    image: ivanTumacayGroupTrading,
+    url: "https://ivan-tumacay-group-trading.onrender.com/",
+    stack: "React · Web · Trading",
   },
   {
     name: "Market Hacker",
