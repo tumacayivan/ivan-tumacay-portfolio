@@ -1,0 +1,17 @@
+# Render Blueprint — deploys the portfolio as a Node web service that both
+# serves the built Vite site and runs the /api/notify Telegram backend.
+#
+# In the Render dashboard, set the secret env vars (they are intentionally
+# NOT stored here): TELEGRAM_BOT_TOKEN and TELEGRAM_CHANNEL.
+services:
+  - type: web
+    name: ivan-tumacay-portfolio
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TELEGRAM_CHANNEL
+        sync: false

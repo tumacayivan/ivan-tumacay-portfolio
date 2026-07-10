@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { notifyVisit } from "@/lib/notify";
 import Navbar from "@/components/Navbar";
 import BackgroundMusic from "@/components/BackgroundMusic";
 import HeroSection from "@/components/HeroSection";
@@ -12,6 +14,10 @@ import WhySection from "@/components/WhySection";
 import FooterSection from "@/components/FooterSection";
 
 const Index = () => {
+  useEffect(() => {
+    notifyVisit();
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       <BackgroundMusic />

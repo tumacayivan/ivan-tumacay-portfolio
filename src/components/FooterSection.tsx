@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, MapPin, Mail, Github, Radio, Lock, FileText, Send, MessageCircle } from "lucide-react";
+import ContactForm from "@/components/ContactForm";
 
 const personalInfo = [
   { icon: MapPin, label: "Location", value: "Philippines" },
@@ -80,6 +81,15 @@ const FooterSection = () => {
             <div className="mt-3 font-courier text-[11px] text-[hsl(var(--ink-brown))] tracking-[0.32em] uppercase">
               · TRANSMISSION ENCRYPTED · ETA IMMEDIATE
             </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <ContactForm />
           </motion.div>
 
           <motion.div
