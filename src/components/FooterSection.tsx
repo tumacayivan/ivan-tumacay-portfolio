@@ -1,10 +1,12 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight, MapPin, Mail, Github, Radio, Lock, FileText } from "lucide-react";
+import { ArrowUpRight, MapPin, Mail, Github, Radio, Lock, FileText, Send, MessageCircle } from "lucide-react";
 
 const personalInfo = [
   { icon: MapPin, label: "Location", value: "Philippines" },
   { icon: Mail, label: "Email", value: "tumacayivan@gmail.com", href: "mailto:tumacayivan@gmail.com" },
   { icon: Github, label: "GitHub", value: "github.com/tumacayivan", href: "https://github.com/tumacayivan" },
+  { icon: Send, label: "Telegram", value: "t.me/tumacaygroup", href: "https://t.me/tumacaygroup" },
+  { icon: MessageCircle, label: "WhatsApp & Viber", value: "+63 991 686 8942", href: "https://wa.me/639916868942" },
 ];
 
 const FooterSection = () => {
