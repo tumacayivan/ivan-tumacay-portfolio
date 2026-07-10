@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import {
   ArrowDown, Code2, Headphones, Globe, Palette, Bot, Megaphone,
+  FileText, ExternalLink,
 } from "lucide-react";
 import johnDoeAvatar from "@/assets/john-doe-avatar.png";
 
@@ -351,6 +352,30 @@ const HeroSection = () => {
                 </div>
               </div>
             </motion.div>
+
+            {/* Resume — declassified dossier document */}
+            <motion.a
+              href="/Ivan-Tumacay-Portfolio.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1.1 }}
+              className="dossier-cta-ghost justify-between !py-4 mt-3 group"
+            >
+              <div className="flex items-center gap-3">
+                <FileText className="w-5 h-5 text-[hsl(var(--accent-red))]" />
+                <div className="flex flex-col items-start leading-none gap-1">
+                  <span className="font-courier text-[10px] tracking-[0.32em] opacity-80">
+                    DECLASSIFIED DOCUMENT · PDF
+                  </span>
+                  <span className="font-blackops text-lg sm:text-xl tracking-[0.14em]">
+                    VIEW MY RESUME
+                  </span>
+                </div>
+              </div>
+              <ExternalLink className="w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity" />
+            </motion.a>
 
             <div className="mt-6 flex items-end justify-between gap-4">
               <div className="barcode h-10 w-40 sm:w-56" />

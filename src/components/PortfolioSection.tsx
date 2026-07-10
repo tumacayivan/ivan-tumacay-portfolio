@@ -568,13 +568,13 @@ const Lightbox = ({
 
           {isVideo && item.embedUrl ? (
             <motion.div key={item.fileId} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.3 }}
-              className="w-full max-w-6xl aspect-video border-2 border-[hsl(var(--accent-red)/0.5)] overflow-hidden bg-black">
+              className="w-[min(90vw,calc(70vh*16/9))] aspect-video border-2 border-[hsl(var(--accent-red)/0.5)] overflow-hidden bg-black">
               <iframe src={item.embedUrl} className="w-full h-full" allow="autoplay; encrypted-media" allowFullScreen title={item.title} />
             </motion.div>
           ) : (
             <motion.img key={item.src} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.3 }}
               src={item.src} alt={item.title}
-              className="max-w-full max-h-[68vh] object-contain border-2 border-[hsl(var(--accent-red)/0.5)]"
+              className="w-auto max-w-[88vw] max-h-[74vh] object-contain border-2 border-[hsl(var(--accent-red)/0.5)]"
               onError={(e) => { (e.target as HTMLImageElement).src = item.thumbnail; }} />
           )}
         </div>

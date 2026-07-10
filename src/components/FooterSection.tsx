@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight, MapPin, Mail, Github, Radio, Lock } from "lucide-react";
+import { ArrowUpRight, MapPin, Mail, Github, Radio, Lock, FileText } from "lucide-react";
 
 const personalInfo = [
   { icon: MapPin, label: "Location", value: "Philippines" },
@@ -55,14 +55,26 @@ const FooterSection = () => {
               Let's talk.
             </p>
 
-            <a
-              href="mailto:tumacayivan@gmail.com"
-              className="dossier-cta inline-flex group text-base sm:text-lg !py-4 !px-7"
-            >
-              <span className="status-pulse" />
-              <span>INITIATE SECURE CONTACT</span>
-              <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-            </a>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <a
+                href="mailto:tumacayivan@gmail.com"
+                className="dossier-cta inline-flex group text-base sm:text-lg !py-4 !px-7"
+              >
+                <span className="status-pulse" />
+                <span>INITIATE SECURE CONTACT</span>
+                <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </a>
+              <a
+                href="/Ivan-Tumacay-Portfolio.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="dossier-cta-ghost inline-flex group text-base sm:text-lg !py-4 !px-7"
+              >
+                <FileText className="w-5 h-5" />
+                <span>VIEW RESUME</span>
+                <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </a>
+            </div>
             <div className="mt-3 font-courier text-[11px] text-[hsl(var(--ink-brown))] tracking-[0.32em] uppercase">
               · TRANSMISSION ENCRYPTED · ETA IMMEDIATE
             </div>

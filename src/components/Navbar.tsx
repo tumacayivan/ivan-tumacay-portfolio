@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Menu, X, Radio, Lock, Crosshair } from "lucide-react";
+import { Menu, X, Radio, Lock, Crosshair, FileText } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const navItems = [
@@ -100,8 +100,17 @@ const Navbar = () => {
               </a>
             ))}
             <a
+              href="/Ivan-Tumacay-Portfolio.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="dossier-cta-ghost ml-3 text-[13px] !py-2.5 !px-4"
+            >
+              <FileText className="w-3.5 h-3.5" />
+              <span>RESUME</span>
+            </a>
+            <a
               href="#contact"
-              className="dossier-cta ml-3 text-[13px] !py-2.5 !px-4"
+              className="dossier-cta ml-2 text-[13px] !py-2.5 !px-4"
             >
               <Lock className="w-3.5 h-3.5" />
               <span>INITIATE CONTACT</span>
@@ -144,6 +153,16 @@ const Navbar = () => {
               >
                 <Lock className="w-3.5 h-3.5" />
                 INITIATE CONTACT
+              </a>
+              <a
+                href="/Ivan-Tumacay-Portfolio.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="dossier-cta-ghost justify-center text-sm"
+                onClick={() => setMobileOpen(false)}
+              >
+                <FileText className="w-3.5 h-3.5" />
+                VIEW RESUME
               </a>
             </div>
           </motion.div>
