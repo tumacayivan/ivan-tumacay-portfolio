@@ -104,27 +104,26 @@ async function sendTelegram(text) {
 function fmtGeo(geo, ip) {
   if (!geo) {
     return [
-      `🌐 <b>IP:</b> <code>${esc(ip || "unknown")}</code>`,
-      `📍 <b>Location:</b> Local / private network (no geo)`,
+      `<b>IP Address:</b> <code>${esc(ip || "unknown")}</code>`,
+      `<b>Location:</b> Local / private network (no geolocation data)`,
     ].join("\n");
   }
-  const flag = geo.flag?.emoji ? ` ${geo.flag.emoji}` : "";
   const loc = [geo.city, geo.region, geo.country].filter(Boolean).join(", ");
   const lat = geo.latitude;
   const lon = geo.longitude;
   const conn = geo.connection || {};
   const lines = [
-    `🌐 <b>IP:</b> <code>${esc(ip)}</code>`,
-    `📍 <b>Location:</b> ${esc(loc || "?")}${flag}`,
-    geo.postal ? `📮 <b>Postal:</b> ${esc(geo.postal)}` : null,
-    conn.isp ? `📡 <b>ISP:</b> ${esc(conn.isp)}` : null,
-    conn.org && conn.org !== conn.isp ? `🏢 <b>Org:</b> ${esc(conn.org)}` : null,
-    conn.asn ? `🔢 <b>ASN:</b> ${esc(conn.asn)}` : null,
+    `<b>IP Address:</b> <code>${esc(ip)}</code>`,
+    `<b>Location:</b> ${esc(loc || "Unknown")}`,
+    geo.postal ? `<b>Postal Code:</b> ${esc(geo.postal)}` : null,
+    conn.isp ? `<b>ISP:</b> ${esc(conn.isp)}` : null,
+    conn.org && conn.org !== conn.isp ? `<b>Organization:</b> ${esc(conn.org)}` : null,
+    conn.asn ? `<b>ASN:</b> ${esc(conn.asn)}` : null,
     geo.timezone?.id
-      ? `🕰 <b>Timezone:</b> ${esc(geo.timezone.id)}${geo.timezone.utc ? ` (UTC ${esc(geo.timezone.utc)})` : ""}`
+      ? `<b>Timezone:</b> ${esc(geo.timezone.id)}${geo.timezone.utc ? ` (UTC ${esc(geo.timezone.utc)})` : ""}`
       : null,
     lat != null && lon != null
-      ? `🧭 <b>Coords:</b> <a href="https://maps.google.com/?q=${lat},${lon}">${lat}, ${lon}</a>`
+      ? `<b>Coordinates:</b> <a href="https://maps.google.com/?q=${lat},${lon}">${lat}, ${lon}</a>`
       : null,
   ].filter(Boolean);
   return lines.join("\n");
@@ -132,13 +131,13 @@ function fmtGeo(geo, ip) {
 
 function fmtClient(c = {}) {
   return [
-    c.page ? `🔗 <b>Page:</b> ${esc(c.page)}` : null,
-    c.referrer ? `↩️ <b>Referrer:</b> ${esc(c.referrer)}` : null,
-    c.userAgent ? `💻 <b>Device:</b> ${esc(c.userAgent)}` : null,
-    c.platform ? `🖥 <b>Platform:</b> ${esc(c.platform)}` : null,
-    c.screen ? `📐 <b>Screen:</b> ${esc(c.screen)}${c.viewport ? ` · vp ${esc(c.viewport)}` : ""}` : null,
-    c.language ? `🗣 <b>Language:</b> ${esc(c.language)}` : null,
-    c.tz ? `🌍 <b>Browser TZ:</b> ${esc(c.tz)}` : null,
+    c.page ? `<b>Page:</b> ${esc(c.page)}` : null,
+    c.referrer ? `<b>Referrer:</b> ${esc(c.referrer)}` : null,
+    c.userAgent ? `<b>Device / Browser:</b> ${esc(c.userAgent)}` : null,
+    c.platform ? `<b>Platform:</b> ${esc(c.platform)}` : null,
+    c.screen ? `<b>Screen:</b> ${esc(c.screen)}${c.viewport ? ` (viewport ${esc(c.viewport)})` : ""}` : null,
+    c.language ? `<b>Language:</b> ${esc(c.language)}` : null,
+    c.tz ? `<b>Browser Timezone:</b> ${esc(c.tz)}` : null,
   ]
     .filter(Boolean)
     .join("\n");
@@ -183,35 +182,37 @@ app.post("/api/notify", async (req, res) => {
       const message = esc(body.message).slice(0, 3000);
 
       text = [
-        `📨 <b>NEW INQUIRY</b>`,
-        `━━━━━━━━━━━━━━`,
-        `👤 <b>Name:</b> ${name || "—"}`,
-        `✉️ <b>Email:</b> ${email || "—"}`,
-        company ? `🏢 <b>Company:</b> ${company}` : null,
-        kind ? `🏷 <b>Type:</b> ${kind}` : null,
-        budget ? `💰 <b>Budget:</b> ${budget}` : null,
+        `<b>NEW INQUIRY</b>`,
+        `Portfolio contact form`,
+        `——————————————————`,
+        `<b>Name:</b> ${name || "N/A"}`,
+        `<b>Email:</b> ${email || "N/A"}`,
+        company ? `<b>Company:</b> ${company}` : null,
+        kind ? `<b>Inquiry Type:</b> ${kind}` : null,
+        budget ? `<b>Budget / Timeline:</b> ${budget}` : null,
         ``,
-        `📝 <b>Message:</b>`,
-        message || "—",
+        `<b>Message:</b>`,
+        message || "N/A",
         ``,
-        `━━━ sender context ━━━`,
+        `<b>Sender Details</b>`,
         fmtGeo(geo, ip),
         fmtClient(body.client),
-        `🕒 <b>Time:</b> ${esc(when)}`,
+        `<b>Received:</b> ${esc(when)}`,
       ]
         .filter((l) => l !== null)
         .join("\n");
     } else {
       const returning = Boolean(body.returning);
-      const head = returning ? "🔵 <b>RETURNING VISITOR</b>" : "🟢 <b>NEW VISITOR</b>";
+      const head = returning ? "<b>RETURNING VISITOR</b>" : "<b>NEW VISITOR</b>";
       text = [
         head,
-        `━━━━━━━━━━━━━━`,
+        `Portfolio website`,
+        `——————————————————`,
         fmtGeo(geo, ip),
         fmtClient(body.client),
-        body.visitCount ? `🔁 <b>Visit #:</b> ${esc(body.visitCount)}` : null,
-        body.firstSeen ? `📅 <b>First seen:</b> ${esc(body.firstSeen)}` : null,
-        `🕒 <b>Time:</b> ${esc(when)}`,
+        body.visitCount ? `<b>Total Visits:</b> ${esc(body.visitCount)}` : null,
+        body.firstSeen ? `<b>First Seen:</b> ${esc(body.firstSeen)}` : null,
+        `<b>Recorded:</b> ${esc(when)}`,
       ]
         .filter((l) => l !== null)
         .join("\n");
