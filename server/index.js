@@ -14,16 +14,35 @@
  */
 import express from "express";
 import path from "path";
+import fs from "fs";
 import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const CHANNEL = process.env.TELEGRAM_CHANNEL;
+// Comma-separated list of allowed origins for cross-origin calls (Option B:
+// static site + separate backend). Defaults to "*" so it also works same-origin.
+const ALLOWED_ORIGIN = process.env.ALLOWED_ORIGIN || "*";
 
 const app = express();
 app.set("trust proxy", true); // Render sits behind a proxy; read real IP from XFF
 app.use(express.json({ limit: "16kb" }));
+
+// CORS — lets the static site (a different origin) call this backend
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  if (ALLOWED_ORIGIN === "*") {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+  } else if (origin && ALLOWED_ORIGIN.split(",").map((s) => s.trim()).includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+    res.setHeader("Vary", "Origin");
+  }
+  res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  if (req.method === "OPTIONS") return res.sendStatus(204);
+  next();
+});
 
 /* ---------------- helpers ---------------- */
 
@@ -226,14 +245,24 @@ app.post("/api/notify", async (req, res) => {
   }
 });
 
-/* ---------------- static site ---------------- */
+/* ---------------- static site (optional) ---------------- */
 
+// If a built frontend exists (all-in-one Web Service = Option A), serve it.
+// If not (backend-only Web Service = Option B), just expose the API.
 const distDir = path.join(__dirname, "..", "dist");
-app.use(express.static(distDir));
-// SPA fallback for any non-API GET
-app.get(/^(?!\/api\/).*/, (_req, res) => {
-  res.sendFile(path.join(distDir, "index.html"));
-});
+const hasDist = fs.existsSync(path.join(distDir, "index.html"));
+
+if (hasDist) {
+  app.use(express.static(distDir));
+  // SPA fallback for any non-API GET
+  app.get(/^(?!\/api\/).*/, (_req, res) => {
+    res.sendFile(path.join(distDir, "index.html"));
+  });
+} else {
+  app.get("/", (_req, res) => {
+    res.json({ ok: true, service: "telegram-notify-backend" });
+  });
+}
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {

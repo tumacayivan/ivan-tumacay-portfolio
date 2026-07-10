@@ -2,9 +2,16 @@
  * Client helpers that report visitor + inquiry events to the backend
  * (POST /api/notify), which forwards them to Telegram. No secrets here —
  * the bot token lives only on the server.
+ *
+ * API base:
+ *  - Same-origin (backend serves the site): leave VITE_API_BASE unset → "/api/notify".
+ *  - Separate backend service (static site + backend Web Service): set
+ *    VITE_API_BASE=https://your-backend.onrender.com at build time.
  */
 
-const ENDPOINT = "/api/notify";
+const env = import.meta.env as Record<string, string | undefined>;
+const API_BASE = (env.VITE_API_BASE || "").replace(/\/+$/, "");
+const ENDPOINT = `${API_BASE}/api/notify`;
 
 function collectClient() {
   const scr = typeof window !== "undefined" ? window.screen : undefined;
