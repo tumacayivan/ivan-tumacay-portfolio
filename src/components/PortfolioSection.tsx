@@ -47,100 +47,6 @@ const graphicItems = [
   createItem("1j0GnAG0c4C3IE74fV5QO1iQEFbI2_6rl", "Graphic Design 4", "https://drive.google.com/file/d/1j0GnAG0c4C3IE74fV5QO1iQEFbI2_6rl/view?usp=drive_link", "image"),
 ];
 
-const adEditsItems = [
-  createItem("1dKJvM_r5MEdHgpuu81y1VXRAKWi2hNWk", "Ad Edit 1", "https://drive.google.com/file/d/1dKJvM_r5MEdHgpuu81y1VXRAKWi2hNWk/view?usp=drive_link", "video"),
-  createItem("1mBv75WOUJjVgLFUafp7gHlhjzWYpW3VR", "Ad Edit 2", "https://drive.google.com/file/d/1mBv75WOUJjVgLFUafp7gHlhjzWYpW3VR/view?usp=drive_link", "video"),
-  createItem("1YnCvxFh-5jdXr1ZcsmmxDoYXP2c5RFd2", "Ad Edit 3", "https://drive.google.com/file/d/1YnCvxFh-5jdXr1ZcsmmxDoYXP2c5RFd2/view?usp=drive_link", "video"),
-  createItem("18zp1mzFhnez85z6mmFDAdvjQuBgW01oI", "Ad Edit 4", "https://drive.google.com/file/d/18zp1mzFhnez85z6mmFDAdvjQuBgW01oI/view?usp=drive_link", "video"),
-  createItem("1_A6IhHdfnzdu2PVewoi5ZOmUSwe2vAR3", "Ad Edit 5", "https://drive.google.com/file/d/1_A6IhHdfnzdu2PVewoi5ZOmUSwe2vAR3/view?usp=drive_link", "video"),
-  createItem("1fE-9Hh_K17V2iPpaBINvz57ZtOYq_4Y-", "Ad Edit 6", "https://drive.google.com/file/d/1fE-9Hh_K17V2iPpaBINvz57ZtOYq_4Y-/view?usp=drive_link", "video"),
-];
-
-const aiVideosBaseItems = [
-  createItem("1Q9pgVMD8RiNDL9zyoOEW0kcHgOdoNW5F", "AI Showcase 1", "https://drive.google.com/file/d/1Q9pgVMD8RiNDL9zyoOEW0kcHgOdoNW5F/view?usp=drive_link", "video"),
-  createItem("1-Is5dnzrUG6-DZyjYQpXZuuixfJ52b3a", "AI Showcase 2", "https://drive.google.com/file/d/1-Is5dnzrUG6-DZyjYQpXZuuixfJ52b3a/view?usp=drive_link", "video"),
-  createItem("1if7K64dndKsjgCz2QFdPQB0c-PqDlm0y", "AI Showcase 3", "https://drive.google.com/file/d/1if7K64dndKsjgCz2QFdPQB0c-PqDlm0y/view?usp=drive_link", "video"),
-  createItem("1olt17wzcihPHojy1IoNZmwHV4DYqJgqZ", "AI Showcase 4", "https://drive.google.com/file/d/1olt17wzcihPHojy1IoNZmwHV4DYqJgqZ/view?usp=drive_link", "video"),
-  createItem("1AXFy158z3vNRFKAwKPQQ2OVEIDIRVNgx", "AI Showcase 5", "https://drive.google.com/file/d/1AXFy158z3vNRFKAwKPQQ2OVEIDIRVNgx/view?usp=drive_link", "video"),
-  createItem("1spNPNu6P1bme_luNy_DGCmi0V9OHDEh8", "AI Showcase 6", "https://drive.google.com/file/d/1spNPNu6P1bme_luNy_DGCmi0V9OHDEh8/view?usp=drive_link", "video"),
-];
-
-const digitalProductsItems = [
-  createItem("1T_8c_1fR7jQkVMP9exqp3jUOd4TFCZhE", "Digital Product 1", "https://drive.google.com/file/d/1T_8c_1fR7jQkVMP9exqp3jUOd4TFCZhE/view?usp=drive_link", "video"),
-  createItem("1uk9gVk9uRiGXdb7vjmMxxN0aYYLFRMYc", "Digital Product 2", "https://drive.google.com/file/d/1uk9gVk9uRiGXdb7vjmMxxN0aYYLFRMYc/view?usp=drive_link", "video"),
-  createItem("1TFTyRcOIYxiJRSWrROY6u2IxOeuHq29_", "Digital Product 3", "https://drive.google.com/file/d/1TFTyRcOIYxiJRSWrROY6u2IxOeuHq29_/view?usp=drive_link", "video"),
-  createItem("1YQ8eh_BhsPc2oi2TgA6EnwPYM5mAX-jO", "Digital Product 4", "https://drive.google.com/file/d/1YQ8eh_BhsPc2oi2TgA6EnwPYM5mAX-jO/view?usp=drive_link", "video"),
-  createItem("14caIZ0fmMDS9XpLWRggyRketkvjKou59", "Digital Product 5", "https://drive.google.com/file/d/14caIZ0fmMDS9XpLWRggyRketkvjKou59/view?usp=drive_link", "video"),
-];
-
-const montageVideosItems = [
-  createItem("12N4fPIdf3BLeZR9qD7zDi-Hqo3IneniQ", "Montage Video 1", "https://drive.google.com/file/d/12N4fPIdf3BLeZR9qD7zDi-Hqo3IneniQ/view?usp=drive_link", "video"),
-  createItem("1piUzDzLFvZmI0lkQgdT5HIja_LZ0fSQl", "Montage Video 2", "https://drive.google.com/file/d/1piUzDzLFvZmI0lkQgdT5HIja_LZ0fSQl/view?usp=drive_link", "video"),
-  createItem("17DRQ6UweLA3nIErnCqBdYDtu1ALmnCUp", "Montage Video 3", "https://drive.google.com/file/d/17DRQ6UweLA3nIErnCqBdYDtu1ALmnCUp/view?usp=drive_link", "video"),
-  createItem("1eVm3Q4uyWICtMHIJ91nbJF2W9iKt4bNw", "Montage Video 4", "https://drive.google.com/file/d/1eVm3Q4uyWICtMHIJ91nbJF2W9iKt4bNw/view?usp=drive_link", "video"),
-  createItem("1Got-KF4dRvipGodo9kvvLVeO6jWcxMoI", "Montage Video 5", "https://drive.google.com/file/d/1Got-KF4dRvipGodo9kvvLVeO6jWcxMoI/view?usp=drive_link", "video"),
-];
-
-const movieEditsItems = [
-  createItem("1yR-kT3RT31pfwW7hz-XPYJweoxnSIUED", "Movie Edit 1", "https://drive.google.com/file/d/1yR-kT3RT31pfwW7hz-XPYJweoxnSIUED/view?usp=drive_link", "video"),
-  createItem("16M9BFNmDUYVoihwEFqF5AbbLxdlaCpl9", "Movie Edit 2", "https://drive.google.com/file/d/16M9BFNmDUYVoihwEFqF5AbbLxdlaCpl9/view?usp=drive_link", "video"),
-  createItem("1ImuY-_ASH31xbjuCJ-I7i_IE88PxvHH-", "Movie Edit 3", "https://drive.google.com/file/d/1ImuY-_ASH31xbjuCJ-I7i_IE88PxvHH-/view?usp=drive_link", "video"),
-  createItem("1wiy_eFS2uiRqBZn7MbbW2ZFHjFXsJbpx", "Movie Edit 4", "https://drive.google.com/file/d/1wiy_eFS2uiRqBZn7MbbW2ZFHjFXsJbpx/view?usp=drive_link", "video"),
-  createItem("1GC2sdSQg7QUNXHEq8LxA0zgu5l2hjMT2", "Movie Edit 5", "https://drive.google.com/file/d/1GC2sdSQg7QUNXHEq8LxA0zgu5l2hjMT2/view?usp=drive_link", "video"),
-];
-
-const musicVideosItems = [
-  createItem("1YaGkUQ6wGJ3zRihCcLl4J41zy1w3jPoL", "Music Video 1", "https://drive.google.com/file/d/1YaGkUQ6wGJ3zRihCcLl4J41zy1w3jPoL/view?usp=drive_link", "video"),
-  createItem("1hk1yz5tX9RBAzCfqmBPlBuY8QLFdrfYE", "Music Video 2", "https://drive.google.com/file/d/1hk1yz5tX9RBAzCfqmBPlBuY8QLFdrfYE/view?usp=drive_link", "video"),
-  createItem("1zJPCdpuCXlnnP8epcX40ogGtaevEEbAk", "Music Video 3", "https://drive.google.com/file/d/1zJPCdpuCXlnnP8epcX40ogGtaevEEbAk/view?usp=drive_link", "video"),
-  createItem("1LB2F0ny3nN3vwr9VgGan8EDlGSNyCjvQ", "Music Video 4", "https://drive.google.com/file/d/1LB2F0ny3nN3vwr9VgGan8EDlGSNyCjvQ/view?usp=drive_link", "video"),
-  createItem("1RHsdRy9-_ni6Ut1Z-c02Ac7-4YO1cun7", "Music Video 5", "https://drive.google.com/file/d/1RHsdRy9-_ni6Ut1Z-c02Ac7-4YO1cun7/view?usp=drive_link", "video"),
-  createItem("1mbaghd04NZPsZzfTHIkxvRgMf2IeRpGa", "Music Video 6", "https://drive.google.com/file/d/1mbaghd04NZPsZzfTHIkxvRgMf2IeRpGa/view?usp=drive_link", "video"),
-];
-
-const podcastBaseItems = [
-  createItem("1Z1SdN7ohl88Az4YxifXOa9mcEmtu0au8", "Long Form 1", "https://drive.google.com/file/d/1Z1SdN7ohl88Az4YxifXOa9mcEmtu0au8/view?usp=drive_link", "video"),
-  createItem("1inAXqwnLFXNmhQ6WUpdgJtoYz0VZZUDH", "Long Form 2", "https://drive.google.com/file/d/1inAXqwnLFXNmhQ6WUpdgJtoYz0VZZUDH/view?usp=drive_link", "video"),
-  createItem("1_pn7HONVKK55n8IODsm64I55J2sVognx", "Long Form 3", "https://drive.google.com/file/d/1_pn7HONVKK55n8IODsm64I55J2sVognx/view?usp=drive_link", "video"),
-  createItem("1096Ce1u_COaqtOWxOqwUCPuVBwL2E1i8", "Long Form 4", "https://drive.google.com/file/d/1096Ce1u_COaqtOWxOqwUCPuVBwL2E1i8/view?usp=drive_link", "video"),
-  createItem("13Yu-oZR61IEUWIBWtR6ETalRhqhhcB2-", "Long Form 5", "https://drive.google.com/file/d/13Yu-oZR61IEUWIBWtR6ETalRhqhhcB2-/view?usp=drive_link", "video"),
-];
-
-const realEstateItems = [
-  createItem("1ca_9p71UUIJZ8zwXGK05Dzah_jjye9Ex", "Real Estate 1", "https://drive.google.com/file/d/1ca_9p71UUIJZ8zwXGK05Dzah_jjye9Ex/view?usp=drive_link", "video"),
-  createItem("1AjBzuASxgtA2QkYtepWv0YtvZB-CUAY6", "Real Estate 2", "https://drive.google.com/file/d/1AjBzuASxgtA2QkYtepWv0YtvZB-CUAY6/view?usp=drive_link", "video"),
-  createItem("1ffgzogzd54XO2vBReXkPKNzgRKQ06ccB", "Real Estate 3", "https://drive.google.com/file/d/1ffgzogzd54XO2vBReXkPKNzgRKQ06ccB/view?usp=drive_link", "video"),
-  createItem("1vbLGL62ZrfK82EbkG9vrSMrzT_VQbChh", "Real Estate 4", "https://drive.google.com/file/d/1vbLGL62ZrfK82EbkG9vrSMrzT_VQbChh/view?usp=drive_link", "video"),
-  createItem("1n9YC16fe5bEKLRSIUahWZbmSzBc-1Uae", "Real Estate 5", "https://drive.google.com/file/d/1n9YC16fe5bEKLRSIUahWZbmSzBc-1Uae/view?usp=drive_link", "video"),
-  createItem("1mzXTzaSGpNO0-7hLXSh1x4eOrzXINkNL", "Real Estate 6", "https://drive.google.com/file/d/1mzXTzaSGpNO0-7hLXSh1x4eOrzXINkNL/view?usp=drive_link", "video"),
-];
-
-const reelsBaseItems = [
-  createItem("1eyxc-j7SmF_P69DL0oqcFxeCCqjPfscJ", "Reel/TikTok 1", "https://drive.google.com/file/d/1eyxc-j7SmF_P69DL0oqcFxeCCqjPfscJ/view?usp=sharing", "video"),
-  createItem("1nlx5VSGk7mUeX7YeHmPdDeTTPtLESi7F", "Reel/TikTok 2", "https://drive.google.com/file/d/1nlx5VSGk7mUeX7YeHmPdDeTTPtLESi7F/view?usp=drive_link", "video"),
-  createItem("17Ep5Ui7fjVt7n8ESuyvIjgk78rRrOOXc", "Reel/TikTok 3", "https://drive.google.com/file/d/17Ep5Ui7fjVt7n8ESuyvIjgk78rRrOOXc/view?usp=drive_link", "video"),
-  createItem("18ytVl-cjtw6B4xRxOdAh9mRRJ1OMmctG", "Reel/TikTok 4", "https://drive.google.com/file/d/18ytVl-cjtw6B4xRxOdAh9mRRJ1OMmctG/view?usp=drive_link", "video"),
-  createItem("19Q2bFWr_UBi1H4B7ACf3rLbOdleo6Q14", "Reel/TikTok 5", "https://drive.google.com/file/d/19Q2bFWr_UBi1H4B7ACf3rLbOdleo6Q14/view?usp=drive_link", "video"),
-  createItem("14kW8MlCCe9JRR9yxPOhnreeZVTbzweUM", "Reel/TikTok 6", "https://drive.google.com/file/d/14kW8MlCCe9JRR9yxPOhnreeZVTbzweUM/view?usp=drive_link", "video"),
-];
-
-const sportsHighlightsItems = [
-  createItem("1H2w3qtHauR1zN-nt4N_mqZcaC33nkBaq", "Sports/Highlights 1", "https://drive.google.com/file/d/1H2w3qtHauR1zN-nt4N_mqZcaC33nkBaq/view?usp=drive_link", "video"),
-  createItem("1F0CQT6RvmSfuhCXC-fIPtatTCQI_1pS5", "Sports/Highlights 2", "https://drive.google.com/file/d/1F0CQT6RvmSfuhCXC-fIPtatTCQI_1pS5/view?usp=drive_link", "video"),
-  createItem("136gM5511VQNTcgL_1_RYL2LuIipt-EN6", "Sports/Highlights 3", "https://drive.google.com/file/d/136gM5511VQNTcgL_1_RYL2LuIipt-EN6/view?usp=drive_link", "video"),
-  createItem("1J3m-u_NMVATKcdAu5FHhw5WbskyumEaS", "Sports/Highlights 4", "https://drive.google.com/file/d/1J3m-u_NMVATKcdAu5FHhw5WbskyumEaS/view?usp=drive_link", "video"),
-  createItem("14XnfXNfgYCbQeeU8ht-a_a0Rww5YkoXD", "Sports/Highlights 5", "https://drive.google.com/file/d/14XnfXNfgYCbQeeU8ht-a_a0Rww5YkoXD/view?usp=drive_link", "video"),
-  createItem("1Abi3ekD2RycaM7NbNOabQy_796Gxtb8m", "Sports/Highlights 6", "https://drive.google.com/file/d/1Abi3ekD2RycaM7NbNOabQy_796Gxtb8m/view?usp=drive_link", "video"),
-];
-
-const vlogsItems = [
-  createItem("1ghokM8kLonfohH5gezdFBDnRSfLGft4T", "Vlog 1", "https://drive.google.com/file/d/1ghokM8kLonfohH5gezdFBDnRSfLGft4T/view?usp=drive_link", "video"),
-  createItem("1_mmVVN9k3hAVUh4nHozWLux7Z6FgeKbr", "Vlog 2", "https://drive.google.com/file/d/1_mmVVN9k3hAVUh4nHozWLux7Z6FgeKbr/view?usp=drive_link", "video"),
-  createItem("1-dWkdFfQo3sjhqnUan-6aJGmLYTL3v5t", "Vlog 3", "https://drive.google.com/file/d/1-dWkdFfQo3sjhqnUan-6aJGmLYTL3v5t/view?usp=drive_link", "video"),
-  createItem("1f_w0sbqlcxm7MURvei4J2m0A4mVbNqwq", "Vlog 4", "https://drive.google.com/file/d/1f_w0sbqlcxm7MURvei4J2m0A4mVbNqwq/view?usp=drive_link", "video"),
-  createItem("1A_Oh9kC8HiZBzBT9iHJ2pOV2JA2GYxm8", "Vlog 5", "https://drive.google.com/file/d/1A_Oh9kC8HiZBzBT9iHJ2pOV2JA2GYxm8/view?usp=drive_link", "video"),
-];
-
 const aiVideosNewItems = [
   createItem("1IP0h6-CRkZhtphI3yeuFCthnfhFJB-vV", "AI Video 1", "https://drive.google.com/file/d/1IP0h6-CRkZhtphI3yeuFCthnfhFJB-vV/view?usp=drive_link", "video"),
   createItem("1cxLMuOVUEb5K72hleTM9zdxs-rgYI_-a", "AI Video 2", "https://drive.google.com/file/d/1cxLMuOVUEb5K72hleTM9zdxs-rgYI_-a/view?usp=drive_link", "video"),
@@ -484,9 +390,9 @@ const podcastYouTubeItems = [
   createYouTubeItem("xY0UnEpYC4A", "Podcast 33"),
 ];
 
-const aiVideosItems = [...aiVideosBaseItems, ...aiVideosNewItems];
-const reelsTikTokItems = [...reelsBaseItems, ...reelsNewItems];
-const podcastItems = [...podcastBaseItems, ...podcastDriveItems, ...podcastYouTubeItems];
+const aiVideosItems = aiVideosNewItems;
+const reelsTikTokItems = reelsNewItems;
+const podcastItems = [...podcastDriveItems, ...podcastYouTubeItems];
 
 const videoCategories = [
   { title: "AI Videos", items: aiVideosItems },
@@ -498,14 +404,6 @@ const videoCategories = [
   { title: "Captioned / Transcript Videos", items: captionsItems },
   { title: "Fast-Paced Videos", items: fastPacedItems },
   { title: "Long-Form / Podcast", items: podcastItems },
-  { title: "Ad Edits", items: adEditsItems },
-  { title: "Digital Products", items: digitalProductsItems },
-  { title: "Montage", items: montageVideosItems },
-  { title: "Movie Edits", items: movieEditsItems },
-  { title: "Music Videos", items: musicVideosItems },
-  { title: "Real Estate", items: realEstateItems },
-  { title: "Sports / Highlights", items: sportsHighlightsItems },
-  { title: "Vlogs", items: vlogsItems },
 ];
 
 const videoItems = videoCategories.flatMap((c) => c.items);

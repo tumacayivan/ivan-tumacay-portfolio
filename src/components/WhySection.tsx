@@ -22,7 +22,7 @@ const WhySection = () => {
     <section className="relative py-20 sm:py-28 overflow-hidden bg-[hsl(var(--paper))] border-t border-[hsl(var(--accent-red)/0.25)]">
       <div className="absolute inset-0 tactical-grid opacity-[0.45] pointer-events-none" />
       <div className="absolute inset-x-0 top-0 h-[400px] pointer-events-none"
-           style={{ background: "radial-gradient(ellipse at 50% 0%, hsl(358 60% 30% / 0.18) 0%, transparent 60%)" }} />
+           style={{ background: "radial-gradient(ellipse at 50% 0%, var(--wash-red) 0%, transparent 60%)" }} />
 
       <div className="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden">
         <div className="watermark text-[18vw] leading-none rotate-[-3deg]">
@@ -64,7 +64,7 @@ const WhySection = () => {
               BEYOND <span className="accent">EXPECTATIONS</span>
             </h2>
 
-            <div className="border-y border-[hsl(var(--accent-red)/0.5)] py-5 my-6 max-w-4xl relative bg-[hsl(0_0%_5%/0.4)] backdrop-blur-sm px-5">
+            <div className="border-y border-[hsl(var(--accent-red)/0.5)] py-5 my-6 max-w-4xl relative bg-[hsl(var(--surface-1)/0.4)] backdrop-blur-sm px-5">
               <div className="absolute top-0 left-0 w-1 h-full bg-[hsl(var(--accent-red))]" />
               <p className="font-typewriter text-lg sm:text-xl md:text-2xl text-[hsl(var(--ink-charcoal))] leading-relaxed">
                 <span className="font-blackops text-[hsl(var(--accent-red))] text-sm tracking-[0.3em]">ASSESSMENT //</span>{" "}
@@ -90,9 +90,9 @@ const WhySection = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: i * 0.06 }}
-                  className="flex items-center gap-3 px-4 py-3 bg-[hsl(0_0%_5%)] border border-[hsl(var(--accent-red)/0.45)] relative hover:border-[hsl(var(--accent-red))] hover:bg-[hsl(0_0%_7%)] transition-colors group"
+                  className="flex items-center gap-3 px-4 py-3 bg-[hsl(var(--surface-1))] border border-[hsl(var(--accent-red)/0.45)] relative hover:border-[hsl(var(--accent-red))] hover:bg-[hsl(var(--surface-2))] transition-colors group"
                 >
-                  <span className="absolute -top-2 -left-2 w-4 h-4 bg-[hsl(0_0%_5%)] border border-[hsl(var(--accent-red))] flex items-center justify-center font-courier text-[10px] text-[hsl(var(--accent-red))]">
+                  <span className="absolute -top-2 -left-2 w-4 h-4 bg-[hsl(var(--surface-1))] border border-[hsl(var(--accent-red))] flex items-center justify-center font-courier text-[10px] text-[hsl(var(--accent-red))]">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <Icon className="w-5 h-5 text-[hsl(var(--accent-red))] shrink-0 group-hover:text-[hsl(var(--accent-red-bright))]" />

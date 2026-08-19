@@ -14,7 +14,7 @@ const FooterSection = () => {
     <section id="contact" className="relative py-20 sm:py-28 overflow-hidden bg-[hsl(var(--paper))] border-t border-[hsl(var(--accent-red)/0.3)]">
       <div className="absolute inset-0 tactical-grid opacity-[0.55] pointer-events-none" />
       <div className="absolute inset-x-0 top-0 h-[420px] pointer-events-none"
-           style={{ background: "radial-gradient(ellipse at 50% 0%, hsl(358 70% 30% / 0.28) 0%, transparent 60%)" }} />
+           style={{ background: "radial-gradient(ellipse at 50% 0%, var(--wash-red) 0%, transparent 60%)" }} />
 
       <div className="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden">
         <div className="watermark text-[24vw] leading-none rotate-[-6deg]">
@@ -24,7 +24,7 @@ const FooterSection = () => {
 
       <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-20 relative">
         {/* Top classified bar */}
-        <div className="bg-[hsl(0_0%_5%)] border border-[hsl(var(--accent-red))] text-[hsl(var(--accent-red))] font-blackops text-[12px] sm:text-sm tracking-[0.3em] py-2.5 px-3 sm:px-4 flex items-center justify-between mb-0 shadow-[0_0_22px_hsl(var(--accent-red)/0.2)]">
+        <div className="bg-[hsl(var(--surface-1))] border border-[hsl(var(--accent-red))] text-[hsl(var(--accent-red))] font-blackops text-[12px] sm:text-sm tracking-[0.3em] py-2.5 px-3 sm:px-4 flex items-center justify-between mb-0 shadow-[0_0_22px_hsl(var(--accent-red)/0.2)]">
           <span className="flex items-center gap-2">
             <Lock className="w-3.5 h-3.5" /> ENCRYPTED CHANNEL // AUTHORIZED PERSONNEL ONLY
           </span>
@@ -92,12 +92,12 @@ const FooterSection = () => {
             {personalInfo.map(({ icon: Icon, label, value, href }, i) => (
               <div
                 key={label}
-                className="bg-[hsl(0_0%_5%)] border border-[hsl(var(--accent-red)/0.45)] p-4 flex items-center gap-3 relative hover:border-[hsl(var(--accent-red))] transition-colors group"
+                className="bg-[hsl(var(--surface-1))] border border-[hsl(var(--accent-red)/0.45)] p-4 flex items-center gap-3 relative hover:border-[hsl(var(--accent-red))] transition-colors group"
               >
-                <span className="absolute -top-2 left-3 bg-[hsl(0_0%_5%)] px-2 font-courier text-[10px] tracking-[0.3em] text-[hsl(var(--accent-red))]">
+                <span className="absolute -top-2 left-3 bg-[hsl(var(--surface-1))] px-2 font-courier text-[10px] tracking-[0.3em] text-[hsl(var(--accent-red))]">
                   CH-{String(i + 1).padStart(2, "0")}
                 </span>
-                <div className="p-2 border border-[hsl(var(--accent-red)/0.5)] bg-[hsl(0_0%_3%)] text-[hsl(var(--accent-red))] shrink-0 group-hover:bg-[hsl(var(--accent-red))] group-hover:text-[hsl(40_22%_96%)] transition-colors">
+                <div className="p-2 border border-[hsl(var(--accent-red)/0.5)] bg-[hsl(var(--surface-0))] text-[hsl(var(--accent-red))] shrink-0 group-hover:bg-[hsl(var(--accent-red))] group-hover:text-[hsl(var(--on-red))] transition-colors">
                   <Icon className="w-5 h-5" />
                 </div>
                 <div className="min-w-0">
@@ -122,7 +122,7 @@ const FooterSection = () => {
           </motion.div>
 
           {/* Terminal */}
-          <div className="max-w-4xl mx-auto border border-[hsl(var(--accent-red)/0.5)] bg-[hsl(0_0%_3%)] p-4 font-courier text-[14px] sm:text-sm leading-relaxed relative overflow-hidden">
+          <div className="max-w-4xl mx-auto border border-[hsl(var(--accent-red)/0.5)] bg-[hsl(var(--surface-0))] p-4 font-courier text-[14px] sm:text-sm leading-relaxed relative overflow-hidden">
             <div className="absolute inset-0 opacity-[0.06] pointer-events-none"
                  style={{
                    backgroundImage:
@@ -155,7 +155,7 @@ const FooterSection = () => {
         </div>
 
         <div className="diag-stripes h-2 mt-0" />
-        <div className="bg-[hsl(0_0%_5%)] text-[hsl(var(--accent-red))] font-blackops text-[12px] sm:text-sm tracking-[0.32em] py-2 px-4 text-center border-t border-[hsl(var(--accent-red)/0.3)]">
+        <div className="bg-[hsl(var(--surface-1))] text-[hsl(var(--accent-red))] font-blackops text-[12px] sm:text-sm tracking-[0.32em] py-2 px-4 text-center border-t border-[hsl(var(--accent-red)/0.3)]">
           END OF DOSSIER · TOP SECRET // EYES ONLY
         </div>
       </div>

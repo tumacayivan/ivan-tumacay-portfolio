@@ -32,7 +32,7 @@ const allSkills: Skill[] = [
 ];
 
 const SkillPill = ({ icon: Icon, label, idx }: Skill & { idx: number }) => (
-  <div className="flex items-center gap-2 px-4 py-2.5 bg-[hsl(0_0%_6%)] border border-[hsl(var(--accent-red)/0.45)] shrink-0 relative hover:border-[hsl(var(--accent-red))] hover:bg-[hsl(0_0%_8%)] transition-colors group">
+  <div className="flex items-center gap-2 px-4 py-2.5 bg-[hsl(var(--surface-1))] border border-[hsl(var(--accent-red)/0.45)] shrink-0 relative hover:border-[hsl(var(--accent-red))] hover:bg-[hsl(var(--surface-3))] transition-colors group">
     <span className="font-courier text-[10px] tracking-[0.25em] text-[hsl(var(--accent-red))] border-r border-[hsl(var(--accent-red)/0.4)] pr-2">
       {String(idx).padStart(3, "0")}
     </span>
@@ -47,7 +47,7 @@ const SkillsMarquee = () => {
   const doubled = [...allSkills, ...allSkills];
 
   return (
-    <section className="relative py-10 sm:py-14 overflow-hidden border-y border-[hsl(var(--accent-red)/0.3)] bg-[hsl(0_0%_5%)] paper-grain">
+    <section className="relative py-10 sm:py-14 overflow-hidden border-y border-[hsl(var(--accent-red)/0.3)] bg-[hsl(var(--surface-1))] paper-grain">
       {/* Subtle scan grid */}
       <div
         className="absolute inset-0 opacity-[0.06] pointer-events-none"
@@ -75,8 +75,8 @@ const SkillsMarquee = () => {
 
       <div className="marquee-container relative">
         {/* Edge fades */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 z-10 pointer-events-none bg-gradient-to-r from-[hsl(0_0%_5%)] to-transparent" />
-        <div className="absolute right-0 top-0 bottom-0 w-32 z-10 pointer-events-none bg-gradient-to-l from-[hsl(0_0%_5%)] to-transparent" />
+        <div className="absolute left-0 top-0 bottom-0 w-32 z-10 pointer-events-none bg-gradient-to-r from-[hsl(var(--surface-1))] to-transparent" />
+        <div className="absolute right-0 top-0 bottom-0 w-32 z-10 pointer-events-none bg-gradient-to-l from-[hsl(var(--surface-1))] to-transparent" />
 
         <div className="flex gap-3 animate-marquee-left" style={{ width: "max-content" }}>
           {doubled.map((skill, i) => (

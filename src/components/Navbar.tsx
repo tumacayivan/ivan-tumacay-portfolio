@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Menu, X, Radio, Lock, Crosshair, FileText } from "lucide-react";
 import { useState, useEffect } from "react";
+import ThemeToggle from "./ThemeToggle";
 
 const navItems = [
   { label: "Services", href: "#services", code: "SEC 03" },
@@ -38,7 +39,7 @@ const Navbar = () => {
       <div className="diag-stripes h-1.5" />
 
       {/* Top classified bar — red live indicator + system time */}
-      <div className="bg-[hsl(0_0%_5%)] text-[hsl(var(--ink-charcoal))] font-courier text-[11px] sm:text-[12px] tracking-[0.35em] py-1.5 px-4 sm:px-6 flex items-center justify-between border-b border-[hsl(var(--accent-red)/0.35)]">
+      <div className="bg-[hsl(var(--surface-1))] text-[hsl(var(--ink-charcoal))] font-courier text-[11px] sm:text-[12px] tracking-[0.35em] py-1.5 px-4 sm:px-6 flex items-center justify-between border-b border-[hsl(var(--accent-red)/0.35)]">
         <span className="flex items-center gap-2">
           <span className="relative inline-block w-2 h-2 rounded-full bg-[hsl(var(--accent-red))] animate-pulse-classified" />
           <span className="hidden sm:inline">TOP SECRET // EYES ONLY // DOSSIER ACCESS</span>
@@ -53,24 +54,24 @@ const Navbar = () => {
       </div>
 
       {/* Main bar — concrete black with red brand mark */}
-      <div className="bg-[hsl(0_0%_7%)] border-b border-[hsl(40_12%_90%/0.10)] relative">
+      <div className="bg-[hsl(var(--surface-2))] border-b border-[hsl(var(--line)/0.10)] relative">
         {/* Subtle blueprint grid in nav */}
         <div className="absolute inset-0 opacity-[0.05] pointer-events-none"
              style={{
                backgroundImage:
-                 "linear-gradient(hsl(40 18% 92% / 0.6) 1px, transparent 1px), linear-gradient(90deg, hsl(40 18% 92% / 0.6) 1px, transparent 1px)",
+                 "linear-gradient(hsl(var(--line) / 0.6) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--line) / 0.6) 1px, transparent 1px)",
                backgroundSize: "32px 32px",
              }} />
         <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-20 flex items-center justify-between h-16 sm:h-[72px] relative">
           <a href="#" className="flex items-center gap-3 group">
             {/* Red mark — the Professor's emblem */}
             <div className="relative shrink-0">
-              <div className="w-9 h-9 sm:w-10 sm:h-10 border-2 border-[hsl(var(--accent-red))] flex items-center justify-center bg-[hsl(0_0%_5%)] glow-red">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 border-2 border-[hsl(var(--accent-red))] flex items-center justify-center bg-[hsl(var(--surface-1))] glow-red">
                 <Crosshair className="w-4 h-4 sm:w-5 sm:h-5 text-[hsl(var(--accent-red))]" />
               </div>
             </div>
 
-            <div className="hidden sm:flex flex-col items-start leading-none pr-3 border-r border-[hsl(40_12%_90%/0.15)]">
+            <div className="hidden sm:flex flex-col items-start leading-none pr-3 border-r border-[hsl(var(--line)/0.15)]">
               <span className="font-courier text-[10px] tracking-[0.32em] text-[hsl(var(--ink-brown))]">FILE NO.</span>
               <span className="font-blackops text-[15px] text-[hsl(var(--accent-red))] tracking-[0.18em]">IT—2026</span>
             </div>
@@ -115,11 +116,13 @@ const Navbar = () => {
               <Lock className="w-3.5 h-3.5" />
               <span>INITIATE CONTACT</span>
             </a>
+            <ThemeToggle className="ml-2" />
           </div>
 
           <div className="md:hidden flex items-center gap-3">
+            <ThemeToggle />
             <button
-              className="text-[hsl(var(--ink-charcoal))] border border-[hsl(var(--accent-red))] p-2 hover:bg-[hsl(var(--accent-red))] hover:text-[hsl(40_22%_96%)] transition-colors"
+              className="text-[hsl(var(--ink-charcoal))] border border-[hsl(var(--accent-red))] p-2 hover:bg-[hsl(var(--accent-red))] hover:text-[hsl(var(--on-red))] transition-colors"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle menu"
             >
@@ -132,7 +135,7 @@ const Navbar = () => {
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
-            className="md:hidden border-t border-[hsl(var(--accent-red)/0.35)] bg-[hsl(0_0%_5%)]"
+            className="md:hidden border-t border-[hsl(var(--accent-red)/0.35)] bg-[hsl(var(--surface-1))]"
           >
             <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-20 py-5 flex flex-col gap-3">
               {navItems.map((item) => (

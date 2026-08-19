@@ -15,12 +15,12 @@ const HeroSection = () => {
         className="absolute inset-0 opacity-[0.10] pointer-events-none"
         style={{
           backgroundImage:
-            "linear-gradient(hsl(40 18% 92% / 0.5) 1px, transparent 1px), linear-gradient(90deg, hsl(40 18% 92% / 0.5) 1px, transparent 1px)",
+            "linear-gradient(hsl(var(--line) / 0.5) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--line) / 0.5) 1px, transparent 1px)",
           backgroundSize: "48px 48px",
         }}
       />
       <div className="absolute inset-x-0 top-0 h-[420px] pointer-events-none"
-           style={{ background: "radial-gradient(ellipse at 50% 0%, hsl(358 60% 30% / 0.28) 0%, transparent 60%)" }} />
+           style={{ background: "radial-gradient(ellipse at 50% 0%, var(--wash-red) 0%, transparent 60%)" }} />
 
       {/* Massive watermark behind everything */}
       <div className="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden">
@@ -31,7 +31,7 @@ const HeroSection = () => {
 
       <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-20 relative z-10">
         {/* Top banner — Operation header */}
-        <div className="relative border border-[hsl(var(--accent-red)/0.45)] py-5 sm:py-6 mb-8 bg-[hsl(0_0%_5%/0.85)] text-center backdrop-blur-sm overflow-hidden">
+        <div className="relative border border-[hsl(var(--accent-red)/0.45)] py-5 sm:py-6 mb-8 bg-[hsl(var(--surface-1)/0.85)] text-center backdrop-blur-sm overflow-hidden">
           {/* Inner red strip */}
           <div className="absolute inset-x-0 top-0 h-0.5 bg-[hsl(var(--accent-red))]" />
           <div className="absolute inset-x-0 bottom-0 h-0.5 bg-[hsl(var(--accent-red))]" />
@@ -41,10 +41,10 @@ const HeroSection = () => {
           <div className="absolute bottom-0 left-0 w-6 h-6 border-l-2 border-b-2 border-[hsl(var(--accent-red))]" />
           <div className="absolute bottom-0 right-0 w-6 h-6 border-r-2 border-b-2 border-[hsl(var(--accent-red))]" />
 
-          <div className="absolute -top-3 left-4 sm:left-8 bg-[hsl(0_0%_5%)] px-3 py-0.5 font-courier text-[11px] sm:text-[12px] tracking-[0.32em] border border-[hsl(var(--accent-red)/0.6)] text-[hsl(var(--accent-red))]">
+          <div className="absolute -top-3 left-4 sm:left-8 bg-[hsl(var(--surface-1))] px-3 py-0.5 font-courier text-[11px] sm:text-[12px] tracking-[0.32em] border border-[hsl(var(--accent-red)/0.6)] text-[hsl(var(--accent-red))]">
             BUREAU OF INTELLIGENCE
           </div>
-          <div className="absolute -top-3 right-4 sm:right-8 bg-[hsl(0_0%_5%)] px-3 py-0.5 font-courier text-[11px] sm:text-[12px] tracking-[0.32em] border border-[hsl(var(--accent-red)/0.6)] text-[hsl(var(--accent-red))]">
+          <div className="absolute -top-3 right-4 sm:right-8 bg-[hsl(var(--surface-1))] px-3 py-0.5 font-courier text-[11px] sm:text-[12px] tracking-[0.32em] border border-[hsl(var(--accent-red)/0.6)] text-[hsl(var(--accent-red))]">
             FILE NO. IT-2026-001
           </div>
 
@@ -81,33 +81,33 @@ const HeroSection = () => {
             <div className="tape w-32 h-8 -top-4 right-8 rotate-[6deg] z-30" />
 
             <div className="paper-folder p-3 sm:p-5 relative">
-              <div className="absolute -top-7 left-6 sm:left-10 px-6 py-1.5 bg-[hsl(var(--accent-red))] border border-[hsl(var(--accent-red-deep))] font-blackops text-base sm:text-lg tracking-[0.28em] text-[hsl(40_22%_96%)] uppercase shadow-[0_0_22px_hsl(var(--accent-red)/0.4)]">
+              <div className="absolute -top-7 left-6 sm:left-10 px-6 py-1.5 bg-[hsl(var(--accent-red))] border border-[hsl(var(--accent-red-deep))] font-blackops text-base sm:text-lg tracking-[0.28em] text-[hsl(var(--on-red))] uppercase shadow-[0_0_22px_hsl(var(--accent-red)/0.4)]">
                 SUBJECT FILE
               </div>
-              <div className="absolute -top-7 right-6 px-4 py-1.5 bg-[hsl(0_0%_6%)] border border-[hsl(var(--accent-red))] font-courier text-[12px] sm:text-[13px] tracking-[0.25em] text-[hsl(var(--accent-red))]">
+              <div className="absolute -top-7 right-6 px-4 py-1.5 bg-[hsl(var(--surface-1))] border border-[hsl(var(--accent-red))] font-courier text-[12px] sm:text-[13px] tracking-[0.25em] text-[hsl(var(--accent-red))]">
                 Δ-001 · CLASSIFIED
               </div>
 
               <div className="relative paper-card-cream p-2 sm:p-3 scanline-overlay">
                 <div className="absolute inset-0 scan-bar" />
 
-                <div className="absolute -top-4 right-4 z-20 bg-[hsl(0_0%_5%)] border border-[hsl(var(--accent-red))] px-3 py-1 font-courier text-[12px] sm:text-[13px] tracking-[0.22em] text-[hsl(var(--accent-red))] rotate-[2deg]">
+                <div className="absolute -top-4 right-4 z-20 bg-[hsl(var(--surface-1))] border border-[hsl(var(--accent-red))] px-3 py-1 font-courier text-[12px] sm:text-[13px] tracking-[0.22em] text-[hsl(var(--accent-red))] rotate-[2deg]">
                   SURVEILLANCE 01 / 01
                 </div>
 
-                <div className="relative overflow-hidden border-2 border-[hsl(var(--accent-red)/0.5)] flex bg-[hsl(0_0%_4%)]">
+                <div className="relative overflow-hidden border-2 border-[hsl(var(--accent-red)/0.5)] flex bg-[hsl(var(--surface-0))]">
                   {/* Mugshot height ruler — feet markers with tick marks */}
-                  <div className="hidden sm:flex flex-col items-stretch justify-between bg-[hsl(0_0%_8%)] border-r-2 border-[hsl(var(--accent-red)/0.4)] py-3 font-courier text-[10px] text-[hsl(40_18%_92%)] tracking-widest relative w-7">
+                  <div className="hidden sm:flex flex-col items-stretch justify-between bg-[hsl(var(--surface-3))] border-r-2 border-[hsl(var(--accent-red)/0.4)] py-3 font-courier text-[10px] text-[hsl(var(--ink-charcoal))] tracking-widest relative w-7">
                     {["7'", "6'", "5'", "4'", "3'", "2'"].map((ft, i) => (
                       <div key={ft} className="flex items-center gap-1 justify-end pr-1 relative">
-                        <span className="absolute -left-[1px] w-2 h-[2px] bg-[hsl(40_18%_92%)]" />
+                        <span className="absolute -left-[1px] w-2 h-[2px] bg-[hsl(var(--ink-charcoal))]" />
                         <span className={i === 1 ? "text-[hsl(var(--accent-red))] font-bold" : ""}>{ft}</span>
                       </div>
                     ))}
                     {/* Half-foot subdivision ticks */}
                     <div className="absolute inset-y-3 left-0 w-full pointer-events-none flex flex-col justify-around">
                       {Array.from({ length: 11 }).map((_, i) => (
-                        <span key={i} className="block w-1.5 h-px bg-[hsl(40_18%_92%/0.45)] ml-px" />
+                        <span key={i} className="block w-1.5 h-px bg-[hsl(var(--line)/0.45)] ml-px" />
                       ))}
                     </div>
                   </div>
@@ -136,7 +136,7 @@ const HeroSection = () => {
                       className="absolute inset-0 pointer-events-none"
                       style={{
                         background:
-                          "radial-gradient(ellipse at center, transparent 45%, hsl(0 0% 0% / 0.55) 100%), linear-gradient(to top, hsl(0 0% 2% / 0.72) 0%, transparent 35%, transparent 75%, hsl(0 0% 4% / 0.35) 100%)",
+                          "radial-gradient(ellipse at center, transparent 45%, hsl(0 0% 0% / 0.55) 100%), linear-gradient(to top, hsl(0 0% 2% / 0.72) 0%, transparent 35%, transparent 75%, hsl(0 0% 0% / 0.55) 100%)",
                       }}
                     />
                     {/* Subtle surveillance scanlines on the photo */}
@@ -144,7 +144,7 @@ const HeroSection = () => {
                       className="absolute inset-0 pointer-events-none opacity-30 mix-blend-overlay"
                       style={{
                         backgroundImage:
-                          "repeating-linear-gradient(0deg, transparent 0 2px, hsl(0 0% 0% / 0.55) 2px, transparent 3px)",
+                          "repeating-linear-gradient(0deg, transparent 0 2px, hsl(0 0% 4% / 0.35) 2px, transparent 3px)",
                       }}
                     />
                     {/* Faint blue-tone HUD scanlines */}
@@ -157,15 +157,15 @@ const HeroSection = () => {
                     />
 
                     {/* REC indicator with timestamp — top-left */}
-                    <div className="absolute top-3 left-4 z-10 flex items-center gap-2 bg-[hsl(0_0%_2%/0.78)] border border-[hsl(var(--accent-red)/0.5)] px-2 py-1 font-courier text-[10px] tracking-[0.28em] text-[hsl(40_22%_94%)]">
+                    <div className="absolute top-3 left-4 z-10 flex items-center gap-2 bg-[hsl(var(--surface-0)/0.78)] border border-[hsl(var(--accent-red)/0.5)] px-2 py-1 font-courier text-[10px] tracking-[0.28em] text-[hsl(var(--ink-charcoal))]">
                       <span className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--accent-red))] animate-pulse-classified" />
                       <span className="text-[hsl(var(--accent-red))] font-bold">REC</span>
-                      <span className="text-[hsl(40_18%_92%/0.75)]">●</span>
+                      <span className="text-[hsl(var(--line)/0.75)]">●</span>
                       <span>{today}</span>
                     </div>
 
                     {/* Side data readout — vitals HUD */}
-                    <div className="hidden md:block absolute bottom-24 left-4 z-10 bg-[hsl(0_0%_2%/0.78)] border border-[hsl(var(--accent-red)/0.4)] px-2.5 py-2 font-courier text-[10px] tracking-[0.18em] text-[hsl(40_18%_92%)] leading-[1.55] backdrop-blur-sm">
+                    <div className="hidden md:block absolute bottom-24 left-4 z-10 bg-[hsl(var(--surface-0)/0.78)] border border-[hsl(var(--accent-red)/0.4)] px-2.5 py-2 font-courier text-[10px] tracking-[0.18em] text-[hsl(var(--ink-charcoal))] leading-[1.55] backdrop-blur-sm">
                       <div className="text-[hsl(var(--accent-red))] mb-1 tracking-[0.28em]">{"▸ VITALS"}</div>
                       <div>{"HT   "}<span className="text-[hsl(var(--accent-red))]">{"5'11\""}</span></div>
                       <div>{"HAIR "}<span className="text-[hsl(var(--accent-red))]">BLK</span></div>
@@ -191,16 +191,16 @@ const HeroSection = () => {
                     <div className="absolute bottom-3 right-3 w-12 h-12 border-r-[3px] border-b-[3px] border-[hsl(var(--accent-red))]" />
 
                     {/* Mugshot slate board at the bottom */}
-                    <div className="absolute left-1/2 -translate-x-1/2 bottom-5 z-10 flex items-stretch border-2 border-[hsl(var(--accent-red))] bg-[hsl(0_0%_3%)] shadow-[0_0_22px_hsl(var(--accent-red)/0.4)] overflow-hidden">
-                      <div className="bg-[hsl(var(--accent-red))] text-[hsl(40_22%_96%)] font-blackops text-[10px] sm:text-[11px] tracking-[0.28em] px-2 py-1 flex flex-col items-center justify-center leading-none">
+                    <div className="absolute left-1/2 -translate-x-1/2 bottom-5 z-10 flex items-stretch border-2 border-[hsl(var(--accent-red))] bg-[hsl(var(--surface-0))] shadow-[0_0_22px_hsl(var(--accent-red)/0.4)] overflow-hidden">
+                      <div className="bg-[hsl(var(--accent-red))] text-[hsl(var(--on-red))] font-blackops text-[10px] sm:text-[11px] tracking-[0.28em] px-2 py-1 flex flex-col items-center justify-center leading-none">
                         <span>SUBJECT</span>
                         <span className="opacity-80">FILE</span>
                       </div>
-                      <div className="flex flex-col leading-none px-3 py-1 justify-center font-courier text-[10px] sm:text-[11px] text-[hsl(40_22%_94%)] tracking-[0.18em]">
+                      <div className="flex flex-col leading-none px-3 py-1 justify-center font-courier text-[10px] sm:text-[11px] text-[hsl(var(--ink-charcoal))] tracking-[0.18em]">
                         <span className="text-[hsl(var(--accent-red))]">TUMACAY, IVAN</span>
                         <span className="opacity-80">ID · IT—26—001</span>
                       </div>
-                      <div className="border-l border-[hsl(var(--accent-red)/0.6)] flex flex-col leading-none px-3 py-1 justify-center font-courier text-[9px] sm:text-[10px] text-[hsl(40_22%_94%)] tracking-[0.2em]">
+                      <div className="border-l border-[hsl(var(--accent-red)/0.6)] flex flex-col leading-none px-3 py-1 justify-center font-courier text-[9px] sm:text-[10px] text-[hsl(var(--ink-charcoal))] tracking-[0.2em]">
                         <span className="text-[hsl(var(--accent-red))]">DATE</span>
                         <span>{today}</span>
                       </div>
@@ -209,9 +209,9 @@ const HeroSection = () => {
                 </div>
 
                 <div className="mt-3 grid grid-cols-3 gap-2 font-courier text-[12px] sm:text-[13px] tracking-[0.22em] text-[hsl(var(--ink-charcoal))]">
-                  <div className="border border-[hsl(40_12%_90%/0.18)] p-2 text-center bg-[hsl(0_0%_5%)]">FRONT · 0001</div>
-                  <div className="border border-[hsl(var(--accent-red))] p-2 text-center bg-[hsl(0_0%_5%)] text-[hsl(var(--accent-red))]">CAPTURED · {today}</div>
-                  <div className="border border-[hsl(40_12%_90%/0.18)] p-2 text-center bg-[hsl(0_0%_5%)]">PROFILE · 0002</div>
+                  <div className="border border-[hsl(var(--line)/0.18)] p-2 text-center bg-[hsl(var(--surface-1))]">FRONT · 0001</div>
+                  <div className="border border-[hsl(var(--accent-red))] p-2 text-center bg-[hsl(var(--surface-1))] text-[hsl(var(--accent-red))]">CAPTURED · {today}</div>
+                  <div className="border border-[hsl(var(--line)/0.18)] p-2 text-center bg-[hsl(var(--surface-1))]">PROFILE · 0002</div>
                 </div>
               </div>
             </div>
@@ -219,7 +219,7 @@ const HeroSection = () => {
             {/* Floating sticky note — high-priority warning */}
             <div className="hidden sm:block absolute -bottom-10 -right-4 sticky-note rotate-3 w-60 z-20 text-base">
               <span className="handwritten-red font-bold uppercase tracking-wider">⟶ HIGH PRIORITY</span>
-              <div className="mt-1 text-[14px] leading-snug text-[hsl(40_22%_96%)]">
+              <div className="mt-1 text-[14px] leading-snug text-[hsl(var(--on-red))]">
                 Subject is highly skilled.<br />Thinks several moves ahead.<br /><span className="opacity-80">Approach with offer.</span>
               </div>
             </div>
@@ -249,7 +249,7 @@ const HeroSection = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.4, delay: 0.5 }}
-              className="border-y border-[hsl(var(--accent-red)/0.45)] py-4 mb-5 bg-[hsl(0_0%_5%/0.6)] backdrop-blur-sm px-4 relative"
+              className="border-y border-[hsl(var(--accent-red)/0.45)] py-4 mb-5 bg-[hsl(var(--surface-1)/0.6)] backdrop-blur-sm px-4 relative"
             >
               <div className="absolute top-0 left-0 w-1 h-full bg-[hsl(var(--accent-red))]" />
               <p className="font-typewriter text-xl sm:text-2xl md:text-[26px] text-[hsl(var(--ink-charcoal))] leading-tight tracking-tight">
@@ -281,7 +281,7 @@ const HeroSection = () => {
                 ].map(({ icon: Icon, label }) => (
                   <div
                     key={label}
-                    className="flex items-center gap-2 px-3 py-1.5 bg-[hsl(0_0%_5%)] border border-[hsl(var(--accent-red)/0.45)] font-blackops text-[13px] sm:text-sm uppercase tracking-[0.18em] text-[hsl(var(--ink-charcoal))] hover:border-[hsl(var(--accent-red))] hover:text-[hsl(var(--accent-red))] transition-colors group"
+                    className="flex items-center gap-2 px-3 py-1.5 bg-[hsl(var(--surface-1))] border border-[hsl(var(--accent-red)/0.45)] font-blackops text-[13px] sm:text-sm uppercase tracking-[0.18em] text-[hsl(var(--ink-charcoal))] hover:border-[hsl(var(--accent-red))] hover:text-[hsl(var(--accent-red))] transition-colors group"
                   >
                     <Icon className="w-3.5 h-3.5 text-[hsl(var(--accent-red))]" />
                     {label}
@@ -296,7 +296,7 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.85 }}
               className="paper-card-cream p-5 mb-5 relative"
             >
-              <div className="absolute -top-3 left-4 stamp stamp-black !text-[13px] !p-1 !rotate-0 bg-[hsl(0_0%_7%)]">DESCRIPTION</div>
+              <div className="absolute -top-3 left-4 stamp stamp-black !text-[13px] !p-1 !rotate-0 bg-[hsl(var(--surface-2))]">DESCRIPTION</div>
               <p className="font-typewriter text-lg sm:text-xl text-[hsl(var(--ink-charcoal))] leading-relaxed mt-2">
                 Combining{" "}
                 <span className="font-bold text-[hsl(var(--accent-bone))] underline decoration-[hsl(var(--accent-red))] underline-offset-4">full-stack development</span>,{" "}
@@ -330,8 +330,8 @@ const HeroSection = () => {
                 </div>
               </a>
 
-              <div className="border border-[hsl(var(--accent-red)/0.45)] p-4 sm:p-5 bg-[hsl(0_0%_5%)] relative overflow-hidden">
-                <div className="absolute -top-3 left-3 bg-[hsl(0_0%_5%)] px-2 font-courier text-[11px] tracking-[0.3em] text-[hsl(var(--accent-red))]">
+              <div className="border border-[hsl(var(--accent-red)/0.45)] p-4 sm:p-5 bg-[hsl(var(--surface-1))] relative overflow-hidden">
+                <div className="absolute -top-3 left-3 bg-[hsl(var(--surface-1))] px-2 font-courier text-[11px] tracking-[0.3em] text-[hsl(var(--accent-red))]">
                   STATUS
                 </div>
                 <div className="flex items-center gap-2 font-blackops text-lg sm:text-xl tracking-[0.14em] uppercase text-[hsl(var(--accent-bone))]">

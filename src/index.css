@@ -6,16 +6,130 @@
 
 /* =====================================================================
    MOST WANTED — TOP-SECRET INTELLIGENCE DOSSIER DESIGN SYSTEM
-   Cinematic classified-noir aesthetic.
-   Dark concrete + urgent red + bone white. Every utility class is kept
-   for backward compatibility, but completely re-skinned.
+
+   Two themes, one dossier. LIGHT (default) is the file pulled out and
+   read on the desk: manila stock, charcoal ink, red stamp. DARK is the
+   same file read in the vault: concrete, bone white, red stamp.
+
+   Every utility below reads role tokens (--surface-*, --line, --shadow-*,
+   --edge-*, --noise-*) rather than literal colors, so both themes stay
+   coherent from a single set of rules.
    ===================================================================== */
 
 @layer base {
+  /* ---------------------------------------------------------------
+     LIGHT MODE (default) — DECLASSIFIED PAPER DOSSIER
+     Manila/cream stock, charcoal ink, the same iconic classified red.
+     --------------------------------------------------------------- */
   :root {
-    /* CORE PALETTE — concrete noir base, bone foreground, classified red */
-    --background: 0 0% 7%;             /* deep concrete noir */
-    --foreground: 40 18% 92%;          /* bone white */
+    --background: 40 33% 94%;          /* manila paper */
+    --foreground: 25 18% 14%;          /* charcoal ink */
+
+    --card: 42 40% 97%;
+    --card-foreground: 25 18% 14%;
+
+    --popover: 42 40% 97%;
+    --popover-foreground: 25 18% 14%;
+
+    --primary: 358 74% 44%;            /* CLASSIFIED RED */
+    --primary-foreground: 40 22% 96%;
+
+    --secondary: 38 24% 88%;
+    --secondary-foreground: 25 18% 14%;
+
+    --muted: 38 20% 87%;
+    --muted-foreground: 28 14% 38%;
+
+    --accent: 358 74% 44%;
+    --accent-foreground: 40 22% 96%;
+
+    --destructive: 358 74% 44%;
+    --destructive-foreground: 40 22% 96%;
+
+    --border: 30 16% 78%;
+    --input: 30 16% 78%;
+    --ring: 358 74% 44%;
+
+    --radius: 0rem;
+
+    --sidebar-background: 40 30% 91%;
+    --sidebar-foreground: 25 18% 14%;
+    --sidebar-primary: 358 74% 44%;
+    --sidebar-primary-foreground: 40 22% 96%;
+    --sidebar-accent: 38 24% 88%;
+    --sidebar-accent-foreground: 25 18% 14%;
+    --sidebar-border: 30 16% 78%;
+    --sidebar-ring: 358 74% 44%;
+
+    --gold-glow: 358 74% 44%;
+    --surface-hover: 38 26% 90%;
+
+    /* SEMANTIC ALIASES — "paper" = the document stock, "ink" = what is
+       printed on it, anything stamped "red" stays iconic red. */
+    --paper: 40 33% 94%;
+    --paper-cream: 42 40% 97%;
+    --paper-beige: 40 30% 91%;
+    --paper-gray: 38 20% 88%;
+    --ink-charcoal: 25 18% 14%;
+    --ink-brown: 28 14% 38%;
+    --stamp-red: 358 74% 44%;
+    --stamp-blue: 358 66% 36%;
+
+    --accent-red: 358 74% 44%;
+    --accent-red-deep: 358 72% 33%;
+    --accent-red-bright: 0 82% 52%;
+    --accent-bone: 25 22% 12%;          /* on light stock, "bone" prints as ink */
+    --accent-concrete: 40 26% 89%;
+    --accent-graphite: 38 16% 80%;
+    --accent-blueprint: 205 70% 34%;
+
+    /* ROLE TOKENS — every hard surface / edge / shadow in the system
+       reads these, so both themes stay coherent without duplicate rules. */
+    --surface-0: 38 28% 84%;            /* deepest chrome (bars, wells) */
+    --surface-1: 40 32% 90%;
+    --surface-2: 42 36% 95%;
+    --surface-3: 44 44% 98%;            /* highest / lit surface */
+    --line: 25 20% 20%;                 /* hairline base, always used with alpha */
+    --on-red: 40 22% 96%;               /* text printed over the red */
+
+    /* Depth is tuned per theme: paper casts short soft shadows,
+       concrete casts long black ones. */
+    --shadow-1: hsl(30 25% 38% / 0.10);
+    --shadow-2: hsl(30 25% 32% / 0.16);
+    --shadow-3: hsl(30 25% 28% / 0.22);
+    --edge-hi: hsl(0 0% 100% / 0.85);   /* lit top edge of a raised surface */
+    --edge-lo: hsl(30 20% 45% / 0.16);  /* seam where it meets the page */
+
+    --grain-blend: multiply;
+    --wash-red: hsl(358 60% 45% / 0.10);   /* ambient red bleed behind sections */
+    /* Ink sitting ON light stock needs more weight than glow on black */
+    --watermark-red: hsl(358 74% 44% / 0.10);
+    --watermark-ink: hsl(25 20% 20% / 0.08);
+    --scanline-color: 30 20% 40% / 0.05;
+    --scanline-opacity: 0.35;
+    --photo-filter: grayscale(30%) contrast(1.05) brightness(1.02) sepia(0.12);
+    --photo-filter-strong: grayscale(18%) contrast(1.08) brightness(1.01) saturate(0.95);
+
+    /* Paper fibre grain — dark specks pressed into light stock */
+    --noise-body: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.28  0 0 0 0 0.22  0 0 0 0 0.14  0 0 0 0.09 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    --noise-card: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.28  0 0 0 0 0.22  0 0 0 0 0.14  0 0 0 0.07 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    --noise-folder: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.30  0 0 0 0 0.24  0 0 0 0 0.15  0 0 0 0.10 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    --noise-grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.28  0 0 0 0 0.22  0 0 0 0 0.14  0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+
+    /* Warm desk-lamp wash falling across the document */
+    --body-gradient:
+      radial-gradient(ellipse at 50% 110%, hsl(358 55% 45% / 0.10) 0%, transparent 55%),
+      radial-gradient(ellipse at 50% -10%, hsl(40 40% 99% / 0.9) 0%, transparent 60%),
+      linear-gradient(to bottom, hsl(42 36% 96%) 0%, hsl(38 28% 90%) 100%);
+  }
+
+  /* ---------------------------------------------------------------
+     DARK MODE — TOP-SECRET CONCRETE NOIR
+     Deep concrete, bone white, urgent red under a single bare bulb.
+     --------------------------------------------------------------- */
+  .dark {
+    --background: 0 0% 7%;
+    --foreground: 40 18% 92%;
 
     --card: 0 0% 11%;
     --card-foreground: 40 18% 92%;
@@ -23,7 +137,7 @@
     --popover: 0 0% 11%;
     --popover-foreground: 40 18% 92%;
 
-    --primary: 358 79% 51%;            /* CLASSIFIED RED */
+    --primary: 358 79% 51%;
     --primary-foreground: 40 22% 96%;
 
     --secondary: 0 0% 14%;
@@ -32,7 +146,7 @@
     --muted: 0 0% 16%;
     --muted-foreground: 38 8% 65%;
 
-    --accent: 358 79% 51%;             /* RED accent */
+    --accent: 358 79% 51%;
     --accent-foreground: 40 22% 96%;
 
     --destructive: 358 79% 51%;
@@ -41,8 +155,6 @@
     --border: 0 0% 20%;
     --input: 0 0% 20%;
     --ring: 358 79% 51%;
-
-    --radius: 0rem;
 
     --sidebar-background: 0 0% 9%;
     --sidebar-foreground: 40 18% 92%;
@@ -56,19 +168,15 @@
     --gold-glow: 358 79% 51%;
     --surface-hover: 0 0% 14%;
 
-    /* SEMANTIC ALIASES — utility classes throughout the app reference
-       these. We invert them: "paper" becomes dark concrete, "ink"
-       becomes bone-white. Anything stamped "red" stays iconic red. */
     --paper: 0 0% 7%;
     --paper-cream: 0 0% 11%;
     --paper-beige: 0 0% 9%;
     --paper-gray: 0 0% 14%;
-    --ink-charcoal: 40 18% 92%;        /* bone — main "ink" foreground */
-    --ink-brown: 38 8% 65%;             /* muted bone */
-    --stamp-red: 358 79% 51%;           /* THE RED */
-    --stamp-blue: 358 70% 42%;          /* deeper red (kept name) */
+    --ink-charcoal: 40 18% 92%;
+    --ink-brown: 38 8% 65%;
+    --stamp-red: 358 79% 51%;
+    --stamp-blue: 358 70% 42%;
 
-    /* Classified-specific tokens */
     --accent-red: 358 79% 51%;
     --accent-red-deep: 358 75% 38%;
     --accent-red-bright: 0 92% 62%;
@@ -76,51 +184,38 @@
     --accent-concrete: 0 0% 11%;
     --accent-graphite: 0 0% 18%;
     --accent-blueprint: 195 65% 60%;
-  }
 
-  /* Light mode is intentionally a near-identical, slightly elevated
-     variant so the classified aesthetic stays consistent regardless of
-     system theme. The site is fundamentally a nocturnal experience. */
-  .dark {
-    --background: 0 0% 5%;
-    --foreground: 40 22% 95%;
+    --surface-0: 0 0% 3%;
+    --surface-1: 0 0% 5%;
+    --surface-2: 0 0% 7%;
+    --surface-3: 0 0% 11%;
+    --line: 40 12% 90%;
+    --on-red: 40 22% 96%;
 
-    --card: 0 0% 9%;
-    --card-foreground: 40 22% 95%;
+    --shadow-1: hsl(0 0% 0% / 0.6);
+    --shadow-2: hsl(0 0% 0% / 0.82);
+    --shadow-3: hsl(0 0% 0% / 0.92);
+    --edge-hi: hsl(40 18% 96% / 0.05);
+    --edge-lo: hsl(0 0% 0% / 0.6);
 
-    --popover: 0 0% 9%;
-    --popover-foreground: 40 22% 95%;
+    --grain-blend: screen;
+    --wash-red: hsl(358 65% 30% / 0.26);
+    --watermark-red: hsl(358 79% 51% / 0.05);
+    --watermark-ink: hsl(40 18% 92% / 0.035);
+    --scanline-color: 0 0% 0% / 0.18;
+    --scanline-opacity: 0.45;
+    --photo-filter: grayscale(85%) contrast(1.1) brightness(0.85) sepia(0.05);
+    --photo-filter-strong: grayscale(55%) contrast(1.18) brightness(0.86) saturate(0.85);
 
-    --primary: 358 82% 54%;
-    --primary-foreground: 40 22% 96%;
+    --noise-body: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.95  0 0 0 0 0.90  0 0 0 0.05 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    --noise-card: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.95  0 0 0 0 0.90  0 0 0 0.04 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    --noise-folder: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.95  0 0 0 0 0.88  0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    --noise-grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.95  0 0 0 0 0.88  0 0 0 0.04 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 
-    --secondary: 0 0% 12%;
-    --secondary-foreground: 40 22% 95%;
-
-    --muted: 0 0% 14%;
-    --muted-foreground: 38 8% 62%;
-
-    --accent: 358 82% 54%;
-    --accent-foreground: 40 22% 96%;
-
-    --destructive: 358 82% 54%;
-    --destructive-foreground: 40 22% 96%;
-
-    --border: 0 0% 22%;
-    --input: 0 0% 22%;
-    --ring: 358 82% 54%;
-
-    --gold-glow: 358 82% 54%;
-    --surface-hover: 0 0% 12%;
-
-    --paper: 0 0% 5%;
-    --paper-cream: 0 0% 9%;
-    --paper-beige: 0 0% 7%;
-    --paper-gray: 0 0% 12%;
-    --ink-charcoal: 40 22% 95%;
-    --ink-brown: 38 8% 62%;
-    --stamp-red: 358 82% 54%;
-    --stamp-blue: 358 72% 44%;
+    --body-gradient:
+      radial-gradient(ellipse at 50% 110%, hsl(358 70% 22% / 0.22) 0%, transparent 55%),
+      radial-gradient(ellipse at 50% -10%, hsl(0 0% 14% / 0.85) 0%, transparent 60%),
+      linear-gradient(to bottom, hsl(0 0% 6%) 0%, hsl(0 0% 8%) 100%);
   }
 }
 
@@ -129,19 +224,16 @@
 
   html {
     background-color: hsl(var(--paper));
-    color-scheme: dark;
+    color-scheme: light;
   }
+  html.dark { color-scheme: dark; }
 
   body {
     @apply bg-background text-foreground font-body antialiased;
     color: hsl(var(--ink-charcoal));
     background-color: hsl(var(--paper));
-    /* Concrete texture + faint warm light from below */
-    background-image:
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.95  0 0 0 0 0.90  0 0 0 0.05 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"),
-      radial-gradient(ellipse at 50% 110%, hsl(358 70% 22% / 0.22) 0%, transparent 55%),
-      radial-gradient(ellipse at 50% -10%, hsl(0 0% 14% / 0.85) 0%, transparent 60%),
-      linear-gradient(to bottom, hsl(0 0% 6%) 0%, hsl(0 0% 8%) 100%);
+    /* Stock texture + the light falling across it */
+    background-image: var(--noise-body), var(--body-gradient);
     background-attachment: fixed;
   }
 
@@ -169,26 +261,26 @@
       to bottom,
       transparent 0,
       transparent 2px,
-      hsl(0 0% 0% / 0.18) 3px,
+      hsl(var(--scanline-color)) 3px,
       transparent 3px,
       transparent 4px
     );
     mix-blend-mode: multiply;
-    opacity: 0.45;
+    opacity: var(--scanline-opacity);
   }
 
   /* Selection color = classified red */
   ::selection {
     background: hsl(var(--accent-red));
-    color: hsl(var(--accent-bone));
+    color: hsl(var(--on-red));
   }
 
   /* Custom scrollbar — narrow red */
   ::-webkit-scrollbar { width: 10px; height: 10px; }
-  ::-webkit-scrollbar-track { background: hsl(0 0% 6%); }
+  ::-webkit-scrollbar-track { background: hsl(var(--surface-1)); }
   ::-webkit-scrollbar-thumb {
     background: hsl(var(--accent-red) / 0.65);
-    border: 2px solid hsl(0 0% 6%);
+    border: 2px solid hsl(var(--surface-1));
   }
   ::-webkit-scrollbar-thumb:hover { background: hsl(var(--accent-red)); }
 }
@@ -245,26 +337,24 @@
   .paper-card {
     position: relative;
     background-color: hsl(var(--paper-cream));
-    background-image:
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.95  0 0 0 0 0.90  0 0 0 0.04 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    border: 1px solid hsl(40 12% 90% / 0.10);
+    background-image: var(--noise-card);
+    border: 1px solid hsl(var(--line) / 0.10);
     box-shadow:
-      inset 0 1px 0 hsl(40 18% 96% / 0.04),
-      0 1px 0 hsl(0 0% 0% / 0.6),
-      0 12px 28px -16px hsl(0 0% 0% / 0.8);
+      inset 0 1px 0 var(--edge-hi),
+      0 1px 0 var(--edge-lo),
+      0 12px 28px -16px var(--shadow-2);
   }
 
   .paper-card-cream {
     position: relative;
     background-color: hsl(var(--paper-cream));
-    background-image:
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.95  0 0 0 0 0.90  0 0 0 0.045 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    border: 1px solid hsl(40 12% 90% / 0.10);
+    background-image: var(--noise-card);
+    border: 1px solid hsl(var(--line) / 0.10);
     box-shadow:
-      inset 0 1px 0 hsl(40 18% 96% / 0.05),
+      inset 0 1px 0 var(--edge-hi),
       inset 4px 0 0 hsl(var(--accent-red) / 0.0),
-      0 1px 0 hsl(0 0% 0% / 0.6),
-      0 16px 32px -20px hsl(0 0% 0% / 0.85);
+      0 1px 0 var(--edge-lo),
+      0 16px 32px -20px var(--shadow-2);
     transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
   }
   .paper-card-cream::before {
@@ -283,11 +373,11 @@
   .paper-card-cream:hover {
     border-color: hsl(var(--accent-red) / 0.45);
     box-shadow:
-      inset 0 1px 0 hsl(40 18% 96% / 0.07),
-      0 1px 0 hsl(0 0% 0% / 0.6),
+      inset 0 1px 0 var(--edge-hi),
+      0 1px 0 var(--edge-lo),
       0 0 0 1px hsl(var(--accent-red) / 0.18),
-      0 28px 50px -24px hsl(358 60% 18% / 0.55),
-      0 18px 30px -22px hsl(0 0% 0% / 0.9);
+      0 28px 50px -24px hsl(358 60% 30% / 0.30),
+      0 18px 30px -22px var(--shadow-3);
   }
   .paper-card-cream:hover::before {
     background: linear-gradient(180deg,
@@ -300,14 +390,13 @@
   /* Vault folder — heavier concrete slab for the hero's subject file */
   .paper-folder {
     position: relative;
-    background-color: hsl(0 0% 8%);
-    background-image:
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.95  0 0 0 0 0.88  0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    border: 1px solid hsl(40 12% 90% / 0.15);
+    background-color: hsl(var(--surface-3));
+    background-image: var(--noise-folder);
+    border: 1px solid hsl(var(--line) / 0.15);
     box-shadow:
-      inset 0 1px 0 hsl(40 18% 96% / 0.06),
-      inset 0 -1px 0 hsl(0 0% 0% / 0.7),
-      0 30px 60px -28px hsl(0 0% 0% / 0.95);
+      inset 0 1px 0 var(--edge-hi),
+      inset 0 -1px 0 var(--edge-lo),
+      0 30px 60px -28px var(--shadow-3);
   }
 
   /* Subtle photocopier/concrete grain overlay */
@@ -316,10 +405,9 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-    background-image:
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.95  0 0 0 0 0.88  0 0 0 0.04 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-image: var(--noise-grain);
     opacity: 0.3;
-    mix-blend-mode: screen;
+    mix-blend-mode: var(--grain-blend);
   }
 
   /* ===== CLASSIFIED RUBBER STAMP =====
@@ -368,17 +456,17 @@
   .watermark {
     font-family: 'Anton', 'Bebas Neue', sans-serif;
     font-weight: 400;
-    color: hsl(var(--accent-red) / 0.05);
+    color: var(--watermark-red);
     letter-spacing: -0.01em;
     text-transform: uppercase;
     pointer-events: none;
     user-select: none;
     white-space: nowrap;
     text-shadow:
-      0 0 1px hsl(var(--accent-red) / 0.10),
-      0 0 24px hsl(var(--accent-red) / 0.06);
+      0 0 1px var(--watermark-red),
+      0 0 24px var(--watermark-red);
   }
-  .watermark-dark { color: hsl(40 18% 92% / 0.035); text-shadow: none; }
+  .watermark-dark { color: var(--watermark-ink); text-shadow: none; }
 
   /* Redacted bar — now a classified-red censor bar */
   .redacted {
@@ -397,7 +485,7 @@
     background: hsl(var(--accent-red) / 0.85);
     border: 1px solid hsl(var(--accent-red-deep) / 0.7);
     box-shadow:
-      0 1px 2px hsl(0 0% 0% / 0.45),
+      0 1px 2px var(--shadow-1),
       inset 0 1px 0 hsl(var(--accent-red-bright) / 0.3),
       inset 0 -1px 0 hsl(var(--accent-red-deep) / 0.5);
     background-image: repeating-linear-gradient(
@@ -408,9 +496,9 @@
   }
   .tape-yellow { background: hsl(358 79% 51% / 0.85); }
   .tape-clear  {
-    background: hsl(40 12% 90% / 0.08);
-    border: 1px solid hsl(40 12% 90% / 0.3);
-    box-shadow: 0 1px 2px hsl(0 0% 0% / 0.3);
+    background: hsl(var(--line) / 0.08);
+    border: 1px solid hsl(var(--line) / 0.3);
+    box-shadow: 0 1px 2px var(--shadow-1);
   }
 
   /* Steel paperclip */
@@ -421,22 +509,22 @@
     border: 2px solid hsl(40 8% 75%);
     border-radius: 7px;
     background: transparent;
-    box-shadow: 0 2px 4px hsl(0 0% 0% / 0.5);
+    box-shadow: 0 2px 4px var(--shadow-1);
   }
 
-  .border-dashed-ink { border: 1.5px dashed hsl(40 12% 90% / 0.28); }
-  .border-dotted-ink { border: 2px dotted hsl(40 12% 90% / 0.25); }
+  .border-dashed-ink { border: 1.5px dashed hsl(var(--line) / 0.28); }
+  .border-dotted-ink { border: 2px dotted hsl(var(--line) / 0.25); }
 
   /* ===== PHOTO / IMAGE TREATMENTS =====
      Cinematic noir grade — deep contrast, slight cold cast, scanline
      for a surveillance-camera feel.
   */
   .photocopy {
-    filter: grayscale(85%) contrast(1.1) brightness(0.85) sepia(0.05);
+    filter: var(--photo-filter);
     mix-blend-mode: normal;
   }
   .photocopy-strong {
-    filter: grayscale(55%) contrast(1.18) brightness(0.86) saturate(0.85);
+    filter: var(--photo-filter-strong);
     mix-blend-mode: normal;
   }
 
@@ -449,8 +537,8 @@
       0deg,
       transparent 0,
       transparent 3px,
-      hsl(0 0% 0% / 0.18) 3px,
-      hsl(0 0% 0% / 0.18) 4px
+      hsl(var(--scanline-color)) 3px,
+      hsl(var(--scanline-color)) 4px
     );
     mix-blend-mode: multiply;
   }
@@ -462,7 +550,7 @@
 
   .crosshatch-bg {
     background-image:
-      repeating-linear-gradient(45deg, hsl(40 18% 92% / 0.05) 0 1px, transparent 1px 6px),
+      repeating-linear-gradient(45deg, hsl(var(--line) / 0.05) 0 1px, transparent 1px 6px),
       repeating-linear-gradient(-45deg, hsl(var(--accent-red) / 0.045) 0 1px, transparent 1px 8px);
   }
 
@@ -471,15 +559,15 @@
   */
   .tactical-grid {
     background-image:
-      linear-gradient(hsl(40 18% 92% / 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(40 18% 92% / 0.05) 1px, transparent 1px),
+      linear-gradient(hsl(var(--line) / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--line) / 0.05) 1px, transparent 1px),
       linear-gradient(hsl(var(--accent-red) / 0.04) 1px, transparent 1px),
       linear-gradient(90deg, hsl(var(--accent-red) / 0.04) 1px, transparent 1px);
     background-size: 40px 40px, 40px 40px, 200px 200px, 200px 200px;
   }
 
   .blueprint-grid {
-    background-color: hsl(0 0% 6%);
+    background-color: hsl(var(--surface-0));
     background-image:
       linear-gradient(hsl(var(--accent-blueprint) / 0.12) 1px, transparent 1px),
       linear-gradient(90deg, hsl(var(--accent-blueprint) / 0.12) 1px, transparent 1px),
@@ -521,10 +609,10 @@
   /* ===== STICKY NOTES — Professor's handwritten warnings ===== */
   .sticky-note {
     background: hsl(var(--accent-red));
-    color: hsl(40 22% 96%);
+    color: hsl(var(--on-red));
     box-shadow:
-      0 1px 0 hsl(0 0% 0% / 0.25),
-      0 12px 22px -10px hsl(358 60% 12% / 0.85),
+      0 1px 0 var(--shadow-1),
+      0 12px 22px -10px var(--shadow-2),
       inset 0 1px 0 hsl(var(--accent-red-bright) / 0.35);
     font-family: 'Special Elite', cursive;
     padding: 0.75rem 1rem;
@@ -541,7 +629,7 @@
   }
   .handwritten-red {
     font-family: 'Special Elite', cursive;
-    color: hsl(40 22% 96%);
+    color: hsl(var(--on-red));
     text-shadow: 0 0 6px hsl(var(--accent-red) / 0.6);
   }
 
@@ -636,27 +724,27 @@
     box-shadow:
       0 0 0 1px hsl(var(--accent-red) / 0.4),
       0 8px 22px -8px hsl(var(--accent-red) / 0.45),
-      0 16px 32px -16px hsl(0 0% 0% / 0.9);
+      0 16px 32px -16px var(--shadow-2);
   }
   .glow-red {
     box-shadow:
       0 0 0 1px hsl(var(--accent-red) / 0.4),
       0 0 22px hsl(var(--accent-red) / 0.4),
-      0 16px 32px -16px hsl(0 0% 0% / 0.9);
+      0 16px 32px -16px var(--shadow-2);
   }
   .glass-card {
     position: relative;
     background-color: hsl(var(--paper-cream) / 0.85);
     backdrop-filter: blur(8px);
-    border: 1px solid hsl(40 12% 90% / 0.10);
+    border: 1px solid hsl(var(--line) / 0.10);
     box-shadow:
-      inset 0 1px 0 hsl(40 18% 96% / 0.05),
-      0 16px 32px -18px hsl(0 0% 0% / 0.85);
+      inset 0 1px 0 var(--edge-hi),
+      0 16px 32px -18px var(--shadow-2);
   }
   .grid-pattern {
     background-image:
-      linear-gradient(hsl(40 18% 92% / 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(40 18% 92% / 0.05) 1px, transparent 1px);
+      linear-gradient(hsl(var(--line) / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--line) / 0.05) 1px, transparent 1px);
     background-size: 50px 50px;
   }
 
@@ -677,15 +765,15 @@
     background-image: repeating-linear-gradient(
       45deg,
       hsl(var(--accent-red)) 0 14px,
-      hsl(0 0% 6%) 14px 28px
+      hsl(var(--surface-0)) 14px 28px
     );
-    box-shadow: inset 0 -1px 0 hsl(0 0% 0% / 0.7), inset 0 1px 0 hsl(0 0% 0% / 0.7);
+    box-shadow: inset 0 -1px 0 var(--edge-lo), inset 0 1px 0 var(--edge-lo);
   }
   .diag-stripes-red {
     background-image: repeating-linear-gradient(
       45deg,
       hsl(var(--accent-red-bright)) 0 10px,
-      hsl(0 0% 8%) 10px 20px
+      hsl(var(--surface-1)) 10px 20px
     );
   }
 
@@ -727,7 +815,7 @@
     height: 10px;
     border-radius: 50%;
     background: radial-gradient(circle at 30% 30%, hsl(40 8% 80%) 0%, hsl(40 6% 50%) 60%, hsl(40 6% 30%) 100%);
-    box-shadow: inset 0 -1px 1px hsl(0 0% 0% / 0.6), 0 1px 1px hsl(0 0% 0% / 0.4);
+    box-shadow: inset 0 -1px 1px var(--shadow-1), 0 1px 1px var(--shadow-1);
     display: inline-block;
   }
 
@@ -762,16 +850,16 @@
     align-items: center;
     gap: 0.6rem;
     background: hsl(var(--accent-red));
-    color: hsl(40 22% 96%);
+    color: hsl(var(--on-red));
     font-family: 'Bebas Neue', sans-serif;
     letter-spacing: 0.18em;
     padding: 0.85rem 1.25rem;
     border: 1px solid hsl(var(--accent-red-deep));
     box-shadow:
       inset 0 1px 0 hsl(var(--accent-red-bright) / 0.45),
-      inset 0 -1px 0 hsl(0 0% 0% / 0.3),
+      inset 0 -1px 0 var(--shadow-1),
       0 0 22px hsl(var(--accent-red) / 0.45),
-      0 16px 28px -14px hsl(358 70% 12% / 0.7);
+      0 16px 28px -14px var(--shadow-2);
     transition: all 0.2s ease;
     text-transform: uppercase;
     position: relative;
@@ -781,9 +869,9 @@
     background: hsl(var(--accent-red-bright));
     box-shadow:
       inset 0 1px 0 hsl(var(--accent-red-bright) / 0.7),
-      inset 0 -1px 0 hsl(0 0% 0% / 0.4),
+      inset 0 -1px 0 var(--shadow-1),
       0 0 32px hsl(var(--accent-red) / 0.7),
-      0 18px 36px -14px hsl(358 70% 12% / 0.9);
+      0 18px 36px -14px var(--shadow-3);
     transform: translateY(-1px);
   }
 
@@ -797,7 +885,7 @@
     font-family: 'Bebas Neue', sans-serif;
     letter-spacing: 0.18em;
     padding: 0.85rem 1.25rem;
-    border: 1px solid hsl(40 18% 92% / 0.25);
+    border: 1px solid hsl(var(--line) / 0.25);
     text-transform: uppercase;
     transition: all 0.2s ease;
   }
@@ -837,8 +925,8 @@
     line-height: 0.86;
     color: hsl(var(--accent-bone));
     text-shadow:
-      0 1px 0 hsl(0 0% 0% / 0.6),
-      0 8px 32px hsl(0 0% 0% / 0.45);
+      0 1px 0 var(--shadow-1),
+      0 8px 32px var(--shadow-1);
   }
   .display-title .accent {
     color: hsl(var(--accent-red));
@@ -857,6 +945,6 @@
     height: 12px;
     border-radius: 50%;
     background: radial-gradient(circle at 35% 30%, hsl(var(--accent-red-bright)) 0%, hsl(var(--accent-red)) 60%, hsl(var(--accent-red-deep)) 100%);
-    box-shadow: 0 0 0 2px hsl(0 0% 0% / 0.55), 0 0 12px hsl(var(--accent-red) / 0.6);
+    box-shadow: 0 0 0 2px var(--shadow-1), 0 0 12px hsl(var(--accent-red) / 0.6);
   }
 }

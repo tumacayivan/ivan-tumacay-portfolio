@@ -281,7 +281,7 @@ const SoftwarePortfolioSection = () => {
                   </div>
 
                   <div className="relative overflow-hidden border border-[hsl(var(--accent-red)/0.4)] mb-4 group-hover:border-[hsl(var(--accent-red))] transition-colors">
-                    <div className="absolute -top-1 left-3 z-10 bg-[hsl(0_0%_5%)] border border-[hsl(var(--accent-red))] px-2 py-0.5 font-courier text-[10px] tracking-[0.28em] text-[hsl(var(--accent-red))] rotate-[-2deg]">
+                    <div className="absolute -top-1 left-3 z-10 bg-[hsl(var(--surface-1))] border border-[hsl(var(--accent-red))] px-2 py-0.5 font-courier text-[10px] tracking-[0.28em] text-[hsl(var(--accent-red))] rotate-[-2deg]">
                       EXHIBIT·{String(i + 1).padStart(3, "0")}
                     </div>
 
@@ -292,7 +292,7 @@ const SoftwarePortfolioSection = () => {
                     />
 
                     {/* Cinematic gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[hsl(0_0%_3%/0.5)] via-transparent to-transparent pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--surface-0)/0.5)] via-transparent to-transparent pointer-events-none" />
 
                     <div className="absolute top-2 left-2 w-5 h-5 border-l-2 border-t-2 border-[hsl(var(--accent-red))]" />
                     <div className="absolute top-2 right-2 w-5 h-5 border-r-2 border-t-2 border-[hsl(var(--accent-red))]" />
@@ -303,7 +303,7 @@ const SoftwarePortfolioSection = () => {
                       DEPLOYED
                     </div>
 
-                    <div className="absolute inset-0 bg-[hsl(0_0%_3%/0.88)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-2 px-4">
+                    <div className="absolute inset-0 bg-[hsl(var(--surface-0)/0.88)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-2 px-4">
                       <div className="w-16 h-16 border-2 border-[hsl(var(--accent-red))] flex items-center justify-center bg-[hsl(var(--accent-red)/0.18)] glow-red">
                         <ExternalLink className="w-6 h-6 text-[hsl(var(--accent-red))]" />
                       </div>
@@ -408,7 +408,7 @@ const SoftwarePortfolioSection = () => {
                       </div>
 
                       <div className="flex items-start gap-3 mb-3">
-                        <div className="p-2 border border-[hsl(var(--accent-red)/0.5)] bg-[hsl(0_0%_5%)] text-[hsl(var(--accent-red))] shrink-0 group-hover:bg-[hsl(var(--accent-red))] group-hover:text-[hsl(40_22%_96%)] transition-colors">
+                        <div className="p-2 border border-[hsl(var(--accent-red)/0.5)] bg-[hsl(var(--surface-1))] text-[hsl(var(--accent-red))] shrink-0 group-hover:bg-[hsl(var(--accent-red))] group-hover:text-[hsl(var(--on-red))] transition-colors">
                           <Icon className="w-4 h-4" />
                         </div>
                         <div className="min-w-0 flex-1">

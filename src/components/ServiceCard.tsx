@@ -30,7 +30,7 @@ const ServiceCard = ({ title, description, services, icon: Icon, tools, index }:
         </span>
 
         <div className="flex items-start gap-3 mb-4 border-b border-dashed-ink pb-3">
-          <div className="p-2.5 border border-[hsl(var(--accent-red)/0.5)] bg-[hsl(0_0%_5%)] text-[hsl(var(--accent-red))] shrink-0 group-hover:bg-[hsl(var(--accent-red))] group-hover:text-[hsl(40_22%_96%)] transition-colors">
+          <div className="p-2.5 border border-[hsl(var(--accent-red)/0.5)] bg-[hsl(var(--surface-1))] text-[hsl(var(--accent-red))] shrink-0 group-hover:bg-[hsl(var(--accent-red))] group-hover:text-[hsl(var(--on-red))] transition-colors">
             <Icon className="w-5 h-5" />
           </div>
           <div className="min-w-0">

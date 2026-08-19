@@ -115,8 +115,8 @@ const ExperienceSection = () => {
         <div className="relative">
           {/* Red thread connecting all missions */}
           <div className="absolute left-4 sm:left-6 top-2 bottom-2 w-[2px] bg-gradient-to-b from-[hsl(var(--accent-red))] via-[hsl(var(--accent-red-bright))] to-[hsl(var(--accent-red-deep))] shadow-[0_0_8px_hsl(var(--accent-red)/0.5)]" />
-          <div className="absolute left-[7px] sm:left-[15px] top-0 w-5 h-5 border-2 border-[hsl(var(--accent-red))] bg-[hsl(0_0%_5%)] rotate-45 shadow-[0_0_12px_hsl(var(--accent-red)/0.5)]" />
-          <div className="absolute left-[7px] sm:left-[15px] bottom-0 w-5 h-5 border-2 border-[hsl(var(--accent-red))] bg-[hsl(0_0%_5%)] rotate-45 shadow-[0_0_12px_hsl(var(--accent-red)/0.5)]" />
+          <div className="absolute left-[7px] sm:left-[15px] top-0 w-5 h-5 border-2 border-[hsl(var(--accent-red))] bg-[hsl(var(--surface-1))] rotate-45 shadow-[0_0_12px_hsl(var(--accent-red)/0.5)]" />
+          <div className="absolute left-[7px] sm:left-[15px] bottom-0 w-5 h-5 border-2 border-[hsl(var(--accent-red))] bg-[hsl(var(--surface-1))] rotate-45 shadow-[0_0_12px_hsl(var(--accent-red)/0.5)]" />
 
           <div className="space-y-6">
             {experiences.map((exp, i) => {
@@ -131,8 +131,8 @@ const ExperienceSection = () => {
                   className="relative pl-12 sm:pl-20"
                 >
                   {/* Red node */}
-                  <div className="absolute left-2 sm:left-4 top-6 w-6 h-6 rounded-full bg-[hsl(var(--accent-red))] border-2 border-[hsl(0_0%_5%)] shadow-[0_0_18px_hsl(var(--accent-red)/0.6)] flex items-center justify-center">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[hsl(40_22%_96%)] animate-pulse-classified" />
+                  <div className="absolute left-2 sm:left-4 top-6 w-6 h-6 rounded-full bg-[hsl(var(--accent-red))] border-2 border-[hsl(var(--surface-1))] shadow-[0_0_18px_hsl(var(--accent-red)/0.6)] flex items-center justify-center">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--on-red))] animate-pulse-classified" />
                   </div>
                   <div className="absolute left-8 sm:left-10 top-9 w-4 sm:w-10 h-px bg-[hsl(var(--accent-red))]" />
 
@@ -157,7 +157,7 @@ const ExperienceSection = () => {
                         {exp.role}
                       </h3>
                       {exp.period && (
-                        <span className="font-courier text-[13px] text-[hsl(var(--accent-red))] tracking-[0.2em] border border-[hsl(var(--accent-red)/0.5)] px-2 py-0.5 whitespace-nowrap bg-[hsl(0_0%_5%)]">
+                        <span className="font-courier text-[13px] text-[hsl(var(--accent-red))] tracking-[0.2em] border border-[hsl(var(--accent-red)/0.5)] px-2 py-0.5 whitespace-nowrap bg-[hsl(var(--surface-1))]">
                           {exp.period}
                         </span>
                       )}

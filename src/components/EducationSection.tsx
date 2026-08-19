@@ -78,7 +78,7 @@ const EducationSection = () => {
                 </div>
 
                 <div className="flex items-start justify-between mb-4">
-                  <div className="p-2.5 border border-[hsl(var(--accent-red)/0.5)] bg-[hsl(0_0%_5%)] text-[hsl(var(--accent-red))]">
+                  <div className="p-2.5 border border-[hsl(var(--accent-red)/0.5)] bg-[hsl(var(--surface-1))] text-[hsl(var(--accent-red))]">
                     <GraduationCap className="w-5 h-5" />
                   </div>
                   <div className="stamp stamp-blue text-[12px] !p-1 rotate-[4deg]">CERTIFIED</div>
