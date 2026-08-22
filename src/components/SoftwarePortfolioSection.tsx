@@ -9,6 +9,15 @@ import ivanQuantModel from "@/assets/ivan-quant-model-website.png";
 import goldenPearl from "@/assets/golden-south-sea-pearl-website.png";
 import tumacayMotors from "@/assets/tumacay-general-motors-website.png";
 import supercomputer from "@/assets/supercomputer.png";
+import ivanGlennSurfing from "@/assets/ivan-glenn-surfing-school-website.png";
+import rdrGlobal from "@/assets/rdr-global-system-website.png";
+import jennyBarzaga from "@/assets/jenny-barzaga-website.png";
+import visionTasmania from "@/assets/vision-tasmania-website.png";
+import covenantBuilders from "@/assets/covenant-builders-global-website.png";
+import bigBossGlobal from "@/assets/bigboss-global-website.png";
+import bioBlooms from "@/assets/bioblooms-health-wellness-website.png";
+import winermanConstruction from "@/assets/winerman-construction-website.png";
+import jmmSupply from "@/assets/jmm-supply-construction-website.png";
 
 interface Project {
   name: string;
@@ -103,6 +112,78 @@ const liveSites: LiveSite[] = [
     image: supercomputer,
     url: "https://ivan-tumacay-group-supercomputer.onrender.com/",
     stack: "HPC · Parallel Computing · AI",
+  },
+  {
+    name: "Ivan & Glenn Surfing School",
+    tagline: "Surf Lessons · Siargao Island",
+    description: "Bilingual booking site for a two-coach surf school in General Luna, Siargao, covering lesson tiers, wave conditions, island guides, and instructor profiles.",
+    image: ivanGlennSurfing,
+    url: "https://ivan-glenn-surfing-school.onrender.com/",
+    stack: "React · Booking · Multilingual",
+  },
+  {
+    name: "RDR Global System",
+    tagline: "Brand & Promotion Agent Network",
+    description: "Affiliate operations platform connecting vetted brands with a managed community of promotion agents, tracking every lead and commission from first click to final payout.",
+    image: rdrGlobal,
+    url: "https://rdrglobalsystem.onrender.com/",
+    stack: "Web App · Affiliate · Analytics",
+  },
+  {
+    name: "Jenny Barzaga",
+    tagline: "Congressional Campaign Platform",
+    description: "Filipino-language campaign site for the 4th District of Cavite, featuring the platform, service record, event countdown, and volunteer sign-up.",
+    image: jennyBarzaga,
+    url: "https://jenny-barzaga.onrender.com/",
+    stack: "React · Campaign · Multilingual",
+  },
+  {
+    name: "Vision Tasmania",
+    tagline: "Workforce & Leadership Group",
+    description: "Editorial corporate site for the Hobart-based group, presenting its mission, virtues, leadership, partners, and culture with a refined light/dark experience.",
+    image: visionTasmania,
+    url: "https://vision-tasmania.onrender.com/",
+    stack: "React · Corporate · Editorial",
+  },
+  {
+    name: "Covenant Builders Global",
+    tagline: "Faith, Family & Enterprise Network",
+    description: "Organisational site for CBG, presenting its vision, community-building work, global reach, and gathering schedule with visit planning.",
+    image: covenantBuilders,
+    url: "https://covenant-builders-global.onrender.com/",
+    stack: "React · Community · Web",
+  },
+  {
+    name: "BigBoss Global",
+    tagline: "Private Digital Wallet",
+    description: "Members-only digital wallet platform for holding, sending, and receiving funds with bank-grade protection and second-level transfers.",
+    image: bigBossGlobal,
+    url: "https://bigbossglobal.onrender.com/",
+    stack: "Web App · Fintech · Security",
+  },
+  {
+    name: "BioBlooms Health & Wellness",
+    tagline: "Holistic Naturopathic Hub",
+    description: "Consultation and wellness platform for a licensed naturopathic practice, covering treatment approach, conditions handled, patient stories, and pricing.",
+    image: bioBlooms,
+    url: "https://bioblooms-health-wellness.onrender.com/",
+    stack: "React · Healthcare · Booking",
+  },
+  {
+    name: "Winerman Construction",
+    tagline: "Infrastructure & General Building",
+    description: "Contractor site for a Philippine builder delivering bridges, roads, reclamation works, and bored piles, with a project gallery and permit records.",
+    image: winermanConstruction,
+    url: "https://winerman-construction.onrender.com/",
+    stack: "React · Construction · Portfolio",
+  },
+  {
+    name: "JMM Supply & Construction",
+    tagline: "Hauling, Earthworks & Supply",
+    description: "Corporate site for a Cavite-based supplier of heavy equipment, filling materials, and construction supplies serving land development and road projects.",
+    image: jmmSupply,
+    url: "https://jmm-supply-construction.onrender.com/",
+    stack: "React · Construction · Equipment",
   },
 ];
 
