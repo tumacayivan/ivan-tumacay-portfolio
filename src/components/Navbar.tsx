@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import ThemeToggle from "./ThemeToggle";
 
 const navItems = [
+  { label: "Trading Bots", href: "#trading-bots", code: "TOP SECRET" },
   { label: "Services", href: "#services", code: "SEC 03" },
   { label: "Experience", href: "#experience", code: "SEC 05" },
   { label: "Portfolio", href: "#portfolio", code: "SEC 04" },
@@ -91,7 +92,7 @@ const Navbar = () => {
               <a
                 key={item.label}
                 href={item.href}
-                className="group relative px-3 lg:px-4 py-2 font-blackops text-[15px] text-[hsl(var(--ink-charcoal))] uppercase tracking-[0.22em] hover:text-[hsl(var(--accent-red))] transition-colors"
+                className="group relative px-2 xl:px-4 py-2 whitespace-nowrap font-blackops text-[14px] xl:text-[15px] text-[hsl(var(--ink-charcoal))] uppercase tracking-[0.16em] xl:tracking-[0.22em] hover:text-[hsl(var(--accent-red))] transition-colors"
               >
                 <span className="absolute -top-1 left-1/2 -translate-x-1/2 font-courier text-[9px] tracking-[0.2em] text-[hsl(var(--accent-red))] opacity-60 group-hover:opacity-100 transition-opacity">
                   {item.code}
@@ -104,10 +105,11 @@ const Navbar = () => {
               href="/Ivan-Tumacay-Portfolio.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="dossier-cta-ghost ml-3 text-[13px] !py-2.5 !px-4"
+              className="dossier-cta-ghost ml-3 text-[13px] !py-2.5 !px-3 xl:!px-4"
+              aria-label="Resume"
             >
               <FileText className="w-3.5 h-3.5" />
-              <span>RESUME</span>
+              <span className="hidden xl:inline">RESUME</span>
             </a>
             <a
               href="#contact"

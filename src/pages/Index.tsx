@@ -3,6 +3,7 @@ import BackgroundMusic from "@/components/BackgroundMusic";
 import HeroSection from "@/components/HeroSection";
 import SubjectProfileSection from "@/components/SubjectProfileSection";
 import SkillsMarquee from "@/components/SkillsMarquee";
+import TradingBotsSection from "@/components/TradingBotsSection";
 import ServicesSection from "@/components/ServicesSection";
 import ExperienceSection from "@/components/ExperienceSection";
 import PortfolioSection from "@/components/PortfolioSection";
@@ -19,6 +20,7 @@ const Index = () => {
       <HeroSection />
       <SubjectProfileSection />
       <SkillsMarquee />
+      <TradingBotsSection />
       <PortfolioSection />
       <ServicesSection />
       <EducationSection />
