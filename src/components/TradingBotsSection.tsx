@@ -15,17 +15,36 @@ import {
   ShieldCheck,
   FileWarning,
 } from "lucide-react";
-import ivanTradingBots from "@/assets/ivan-trading-bots-website.png";
+import itbAnalytics from "@/assets/ivan-trading-bots/itb-01-analytics.png";
+import itbTrackRecord from "@/assets/ivan-trading-bots/itb-02-track-record.png";
+import itbServerConsole from "@/assets/ivan-trading-bots/itb-03-server-console.png";
+import itbLinkTiming from "@/assets/ivan-trading-bots/itb-04-link-timing.png";
+import itbBridgeHost from "@/assets/ivan-trading-bots/itb-05-bridge-host.png";
+import itbTelemetry from "@/assets/ivan-trading-bots/itb-06-telemetry.png";
+import itbProcessorNetwork from "@/assets/ivan-trading-bots/itb-07-processor-network.png";
 
 const SITE_URL = "https://ivan-trading-bots.onrender.com/";
 const CLEARANCE_KEY = "itb-clearance";
 
-// Figures from a stored snapshot of the demo account shown in the screenshot.
+// Screenshots of the live terminal; account, broker and host details are redacted in the image files.
+const exhibits = [
+  { image: itbAnalytics, title: "Analytics · Result", caption: "Net profit, expectancy and trade count over the selected period." },
+  { image: itbTrackRecord, title: "Track Record", caption: "Win rate, profit factor, profitable days and time-weighted gain." },
+  { image: itbServerConsole, title: "Server Console", caption: "Rack view of the account and bot units read from the synced snapshot." },
+  { image: itbLinkTiming, title: "Link & Timing", caption: "Broker round trip, bridge uptime, tick flow and per-port link status." },
+  { image: itbBridgeHost, title: "Bridge Host", caption: "Host CPU and memory, bridge load, network and a 60-second activity matrix." },
+  { image: itbTelemetry, title: "Telemetry", caption: "Latency and tick-flow charts sampled once per second." },
+  { image: itbProcessorNetwork, title: "Processor & Network", caption: "Machine and bridge CPU, network in and out, and the live console." },
+];
+
+const letterOf = (i: number) => String.fromCharCode(65 + i);
+
+// Figures from the demo account's track record shown in the screenshots.
 const snapshotStats = [
-  { label: "Net Profit", value: "$1,715.04", note: "Gross $1,734.23 · Loss −$19.19", up: true },
+  { label: "Net Profit", value: "$1,715.04", note: "12 closed trades", up: true },
+  { label: "Win Rate", value: "91.7%", note: "11 wins · 1 loss", up: true },
+  { label: "Profit Factor", value: "90.37", note: "Gross win ÷ gross loss", up: true },
   { label: "Expectancy", value: "$142.92", note: "Average per closed trade", up: true },
-  { label: "Closed Trades", value: "12", note: "3 active days" },
-  { label: "Equity", value: "$2,715.04", note: "No margin in use" },
 ];
 
 const capabilities = [
@@ -35,7 +54,7 @@ const capabilities = [
   { icon: Wallet, title: "Funding Ledger", body: "Deposits, withdrawals and index-CFD dividends split out so trading results are never inflated by cash moves." },
   { icon: PieChart, title: "Symbol Attribution", body: "Sources of profit and loss charted per instrument, filterable across every traded symbol." },
   { icon: CloudDownload, title: "Cloud Sync Snapshots", body: "When the terminal is offline, the last synced account is served from storage so the record stays viewable." },
-  { icon: Clock, title: "Periods & Timezones", body: "1D to YTD presets, custom ranges, 13 market timezones and currency switching." },
+  { icon: Clock, title: "Server Telemetry", body: "Rack-style system console with link timing, port status, host load and per-second latency and tick-flow charts." },
   { icon: Share2, title: "Share & Report", body: "One-click share link, QR code and a generated PDF performance report." },
 ];
 
@@ -87,8 +106,10 @@ const Redactable = ({ cleared, children }: { cleared: boolean; children: ReactNo
 
 const TradingBotsSection = () => {
   const [clearance, setClearance] = useState<Clearance>(readClearance);
+  const [active, setActive] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
   const cleared = clearance === "cleared";
+  const exhibit = exhibits[active];
 
   useEffect(() => {
     if (clearance !== "verifying") return;
@@ -199,7 +220,7 @@ const TradingBotsSection = () => {
                 cleared ? "" : "max-h-[620px] sm:max-h-[720px] overflow-hidden blur-[7px] grayscale select-none pointer-events-none"
               }`}
             >
-              {/* EXHIBIT */}
+              {/* EXHIBITS */}
               <div className="flex flex-col gap-10 mb-14">
                 <a href={SITE_URL} target="_blank" rel="noopener noreferrer" className="group block relative">
                   <div className="tape w-20 h-5 -top-2.5 left-10 rotate-[-4deg] z-20" />
@@ -212,8 +233,8 @@ const TradingBotsSection = () => {
                         <span className="w-2.5 h-2.5 rounded-full bg-[hsl(42_95%_52%)]" />
                         <span className="w-2.5 h-2.5 rounded-full bg-[hsl(142_70%_45%)]" />
                       </div>
-                      <span className="font-courier text-[11px] tracking-[0.2em] text-[hsl(40_12%_70%)] truncate">
-                        EXHIBIT A // SURVEILLANCE CAPTURE
+                      <span className="font-courier text-[11px] tracking-[0.2em] text-[hsl(40_12%_70%)] truncate uppercase">
+                        EXHIBIT {letterOf(active)} // {exhibit.title}
                       </span>
                       <span className="hidden sm:flex items-center font-courier text-[10px] tracking-[0.3em] text-[hsl(var(--accent-red))] shrink-0">
                         <span className="status-pulse" /> REC
@@ -222,9 +243,10 @@ const TradingBotsSection = () => {
 
                     <div className="relative overflow-hidden">
                       <img
-                        src={ivanTradingBots}
-                        alt="Ivan Trading Bots analytics terminal showing account equity, net profit and expectancy"
-                        className="w-full aspect-[1912/898] object-cover object-top group-hover:scale-[1.015] transition-transform duration-500"
+                        key={active}
+                        src={exhibit.image}
+                        alt={`Ivan Trading Bots terminal — ${exhibit.title}`}
+                        className="w-full aspect-[2.08/1] object-cover object-top group-hover:scale-[1.015] transition-transform duration-500"
                       />
                       <div className="scan-bar" />
 
@@ -258,6 +280,50 @@ const TradingBotsSection = () => {
                   </AnimatePresence>
                 </a>
 
+                {/* Exhibit index */}
+                <div className="-mt-2">
+                  <div className="flex flex-wrap items-baseline justify-between gap-2 mb-3">
+                    <p className="font-courier text-[13px] text-[hsl(var(--ink-charcoal))] leading-relaxed">
+                      <span className="font-blackops tracking-[0.3em] text-[hsl(var(--accent-red))]">EXHIBIT {letterOf(active)} //</span>{" "}
+                      {exhibit.caption}
+                    </p>
+                    <span className="font-courier text-[11px] tracking-[0.3em] text-[hsl(var(--ink-brown))] uppercase">
+                      {active + 1} of {exhibits.length} exhibits
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-4 sm:grid-cols-7 gap-2 sm:gap-3">
+                    {exhibits.map((ex, i) => (
+                      <button
+                        key={ex.title}
+                        type="button"
+                        onClick={() => setActive(i)}
+                        aria-pressed={i === active}
+                        aria-label={`Show exhibit ${letterOf(i)}: ${ex.title}`}
+                        className={`group/thumb relative text-left border-2 transition-colors ${
+                          i === active
+                            ? "border-[hsl(var(--accent-red))] glow-red"
+                            : "border-[hsl(var(--line)/0.15)] hover:border-[hsl(var(--accent-red)/0.6)]"
+                        }`}
+                      >
+                        <img
+                          src={ex.image}
+                          alt=""
+                          loading="lazy"
+                          className={`w-full aspect-[16/9] object-cover object-top transition ${
+                            i === active ? "" : "opacity-60 grayscale group-hover/thumb:opacity-100 group-hover/thumb:grayscale-0"
+                          }`}
+                        />
+                        <span className="absolute top-0 left-0 bg-[hsl(var(--accent-red))] text-[hsl(var(--on-red))] font-blackops text-[11px] tracking-[0.2em] px-1.5">
+                          {letterOf(i)}
+                        </span>
+                        <span className="block px-1.5 py-1 font-courier text-[10px] tracking-[0.12em] uppercase truncate text-[hsl(var(--ink-brown))] bg-[hsl(var(--surface-1))]">
+                          {ex.title}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
                 {/* Dossier panel */}
                 <div className="paper-card-cream p-5 sm:p-6 paper-grain relative">
                   <div className="flex items-center justify-between border-b border-dashed-ink pb-2 mb-4">
@@ -285,7 +351,7 @@ const TradingBotsSection = () => {
                     ))}
                   </div>
                   <p className="font-courier text-[11px] tracking-[0.18em] text-[hsl(var(--ink-brown))] uppercase mb-5">
-                    Demo account · stored snapshot · not a live feed
+                    Demo account · all-time track record · 3 active days
                   </p>
 
                   <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 border-t border-dashed-ink pt-4">
