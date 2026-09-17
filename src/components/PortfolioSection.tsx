@@ -451,6 +451,20 @@ const PORTRAIT_REELS = new Set([
 
 type Shape = "poster" | "portrait" | "landscape";
 
+/**
+ * A cut of the work for the montage: a few frames from every reel, in the
+ * order they should flash past.
+ */
+export const montageFrames = [
+  graphicItems[0], aiVideosItems[2], graphicItems[4], reelsTikTokItems[1],
+  documentaryItems[0], graphicItems[8], dropshippingItems[3], captionsItems[5],
+  graphicItems[11], fastPacedItems[2], stockFootageItems[4], afterEffectsItems[1],
+  podcastItems[0], graphicItems[2], aiVideosItems[9], reelsTikTokItems[6],
+  graphicItems[6], captionsItems[12], dropshippingItems[8], fastPacedItems[7],
+]
+  .filter(Boolean)
+  .map((item) => ({ src: item.thumbnail, title: item.title }));
+
 const reels = [
   { key: "graphics", title: "Graphics Design", kind: "image" as const, shape: "poster" as Shape, items: graphicItems },
   ...videoCategories.map((c) => ({
@@ -554,8 +568,8 @@ const SHAPE_CLASS: Record<Shape, string> = {
 const Frame = ({ item, kind, shape, delay, onOpen }: { item: PortfolioItem; kind: "image" | "video"; shape: Shape; delay: number; onOpen: () => void }) => (
   <motion.button
     type="button"
-    initial={{ opacity: 0, y: 30, rotateX: -12 }}
-    whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+    initial={{ opacity: 0, x: 60, rotateY: 18, filter: "blur(6px)" }}
+    whileInView={{ opacity: 1, x: 0, rotateY: 0, filter: "blur(0px)" }}
     viewport={{ once: true, margin: "-40px" }}
     transition={{ duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] }}
     onClick={onOpen}

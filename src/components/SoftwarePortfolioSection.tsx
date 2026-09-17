@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 import { Code2, Globe, Smartphone, Zap, ArrowUpRight } from "lucide-react";
 import SectionHeading from "./drift/SectionHeading";
 import ivanTumacayGroup from "@/assets/ivan-tumacay-group-website.png";
@@ -322,6 +323,41 @@ const LiveSiteCard = ({ site, index }: { site: LiveSite; index: number }) => (
 
 const SoftwarePortfolioSection = () => {
   const totalProjects = portfolioData.reduce((acc, g) => acc + g.count, 0);
+  const railRef = useRef<HTMLDivElement>(null);
+  const trackRefEl = useRef<HTMLDivElement>(null);
+  const railBarRef = useRef<HTMLSpanElement>(null);
+  const bayRef = useRef<HTMLSpanElement>(null);
+
+  // Vertical scroll drives the row sideways, so the whole garage passes the
+  // window. Written straight to the DOM from one rAF loop.
+  useEffect(() => {
+    let raf = 0;
+    let x = 0;
+
+    const frame = () => {
+      raf = requestAnimationFrame(frame);
+      const rail = railRef.current;
+      const track = trackRefEl.current;
+      if (!rail || !track) return;
+      const rect = rail.getBoundingClientRect();
+      if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+
+      const travel = Math.max(1, rect.height - window.innerHeight * 0.84);
+      const p = Math.max(0, Math.min(1, -rect.top / travel));
+      const distance = Math.max(0, track.scrollWidth - window.innerWidth * 0.9);
+      x += (-p * distance - x) * 0.12;
+      track.style.transform = `translate3d(${x}px, 0, 0)`;
+
+      if (railBarRef.current) railBarRef.current.style.transform = `scaleX(${p})`;
+      if (bayRef.current) {
+        const bay = Math.min(liveSites.length, Math.floor(p * liveSites.length) + 1);
+        bayRef.current.textContent = String(bay).padStart(2, "0");
+      }
+    };
+
+    raf = requestAnimationFrame(frame);
+    return () => cancelAnimationFrame(raf);
+  }, []);
 
   return (
     <section
@@ -337,28 +373,42 @@ const SoftwarePortfolioSection = () => {
           on the floor is running — hover to scroll the page, click to take it for a drive.
         </SectionHeading>
 
-        <div className="relative mb-24">
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 [perspective:1600px]">
-            {liveSites.map((site, i) => (
-              <LiveSiteCard key={site.url} site={site} index={i} />
-            ))}
-          </div>
+        {/* The rail: scrolling down drives you sideways past every live site */}
+        <div ref={railRef} className="relative mb-24" style={{ height: `${liveSites.length * 42 + 60}vh` }}>
+          <div className="sticky top-16 h-[84svh] overflow-hidden">
+            <div className="absolute inset-0 grid-floor opacity-30" />
+            <div ref={trackRefEl} className="absolute left-0 top-1/2 -translate-y-1/2 flex gap-5 will-change-transform px-[6vw]">
+              {liveSites.map((site, i) => (
+                <div key={site.url} className="w-[78vw] sm:w-[52vw] lg:w-[34vw] xl:w-[27vw] shrink-0">
+                  <LiveSiteCard site={site} index={i} />
+                </div>
+              ))}
+            </div>
 
-          {/* The shutter rolls up the first time you reach the garage */}
-          <motion.div
-            aria-hidden
-            initial={{ scaleY: 1 }}
-            whileInView={{ scaleY: 0 }}
-            viewport={{ once: true, margin: "-120px" }}
-            transition={{ duration: 1.1, ease: [0.76, 0, 0.24, 1] }}
-            className="pointer-events-none absolute inset-0 origin-top z-20"
-            style={{
-              backgroundImage:
-                "repeating-linear-gradient(180deg, hsl(var(--asphalt-2)) 0 12px, hsl(var(--asphalt)) 12px 14px, hsl(var(--panel)) 14px 26px)",
-            }}
-          >
-            <span className="absolute inset-x-0 bottom-0 h-1.5 bg-drift shadow-[0_0_24px_hsl(var(--drift))]" />
-          </motion.div>
+            {/* Shutter rolls up when you arrive at the garage */}
+            <motion.div
+              aria-hidden
+              initial={{ scaleY: 1 }}
+              whileInView={{ scaleY: 0 }}
+              viewport={{ once: true, margin: "-120px" }}
+              transition={{ duration: 1.1, ease: [0.76, 0, 0.24, 1] }}
+              className="pointer-events-none absolute inset-0 origin-top z-20"
+              style={{
+                backgroundImage:
+                  "repeating-linear-gradient(180deg, hsl(var(--asphalt-2)) 0 12px, hsl(var(--asphalt)) 12px 14px, hsl(var(--panel)) 14px 26px)",
+              }}
+            >
+              <span className="absolute inset-x-0 bottom-0 h-1.5 bg-drift shadow-[0_0_24px_hsl(var(--drift))]" />
+            </motion.div>
+
+            <div className="absolute inset-x-0 bottom-4 gutter flex items-center justify-between">
+              <span className="hud-label !text-ink-dim">Bay {" "}<span ref={bayRef} className="text-drift tabular-nums">01</span> / {liveSites.length}</span>
+              <span className="hud-label !text-ink-dim hidden sm:block">Scroll to drive the row</span>
+            </div>
+            <div aria-hidden className="absolute inset-x-0 bottom-0 h-[3px] bg-line/10">
+              <span ref={railBarRef} className="block h-full origin-left bg-gradient-to-r from-hud via-drift to-sign" style={{ transform: "scaleX(0)" }} />
+            </div>
+          </div>
         </div>
 
         {/* BUILD HISTORY */}
