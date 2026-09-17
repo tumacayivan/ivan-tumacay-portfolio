@@ -687,6 +687,18 @@
   }
   .animate-pulse-classified { animation: pulse-classified 1.4s ease-in-out infinite; }
 
+  /* Controls briefing — while ControlsNotice is open, the real theme and
+     music buttons pulse so the visitor can spot them. */
+  html.controls-hint [data-control-hint] {
+    animation: pulse-classified 1.4s ease-in-out infinite;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html.controls-hint [data-control-hint] {
+      animation: none;
+      box-shadow: 0 0 0 2px hsl(var(--accent-red));
+    }
+  }
+
   @keyframes scan-down {
     0% { transform: translateY(-100%); } 100% { transform: translateY(120%); }
   }

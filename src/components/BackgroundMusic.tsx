@@ -131,6 +131,7 @@ const BackgroundMusic = () => {
   return (
     <button
       onClick={toggle}
+      data-control-hint
       aria-label={showAsOn ? "Pause background music" : "Play background music"}
       title={showAsOn ? "Pause music" : "Play music"}
       className="fixed bottom-4 right-4 z-50 p-2.5 border border-[hsl(var(--accent-red))] bg-[hsl(var(--surface-1))] text-[hsl(var(--accent-red))] hover:bg-[hsl(var(--accent-red))] hover:text-[hsl(var(--on-red))] transition-colors glow-red"

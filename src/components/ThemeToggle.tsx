@@ -29,6 +29,7 @@ const ThemeToggle = ({ className = "" }: { className?: string }) => {
       type="button"
       onClick={toggle}
       role="switch"
+      data-control-hint
       aria-checked={dark}
       aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
       title={dark ? "VAULT LIGHTING — ON" : "VAULT LIGHTING — OFF"}
