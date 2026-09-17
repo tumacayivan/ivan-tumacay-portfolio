@@ -4,11 +4,11 @@ import { useEffect, useState } from "react";
 import ThemeToggle from "./ThemeToggle";
 
 const navItems = [
-  { label: "Trading Bots", href: "#trading-bots", kanji: "自動売買" },
-  { label: "Showreel", href: "#portfolio", kanji: "作品" },
-  { label: "Services", href: "#services", kanji: "サービス" },
-  { label: "Experience", href: "#experience", kanji: "経歴" },
-  { label: "Garage", href: "#software-portfolio", kanji: "車庫" },
+  { label: "The apparatus", href: "#trading-bots", code: "03" },
+  { label: "Exposure sheets", href: "#portfolio", code: "04" },
+  { label: "Programme", href: "#services", code: "05" },
+  { label: "Test log", href: "#experience", code: "07" },
+  { label: "Field records", href: "#software-portfolio", code: "08" },
 ];
 
 const Navbar = () => {
@@ -31,36 +31,37 @@ const Navbar = () => {
       transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
       className={`fixed top-0 inset-x-0 z-50 transition-[background,border-color,backdrop-filter] duration-500 border-b ${
         scrolled
-          ? "bg-[hsl(var(--asphalt)/0.78)] backdrop-blur-xl border-line/10"
+          ? "bg-[hsl(var(--base)/0.82)] backdrop-blur-xl border-line/15"
           : "bg-transparent border-transparent"
       }`}
     >
       <div className="gutter flex items-center justify-between h-16 sm:h-[72px]">
-        <a href="#top" className="flex items-center gap-3 group" aria-label="Ivan Tumacay — back to top">
-          <span className="plate w-[62px] h-[36px] text-[9px] group-hover:-rotate-3 transition-transform">
-            <span className="tracking-[0.08em]">東京 26</span>
-            <span className="text-[15px] tracking-[0.04em]">IT·01</span>
+        <a href="#top" className="flex items-center gap-3 group" aria-label="Ivan Tumacay — back to the start">
+          {/* Clearance badge */}
+          <span className="flex items-center border border-line/40 group-hover:border-ember transition-colors">
+            <span className="font-display text-lg leading-none px-2 py-1.5 text-ink">IT</span>
+            <span className="font-doc text-[10px] font-semibold tracking-[0.1em] px-1.5 py-2 leading-none bg-ember text-on-ember">
+              01
+            </span>
           </span>
           <span className="hidden sm:flex lg:hidden xl:flex flex-col leading-none whitespace-nowrap">
-            <span className="font-display text-lg tracking-tight text-ink uppercase">
-              Ivan <span className="text-drift">Tumacay</span>
+            <span className="font-display text-xl tracking-tight text-ink uppercase">Ivan Tumacay</span>
+            <span className="font-doc text-[10px] tracking-[0.2em] text-ink-dim uppercase mt-1">
+              Engineer · Operator
             </span>
-            <span className="font-hud text-[10px] tracking-[0.22em] text-ink-dim uppercase mt-1">Engineer · Operator</span>
           </span>
         </a>
 
-        <div className="hidden lg:flex items-center gap-1">
+        <div className="hidden lg:flex items-center gap-0.5">
           {navItems.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="group relative whitespace-nowrap px-2.5 xl:px-4 py-2 font-hud text-[13px] font-semibold uppercase tracking-[0.14em] text-ink/80 hover:text-ink transition-colors"
+              className="group relative whitespace-nowrap px-2.5 xl:px-3.5 py-2 font-doc text-[12px] font-medium uppercase tracking-[0.14em] text-ink/80 hover:text-ink transition-colors"
             >
-              <span className="absolute left-1/2 -translate-x-1/2 -top-2.5 text-[9px] tracking-[0.1em] text-sign opacity-0 group-hover:opacity-100 group-hover:-translate-y-0.5 transition-all">
-                {item.kanji}
-              </span>
+              <span className="text-ember/70 mr-1.5 group-hover:text-ember transition-colors">{item.code}</span>
               {item.label}
-              <span className="absolute left-3 right-3 xl:left-4 xl:right-4 bottom-1 h-[2px] bg-drift scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 skew-x-[-20deg]" />
+              <span className="absolute left-2.5 right-2.5 xl:left-3.5 xl:right-3.5 bottom-1 h-px bg-ember scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
             </a>
           ))}
         </div>
@@ -75,10 +76,12 @@ const Navbar = () => {
             title="Resume (PDF)"
           >
             <FileText className="w-4 h-4" />
-            <span className="hidden xl:inline font-hud text-[11px] font-semibold tracking-[0.18em] uppercase">Resume</span>
+            <span className="hidden xl:inline font-doc text-[11px] font-semibold tracking-[0.18em] uppercase">
+              Resume
+            </span>
           </a>
           <ThemeToggle />
-          <a href="#contact" className="btn-drift hidden sm:inline-flex !py-2.5 !px-5 !text-[12px]">
+          <a href="#contact" className="btn-primary hidden sm:inline-flex !py-2.5 !px-5 !text-[11px]">
             <span className="flex items-center gap-1.5">
               Contact <ArrowUpRight className="w-3.5 h-3.5" />
             </span>
@@ -94,10 +97,10 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Scroll progress — the rev bar */}
+      {/* How far through the record you are */}
       <motion.div
         aria-hidden
-        className="absolute left-0 right-0 -bottom-px h-[2px] origin-left bg-gradient-to-r from-hud via-drift to-sign"
+        className="absolute left-0 right-0 -bottom-px h-[2px] origin-left bg-ember"
         style={{ scaleX: progress }}
       />
 
@@ -108,7 +111,7 @@ const Navbar = () => {
             animate={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}
             exit={{ clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" }}
             transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
-            className="lg:hidden bg-[hsl(var(--asphalt)/0.97)] backdrop-blur-xl border-b border-line/10"
+            className="lg:hidden bg-[hsl(var(--base)/0.98)] backdrop-blur-xl border-b border-line/15"
           >
             <div className="gutter py-6 flex flex-col">
               {navItems.map((item, i) => (
@@ -118,22 +121,22 @@ const Navbar = () => {
                   initial={{ x: -30, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: 0.1 + i * 0.05, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex items-baseline justify-between py-3 border-b border-line/10 font-display text-2xl uppercase text-ink hover:text-drift transition-colors"
+                  className="flex items-baseline justify-between gap-4 py-3 border-b border-line/15 font-display text-2xl uppercase text-ink hover:text-ember transition-colors"
                   onClick={() => setMobileOpen(false)}
                 >
                   <span>{item.label}</span>
-                  <span className="neon-kanji text-sm">{item.kanji}</span>
+                  <span className="font-doc text-xs tracking-[0.2em] text-ember">{item.code}</span>
                 </motion.a>
               ))}
               <div className="grid grid-cols-2 gap-3 mt-6">
-                <a href="#contact" className="btn-drift" onClick={() => setMobileOpen(false)}>
+                <a href="#contact" className="btn-primary" onClick={() => setMobileOpen(false)}>
                   <span>Contact</span>
                 </a>
                 <a
                   href="/Ivan-Tumacay-Portfolio.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-ghost"
+                  className="btn-quiet"
                   onClick={() => setMobileOpen(false)}
                 >
                   <span>Resume</span>

@@ -1,22 +1,23 @@
-import { Moon, Sun } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 
 /**
- * NIGHT is the default: the car park at 2am.
- * DAY is the same garage with the shutters up.
+ * The lens change.
+ *
+ * COLOUR is the default grade: carbon black with the one warm source of
+ * light. MONO drains it — the same film, printed in black and white.
  *
  * The initial class is applied by the boot script in index.html so the
- * page never flashes the wrong theme; every toggle instance stays in sync
+ * page never flashes the wrong grade; every toggle instance stays in sync
  * by watching the <html> class instead of keeping its own copy.
  */
 const ThemeToggle = ({ className = "" }: { className?: string }) => {
-  const [night, setNight] = useState(
+  const [colour, setColour] = useState(
     () => typeof document === "undefined" || document.documentElement.classList.contains("dark"),
   );
 
   useEffect(() => {
     const root = document.documentElement;
-    const observer = new MutationObserver(() => setNight(root.classList.contains("dark")));
+    const observer = new MutationObserver(() => setColour(root.classList.contains("dark")));
     observer.observe(root, { attributes: true, attributeFilter: ["class"] });
     return () => observer.disconnect();
   }, []);
@@ -25,9 +26,9 @@ const ThemeToggle = ({ className = "" }: { className?: string }) => {
     const next = !document.documentElement.classList.contains("dark");
     document.documentElement.classList.toggle("dark", next);
     try {
-      localStorage.setItem("drift-theme", next ? "dark" : "light");
+      localStorage.setItem("grade", next ? "colour" : "mono");
     } catch {
-      /* private mode — theme just won't persist */
+      /* private mode — the grade just won't persist */
     }
   }, []);
 
@@ -37,14 +38,18 @@ const ThemeToggle = ({ className = "" }: { className?: string }) => {
       onClick={toggle}
       role="switch"
       data-control-hint
-      aria-checked={!night}
-      aria-label={night ? "Switch to day mode" : "Switch to night mode"}
-      title={night ? "Day mode" : "Night mode"}
-      className={`icon-btn ${className}`}
+      aria-checked={!colour}
+      aria-label={colour ? "Switch to the black and white grade" : "Switch to the colour grade"}
+      title={colour ? "Black and white" : "Colour"}
+      className={`icon-btn !gap-2 ${className}`}
     >
-      {night ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-      <span className="hidden xl:inline font-hud text-[11px] font-semibold tracking-[0.18em] uppercase">
-        {night ? "Day" : "Night"}
+      {/* Two halves of the same frame: one graded, one bare */}
+      <span aria-hidden className="flex h-4 w-4 border border-current">
+        <span className={`w-1/2 ${colour ? "bg-ember" : "bg-current"}`} />
+        <span className="w-1/2" />
+      </span>
+      <span className="hidden xl:inline font-doc text-[11px] font-semibold tracking-[0.18em] uppercase">
+        {colour ? "B/W" : "Colour"}
       </span>
     </button>
   );
