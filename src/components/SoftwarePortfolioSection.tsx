@@ -337,10 +337,28 @@ const SoftwarePortfolioSection = () => {
           on the floor is running — hover to scroll the page, click to take it for a drive.
         </SectionHeading>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 [perspective:1600px] mb-24">
-          {liveSites.map((site, i) => (
-            <LiveSiteCard key={site.url} site={site} index={i} />
-          ))}
+        <div className="relative mb-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 [perspective:1600px]">
+            {liveSites.map((site, i) => (
+              <LiveSiteCard key={site.url} site={site} index={i} />
+            ))}
+          </div>
+
+          {/* The shutter rolls up the first time you reach the garage */}
+          <motion.div
+            aria-hidden
+            initial={{ scaleY: 1 }}
+            whileInView={{ scaleY: 0 }}
+            viewport={{ once: true, margin: "-120px" }}
+            transition={{ duration: 1.1, ease: [0.76, 0, 0.24, 1] }}
+            className="pointer-events-none absolute inset-0 origin-top z-20"
+            style={{
+              backgroundImage:
+                "repeating-linear-gradient(180deg, hsl(var(--asphalt-2)) 0 12px, hsl(var(--asphalt)) 12px 14px, hsl(var(--panel)) 14px 26px)",
+            }}
+          >
+            <span className="absolute inset-x-0 bottom-0 h-1.5 bg-drift shadow-[0_0_24px_hsl(var(--drift))]" />
+          </motion.div>
         </div>
 
         {/* BUILD HISTORY */}

@@ -587,6 +587,11 @@ const Frame = ({ item, kind, shape, delay, onOpen }: { item: PortfolioItem; kind
       <span className="absolute left-3 bottom-3 right-3 font-hud text-xs font-semibold tracking-[0.14em] uppercase text-[hsl(var(--void-ink))] truncate translate-y-2 group-hover:translate-y-0 transition-transform">
         {item.title}
       </span>
+      {/* Rolling */}
+      <span className="absolute top-2 left-2 flex items-center gap-1.5 px-2 py-1 bg-[hsl(var(--void)/0.75)] opacity-0 group-hover:opacity-100 transition-opacity">
+        <span className="w-1.5 h-1.5 rounded-full bg-sign animate-pulse" />
+        <span className="font-hud text-[10px] font-bold tracking-[0.2em] uppercase text-[hsl(var(--void-ink))]">Rec</span>
+      </span>
     </div>
   </motion.button>
 );
@@ -627,6 +632,9 @@ const ReelBlock = ({ reel, onOpen }: { reel: (typeof reels)[number]; onOpen: (it
         </span>
       </div>
 
+      {/* Sprocket holes: the reel is a strip of film */}
+      <div aria-hidden className="sprockets h-3 mb-2" />
+
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -644,6 +652,8 @@ const ReelBlock = ({ reel, onOpen }: { reel: (typeof reels)[number]; onOpen: (it
           />
         ))}
       </motion.div>
+
+      <div aria-hidden className="sprockets h-3 mt-2" />
 
       {reel.items.length > first && (
         <div className="mt-6 flex justify-center">

@@ -138,6 +138,18 @@ const FooterSection = () => {
         </motion.div>
       </div>
 
+      {/* Finish line */}
+      <div
+        aria-hidden
+        className="relative h-6"
+        style={{
+          backgroundImage:
+            "conic-gradient(hsl(var(--ink)) 25%, transparent 0 50%, hsl(var(--ink)) 0 75%, transparent 0)",
+          backgroundSize: "24px 24px",
+          opacity: 0.9,
+        }}
+      />
+
       <div className="relative gutter py-5 border-t border-line/10 flex flex-col sm:flex-row items-center justify-between gap-3 bg-asphalt-2">
         <p className="font-hud text-xs tracking-[0.18em] uppercase text-ink-dim">
           © {new Date().getFullYear()} Ivan Tumacay · Software engineer &amp; digital operations specialist

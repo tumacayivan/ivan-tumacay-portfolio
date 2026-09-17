@@ -46,7 +46,20 @@ const Detail = ({ service }: { service: Service }) => (
     <h3 className="font-display text-3xl sm:text-4xl uppercase text-ink leading-[1.05] mb-3">{service.title}</h3>
     <p className="text-lg text-ink-dim leading-relaxed mb-8">{service.description}</p>
 
-    <div className="hud-label mb-4">What's included</div>
+    <div className="flex items-end justify-between gap-4 mb-4">
+      <span className="hud-label">What's included</span>
+      <span className="hud-label !text-ink-dim">{service.services.length} deliverables</span>
+    </div>
+    {/* Boost gauge: how much is in this package */}
+    <div aria-hidden className="h-1.5 bg-line/10 mb-6 -skew-x-12 overflow-hidden">
+      <motion.span
+        className="block h-full bg-gradient-to-r from-hud via-drift to-sign"
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: service.services.length / 10 }}
+        style={{ originX: 0 }}
+        transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+      />
+    </div>
     <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 mb-8">
       {service.services.map((item, i) => (
         <motion.li
