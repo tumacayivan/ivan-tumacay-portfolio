@@ -14,10 +14,14 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ['"Dela Gothic One"', '"Barlow"', "sans-serif"],
-        hud: ['"Chakra Petch"', '"Barlow"', "sans-serif"],
-        body: ['"Barlow"', "system-ui", "sans-serif"],
-        heading: ['"Dela Gothic One"', '"Barlow"', "sans-serif"],
+        // Mission plate — a stark condensed grotesque
+        display: ['"Archivo Narrow"', '"IBM Plex Sans"', "sans-serif"],
+        heading: ['"Archivo Narrow"', '"IBM Plex Sans"', "sans-serif"],
+        // Telemetry — a precise monospace for data and labels
+        tele: ['"IBM Plex Mono"', "ui-monospace", "monospace"],
+        mono: ['"IBM Plex Mono"', "ui-monospace", "monospace"],
+        // Reading copy — a calm humanist sans
+        body: ['"IBM Plex Sans"', "system-ui", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -53,20 +57,21 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        asphalt: {
-          DEFAULT: "hsl(var(--asphalt) / <alpha-value>)",
-          2: "hsl(var(--asphalt-2) / <alpha-value>)",
+        /* ---- mission palette ---- */
+        deep: {
+          DEFAULT: "hsl(var(--deep) / <alpha-value>)",
+          2: "hsl(var(--deep-2) / <alpha-value>)",
         },
-        panel: "hsl(var(--panel) / <alpha-value>)",
-        ink: {
-          DEFAULT: "hsl(var(--ink) / <alpha-value>)",
-          dim: "hsl(var(--ink-dim) / <alpha-value>)",
+        hull: "hsl(var(--hull) / <alpha-value>)",
+        ice: {
+          DEFAULT: "hsl(var(--ice) / <alpha-value>)",
+          dim: "hsl(var(--ice-dim) / <alpha-value>)",
         },
-        line: "hsl(var(--line) / <alpha-value>)",
-        drift: "hsl(var(--drift) / <alpha-value>)",
-        "on-drift": "hsl(var(--on-drift) / <alpha-value>)",
-        hud: "hsl(var(--hud) / <alpha-value>)",
-        sign: "hsl(var(--sign) / <alpha-value>)",
+        rule: "hsl(var(--rule) / <alpha-value>)",
+        gold: "hsl(var(--gold) / <alpha-value>)",
+        "on-gold": "hsl(var(--on-gold) / <alpha-value>)",
+        signal: "hsl(var(--signal) / <alpha-value>)",
+        dust: "hsl(var(--dust) / <alpha-value>)",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -83,6 +88,11 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      transitionTimingFunction: {
+        // Long, weighty, IMAX-ish
+        transit: "cubic-bezier(0.16, 1, 0.3, 1)",
+        gravity: "cubic-bezier(0.65, 0, 0.35, 1)",
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
@@ -96,16 +106,16 @@ export default {
           "0%": { opacity: "0", transform: "translateY(20px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
-        "float": {
+        drift: {
           "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-10px)" },
+          "50%": { transform: "translateY(-8px)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in": "fade-in 0.6s ease-out forwards",
-        "float": "float 6s ease-in-out infinite",
+        drift: "drift 9s ease-in-out infinite",
       },
     },
   },

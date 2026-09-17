@@ -3,292 +3,308 @@
 @tailwind utilities;
 
 /* =====================================================================
-   NIGHT RUN — TOKYO DRIFT DESIGN SYSTEM
+   THE LONG TRANSIT — a space-mission design system
 
-   NIGHT (default) is the car park at 2am: indigo asphalt, Veilside
-   orange livery, cyan gauge light and magenta kanji signs.
-   DAY is the same garage with the shutters up.
+   DEEP SPACE (default, dark) is the outside of the hull: black-blue,
+   starlight ice, one warm gold for everything that is alive.
+   DAYLIGHT is the dust-bowl farmhouse at home: warm, dry, low sun.
 
    Colour roles are strict:
-     --drift  (orange)  actions, brand, livery
-     --hud    (cyan)    data, gauges, labels
-     --sign   (magenta) neon kanji signage only
+     --gold    instrumentation, brand, anything a human touches
+     --signal  telemetry, data, readouts
+     --dust    ochre; used sparingly, for home and for soil
    ===================================================================== */
 
 @layer base {
-  /* ---------- DAY ---------- */
+  /* ---------- DAYLIGHT (dust bowl) ---------- */
   :root {
-    --asphalt: 250 16% 92%;
-    --asphalt-2: 250 14% 87%;
-    --panel: 250 30% 98%;
-    --ink: 246 26% 9%;
-    --ink-dim: 246 9% 38%;
-    --line: 246 26% 9%;
-    --drift: 20 90% 46%;
-    --on-drift: 0 0% 100%;
-    --hud: 186 100% 28%;
-    --sign: 338 84% 46%;
+    --deep: 36 30% 90%;
+    --deep-2: 36 26% 85%;
+    --hull: 38 38% 95%;
+    --ice: 24 22% 12%;
+    --ice-dim: 24 12% 34%;
+    --rule: 24 22% 12%;
+    --gold: 30 84% 37%;
+    --on-gold: 38 60% 97%;
+    --signal: 202 54% 28%;
+    --dust: 26 52% 40%;
 
-    --sky-top: 212 60% 78%;
-    --sky-bottom: 28 80% 88%;
-    --city: 246 18% 30%;
-    --city-far: 240 14% 62%;
-    --window: 44 30% 88%;
-    --road: 246 10% 26%;
-    --glow-strength: 0.35;
-    --shadow: 246 30% 20%;
+    /* scene */
+    --sky-a: 38 44% 78%;
+    --sky-b: 34 40% 90%;
+    --star: 30 30% 40%;
+    --disc-hot: 40 90% 56%;
+    --disc-mid: 28 78% 46%;
+    --disc-cool: 20 55% 34%;
+    --horizon: 30 20% 14%;
+    --glow: 0.3;
+    --shade: 28 30% 22%;
 
-    /* Fixed in both themes: always-dark scenes (intro, scene cuts,
-       lightbox), the bright neon used on them, and the licence card */
-    --void: 246 44% 4%;
-    --void-ink: 250 40% 97%;
-    --neon-drift: 22 100% 54%;
-    --neon-hud: 184 88% 54%;
-    --neon-sign: 336 100% 60%;
-    --card-ink: 246 30% 12%;
-    --licence-accent: 20 90% 46%;
+    /* Fixed in both themes: always-dark surfaces (intro, warp, lightbox,
+       the monolith) and the bright light used on them. */
+    --void: 220 52% 3%;
+    --void-ink: 200 30% 96%;
+    --beam-gold: 40 100% 62%;
+    --beam-signal: 194 82% 72%;
+    --slab-ink: 218 24% 6%;
+    --slab-face: 216 18% 10%;
 
     /* shadcn bridge */
-    --background: var(--asphalt);
-    --foreground: var(--ink);
-    --card: var(--panel);
-    --card-foreground: var(--ink);
-    --popover: var(--panel);
-    --popover-foreground: var(--ink);
-    --primary: var(--drift);
-    --primary-foreground: var(--on-drift);
-    --secondary: var(--asphalt-2);
-    --secondary-foreground: var(--ink);
-    --muted: var(--asphalt-2);
-    --muted-foreground: var(--ink-dim);
-    --accent: var(--hud);
-    --accent-foreground: var(--on-drift);
-    --destructive: var(--sign);
+    --background: var(--deep);
+    --foreground: var(--ice);
+    --card: var(--hull);
+    --card-foreground: var(--ice);
+    --popover: var(--hull);
+    --popover-foreground: var(--ice);
+    --primary: var(--gold);
+    --primary-foreground: var(--on-gold);
+    --secondary: var(--deep-2);
+    --secondary-foreground: var(--ice);
+    --muted: var(--deep-2);
+    --muted-foreground: var(--ice-dim);
+    --accent: var(--signal);
+    --accent-foreground: var(--on-gold);
+    --destructive: 6 62% 42%;
     --destructive-foreground: 0 0% 100%;
-    --border: 246 12% 80%;
-    --input: 246 12% 80%;
-    --ring: var(--hud);
+    --border: 30 16% 78%;
+    --input: 30 16% 78%;
+    --ring: var(--gold);
     --radius: 0.125rem;
-    --sidebar-background: var(--panel);
-    --sidebar-foreground: var(--ink);
-    --sidebar-primary: var(--drift);
-    --sidebar-primary-foreground: var(--on-drift);
-    --sidebar-accent: var(--asphalt-2);
-    --sidebar-accent-foreground: var(--ink);
-    --sidebar-border: 246 12% 80%;
-    --sidebar-ring: var(--hud);
+    --sidebar-background: var(--hull);
+    --sidebar-foreground: var(--ice);
+    --sidebar-primary: var(--gold);
+    --sidebar-primary-foreground: var(--on-gold);
+    --sidebar-accent: var(--deep-2);
+    --sidebar-accent-foreground: var(--ice);
+    --sidebar-border: 30 16% 78%;
+    --sidebar-ring: var(--gold);
   }
 
-  /* ---------- NIGHT ---------- */
+  /* ---------- DEEP SPACE ---------- */
   .dark {
-    --asphalt: 246 44% 6%;
-    --asphalt-2: 246 36% 9%;
-    --panel: 246 32% 11%;
-    --ink: 250 40% 97%;
-    --ink-dim: 246 14% 68%;
-    --line: 250 40% 97%;
-    --drift: 22 100% 54%;
-    --on-drift: 246 44% 6%;
-    --hud: 184 88% 54%;
-    --sign: 336 100% 60%;
+    --deep: 218 46% 5%;
+    --deep-2: 218 40% 8%;
+    --hull: 216 30% 11%;
+    --ice: 205 34% 95%;
+    --ice-dim: 208 16% 68%;
+    --rule: 205 34% 95%;
+    --gold: 38 96% 60%;
+    --on-gold: 218 46% 5%;
+    --signal: 196 72% 76%;
+    --dust: 26 58% 55%;
 
-    --sky-top: 250 60% 4%;
-    --sky-bottom: 290 50% 14%;
-    --city: 248 40% 5%;
-    --city-far: 252 34% 10%;
-    --window: 42 100% 70%;
-    --road: 246 30% 7%;
-    --glow-strength: 1;
-    --shadow: 250 60% 2%;
+    --sky-a: 220 60% 3%;
+    --sky-b: 218 46% 6%;
+    --star: 200 40% 92%;
+    --disc-hot: 44 100% 88%;
+    --disc-mid: 38 100% 62%;
+    --disc-cool: 22 80% 44%;
+    --horizon: 220 60% 2%;
+    --glow: 1;
+    --shade: 222 70% 1%;
 
-    --border: 246 22% 20%;
-    --input: 246 22% 20%;
-    --sidebar-border: 246 22% 20%;
+    --border: 212 20% 20%;
+    --input: 212 20% 20%;
+    --sidebar-border: 212 20% 20%;
   }
 
   * { @apply border-border; }
 
   html {
-    background-color: hsl(var(--asphalt));
+    background-color: hsl(var(--deep));
     color-scheme: light;
     scroll-behavior: smooth;
   }
   html.dark { color-scheme: dark; }
+
+  /* No scrolling while the opening sequence holds the frame */
+  html.intro-playing,
+  html.intro-playing body { overflow: hidden; }
 
   /* Keep jump targets clear of the fixed nav */
   [data-scene] { scroll-margin-top: 4.5rem; }
 
   body {
     @apply font-body antialiased;
-    color: hsl(var(--ink));
-    background-color: hsl(var(--asphalt));
+    color: hsl(var(--ice));
+    background-color: hsl(var(--deep));
     background-image:
-      radial-gradient(60vw 40vw at 100% 0%, hsl(var(--sign) / calc(0.10 * var(--glow-strength))), transparent 70%),
-      radial-gradient(60vw 40vw at 0% 100%, hsl(var(--hud) / calc(0.08 * var(--glow-strength))), transparent 70%);
+      radial-gradient(70vw 50vw at 88% -10%, hsl(var(--signal) / calc(0.07 * var(--glow))), transparent 70%),
+      radial-gradient(70vw 50vw at 6% 108%, hsl(var(--gold) / calc(0.06 * var(--glow))), transparent 70%);
     background-attachment: fixed;
+    font-size: 1.0625rem;
+    line-height: 1.65;
   }
 
-  h1, h2, h3, h4 { @apply font-display; font-weight: 400; }
+  h1, h2, h3, h4 { @apply font-display; font-weight: 600; }
 
   ::selection {
-    background: hsl(var(--drift));
-    color: hsl(var(--on-drift));
+    background: hsl(var(--gold));
+    color: hsl(var(--on-gold));
   }
 
   :focus-visible {
-    outline: 2px solid hsl(var(--hud));
+    outline: 2px solid hsl(var(--gold));
     outline-offset: 3px;
   }
 
   ::-webkit-scrollbar { width: 10px; height: 10px; }
-  ::-webkit-scrollbar-track { background: hsl(var(--asphalt)); }
+  ::-webkit-scrollbar-track { background: hsl(var(--deep)); }
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(hsl(var(--drift)), hsl(var(--sign)));
-    border: 3px solid hsl(var(--asphalt));
+    background: hsl(var(--gold) / 0.55);
+    border: 3px solid hsl(var(--deep));
   }
+  ::-webkit-scrollbar-thumb:hover { background: hsl(var(--gold)); }
 }
 
 @layer components {
   /* Full-bleed page gutter used by every section */
-  .gutter { @apply w-full px-5 sm:px-10 lg:px-16 xl:px-20; }
+  .gutter { @apply w-full px-5 sm:px-10 lg:px-16 xl:px-24; }
 
   /* ---------- TYPE ---------- */
-  .hud-label {
-    font-family: "Chakra Petch", sans-serif;
+
+  /* Small stencilled label — the only place letterspacing gets loud */
+  .tele-label {
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 500;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: hsl(var(--signal));
+  }
+
+  /* Mission plate — enormous, condensed, tightly set */
+  .plate {
+    font-family: "Archivo Narrow", sans-serif;
     font-weight: 600;
-    font-size: 0.72rem;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    color: hsl(var(--hud));
-  }
-
-  .display-xl {
-    font-family: "Dela Gothic One", sans-serif;
-    line-height: 0.9;
-    letter-spacing: -0.02em;
+    line-height: 0.88;
+    letter-spacing: -0.015em;
     text-transform: uppercase;
   }
 
-  /* Leaning word — the "drift" of the headline */
-  .lean {
-    display: inline-block;
-    transform: skewX(-12deg);
-    color: hsl(var(--drift));
+  /* Distant starlight behind a word */
+  .lit {
+    color: hsl(var(--gold));
+    text-shadow: 0 0 60px hsl(var(--gold) / calc(0.5 * var(--glow)));
   }
 
-  /* Speed trail: stacked ghost copies smeared to the left */
-  .speed-trail {
-    text-shadow:
-      -0.06em 0 0 hsl(var(--sign) / calc(0.55 * var(--glow-strength))),
-      -0.12em 0 0 hsl(var(--sign) / calc(0.30 * var(--glow-strength))),
-      -0.20em 0 0 hsl(var(--hud) / calc(0.18 * var(--glow-strength))),
-      0 0 40px hsl(var(--drift) / calc(0.45 * var(--glow-strength)));
+  /* Type set in vacuum: hairline outline, no fill */
+  .hollow {
+    color: transparent;
+    -webkit-text-stroke: 1px hsl(var(--rule) / 0.3);
   }
-
-  /* Neon kanji — the only place magenta lives */
-  .neon-kanji {
-    font-family: "Dela Gothic One", sans-serif;
-    color: hsl(var(--sign));
-    text-shadow:
-      0 0 4px hsl(var(--sign) / calc(0.9 * var(--glow-strength))),
-      0 0 18px hsl(var(--sign) / calc(0.7 * var(--glow-strength))),
-      0 0 42px hsl(var(--sign) / calc(0.5 * var(--glow-strength)));
-    animation: neon-flicker 7s linear infinite;
-  }
-  .vertical { writing-mode: vertical-rl; text-orientation: upright; letter-spacing: 0.08em; }
 
   /* ---------- SURFACES ---------- */
-  /* Chamfered motorsport panel (top-right corner cut) */
+
+  /* Hull panel: a flat plate with a machined top edge */
   .panel {
     position: relative;
-    background: hsl(var(--panel));
-    border: 1px solid hsl(var(--line) / 0.10);
-    clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 0 100%);
+    background: hsl(var(--hull));
+    border: 1px solid hsl(var(--rule) / 0.1);
   }
-  .panel-hover { transition: transform 0.35s cubic-bezier(.2,.8,.2,1), border-color 0.35s; }
-  .panel-hover:hover { transform: translateY(-4px); border-color: hsl(var(--drift) / 0.6); }
-
-  /* Orange edge light that sweeps in on hover */
-  .edge-light::after {
+  .panel::before {
     content: "";
     position: absolute;
-    left: 0; bottom: 0;
-    height: 2px; width: 100%;
-    background: linear-gradient(90deg, hsl(var(--drift)), hsl(var(--sign)));
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.45s cubic-bezier(.2,.8,.2,1);
+    top: 0; left: 0;
+    height: 1px;
+    width: 3.5rem;
+    background: hsl(var(--gold) / 0.55);
   }
-  .edge-light:hover::after,
-  .edge-light:focus-visible::after { transform: scaleX(1); }
+  .panel-hover {
+    transition:
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      background-color 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .panel-hover:hover {
+    transform: translateY(-3px);
+    border-color: hsl(var(--gold) / 0.45);
+  }
 
-  /* Veilside livery stripes */
-  .livery {
+  /* The monolith: a black slab with milled segment lines */
+  .slab {
+    position: relative;
+    background: linear-gradient(170deg, hsl(var(--slab-face)), hsl(var(--slab-ink)));
+    color: hsl(var(--void-ink));
+    border: 1px solid hsl(var(--beam-gold) / 0.14);
+    box-shadow:
+      inset 0 1px 0 hsl(var(--beam-gold) / 0.12),
+      0 60px 120px -60px hsl(var(--shade));
+  }
+  .slab-seams::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
     background-image: repeating-linear-gradient(
-      -60deg,
-      hsl(var(--drift)) 0 10px,
-      transparent 10px 18px,
-      hsl(var(--sign)) 18px 22px,
-      transparent 22px 34px
+      to bottom,
+      hsl(var(--beam-gold) / 0.11) 0 1px,
+      transparent 1px 25%
     );
   }
 
-  /* Japanese private-car number plate */
-  .plate {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: hsl(60 20% 96%);
-    color: hsl(150 70% 22%);
-    border: 2px solid hsl(150 70% 22%);
-    border-radius: 4px;
-    font-family: "Chakra Petch", sans-serif;
-    font-weight: 700;
-    line-height: 1;
-    box-shadow: inset 0 0 0 2px hsl(60 20% 96%), inset 0 0 0 3px hsl(150 70% 22% / 0.35);
+  /* A readout housing: recessed, monospaced, quiet */
+  .instrument {
+    background: hsl(var(--deep-2) / 0.7);
+    border: 1px solid hsl(var(--rule) / 0.1);
+    box-shadow: inset 0 1px 0 hsl(var(--rule) / 0.06);
   }
 
-  /* ---------- BUTTONS ---------- */
-  .btn-drift,
-  .btn-ghost {
+  /* A slow beam of light crossing a surface on hover */
+  .beam::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: 0;
+    height: 1px; width: 100%;
+    background: linear-gradient(90deg, hsl(var(--gold)), hsl(var(--gold) / 0));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .beam:hover::after,
+  .beam:focus-visible::after { transform: scaleX(1); }
+
+  /* ---------- CONTROLS ---------- */
+  .btn-primary,
+  .btn-quiet {
     position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.6rem;
-    padding: 0.9rem 1.6rem;
-    font-family: "Chakra Petch", sans-serif;
-    font-weight: 700;
-    font-size: 0.9rem;
-    letter-spacing: 0.14em;
+    padding: 0.95rem 1.7rem;
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 600;
+    font-size: 0.8125rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    transform: skewX(-12deg);
-    transition: transform 0.25s cubic-bezier(.2,.8,.2,1), background 0.25s, color 0.25s, box-shadow 0.25s;
+    transition:
+      background-color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+      color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .btn-drift > *, .btn-ghost > * { transform: skewX(12deg); }
-  .btn-drift {
-    background: hsl(var(--drift));
-    color: hsl(var(--on-drift));
-    box-shadow: 0 10px 30px -10px hsl(var(--drift) / calc(0.8 * var(--glow-strength)));
+  .btn-primary {
+    background: hsl(var(--gold));
+    color: hsl(var(--on-gold));
+    box-shadow: 0 0 0 0 hsl(var(--gold) / 0);
   }
-  .btn-drift:hover {
-    transform: skewX(-12deg) translateX(4px);
-    box-shadow:
-      -8px 0 0 hsl(var(--sign) / 0.9),
-      0 14px 40px -10px hsl(var(--drift) / var(--glow-strength));
+  .btn-primary:hover {
+    box-shadow: 0 18px 50px -18px hsl(var(--gold) / calc(0.95 * var(--glow)));
+    transform: translateY(-2px);
   }
-  .btn-ghost {
-    color: hsl(var(--ink));
-    box-shadow: inset 0 0 0 1.5px hsl(var(--line) / 0.35);
+  .btn-quiet {
+    color: hsl(var(--ice));
+    box-shadow: inset 0 0 0 1px hsl(var(--rule) / 0.28);
   }
-  .btn-ghost:hover {
-    color: hsl(var(--hud));
-    box-shadow: inset 0 0 0 1.5px hsl(var(--hud));
-    transform: skewX(-12deg) translateX(4px);
+  .btn-quiet:hover {
+    color: hsl(var(--gold));
+    box-shadow: inset 0 0 0 1px hsl(var(--gold) / 0.8);
+    transform: translateY(-2px);
   }
 
-  /* Small square icon button used by nav + floating controls */
+  /* Small square control used by the nav and the floating controls */
   .icon-btn {
     display: inline-flex;
     align-items: center;
@@ -297,91 +313,83 @@
     height: 2.5rem;
     min-width: 2.5rem;
     padding: 0 0.7rem;
-    color: hsl(var(--ink));
-    background: hsl(var(--panel) / 0.8);
-    border: 1px solid hsl(var(--line) / 0.15);
-    backdrop-filter: blur(10px);
-    transition: color 0.2s, border-color 0.2s;
+    color: hsl(var(--ice));
+    background: hsl(var(--hull) / 0.7);
+    border: 1px solid hsl(var(--rule) / 0.14);
+    backdrop-filter: blur(12px);
+    transition: color 0.35s, border-color 0.35s;
   }
-  .icon-btn:hover { color: hsl(var(--hud)); border-color: hsl(var(--hud)); }
+  .icon-btn:hover { color: hsl(var(--gold)); border-color: hsl(var(--gold) / 0.7); }
 
-  /* ---------- CHIPS ---------- */
-  .chip {
+  /* ---------- TAGS ---------- */
+  .tag {
     display: inline-flex;
     align-items: center;
     gap: 0.45rem;
-    padding: 0.4rem 0.75rem;
-    font-family: "Chakra Petch", sans-serif;
-    font-weight: 600;
-    font-size: 0.78rem;
-    letter-spacing: 0.08em;
+    padding: 0.35rem 0.7rem;
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 500;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: hsl(var(--ink));
-    border: 1px solid hsl(var(--line) / 0.15);
-    background: hsl(var(--panel) / 0.6);
+    color: hsl(var(--ice-dim));
+    border: 1px solid hsl(var(--rule) / 0.14);
+    background: hsl(var(--hull) / 0.5);
   }
 }
 
 @layer utilities {
-  /* ---------- SCENES ---------- */
-  .scanlines {
-    background-image: repeating-linear-gradient(0deg, hsl(var(--shadow) / 0.18) 0 1px, transparent 1px 3px);
-  }
-
-  .grid-floor {
+  /* Faint survey grid — a chart, not a floor */
+  .survey-grid {
     background-image:
-      linear-gradient(hsl(var(--hud) / 0.08) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--hud) / 0.08) 1px, transparent 1px);
-    background-size: 56px 56px;
+      linear-gradient(hsl(var(--rule) / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--rule) / 0.05) 1px, transparent 1px);
+    background-size: 72px 72px;
   }
 
-  /* Perspective road with rushing lane lines */
-  .road-plane {
-    background:
-      linear-gradient(90deg, transparent 49.2%, hsl(var(--drift) / 0.9) 49.2%, hsl(var(--drift) / 0.9) 50.8%, transparent 50.8%) 0 0 / 100% 120px,
-      linear-gradient(90deg, hsl(var(--hud) / 0.5) 0 2px, transparent 2px calc(100% - 2px), hsl(var(--hud) / 0.5) calc(100% - 2px)),
-      linear-gradient(hsl(var(--hud) / 0.12) 1px, transparent 1px) 0 0 / 100% 60px,
-      hsl(var(--road));
-    -webkit-mask-image: linear-gradient(to top, #000 30%, transparent 100%);
-    mask-image: linear-gradient(to top, #000 30%, transparent 100%);
-    animation: road-rush 0.9s linear infinite;
-  }
-  .road-dashes {
-    background: repeating-linear-gradient(to bottom, hsl(var(--drift)) 0 60px, transparent 60px 120px);
+  /* Ticked rule used along the edges of instruments */
+  .ticks {
+    background-image: repeating-linear-gradient(
+      90deg,
+      hsl(var(--rule) / 0.3) 0 1px,
+      transparent 1px 12px
+    );
   }
 
-  .animate-marquee-left { animation: marquee-left 70s linear infinite; }
-  .animate-marquee-right { animation: marquee-right 70s linear infinite; }
+  .noise {
+    background-image: repeating-linear-gradient(0deg, hsl(var(--shade) / 0.1) 0 1px, transparent 1px 4px);
+  }
+
+  .animate-marquee-left { animation: marquee-left 92s linear infinite; }
+  .animate-marquee-right { animation: marquee-right 92s linear infinite; }
   .marquee-container:hover .animate-marquee-left,
   .marquee-container:hover .animate-marquee-right,
   .marquee-container:focus-within .animate-marquee-left,
   .marquee-container:focus-within .animate-marquee-right { animation-play-state: paused; }
 
-  .animate-blink { animation: blink 1.1s steps(2, start) infinite; }
+  .animate-beacon { animation: beacon 3.4s ease-in-out infinite; }
 
-  /* Controls briefing — while ControlsNotice is open, the real theme and
-     music buttons pulse so the visitor can spot them. */
+  /* While ControlsNotice is open, the real controls breathe so the
+     visitor can find them. */
   html.controls-hint [data-control-hint] {
-    animation: hint-pulse 1.4s ease-in-out infinite;
+    animation: hint-pulse 2.4s ease-in-out infinite;
   }
 }
 
-@keyframes neon-flicker {
-  0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
-  20%, 24%, 55% { opacity: 0.45; }
-}
-@keyframes road-rush {
-  from { background-position: 0 0, 0 0, 0 0, 0 0; }
-  to   { background-position: 0 120px, 0 0, 0 60px, 0 0; }
-}
 @keyframes marquee-left { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @keyframes marquee-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
-@keyframes blink { to { visibility: hidden; } }
-@keyframes sheen { 0%, 100% { background-position: 100% 0; } 50% { background-position: 0% 0; } }
+@keyframes beacon {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
 @keyframes eq { from { transform: scaleY(0.25); } to { transform: scaleY(1); } }
 @keyframes hint-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 hsl(var(--hud) / 0.7); }
-  70% { box-shadow: 0 0 0 10px hsl(var(--hud) / 0); }
+  0%, 100% { box-shadow: 0 0 0 0 hsl(var(--gold) / 0.6); }
+  60% { box-shadow: 0 0 0 12px hsl(var(--gold) / 0); }
+}
+@keyframes sheen {
+  0%, 100% { background-position: 120% 0; }
+  50% { background-position: -20% 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -392,6 +400,6 @@
     transition-duration: 0.001ms !important;
   }
   html.controls-hint [data-control-hint] {
-    box-shadow: 0 0 0 2px hsl(var(--hud));
+    box-shadow: 0 0 0 2px hsl(var(--gold));
   }
 }
