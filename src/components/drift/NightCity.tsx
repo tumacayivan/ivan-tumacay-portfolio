@@ -201,6 +201,9 @@ const NightCity = ({ progress }: { progress: MotionValue<number> }) => {
         />
       </motion.div>
 
+      {/* Rain, only at night */}
+      <div className="absolute inset-0 rain opacity-0 dark:opacity-40 pointer-events-none" />
+
       {/* Scanlines + bottom fade into the page */}
       <div className="absolute inset-0 scanlines opacity-40" />
       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-asphalt" />
