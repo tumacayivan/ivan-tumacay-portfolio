@@ -337,6 +337,22 @@ const SoftwarePortfolioSection = () => {
           on the floor is running — hover to scroll the page, click to take it for a drive.
         </SectionHeading>
 
+        {/* Sponsor wall: every name currently running in production */}
+        <div className="relative mb-12 overflow-hidden border-y border-line/10 py-4 marquee-container">
+          <div className="flex w-max animate-marquee-left gap-8 items-center">
+            {[...liveSites, ...liveSites].map((site, i) => (
+              <span
+                key={`${site.url}-${i}`}
+                aria-hidden={i >= liveSites.length}
+                className="font-display text-xl sm:text-2xl uppercase tracking-[0.04em] text-ink-dim whitespace-nowrap shrink-0 flex items-center gap-8"
+              >
+                {site.name}
+                <span className="text-drift text-sm">◆</span>
+              </span>
+            ))}
+          </div>
+        </div>
+
         <div className="relative mb-24">
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 [perspective:1600px]">
             {liveSites.map((site, i) => (

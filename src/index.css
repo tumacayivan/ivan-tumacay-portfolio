@@ -106,6 +106,73 @@
     --sidebar-border: 0 0% 18%;
   }
 
+  /* ---------- PAINT SHOP ----------
+     The same car in four liveries. Each paint re-colours the three accent
+     roles (and the neon used on always-dark scenes); everything else in
+     the system follows, because nothing hard-codes a colour. */
+  .paint-neon {
+    --drift: 322 85% 46%;
+    --hud: 190 100% 30%;
+    --sign: 268 70% 52%;
+    --neon-drift: 322 100% 60%;
+    --neon-hud: 186 100% 55%;
+    --neon-sign: 272 100% 72%;
+    --licence-accent: 322 85% 42%;
+    --sky-top: 270 60% 85%;
+    --sky-bottom: 320 70% 90%;
+  }
+  .paint-neon.dark {
+    --drift: 322 100% 60%;
+    --hud: 186 100% 55%;
+    --sign: 272 100% 72%;
+    --on-drift: 246 44% 6%;
+    --sky-top: 265 70% 4%;
+    --sky-bottom: 300 60% 14%;
+    --window: 190 100% 75%;
+  }
+
+  .paint-lime {
+    --drift: 22 95% 46%;
+    --hud: 95 70% 30%;
+    --sign: 174 80% 30%;
+    --neon-drift: 24 100% 54%;
+    --neon-hud: 88 90% 55%;
+    --neon-sign: 172 95% 48%;
+    --licence-accent: 22 95% 44%;
+    --sky-top: 180 40% 80%;
+    --sky-bottom: 40 80% 86%;
+  }
+  .paint-lime.dark {
+    --drift: 24 100% 54%;
+    --hud: 88 90% 55%;
+    --sign: 172 95% 48%;
+    --on-drift: 160 18% 5%;
+    --sky-top: 170 50% 4%;
+    --sky-bottom: 160 40% 12%;
+    --window: 70 100% 70%;
+  }
+
+  .paint-red {
+    --drift: 356 85% 45%;
+    --hud: 0 0% 25%;
+    --sign: 350 85% 48%;
+    --neon-drift: 356 92% 52%;
+    --neon-hud: 0 0% 45%;
+    --neon-sign: 352 100% 62%;
+    --licence-accent: 356 85% 44%;
+    --sky-top: 0 0% 88%;
+    --sky-bottom: 356 60% 90%;
+  }
+  .paint-red.dark {
+    --drift: 356 92% 52%;
+    --hud: 0 0% 86%;
+    --sign: 352 100% 62%;
+    --on-drift: 0 0% 100%;
+    --sky-top: 0 0% 2%;
+    --sky-bottom: 356 60% 10%;
+    --window: 40 30% 88%;
+  }
+
   * { @apply border-border; }
 
   html {
@@ -278,6 +345,21 @@
       -8px 0 0 hsl(var(--sign) / 0.9),
       0 14px 40px -10px hsl(var(--drift) / var(--glow-strength));
   }
+  /* Nitrous: a blue flare leaves the back of the button on hover */
+  .btn-drift::before {
+    content: "";
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    width: 3rem;
+    height: 60%;
+    transform: translateY(-50%) scaleX(0);
+    transform-origin: right;
+    background: linear-gradient(270deg, hsl(196 100% 70% / 0.9), transparent);
+    filter: blur(3px);
+    transition: transform 0.35s cubic-bezier(.2,.8,.2,1);
+  }
+  .btn-drift:hover::before { transform: translateY(-50%) scaleX(1); }
   .btn-ghost {
     color: hsl(var(--ink));
     box-shadow: inset 0 0 0 1.5px hsl(var(--line) / 0.35);
@@ -366,6 +448,15 @@
     );
   }
 
+  /* Rain: thin streaks falling across the night hero */
+  .rain {
+    background-image:
+      repeating-linear-gradient(104deg, hsl(var(--ink) / 0.16) 0 1px, transparent 1px 7px),
+      repeating-linear-gradient(104deg, hsl(var(--ink) / 0.10) 0 1px, transparent 1px 17px);
+    background-size: 100% 180px, 100% 260px;
+    animation: rain-fall 0.7s linear infinite;
+  }
+
   .animate-blink { animation: blink 1.1s steps(2, start) infinite; }
 
   /* Controls briefing — while ControlsNotice is open, the real theme and
@@ -386,6 +477,7 @@
 @keyframes marquee-left { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @keyframes marquee-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
 @keyframes blink { to { visibility: hidden; } }
+@keyframes rain-fall { to { background-position: -60px 180px, -30px 260px; } }
 @keyframes sheen { 0%, 100% { background-position: 100% 0; } 50% { background-position: 0% 0; } }
 @keyframes eq { from { transform: scaleY(0.25); } to { transform: scaleY(1); } }
 @keyframes hint-pulse {
