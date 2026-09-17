@@ -2,25 +2,18 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Volume2 } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 
-const SESSION_KEY = "intro-played";
-/** If the visitor does nothing, the countdown starts on its own. */
-const AUTO_START_MS = 5000;
-
 type Phase = "title" | "countdown" | "go" | "done";
 
 export const INTRO_FINISHED_EVENT = "intro-finished";
 
-const shouldPlay = () => {
-  try {
-    if (sessionStorage.getItem(SESSION_KEY)) return false;
-  } catch {
-    /* storage blocked — play it */
-  }
-  return !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-};
+/**
+ * The opening runs on every load — it is the start line, and the press of
+ * its button is what lets the browser play the soundtrack at all.
+ */
+export const INTRO_WILL_PLAY = typeof window !== "undefined";
 
-/** Decided once per page load so every component agrees. */
-export const INTRO_WILL_PLAY = typeof window !== "undefined" && shouldPlay();
+const prefersReducedMotion = () =>
+  typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /** True once the opening sequence is over (or was never going to play). */
 export const useIntroDone = () => {
@@ -36,20 +29,16 @@ export const useIntroDone = () => {
 
 const finish = () => {
   document.documentElement.classList.remove("intro-playing");
-  try {
-    sessionStorage.setItem(SESSION_KEY, "1");
-  } catch {
-    /* ignore */
-  }
   window.dispatchEvent(new Event(INTRO_FINISHED_EVENT));
 };
 
 /**
- * Opening titles: letterbox bars, a title card, three start lights, GO,
- * then the frame tears open diagonally onto the hero.
+ * Opening titles on every load: letterbox bars, a title card, three start
+ * lights, GO, then the frame tears open diagonally onto the hero.
  *
- * "Start engine" is a real click, so BackgroundMusic's first-gesture
- * listener unmutes the soundtrack exactly as the lights begin.
+ * It waits for the press — nothing starts on a timer — because that press
+ * is the gesture BackgroundMusic needs before a browser will let the
+ * soundtrack play. Escape still gets past it.
  */
 const IntroSequence = () => {
   const play = INTRO_WILL_PLAY;
@@ -61,14 +50,11 @@ const IntroSequence = () => {
     else window.dispatchEvent(new Event(INTRO_FINISHED_EVENT));
   }, [play]);
 
-  const start = useCallback(() => setPhase((p) => (p === "title" ? "countdown" : p)), []);
+  const start = useCallback(
+    () => setPhase((p) => (p !== "title" ? p : prefersReducedMotion() ? "done" : "countdown")),
+    [],
+  );
   const skip = useCallback(() => setPhase("done"), []);
-
-  useEffect(() => {
-    if (phase !== "title") return;
-    const id = setTimeout(start, AUTO_START_MS);
-    return () => clearTimeout(id);
-  }, [phase, start]);
 
   useEffect(() => {
     if (phase !== "countdown") return;
