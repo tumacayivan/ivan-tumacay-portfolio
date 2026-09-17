@@ -451,20 +451,6 @@ const PORTRAIT_REELS = new Set([
 
 type Shape = "poster" | "portrait" | "landscape";
 
-/**
- * A cut of the work for the montage: a few frames from every reel, in the
- * order they should flash past.
- */
-export const montageFrames = [
-  graphicItems[0], aiVideosItems[2], graphicItems[4], reelsTikTokItems[1],
-  documentaryItems[0], graphicItems[8], dropshippingItems[3], captionsItems[5],
-  graphicItems[11], fastPacedItems[2], stockFootageItems[4], afterEffectsItems[1],
-  podcastItems[0], graphicItems[2], aiVideosItems[9], reelsTikTokItems[6],
-  graphicItems[6], captionsItems[12], dropshippingItems[8], fastPacedItems[7],
-]
-  .filter(Boolean)
-  .map((item) => ({ src: item.thumbnail, title: item.title }));
-
 const reels = [
   { key: "graphics", title: "Graphics Design", kind: "image" as const, shape: "poster" as Shape, items: graphicItems },
   ...videoCategories.map((c) => ({
