@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Play, Image as ImageIcon, X, ChevronLeft, ChevronRight, ExternalLink, Film, Maximize2 } from "lucide-react";
 import { useState, useCallback, useEffect, type SyntheticEvent } from "react";
-import SectionHeading from "./drift/SectionHeading";
+import SectionHeading from "./transit/SectionHeading";
 
 const getGoogleDriveThumbnail = (fileId: string, size: number = 1000): string =>
   `https://drive.google.com/thumbnail?id=${fileId}&sz=w${size}`;
@@ -418,7 +418,7 @@ type PortfolioItem = {
 };
 
 const FALLBACK = (title: string) =>
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%230b0a18' width='400' height='300'/%3E%3Ctext fill='%23ff6a13' font-family='monospace' font-size='14' dy='10.5' font-weight='bold' x='50%25' y='50%25' text-anchor='middle'%3E" +
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%23070c16' width='400' height='300'/%3E%3Ctext fill='%23fbb03b' font-family='monospace' font-size='13' letter-spacing='2' dy='10.5' font-weight='500' x='50%25' y='50%25' text-anchor='middle'%3E" +
   encodeURIComponent(title) +
   "%3C/text%3E%3C/svg%3E";
 
@@ -492,51 +492,52 @@ const Lightbox = ({
       aria-modal="true"
       aria-label={item.title}
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[120] flex items-center justify-center bg-[hsl(var(--void)/0.96)] backdrop-blur-sm text-[hsl(var(--void-ink))]"
+      transition={{ duration: 0.5 }}
+      className="fixed inset-0 z-[120] flex items-center justify-center bg-[hsl(var(--void)/0.97)] backdrop-blur-sm text-[hsl(var(--void-ink))]"
       onClick={onClose}
     >
       {/* Letterbox */}
-      <motion.div className="absolute top-0 inset-x-0 bg-black" initial={{ height: 0 }} animate={{ height: 56 }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} />
-      <motion.div className="absolute bottom-0 inset-x-0 bg-black" initial={{ height: 0 }} animate={{ height: 56 }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} />
+      <motion.div className="absolute top-0 inset-x-0 bg-black" initial={{ height: 0 }} animate={{ height: 56 }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }} />
+      <motion.div className="absolute bottom-0 inset-x-0 bg-black" initial={{ height: 0 }} animate={{ height: 56 }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }} />
 
       <div className="absolute top-0 inset-x-0 h-14 px-4 sm:px-8 flex items-center justify-between z-10">
-        <span className="font-hud text-xs tracking-[0.24em] uppercase text-[hsl(var(--neon-hud))]">
-          {String(currentIndex + 1).padStart(3, "0")} / {String(items.length).padStart(3, "0")}
+        <span className="font-tele text-xs tracking-[0.24em] uppercase text-[hsl(var(--beam-signal))] tabular-nums">
+          Frame {String(currentIndex + 1).padStart(3, "0")} / {String(items.length).padStart(3, "0")}
         </span>
-        <button onClick={onClose} aria-label="Close" className="p-2 text-white/70 hover:text-[hsl(var(--neon-drift))] transition-colors">
-          <X className="w-6 h-6" />
+        <button onClick={onClose} aria-label="Close" className="p-2 text-white/70 hover:text-[hsl(var(--beam-gold))] transition-colors">
+          <X className="w-6 h-6" aria-hidden />
         </button>
       </div>
 
       <button onClick={(e) => { e.stopPropagation(); onPrev(); }} aria-label="Previous"
-        className="absolute left-2 sm:left-6 z-10 p-3 text-white/70 hover:text-[hsl(var(--neon-drift))] transition-colors">
-        <ChevronLeft className="w-8 h-8" />
+        className="absolute left-2 sm:left-6 z-10 p-3 text-white/70 hover:text-[hsl(var(--beam-gold))] transition-colors">
+        <ChevronLeft className="w-8 h-8" aria-hidden />
       </button>
       <button onClick={(e) => { e.stopPropagation(); onNext(); }} aria-label="Next"
-        className="absolute right-2 sm:right-6 z-10 p-3 text-white/70 hover:text-[hsl(var(--neon-drift))] transition-colors">
-        <ChevronRight className="w-8 h-8" />
+        className="absolute right-2 sm:right-6 z-10 p-3 text-white/70 hover:text-[hsl(var(--beam-gold))] transition-colors">
+        <ChevronRight className="w-8 h-8" aria-hidden />
       </button>
 
-      <div className="relative max-w-[88vw] flex flex-col items-center gap-4" onClick={(e) => e.stopPropagation()}>
+      <div className="relative max-w-[88vw] flex flex-col items-center gap-5" onClick={(e) => e.stopPropagation()}>
         <AnimatePresence mode="wait">
           {isVideo && item.embedUrl ? (
-            <motion.div key={item.fileId} initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.96 }} transition={{ duration: 0.3 }}
-              className="w-[min(88vw,calc(68vh*16/9))] aspect-video overflow-hidden bg-black shadow-[0_0_80px_-20px_hsl(var(--neon-drift)/0.5)]">
+            <motion.div key={item.fileId} initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.97 }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="w-[min(88vw,calc(68vh*16/9))] aspect-video overflow-hidden bg-black ring-1 ring-[hsl(var(--beam-gold)/0.25)] shadow-[0_0_110px_-30px_hsl(var(--beam-gold)/0.6)]">
               <iframe src={item.embedUrl} className="w-full h-full" allow="autoplay; encrypted-media" allowFullScreen title={item.title} />
             </motion.div>
           ) : (
-            <motion.img key={item.src} initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.96 }} transition={{ duration: 0.3 }}
+            <motion.img key={item.src} initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.97 }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               src={item.src} alt={item.title}
-              className="w-auto max-w-[88vw] max-h-[72vh] object-contain shadow-[0_0_80px_-20px_hsl(var(--neon-drift)/0.5)]"
+              className="w-auto max-w-[88vw] max-h-[72vh] object-contain shadow-[0_0_110px_-30px_hsl(var(--beam-gold)/0.6)]"
               onError={(e) => { (e.target as HTMLImageElement).src = item.thumbnail; }} />
           )}
         </AnimatePresence>
 
         <div className="flex flex-wrap items-center justify-center gap-4">
-          <p className="font-display text-xl sm:text-2xl uppercase">{item.title}</p>
+          <p className="plate text-xl sm:text-2xl">{item.title}</p>
           {item.link && (
-            <a href={item.link} target="_blank" rel="noopener noreferrer" className="btn-drift !py-2 !px-4 !text-xs">
-              <span className="flex items-center gap-2"><ExternalLink className="w-3.5 h-3.5" /> Open original</span>
+            <a href={item.link} target="_blank" rel="noopener noreferrer" className="btn-primary !py-2 !px-4 !text-xs">
+              <span className="flex items-center gap-2"><ExternalLink className="w-3.5 h-3.5" aria-hidden /> Open original</span>
             </a>
           )}
         </div>
@@ -554,13 +555,13 @@ const SHAPE_CLASS: Record<Shape, string> = {
 const Frame = ({ item, kind, shape, delay, onOpen }: { item: PortfolioItem; kind: "image" | "video"; shape: Shape; delay: number; onOpen: () => void }) => (
   <motion.button
     type="button"
-    initial={{ opacity: 0, y: 30, rotateX: -12 }}
-    whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+    initial={{ opacity: 0, y: 26 }}
+    whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-40px" }}
-    transition={{ duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] }}
+    transition={{ duration: 0.9, delay, ease: [0.16, 1, 0.3, 1] }}
     onClick={onOpen}
     aria-label={`Open ${item.title}`}
-    className="group relative block w-full text-left overflow-hidden bg-panel border border-line/10 hover:border-drift transition-colors"
+    className="group relative block w-full text-left overflow-hidden bg-hull border border-rule/10 hover:border-gold/70 transition-colors duration-500"
   >
     <div className={`relative overflow-hidden ${SHAPE_CLASS[shape]}`}>
       {/* Blurred fill, so a clip shot in the other orientation still fills the frame without being cropped */}
@@ -576,15 +577,15 @@ const Frame = ({ item, kind, shape, delay, onOpen }: { item: PortfolioItem; kind
         alt=""
         loading="lazy"
         onError={handleThumbError(item)}
-        className={`absolute inset-0 w-full h-full ${kind === "image" ? "object-cover" : "object-contain"} transition-transform duration-700 ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-105`}
+        className={`absolute inset-0 w-full h-full ${kind === "image" ? "object-cover" : "object-contain"} transition-transform duration-[1200ms] ease-transit group-hover:scale-[1.04]`}
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--void)/0.85)] via-transparent to-transparent opacity-70 group-hover:opacity-100 transition-opacity" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--void)/0.88)] via-transparent to-transparent opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
       <div className="absolute inset-0 flex items-center justify-center">
-        <span className="w-14 h-14 rounded-full bg-drift text-on-drift flex items-center justify-center scale-50 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300 shadow-[0_0_30px_hsl(var(--drift))]">
-          {kind === "video" ? <Play className="w-5 h-5 ml-0.5" fill="currentColor" /> : <Maximize2 className="w-5 h-5" />}
+        <span className="w-14 h-14 rounded-full bg-gold text-on-gold flex items-center justify-center scale-75 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-500 ease-transit shadow-[0_0_40px_hsl(var(--gold)/0.7)]">
+          {kind === "video" ? <Play className="w-5 h-5 ml-0.5" fill="currentColor" aria-hidden /> : <Maximize2 className="w-5 h-5" aria-hidden />}
         </span>
       </div>
-      <span className="absolute left-3 bottom-3 right-3 font-hud text-xs font-semibold tracking-[0.14em] uppercase text-[hsl(var(--void-ink))] truncate translate-y-2 group-hover:translate-y-0 transition-transform">
+      <span className="absolute left-3 bottom-3 right-3 font-tele text-xs tracking-[0.14em] uppercase text-[hsl(var(--void-ink))] truncate translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
         {item.title}
       </span>
     </div>
@@ -606,24 +607,32 @@ const ReelBlock = ({ reel, onOpen }: { reel: (typeof reels)[number]; onOpen: (it
 
   return (
     <div className="mb-20 last:mb-0">
-      <div className="flex items-end justify-between gap-4 mb-6 border-b border-line/10 pb-4">
+      <div className="flex items-end justify-between gap-4 mb-7 border-b border-rule/10 pb-4">
         <div className="min-w-0">
-          <div className="hud-label !text-ink-dim mb-2 flex items-center gap-2">
-            {reel.kind === "video" ? <Film className="w-3.5 h-3.5 text-hud" /> : <ImageIcon className="w-3.5 h-3.5 text-hud" />}
-            {reel.kind === "image" ? "Design reel" : reel.shape === "portrait" ? "Vertical reel · 9:16" : "Widescreen reel · 16:9"}
+          <div className="font-tele text-xs tracking-[0.22em] uppercase text-ice-dim mb-3 flex items-center gap-2">
+            {reel.kind === "video" ? (
+              <Film className="w-3.5 h-3.5 text-gold" aria-hidden />
+            ) : (
+              <ImageIcon className="w-3.5 h-3.5 text-gold" aria-hidden />
+            )}
+            {reel.kind === "image"
+              ? "Still transmissions"
+              : reel.shape === "portrait"
+                ? "Vertical transmission · 9:16"
+                : "Widescreen transmission · 16:9"}
           </div>
           <motion.h3
-            initial={{ opacity: 0, x: -40, skewX: -12 }}
-            whileInView={{ opacity: 1, x: 0, skewX: 0 }}
+            initial={{ opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="font-display text-3xl sm:text-5xl uppercase text-ink leading-none"
+            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+            className="plate text-3xl sm:text-5xl text-ice leading-none"
           >
             {reel.title}
           </motion.h3>
         </div>
-        <span className="font-display text-3xl sm:text-5xl text-drift tabular-nums leading-none shrink-0">
-          {reel.items.length}
+        <span className="plate text-3xl sm:text-5xl text-gold tabular-nums leading-none shrink-0">
+          {String(reel.items.length).padStart(2, "0")}
         </span>
       </div>
 
@@ -631,7 +640,8 @@ const ReelBlock = ({ reel, onOpen }: { reel: (typeof reels)[number]; onOpen: (it
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, margin: "-80px" }}
-        className={`grid gap-3 sm:gap-4 [perspective:1400px] ${GRID_CLASS[reel.shape]}`}
+        transition={{ duration: 0.8 }}
+        className={`grid gap-3 sm:gap-4 ${GRID_CLASS[reel.shape]}`}
       >
         {items.map((item, i) => (
           <Frame
@@ -646,8 +656,8 @@ const ReelBlock = ({ reel, onOpen }: { reel: (typeof reels)[number]; onOpen: (it
       </motion.div>
 
       {reel.items.length > first && (
-        <div className="mt-6 flex justify-center">
-          <button type="button" onClick={() => setExpanded((e) => !e)} className="btn-ghost" aria-expanded={expanded}>
+        <div className="mt-7 flex justify-center">
+          <button type="button" onClick={() => setExpanded((e) => !e)} className="btn-quiet" aria-expanded={expanded}>
             <span>{expanded ? "Show less" : `Show all ${reel.items.length}`}</span>
           </button>
         </div>
@@ -670,11 +680,22 @@ const PortfolioSection = () => {
 
   return (
     <>
-      <section id="portfolio" data-scene="Showreel" data-kanji="作品" className="relative py-24 sm:py-32 overflow-hidden">
+      <section
+        id="portfolio"
+        data-scene="Archive"
+        data-coord="Stage 04 · Received"
+        className="relative py-24 sm:py-32 overflow-hidden"
+      >
         <div className="gutter relative">
-          <SectionHeading kanji="作品" kicker="Graphics · video · multimedia" title="The" accent="Showreel" meta={`${allItems.length} pieces · ${reels.length} reels`}>
-            Graphics design, video editing and multimedia work delivered for clients. Scroll through every reel
-            and open any piece to watch or view it full screen.
+          <SectionHeading
+            stage="04"
+            kicker="Graphics · video · multimedia"
+            title="Transmission"
+            accent="archive"
+            meta={`${allItems.length} frames · ${reels.length} channels`}
+          >
+            Graphics design, video editing and multimedia work delivered for clients. Every channel is held
+            here in full — open any frame to watch or view it full screen.
           </SectionHeading>
 
           {reels.map((reel) => (

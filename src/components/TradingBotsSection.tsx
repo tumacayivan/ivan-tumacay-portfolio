@@ -21,7 +21,7 @@ import itbLinkTiming from "@/assets/ivan-trading-bots/itb-04-link-timing.png";
 import itbBridgeHost from "@/assets/ivan-trading-bots/itb-05-bridge-host.png";
 import itbTelemetry from "@/assets/ivan-trading-bots/itb-06-telemetry.png";
 import itbProcessorNetwork from "@/assets/ivan-trading-bots/itb-07-processor-network.png";
-import SectionHeading from "./drift/SectionHeading";
+import SectionHeading from "./transit/SectionHeading";
 
 const SITE_URL = "https://ivan-trading-bots.onrender.com/";
 const CLEARANCE_KEY = "itb-clearance";
@@ -63,53 +63,59 @@ const buildTags = [
   { label: "Access", value: "By request" },
 ];
 
-type Ignition = "locked" | "starting" | "running";
+type BayPower = "sealed" | "powering" | "live";
 
-const readIgnition = (): Ignition => {
+const readPower = (): BayPower => {
   try {
-    return sessionStorage.getItem(CLEARANCE_KEY) === "cleared" ? "running" : "locked";
+    return sessionStorage.getItem(CLEARANCE_KEY) === "cleared" ? "live" : "sealed";
   } catch {
-    return "locked";
+    return "sealed";
   }
 };
 
 const Hidden = ({ shown, children }: { shown: boolean; children: ReactNode }) => (
   <span
-    className={`transition-colors duration-700 ${
-      shown ? "text-ink font-semibold" : "bg-ink/80 text-transparent select-none rounded-[2px]"
+    className={`transition-colors duration-1000 ${
+      shown ? "text-ice font-medium" : "bg-ice/80 text-transparent select-none rounded-[2px]"
     }`}
   >
     {children}
   </span>
 );
 
+/**
+ * INSTRUMENT BAY — the one system on board that is not for hire.
+ *
+ * The bay is unpowered until the visitor throws the switch; the exhibits
+ * and the record stay sealed behind it, out of the tab order.
+ */
 const TradingBotsSection = () => {
-  const [ignition, setIgnition] = useState<Ignition>(readIgnition);
+  const [power, setPower] = useState<BayPower>(readPower);
   const [active, setActive] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
-  const running = ignition === "running";
+  const live = power === "live";
   const exhibit = exhibits[active];
 
   useEffect(() => {
-    if (ignition !== "starting") return;
+    if (power !== "powering") return;
     const id = setTimeout(() => {
-      setIgnition("running");
+      setPower("live");
       try {
         sessionStorage.setItem(CLEARANCE_KEY, "cleared");
       } catch {
-        /* storage unavailable — unlock lasts for this view only */
+        /* storage unavailable — the bay stays open for this view only */
       }
     }, 1700);
     return () => clearTimeout(id);
-  }, [ignition]);
+  }, [power]);
 
-  // Keep the locked garage out of the tab order until the engine is running.
+  // Keep the sealed bay out of the tab order until it is powered.
   useEffect(() => {
-    if (contentRef.current) contentRef.current.inert = !running;
-  }, [running]);
+    if (contentRef.current) contentRef.current.inert = !live;
+  }, [live]);
 
-  const lock = () => {
-    setIgnition("locked");
+  const seal = () => {
+    setPower("sealed");
     try {
       sessionStorage.removeItem(CLEARANCE_KEY);
     } catch {
@@ -121,34 +127,34 @@ const TradingBotsSection = () => {
   return (
     <section
       id="trading-bots"
-      data-scene="Trading bots"
-      data-kanji="自動売買"
-      className="relative py-24 sm:py-32 overflow-hidden bg-asphalt-2"
+      data-scene="Instrument bay"
+      data-coord="Stage 03 · Restricted"
+      className="relative py-24 sm:py-32 overflow-hidden bg-deep-2"
     >
-      <div aria-hidden className="absolute inset-x-0 top-0 h-2 livery" />
+      <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold to-transparent" />
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
-        style={{ background: "radial-gradient(ellipse at 80% 0%, hsl(var(--hud) / calc(0.12 * var(--glow-strength))), transparent 60%)" }}
+        style={{ background: "radial-gradient(ellipse at 82% 0%, hsl(var(--signal) / calc(0.1 * var(--glow))), transparent 62%)" }}
       />
 
       <div className="gutter relative">
         <SectionHeading
-          kanji="自動売買"
-          kicker="Private build · Researched & developed by Ivan"
+          stage="03"
+          kicker="Private build · researched & developed by Ivan"
           title="Ivan Trading"
           accent="Bots"
         >
-          A proprietary <Hidden shown={running}>algorithmic trading</Hidden> system with a live command terminal
-          that audits every trade for <Hidden shown={running}>performance and risk</Hidden>.
+          A proprietary <Hidden shown={live}>algorithmic trading</Hidden> system with a live command terminal
+          that audits every trade for <Hidden shown={live}>performance and risk</Hidden>.
         </SectionHeading>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-line/10 border border-line/10 mb-10 max-w-3xl">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-rule/10 border border-rule/10 mb-12 max-w-3xl">
           {buildTags.map((t) => (
-            <div key={t.label} className="bg-asphalt-2 px-4 py-3">
-              <div className="hud-label !text-ink-dim !text-[10px]">{t.label}</div>
-              <div className="font-hud text-lg font-bold uppercase text-ink flex items-center gap-2">
-                {t.label === "Status" && <span className="w-2 h-2 rounded-full bg-hud animate-pulse" />}
+            <div key={t.label} className="bg-deep-2 px-4 py-4">
+              <div className="font-tele text-xs tracking-[0.2em] uppercase text-ice-dim">{t.label}</div>
+              <div className="font-tele text-base font-medium uppercase text-ice flex items-center gap-2 mt-1.5">
+                {t.label === "Status" && <span className="w-1.5 h-1.5 rounded-full bg-gold animate-beacon" aria-hidden />}
                 {t.value}
               </div>
             </div>
@@ -158,26 +164,26 @@ const TradingBotsSection = () => {
         <div className="relative">
           <div
             ref={contentRef}
-            aria-hidden={!running}
+            aria-hidden={!live}
             className={`transition-[filter,opacity] duration-1000 ${
-              running ? "" : "max-h-[640px] sm:max-h-[760px] overflow-hidden blur-md saturate-0 opacity-60 select-none pointer-events-none"
+              live ? "" : "max-h-[640px] sm:max-h-[760px] overflow-hidden blur-md saturate-0 opacity-50 select-none pointer-events-none"
             }`}
           >
-            {/* WINDSCREEN VIEWER */}
-            <div className="grid grid-cols-1 xl:grid-cols-[1fr_320px] gap-6 mb-16">
+            {/* EXHIBIT VIEWPORT */}
+            <div className="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_320px] gap-6 mb-20">
               <a href={SITE_URL} target="_blank" rel="noopener noreferrer" className="group block relative">
-                <div className="panel !border-line/15 overflow-hidden shadow-[0_40px_90px_-40px_hsl(var(--hud)/0.5)]">
-                  <div className="flex items-center justify-between gap-3 px-4 py-2.5 border-b border-line/10 bg-asphalt">
-                    <span className="flex gap-1.5 shrink-0" aria-hidden>
-                      <span className="w-2.5 h-2.5 rounded-full bg-sign" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-drift" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-hud" />
+                <div className="panel overflow-hidden shadow-[0_50px_110px_-60px_hsl(var(--shade))]">
+                  <div className="flex items-center justify-between gap-3 px-4 py-3 border-b border-rule/10 bg-deep">
+                    <span className="flex gap-2 shrink-0" aria-hidden>
+                      <span className="w-1.5 h-1.5 rounded-full bg-gold" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-signal" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-rule/25" />
                     </span>
-                    <span className="font-hud text-[11px] tracking-[0.2em] uppercase text-ink-dim truncate">
+                    <span className="font-tele text-xs tracking-[0.2em] uppercase text-ice-dim truncate">
                       Exhibit {String.fromCharCode(65 + active)} — {exhibit.title}
                     </span>
-                    <span className="hidden sm:flex items-center gap-1.5 font-hud text-[10px] tracking-[0.24em] text-sign uppercase">
-                      <span className="w-1.5 h-1.5 rounded-full bg-sign animate-pulse" /> Live
+                    <span className="hidden sm:flex items-center gap-2 font-tele text-xs tracking-[0.24em] text-gold uppercase">
+                      <span className="w-1.5 h-1.5 rounded-full bg-gold animate-beacon" aria-hidden /> Live
                     </span>
                   </div>
                   <div className="relative overflow-hidden aspect-[2.08/1] bg-[hsl(var(--void))]">
@@ -186,18 +192,18 @@ const TradingBotsSection = () => {
                         key={active}
                         src={exhibit.image}
                         alt={`Ivan Trading Bots terminal — ${exhibit.title}`}
-                        initial={{ opacity: 0, x: 60, filter: "blur(8px)" }}
-                        animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-                        exit={{ opacity: 0, x: -60, filter: "blur(8px)" }}
-                        transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-                        className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-[1.02] transition-transform duration-700"
+                        initial={{ opacity: 0, scale: 1.04, filter: "blur(10px)" }}
+                        animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                        exit={{ opacity: 0, filter: "blur(10px)" }}
+                        transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+                        className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-[1400ms] ease-transit group-hover:scale-[1.02]"
                       />
                     </AnimatePresence>
-                    <div className="absolute inset-0 scanlines opacity-30 pointer-events-none" />
-                    <div className="absolute inset-0 bg-[hsl(var(--void)/0.8)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <span className="btn-drift">
+                    <div aria-hidden className="absolute inset-0 noise opacity-25 pointer-events-none" />
+                    <div className="absolute inset-0 bg-[hsl(var(--void)/0.82)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                      <span className="btn-primary">
                         <span className="flex items-center gap-2">
-                          <ExternalLink className="w-4 h-4" /> Open live terminal
+                          <ExternalLink className="w-4 h-4" aria-hidden /> Open live terminal
                         </span>
                       </span>
                     </div>
@@ -205,9 +211,9 @@ const TradingBotsSection = () => {
                 </div>
               </a>
 
-              <div className="flex flex-col gap-4">
-                <p className="text-ink-dim leading-relaxed">
-                  <span className="hud-label block mb-1">Exhibit {String.fromCharCode(65 + active)}</span>
+              <div className="flex flex-col gap-5">
+                <p className="text-ice-dim leading-relaxed">
+                  <span className="tele-label block mb-2">Exhibit {String.fromCharCode(65 + active)}</span>
                   {exhibit.caption}
                 </p>
                 <div className="grid grid-cols-4 xl:grid-cols-2 gap-2">
@@ -218,12 +224,12 @@ const TradingBotsSection = () => {
                       onClick={() => setActive(i)}
                       aria-pressed={i === active}
                       aria-label={`Show exhibit ${String.fromCharCode(65 + i)}: ${ex.title}`}
-                      className={`relative overflow-hidden border transition-all ${
-                        i === active ? "border-drift ring-1 ring-drift" : "border-line/10 opacity-60 hover:opacity-100"
+                      className={`relative overflow-hidden border transition-all duration-500 ${
+                        i === active ? "border-gold" : "border-rule/10 opacity-55 hover:opacity-100"
                       }`}
                     >
                       <img src={ex.image} alt="" loading="lazy" className="w-full aspect-video object-cover object-top" />
-                      <span className="absolute top-0 left-0 bg-drift text-on-drift font-hud text-[10px] font-bold px-1.5">
+                      <span className="absolute top-0 left-0 bg-gold text-on-gold font-tele text-xs font-semibold px-1.5">
                         {String.fromCharCode(65 + i)}
                       </span>
                     </button>
@@ -232,120 +238,122 @@ const TradingBotsSection = () => {
               </div>
             </div>
 
-            {/* TELEMETRY */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-line/10 border border-line/10 mb-3">
+            {/* THE RECORD */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-rule/10 border border-rule/10 mb-4">
               {snapshotStats.map((s, i) => (
                 <motion.div
                   key={s.label}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                  className="bg-asphalt-2 p-5 sm:p-6"
+                  transition={{ duration: 0.9, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  className="bg-deep-2 p-5 sm:p-7"
                 >
-                  <div className="hud-label !text-ink-dim">{s.label}</div>
-                  <div className="font-display text-3xl sm:text-5xl text-hud leading-tight mt-2 tabular-nums">
-                    <span className="text-lg align-middle mr-1 text-drift">▲</span>
+                  <div className="font-tele text-xs tracking-[0.2em] uppercase text-ice-dim">{s.label}</div>
+                  <div className="plate text-3xl sm:text-5xl text-ice leading-tight mt-3 tabular-nums">
+                    <span aria-hidden className="text-sm align-middle mr-2 text-gold">
+                      ▲
+                    </span>
                     {s.value}
                   </div>
-                  <div className="text-sm text-ink-dim mt-1">{s.note}</div>
+                  <div className="text-sm text-ice-dim mt-2">{s.note}</div>
                 </motion.div>
               ))}
             </div>
-            <p className="font-hud text-[11px] tracking-[0.2em] uppercase text-ink-dim mb-10">
+            <p className="font-tele text-xs tracking-[0.2em] uppercase text-ice-dim mb-12">
               Demo account · all-time track record · 3 active days
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 mb-20">
-              <a href={SITE_URL} target="_blank" rel="noopener noreferrer" className="btn-drift">
+            <div className="flex flex-col sm:flex-row gap-4 mb-24">
+              <a href={SITE_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">
                 <span className="flex items-center gap-2">
-                  <ExternalLink className="w-4 h-4" /> Launch live terminal
+                  <ExternalLink className="w-4 h-4" aria-hidden /> Launch live terminal
                 </span>
               </a>
-              <a href="#contact" className="btn-ghost">
+              <a href="#contact" className="btn-quiet">
                 <span>Request a bot</span>
               </a>
             </div>
 
-            {/* CAPABILITIES */}
-            <div className="flex items-center gap-4 mb-8">
-              <h3 className="font-display text-3xl sm:text-4xl uppercase text-ink">Under the hood</h3>
-              <span className="flex-1 h-px bg-line/15" />
-              <span className="hud-label !text-ink-dim">{capabilities.length} systems</span>
+            {/* SUBSYSTEMS */}
+            <div className="flex items-center gap-5 mb-10">
+              <h3 className="plate text-3xl sm:text-4xl text-ice">Subsystems</h3>
+              <span aria-hidden className="flex-1 h-px bg-rule/12" />
+              <span className="font-tele text-xs tracking-[0.2em] uppercase text-ice-dim">
+                {capabilities.length} online
+              </span>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {capabilities.map((c, i) => (
                 <motion.div
                   key={c.title}
-                  initial={{ opacity: 0, y: 24 }}
+                  initial={{ opacity: 0, y: 26 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.55, delay: (i % 4) * 0.07, ease: [0.16, 1, 0.3, 1] }}
-                  className="panel panel-hover edge-light p-6 group"
+                  transition={{ duration: 0.9, delay: (i % 4) * 0.09, ease: [0.16, 1, 0.3, 1] }}
+                  className="panel panel-hover beam p-6 group"
                 >
-                  <c.icon className="w-6 h-6 text-hud mb-5 group-hover:text-drift transition-colors" />
-                  <h4 className="font-hud text-lg font-bold uppercase tracking-[0.04em] text-ink mb-2">{c.title}</h4>
-                  <p className="text-ink-dim leading-relaxed">{c.body}</p>
+                  <c.icon className="w-5 h-5 text-signal mb-6 group-hover:text-gold transition-colors duration-500" aria-hidden />
+                  <h4 className="font-tele text-base font-medium uppercase tracking-[0.1em] text-ice mb-2.5">{c.title}</h4>
+                  <p className="text-ice-dim leading-relaxed text-[0.95rem]">{c.body}</p>
                 </motion.div>
               ))}
             </div>
           </div>
 
-          {/* IGNITION GATE */}
+          {/* POWER GATE */}
           <AnimatePresence>
-            {!running && (
+            {!live && (
               <motion.div
                 key="gate"
-                exit={{ opacity: 0, scale: 1.05 }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute inset-0 z-30 flex items-start justify-center pt-12 sm:pt-24 bg-gradient-to-b from-asphalt-2/30 via-asphalt-2/60 to-asphalt-2"
+                exit={{ opacity: 0, scale: 1.04 }}
+                transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+                className="absolute inset-0 z-30 flex items-start justify-center pt-12 sm:pt-24 bg-gradient-to-b from-deep-2/20 via-deep-2/70 to-deep-2"
               >
-                <div className="panel !border-line/20 w-full max-w-lg p-7 sm:p-10 text-center shadow-[0_40px_100px_-30px_hsl(var(--shadow))]">
-                  <div className="absolute inset-x-0 top-0 h-1.5 livery" />
-
+                <div className="panel w-full max-w-lg p-7 sm:p-10 text-center shadow-[0_50px_120px_-50px_hsl(var(--shade))]">
                   <motion.div
-                    className="mx-auto mb-6 w-20 h-20 rounded-full border-2 flex items-center justify-center"
+                    className="mx-auto mb-7 w-20 h-20 rounded-full border flex items-center justify-center"
                     animate={
-                      ignition === "starting"
-                        ? { borderColor: "hsl(var(--drift))", rotate: [0, -35, 0], boxShadow: "0 0 40px hsl(var(--drift) / 0.6)" }
-                        : { borderColor: "hsl(var(--line) / 0.2)", rotate: 0 }
+                      power === "powering"
+                        ? { borderColor: "hsl(var(--gold))", boxShadow: "0 0 50px hsl(var(--gold) / 0.55)" }
+                        : { borderColor: "hsl(var(--rule) / 0.2)", boxShadow: "0 0 0 hsl(var(--gold) / 0)" }
                     }
-                    transition={{ duration: 0.6 }}
+                    transition={{ duration: 0.9 }}
                   >
-                    {ignition === "starting" ? (
-                      <KeyRound className="w-8 h-8 text-drift" />
+                    {power === "powering" ? (
+                      <KeyRound className="w-7 h-7 text-gold" aria-hidden />
                     ) : (
-                      <Lock className="w-8 h-8 text-ink" />
+                      <Lock className="w-7 h-7 text-ice" aria-hidden />
                     )}
                   </motion.div>
 
-                  <div className="hud-label mb-3">Private garage · Build ITB-001</div>
-                  <h3 className="font-display text-4xl sm:text-5xl uppercase text-ink leading-none mb-4">
-                    Engine <span className="lean">off</span>
+                  <div className="tele-label mb-4">Restricted bay · build ITB-001</div>
+                  <h3 className="plate text-4xl sm:text-5xl text-ice leading-none mb-5">
+                    Systems <span className="lit">cold</span>
                   </h3>
-                  <p className="text-ink-dim text-lg leading-relaxed mb-8">
-                    The Ivan Trading Bots showcase is parked. Turn the key to open the live terminal screenshots and
-                    results.
+                  <p className="text-ice-dim text-lg leading-relaxed mb-9">
+                    The Ivan Trading Bots showcase is unpowered. Bring the bay online to see the live terminal
+                    screenshots and the record behind them.
                   </p>
 
-                  {ignition === "starting" ? (
+                  {power === "powering" ? (
                     <div aria-live="polite">
-                      <div className="font-hud text-sm font-bold tracking-[0.24em] uppercase text-drift mb-3">
-                        Starting engine…
+                      <div className="font-tele text-sm font-medium tracking-[0.28em] uppercase text-gold mb-4">
+                        Powering up…
                       </div>
-                      <div className="h-2 bg-line/10 overflow-hidden -skew-x-12">
+                      <div className="h-1 bg-rule/10 overflow-hidden">
                         <motion.div
                           initial={{ width: "0%" }}
-                          animate={{ width: ["0%", "85%", "60%", "100%"] }}
-                          transition={{ duration: 1.6, times: [0, 0.45, 0.6, 1], ease: "easeInOut" }}
-                          className="h-full bg-gradient-to-r from-hud via-drift to-sign"
+                          animate={{ width: ["0%", "78%", "62%", "100%"] }}
+                          transition={{ duration: 1.6, times: [0, 0.45, 0.62, 1], ease: "easeInOut" }}
+                          className="h-full bg-gradient-to-r from-signal to-gold"
                         />
                       </div>
                     </div>
                   ) : (
-                    <button type="button" onClick={() => setIgnition("starting")} className="btn-drift w-full sm:w-auto">
+                    <button type="button" onClick={() => setPower("powering")} className="btn-primary w-full sm:w-auto">
                       <span className="flex items-center gap-2">
-                        <Power className="w-4 h-4" /> Turn the key
+                        <Power className="w-4 h-4" aria-hidden /> Bring the bay online
                       </span>
                     </button>
                   )}
@@ -355,14 +363,14 @@ const TradingBotsSection = () => {
           </AnimatePresence>
         </div>
 
-        {running && (
-          <div className="mt-12 flex justify-end">
+        {live && (
+          <div className="mt-14 flex justify-end">
             <button
               type="button"
-              onClick={lock}
-              className="inline-flex items-center gap-2 font-hud text-xs tracking-[0.24em] uppercase text-ink-dim hover:text-drift transition-colors"
+              onClick={seal}
+              className="inline-flex items-center gap-2 font-tele text-xs tracking-[0.24em] uppercase text-ice-dim hover:text-gold transition-colors"
             >
-              <Lock className="w-3.5 h-3.5" /> Park it again
+              <Lock className="w-3.5 h-3.5" aria-hidden /> Seal the bay again
             </button>
           </div>
         )}

@@ -6,7 +6,7 @@ import {
   Wrench, BarChart3, ClipboardList, GraduationCap, Check, ArrowUpRight,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import SectionHeading from "./drift/SectionHeading";
+import SectionHeading from "./transit/SectionHeading";
 
 interface Service {
   title: string;
@@ -34,29 +34,41 @@ const services: Service[] = [
   { title: "Executive & Personal Assistant", description: "High-level support for executives, entrepreneurs, and busy professionals.", icon: GraduationCap, services: ["Executive calendar management", "Priority inbox management", "Confidential document handling", "Personal errand coordination", "Event planning and logistics", "Travel itinerary management", "Client relationship support"] },
 ];
 
-const Detail = ({ service }: { service: Service }) => (
+const EASE = [0.16, 1, 0.3, 1] as const;
+
+/** One face of the monolith: the system that is currently turned toward us. */
+const Face = ({ service, index }: { service: Service; index: number }) => (
   <motion.div
     key={service.title}
-    initial={{ opacity: 0, x: 40, skewX: -4 }}
-    animate={{ opacity: 1, x: 0, skewX: 0 }}
-    exit={{ opacity: 0, x: -40 }}
-    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+    initial={{ opacity: 0, rotateX: -14, y: 24 }}
+    animate={{ opacity: 1, rotateX: 0, y: 0 }}
+    exit={{ opacity: 0, rotateX: 10, y: -18 }}
+    transition={{ duration: 0.8, ease: EASE }}
+    className="origin-top"
   >
-    <service.icon className="w-10 h-10 text-drift mb-6" />
-    <h3 className="font-display text-3xl sm:text-4xl uppercase text-ink leading-[1.05] mb-3">{service.title}</h3>
-    <p className="text-lg text-ink-dim leading-relaxed mb-8">{service.description}</p>
+    <div className="flex items-center justify-between gap-4 mb-7">
+      <service.icon className="w-8 h-8 text-[hsl(var(--beam-gold))]" aria-hidden />
+      <span className="font-tele text-xs tracking-[0.3em] uppercase text-[hsl(var(--void-ink))]/45 tabular-nums">
+        System {String(index + 1).padStart(2, "0")} / {String(services.length).padStart(2, "0")}
+      </span>
+    </div>
 
-    <div className="hud-label mb-4">What's included</div>
-    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 mb-8">
+    <h3 className="plate text-3xl sm:text-4xl leading-[1.04] mb-4">{service.title}</h3>
+    <p className="text-lg leading-relaxed text-[hsl(var(--void-ink))]/70 mb-9">{service.description}</p>
+
+    <div className="font-tele text-xs tracking-[0.26em] uppercase text-[hsl(var(--beam-signal))] mb-5">
+      What's included
+    </div>
+    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-7 gap-y-3 mb-9">
       {service.services.map((item, i) => (
         <motion.li
           key={item}
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 + i * 0.03 }}
-          className="flex items-start gap-2.5 text-ink"
+          initial={{ opacity: 0, x: -10 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.15 + i * 0.045, duration: 0.6, ease: EASE }}
+          className="flex items-start gap-3 text-[hsl(var(--void-ink))]/90 text-[0.95rem] leading-relaxed"
         >
-          <Check className="w-4 h-4 mt-1 shrink-0 text-hud" />
+          <Check className="w-4 h-4 mt-1 shrink-0 text-[hsl(var(--beam-gold))]" aria-hidden />
           <span>{item}</span>
         </motion.li>
       ))}
@@ -64,72 +76,99 @@ const Detail = ({ service }: { service: Service }) => (
 
     {service.tools && (
       <>
-        <div className="hud-label mb-3">Tools</div>
-        <div className="flex flex-wrap gap-2 mb-8">
+        <div className="font-tele text-xs tracking-[0.26em] uppercase text-[hsl(var(--beam-signal))] mb-4">Tools</div>
+        <div className="flex flex-wrap gap-2 mb-9">
           {service.tools.split(",").map((t) => (
-            <span key={t} className="chip">{t.trim()}</span>
+            <span
+              key={t}
+              className="font-tele text-xs tracking-[0.1em] uppercase px-2.5 py-1.5 border border-[hsl(var(--beam-gold)/0.3)] text-[hsl(var(--void-ink))]/80"
+            >
+              {t.trim()}
+            </span>
           ))}
         </div>
       </>
     )}
 
-    <a href="#contact" className="btn-drift">
+    <a href="#contact" className="btn-primary">
       <span className="flex items-center gap-2">
-        Book this service <ArrowUpRight className="w-4 h-4" />
+        Request this system <ArrowUpRight className="w-4 h-4" aria-hidden />
       </span>
     </a>
   </motion.div>
 );
 
+/**
+ * THE MONOLITH — every capability, on one black slab.
+ *
+ * The list is the index; the slab is the object. Choosing a system turns
+ * that face toward the visitor. Segment seams run the height of it, so it
+ * reads as one machined thing rather than a stack of cards.
+ */
 const ServicesSection = () => {
   const [active, setActive] = useState(0);
 
   return (
-    <section id="services" data-scene="Services" data-kanji="サービス" className="relative py-24 sm:py-32 bg-asphalt-2 overflow-hidden">
-      <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-drift to-transparent" />
+    <section
+      id="services"
+      data-scene="The monolith"
+      data-coord="Stage 05 · Capability"
+      className="relative py-24 sm:py-32 bg-deep-2 overflow-hidden"
+    >
+      <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-rule/20 to-transparent" />
       <div className="gutter relative">
-        <SectionHeading kanji="サービス" kicker="Pit menu" title="What I" accent="offer" meta={`${services.length} services`}>
+        <SectionHeading
+          stage="05"
+          kicker="Capability"
+          title="The"
+          accent="monolith"
+          meta={`${services.length} systems`}
+        >
           Virtual assistant, digital operations and software engineering services to take work off your plate
-          and help your business scale. Pick one to see exactly what's included.
+          and help your business scale. Turn a face toward you to see exactly what is inside it.
         </SectionHeading>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-8 lg:gap-14 items-start">
-          <ul className="border-t border-line/10" role="tablist" aria-label="Services" aria-orientation="vertical">
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] gap-10 lg:gap-16 items-start">
+          <ul className="border-t border-rule/10" role="tablist" aria-label="Services" aria-orientation="vertical">
             {services.map((s, i) => {
               const isActive = i === active;
               return (
-                <li key={s.title} className="border-b border-line/10">
+                <li key={s.title} className="border-b border-rule/10">
                   <button
                     type="button"
                     role="tab"
                     aria-selected={isActive}
                     onClick={() => setActive(i)}
-                    className={`group relative w-full flex items-center gap-4 py-4 sm:py-5 text-left transition-colors ${
-                      isActive ? "text-drift" : "text-ink/75 hover:text-ink"
+                    className={`group relative w-full flex items-center gap-4 py-4 sm:py-5 text-left transition-colors duration-500 ${
+                      isActive ? "text-gold" : "text-ice/70 hover:text-ice"
                     }`}
                   >
                     <motion.span
                       aria-hidden
-                      className="absolute left-0 top-2 bottom-2 w-[3px] bg-drift origin-top"
+                      className="absolute left-0 top-2 bottom-2 w-px bg-gold origin-top"
                       initial={false}
                       animate={{ scaleY: isActive ? 1 : 0 }}
+                      transition={{ duration: 0.6, ease: EASE }}
                     />
+                    <span className="font-tele text-xs tabular-nums text-ice-dim shrink-0 w-7">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
                     <motion.span
-                      className="flex items-center gap-4 min-w-0"
-                      animate={{ x: isActive ? 18 : 0 }}
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      className="flex items-center gap-3.5 min-w-0"
+                      animate={{ x: isActive ? 10 : 0 }}
+                      transition={{ duration: 0.7, ease: EASE }}
                     >
-                      <s.icon className={`w-5 h-5 shrink-0 ${isActive ? "text-drift" : "text-hud"}`} />
-                      <span className="font-hud text-base sm:text-lg font-bold uppercase tracking-[0.04em] leading-tight">
+                      <s.icon className={`w-4 h-4 shrink-0 ${isActive ? "text-gold" : "text-signal"}`} aria-hidden />
+                      <span className="font-tele text-sm sm:text-[0.95rem] uppercase tracking-[0.08em] leading-tight">
                         {s.title}
                       </span>
                     </motion.span>
-                    <span className={`ml-auto font-hud text-xs tabular-nums ${isActive ? "text-drift" : "text-ink-dim"}`}>
+                    <span className={`ml-auto font-tele text-xs tabular-nums ${isActive ? "text-gold" : "text-ice-dim"}`}>
                       {s.services.length}
                     </span>
                   </button>
 
-                  {/* Mobile: details open under the chosen service */}
+                  {/* Small screens: the face opens under the system it belongs to */}
                   <AnimatePresence initial={false}>
                     {isActive && (
                       <motion.div
@@ -137,10 +176,10 @@ const ServicesSection = () => {
                         initial={{ height: 0 }}
                         animate={{ height: "auto" }}
                         exit={{ height: 0 }}
-                        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ duration: 0.7, ease: EASE }}
                       >
-                        <div className="pb-8 pt-2">
-                          <Detail service={s} />
+                        <div className="slab slab-seams p-6 sm:p-8 my-5">
+                          <Face service={s} index={i} />
                         </div>
                       </motion.div>
                     )}
@@ -151,10 +190,13 @@ const ServicesSection = () => {
           </ul>
 
           <div className="hidden lg:block sticky top-28">
-            <div className="panel p-8 xl:p-10 min-h-[560px] overflow-hidden">
-              <div aria-hidden className="absolute right-6 top-6 neon-kanji vertical text-2xl opacity-80">整備</div>
+            <div className="slab slab-seams relative p-9 xl:p-12 min-h-[620px] overflow-hidden [perspective:1600px]">
+              <span
+                aria-hidden
+                className="absolute right-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[hsl(var(--beam-gold)/0.4)] to-transparent"
+              />
               <AnimatePresence mode="wait">
-                <Detail key={active} service={services[active]} />
+                <Face key={active} service={services[active]} index={active} />
               </AnimatePresence>
             </div>
           </div>
