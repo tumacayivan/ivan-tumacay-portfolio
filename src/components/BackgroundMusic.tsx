@@ -136,13 +136,13 @@ const BackgroundMusic = () => {
       title={showAsOn ? "Mute music" : "Play music"}
       className="icon-btn fixed bottom-5 right-5 z-50 !h-11 !px-3.5"
     >
-      {showAsOn ? <Volume2 className="w-4 h-4 text-hud" /> : <VolumeX className="w-4 h-4" />}
+      {showAsOn ? <Volume2 className="w-4 h-4 text-gold" aria-hidden /> : <VolumeX className="w-4 h-4" aria-hidden />}
       {/* Equaliser: bounces while the track is audible, flat when muted */}
       <span aria-hidden className="flex items-end gap-[3px] h-4">
         {[0.9, 0.5, 1, 0.7].map((h, i) => (
           <span
             key={i}
-            className="w-[3px] bg-drift origin-bottom"
+            className="w-[3px] bg-gold origin-bottom"
             style={{
               height: `${h * 100}%`,
               transform: showAsOn ? undefined : "scaleY(0.2)",

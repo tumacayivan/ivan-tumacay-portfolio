@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Sun, Volume2, X } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
-import { useIntroDone } from "./drift/IntroSequence";
+import { useIntroDone } from "./transit/IntroSequence";
 
 const SEEN_KEY = "controls-notice-seen";
 const SHOW_DELAY_MS = 1200;
@@ -11,9 +11,9 @@ const AUTO_DISMISS_MS = 12000;
  * ControlsNotice
  *
  * A one-time briefing shown after the opening sequence, telling the
- * visitor that the site has a day/night toggle and a music mute button.
- * While it is open, `html.controls-hint` makes the real controls pulse
- * (see [data-control-hint] in index.css) so the visitor can find them.
+ * visitor that the site has a daylight/deep-space toggle and a music mute
+ * button. While it is open, `html.controls-hint` makes the real controls
+ * pulse (see [data-control-hint] in index.css) so they can be found.
  */
 const ControlsNotice = () => {
   const [open, setOpen] = useState(false);
@@ -59,47 +59,52 @@ const ControlsNotice = () => {
         <motion.aside
           role="status"
           aria-live="polite"
-          initial={{ opacity: 0, x: 40, skewX: -8 }}
-          animate={{ opacity: 1, x: 0, skewX: 0 }}
-          exit={{ opacity: 0, x: 40 }}
-          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-          className="panel fixed bottom-20 right-5 left-5 sm:left-auto z-50 sm:w-[340px] shadow-[0_30px_60px_-20px_hsl(var(--shadow))]"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 16 }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          className="panel fixed bottom-20 right-5 left-5 sm:left-auto z-50 sm:w-[344px] shadow-[0_40px_90px_-40px_hsl(var(--shade))]"
         >
-          <div className="livery h-1.5" />
-          <div className="flex items-center justify-between px-4 pt-3">
-            <span className="hud-label">Before you roll</span>
+          <div className="flex items-center justify-between px-4 pt-4">
+            <span className="tele-label">Pre-flight</span>
             <button
               type="button"
               onClick={dismiss}
               aria-label="Dismiss notice"
-              className="p-1 text-ink-dim hover:text-drift transition-colors"
+              className="p-1 text-ice-dim hover:text-gold transition-colors"
             >
-              <X className="w-4 h-4" />
+              <X className="w-4 h-4" aria-hidden />
             </button>
           </div>
 
-          <ul className="px-4 pt-2 pb-3 space-y-3">
+          <ul className="px-4 pt-3 pb-3 space-y-4">
             <li className="flex gap-3">
-              <Sun className="w-4 h-4 shrink-0 mt-1 text-drift" />
+              <Sun className="w-4 h-4 shrink-0 mt-1 text-gold" aria-hidden />
               <span>
-                <strong className="font-hud font-bold uppercase tracking-[0.08em] text-ink">Day / night mode</strong>
+                <strong className="font-tele text-sm font-medium uppercase tracking-[0.14em] text-ice">
+                  Daylight / deep space
+                </strong>
                 <br />
-                <span className="text-ink-dim">Switch with the sun and moon button in the top bar.</span>
+                <span className="text-ice-dim">Switch with the sun and moon button in the top bar.</span>
               </span>
             </li>
             <li className="flex gap-3">
-              <Volume2 className="w-4 h-4 shrink-0 mt-1 text-drift" />
+              <Volume2 className="w-4 h-4 shrink-0 mt-1 text-gold" aria-hidden />
               <span>
-                <strong className="font-hud font-bold uppercase tracking-[0.08em] text-ink">Soundtrack</strong>
+                <strong className="font-tele text-sm font-medium uppercase tracking-[0.14em] text-ice">
+                  Soundtrack
+                </strong>
                 <br />
-                <span className="text-ink-dim">Music plays once you scroll or tap. Mute or unmute with the speaker button below.</span>
+                <span className="text-ice-dim">
+                  Music plays once you scroll or tap. Mute or unmute with the speaker button below.
+                </span>
               </span>
             </li>
           </ul>
 
           <div className="px-4 pb-4">
-            <button type="button" onClick={dismiss} className="btn-drift w-full !py-2.5">
-              <span>Got it</span>
+            <button type="button" onClick={dismiss} className="btn-primary w-full !py-2.5">
+              <span>Understood</span>
             </button>
           </div>
         </motion.aside>
