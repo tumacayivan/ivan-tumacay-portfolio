@@ -3,50 +3,50 @@
 @tailwind utilities;
 
 /* =====================================================================
-   NIGHT RUN — TOKYO DRIFT DESIGN SYSTEM
+   RISING SUN — TOKYO DRIFT DESIGN SYSTEM
 
-   NIGHT (default) is the car park at 2am: indigo asphalt, Veilside
-   orange livery, cyan gauge light and magenta kanji signs.
+   NIGHT (default) is a carbon-black paddock: signal red livery,
+   white gauge light and red neon kanji. Colour is spent sparingly.
    DAY is the same garage with the shutters up.
 
    Colour roles are strict:
-     --drift  (orange)  actions, brand, livery
-     --hud    (cyan)    data, gauges, labels
-     --sign   (magenta) neon kanji signage only
+     --drift  (red)    actions, brand, livery
+     --hud    (white)  data, gauges, labels
+     --sign   (neon red)neon kanji signage only
    ===================================================================== */
 
 @layer base {
   /* ---------- DAY ---------- */
   :root {
-    --asphalt: 250 16% 92%;
-    --asphalt-2: 250 14% 87%;
-    --panel: 250 30% 98%;
-    --ink: 246 26% 9%;
-    --ink-dim: 246 9% 38%;
-    --line: 246 26% 9%;
-    --drift: 20 90% 46%;
+    --asphalt: 0 0% 95%;
+    --asphalt-2: 0 0% 90%;
+    --panel: 0 0% 100%;
+    --ink: 0 0% 6%;
+    --ink-dim: 0 0% 38%;
+    --line: 0 0% 6%;
+    --drift: 356 85% 45%;
     --on-drift: 0 0% 100%;
-    --hud: 186 100% 28%;
-    --sign: 338 84% 46%;
+    --hud: 0 0% 25%;
+    --sign: 350 85% 48%;
 
-    --sky-top: 212 60% 78%;
-    --sky-bottom: 28 80% 88%;
-    --city: 246 18% 30%;
-    --city-far: 240 14% 62%;
-    --window: 44 30% 88%;
-    --road: 246 10% 26%;
+    --sky-top: 0 0% 88%;
+    --sky-bottom: 356 60% 90%;
+    --city: 0 0% 22%;
+    --city-far: 0 0% 62%;
+    --window: 40 20% 92%;
+    --road: 0 0% 22%;
     --glow-strength: 0.35;
-    --shadow: 246 30% 20%;
+    --shadow: 0 0% 15%;
 
     /* Fixed in both themes: always-dark scenes (intro, scene cuts,
        lightbox), the bright neon used on them, and the licence card */
-    --void: 246 44% 4%;
-    --void-ink: 250 40% 97%;
-    --neon-drift: 22 100% 54%;
-    --neon-hud: 184 88% 54%;
-    --neon-sign: 336 100% 60%;
-    --card-ink: 246 30% 12%;
-    --licence-accent: 20 90% 46%;
+    --void: 0 0% 3%;
+    --void-ink: 0 0% 98%;
+    --neon-drift: 356 92% 52%;
+    --neon-hud: 0 0% 90%;
+    --neon-sign: 352 100% 62%;
+    --card-ink: 0 0% 8%;
+    --licence-accent: 356 85% 44%;
 
     /* shadcn bridge */
     --background: var(--asphalt);
@@ -65,8 +65,8 @@
     --accent-foreground: var(--on-drift);
     --destructive: var(--sign);
     --destructive-foreground: 0 0% 100%;
-    --border: 246 12% 80%;
-    --input: 246 12% 80%;
+    --border: 0 0% 82%;
+    --input: 0 0% 82%;
     --ring: var(--hud);
     --radius: 0.125rem;
     --sidebar-background: var(--panel);
@@ -75,35 +75,35 @@
     --sidebar-primary-foreground: var(--on-drift);
     --sidebar-accent: var(--asphalt-2);
     --sidebar-accent-foreground: var(--ink);
-    --sidebar-border: 246 12% 80%;
+    --sidebar-border: 0 0% 82%;
     --sidebar-ring: var(--hud);
   }
 
   /* ---------- NIGHT ---------- */
   .dark {
-    --asphalt: 246 44% 6%;
-    --asphalt-2: 246 36% 9%;
-    --panel: 246 32% 11%;
-    --ink: 250 40% 97%;
-    --ink-dim: 246 14% 68%;
-    --line: 250 40% 97%;
-    --drift: 22 100% 54%;
-    --on-drift: 246 44% 6%;
-    --hud: 184 88% 54%;
-    --sign: 336 100% 60%;
+    --asphalt: 0 0% 4%;
+    --asphalt-2: 0 0% 7%;
+    --panel: 0 0% 10%;
+    --ink: 0 0% 98%;
+    --ink-dim: 0 0% 64%;
+    --line: 0 0% 98%;
+    --drift: 356 92% 52%;
+    --on-drift: 0 0% 100%;
+    --hud: 0 0% 86%;
+    --sign: 352 100% 62%;
 
-    --sky-top: 250 60% 4%;
-    --sky-bottom: 290 50% 14%;
-    --city: 248 40% 5%;
-    --city-far: 252 34% 10%;
-    --window: 42 100% 70%;
-    --road: 246 30% 7%;
+    --sky-top: 0 0% 2%;
+    --sky-bottom: 356 60% 10%;
+    --city: 0 0% 3%;
+    --city-far: 0 0% 8%;
+    --window: 40 30% 88%;
+    --road: 0 0% 6%;
     --glow-strength: 1;
-    --shadow: 250 60% 2%;
+    --shadow: 0 0% 0%;
 
-    --border: 246 22% 20%;
-    --input: 246 22% 20%;
-    --sidebar-border: 246 22% 20%;
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --sidebar-border: 0 0% 18%;
   }
 
   * { @apply border-border; }
