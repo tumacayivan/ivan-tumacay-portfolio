@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Code2, Globe, Smartphone, Zap, ArrowUpRight } from "lucide-react";
-import SectionHeading from "./drift/SectionHeading";
+import SectionHeading from "./transit/SectionHeading";
 import ivanTumacayGroup from "@/assets/ivan-tumacay-group-website.png";
 import ivanTumacayGroupTrading from "@/assets/ivan-tumacay-group-trading.png";
 import marketHacker1 from "@/assets/market-hacker-website1.png";
@@ -268,50 +268,54 @@ const LiveSiteCard = ({ site, index }: { site: LiveSite; index: number }) => (
     href={site.url}
     target="_blank"
     rel="noopener noreferrer"
-    initial={{ opacity: 0, y: 50, rotateX: 10 }}
-    whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+    initial={{ opacity: 0, y: 46 }}
+    whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-60px" }}
-    transition={{ duration: 0.8, delay: (index % 3) * 0.08, ease: [0.16, 1, 0.3, 1] }}
-    className="group panel edge-light block overflow-hidden hover:!border-drift/60 transition-colors"
+    transition={{ duration: 1.1, delay: (index % 3) * 0.1, ease: [0.16, 1, 0.3, 1] }}
+    className="group panel panel-hover beam block overflow-hidden"
   >
-    {/* Browser chrome + screenshot that scrolls on hover */}
-    <div className="flex items-center gap-2 px-3 py-2 border-b border-line/10 bg-asphalt">
-      <span className="flex gap-1" aria-hidden>
-        <span className="w-2 h-2 rounded-full bg-line/20" />
-        <span className="w-2 h-2 rounded-full bg-line/20" />
-        <span className="w-2 h-2 rounded-full bg-line/20" />
+    {/* Survey header */}
+    <div className="flex items-center gap-3 px-4 py-2.5 border-b border-rule/10 bg-deep">
+      <span className="font-tele text-xs tracking-[0.2em] text-gold tabular-nums shrink-0">
+        W-{String(index + 1).padStart(2, "0")}
       </span>
-      <span className="flex-1 truncate font-hud text-[11px] tracking-[0.06em] text-ink-dim">{siteHost(site.url)}</span>
-      <span className="flex items-center gap-1 font-hud text-[10px] font-bold tracking-[0.16em] uppercase text-hud">
-        <span className="w-1.5 h-1.5 rounded-full bg-hud animate-pulse" /> Live
+      <span className="flex-1 truncate font-tele text-xs tracking-[0.04em] text-ice-dim">{siteHost(site.url)}</span>
+      <span className="flex items-center gap-1.5 font-tele text-xs tracking-[0.18em] uppercase text-signal shrink-0">
+        <span className="w-1.5 h-1.5 rounded-full bg-signal animate-beacon" aria-hidden /> Live
       </span>
     </div>
-    <div className="relative aspect-[16/10] overflow-hidden bg-asphalt">
+
+    {/* Porthole */}
+    <div className="relative aspect-[16/10] overflow-hidden bg-deep">
       <img
         src={site.image}
         alt={`${site.name} — live website screenshot`}
         loading="lazy"
-        className="absolute inset-0 w-full h-full object-cover object-top transition-[object-position,transform] duration-[2600ms] ease-in-out group-hover:object-bottom group-hover:scale-[1.02]"
+        className="absolute inset-0 w-full h-full object-cover object-top transition-[object-position,transform] duration-[3600ms] ease-in-out group-hover:object-bottom group-hover:scale-[1.02]"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--void)/0.7)] via-transparent to-transparent" />
-      <span className="plate absolute left-3 bottom-3 w-[72px] h-[40px]">
-        <span className="text-[8px] tracking-[0.06em]">東京 500</span>
-        <span className="text-[15px]">{String(index + 1).padStart(2, "0")}-{String(index * 7 + 13).slice(-2)}</span>
-      </span>
-      <span className="absolute right-3 bottom-3 w-10 h-10 rounded-full bg-drift text-on-drift flex items-center justify-center translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-        <ArrowUpRight className="w-5 h-5" />
+      <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--void)/0.72)] via-transparent to-transparent" />
+      {/* horizon sweep */}
+      <span
+        aria-hidden
+        className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-gold to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+      />
+      <span className="absolute right-3 bottom-3 w-10 h-10 rounded-full bg-gold text-on-gold flex items-center justify-center translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-transit">
+        <ArrowUpRight className="w-5 h-5" aria-hidden />
       </span>
     </div>
 
     <div className="p-5 sm:p-6">
-      <div className="hud-label mb-2">{site.tagline}</div>
-      <h4 className="font-display text-2xl uppercase text-ink leading-tight mb-2 group-hover:text-drift transition-colors">
+      <div className="tele-label mb-3">{site.tagline}</div>
+      <h4 className="plate text-2xl text-ice leading-tight mb-3 group-hover:text-gold transition-colors duration-500">
         {site.name}
       </h4>
-      <p className="text-ink-dim leading-relaxed mb-4">{site.description}</p>
+      <p className="text-ice-dim leading-relaxed text-[0.95rem] mb-5">{site.description}</p>
       <div className="flex flex-wrap gap-1.5">
         {site.stack.split("·").map((t) => (
-          <span key={t} className="font-hud text-[11px] font-semibold tracking-[0.08em] uppercase text-ink-dim border border-line/15 px-2 py-0.5">
+          <span
+            key={t}
+            className="font-tele text-xs tracking-[0.1em] uppercase text-ice-dim border border-rule/15 px-2 py-1"
+          >
             {t.trim()}
           </span>
         ))}
@@ -326,64 +330,70 @@ const SoftwarePortfolioSection = () => {
   return (
     <section
       id="software-portfolio"
-      data-scene="Garage"
-      data-kanji="車庫"
+      data-scene="Worlds visited"
+      data-coord="Stage 08 · Survey"
       className="relative py-24 sm:py-32 overflow-hidden"
     >
-      <div aria-hidden className="absolute inset-0 grid-floor opacity-40 [mask-image:linear-gradient(to_bottom,#000,transparent_40%)]" />
+      <div aria-hidden className="absolute inset-0 survey-grid [mask-image:linear-gradient(to_bottom,#000,transparent_45%)]" />
       <div className="gutter relative">
-        <SectionHeading kanji="車庫" kicker="Software portfolio" title="The" accent="Garage" meta={`${liveSites.length} live · ${totalProjects} built`}>
-          Projects delivered for clients and enterprise organisations across industries and stacks. Every car
-          on the floor is running — hover to scroll the page, click to take it for a drive.
+        <SectionHeading
+          stage="08"
+          kicker="Software portfolio"
+          title="Worlds"
+          accent="visited"
+          meta={`${liveSites.length} live · ${totalProjects} built`}
+        >
+          Projects delivered for clients and enterprise organisations across industries and stacks. Every one of
+          these is still running — hold a porthole to look further down, open it to land.
         </SectionHeading>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 [perspective:1600px] mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 mb-28">
           {liveSites.map((site, i) => (
             <LiveSiteCard key={site.url} site={site} index={i} />
           ))}
         </div>
 
-        {/* BUILD HISTORY */}
-        <div className="flex flex-wrap items-end justify-between gap-4 mb-8">
+        {/* ORBIT LOG */}
+        <div className="flex flex-wrap items-end justify-between gap-5 mb-10">
           <div>
-            <div className="hud-label mb-2">Build history · 2016 – 2025</div>
-            <h3 className="font-display text-4xl sm:text-5xl uppercase text-ink">
-              Every <span className="lean">lap</span>
+            <div className="tele-label mb-3">Orbit log · 2016 – 2025</div>
+            <h3 className="plate text-4xl sm:text-5xl text-ice">
+              Every <span className="lit">pass</span>
             </h3>
           </div>
-          <div className="flex flex-wrap gap-4 font-hud text-xs tracking-[0.14em] uppercase text-ink-dim">
+          <div className="flex flex-wrap gap-5 font-tele text-xs tracking-[0.16em] uppercase text-ice-dim">
             {(["Web", "Automation", "API", "Mobile"] as const).map((c) => {
               const Icon = getCategoryIcon(c);
               return (
-                <span key={c} className="flex items-center gap-1.5">
-                  <Icon className="w-3.5 h-3.5 text-hud" /> {c}
+                <span key={c} className="flex items-center gap-2">
+                  <Icon className="w-3.5 h-3.5 text-gold" aria-hidden /> {c}
                 </span>
               );
             })}
           </div>
         </div>
 
-        <div className="border-t border-line/10">
+        <div className="border-t border-rule/10">
           {portfolioData.map((group) => (
             <motion.div
               key={group.year}
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.6 }}
-              className="group grid grid-cols-1 md:grid-cols-[180px_1fr] gap-4 md:gap-8 py-8 border-b border-line/10"
+              transition={{ duration: 0.9 }}
+              className="group grid grid-cols-1 md:grid-cols-[180px_minmax(0,1fr)] gap-4 md:gap-10 py-9 border-b border-rule/10"
             >
               <div className="flex md:flex-col items-baseline md:items-start gap-3">
                 <motion.span
-                  initial={{ x: -40, opacity: 0 }}
+                  initial={{ x: -28, opacity: 0 }}
                   whileInView={{ x: 0, opacity: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                  className="font-display text-5xl sm:text-6xl leading-none text-ink group-hover:text-drift transition-colors tabular-nums"
+                  transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+                  className="plate text-5xl sm:text-6xl leading-none text-ice group-hover:text-gold transition-colors duration-700 tabular-nums"
                 >
                   {group.year}
                 </motion.span>
-                <span className="hud-label !text-ink-dim">
+                <span className="font-tele text-xs tracking-[0.2em] uppercase text-ice-dim">
                   {group.count} {group.count === 1 ? "project" : "projects"}
                 </span>
               </div>
@@ -396,13 +406,15 @@ const SoftwarePortfolioSection = () => {
                       initial={{ opacity: 0, y: 14 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.45, delay: i * 0.04, ease: [0.16, 1, 0.3, 1] }}
-                      className="flex items-start gap-3 p-4 bg-panel/60 border border-line/10 hover:border-hud/50 transition-colors"
+                      transition={{ duration: 0.7, delay: i * 0.05, ease: [0.16, 1, 0.3, 1] }}
+                      className="flex items-start gap-3 p-4 bg-hull/60 border border-rule/10 hover:border-gold/45 transition-colors duration-500"
                     >
-                      <Icon className="w-4 h-4 mt-1 text-hud shrink-0" aria-label={project.category} />
+                      <Icon className="w-4 h-4 mt-1 text-signal shrink-0" aria-label={project.category} />
                       <div className="min-w-0">
-                        <div className="font-hud font-bold uppercase tracking-[0.02em] text-ink leading-snug">{project.name}</div>
-                        <div className="text-sm text-ink-dim mt-0.5">{project.description}</div>
+                        <div className="font-tele text-sm font-medium uppercase tracking-[0.04em] text-ice leading-snug">
+                          {project.name}
+                        </div>
+                        <div className="text-sm text-ice-dim mt-1">{project.description}</div>
                       </div>
                     </motion.li>
                   );

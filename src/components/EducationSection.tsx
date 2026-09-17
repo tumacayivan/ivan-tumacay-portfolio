@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { GraduationCap } from "lucide-react";
-import SectionHeading from "./drift/SectionHeading";
+import SectionHeading from "./transit/SectionHeading";
 
 const education = [
   {
@@ -30,31 +30,53 @@ const START = 2014;
 const END = 2020;
 const span = END - START;
 
+/**
+ * TRAINING — the years before the launch.
+ *
+ * A single scale carries all three programmes, so the overlap and the
+ * hand-off from hardware to software is visible at a glance.
+ */
 const EducationSection = () => (
-  <section id="education" data-scene="Education" data-kanji="学歴" className="relative py-24 sm:py-32 overflow-hidden">
+  <section
+    id="education"
+    data-scene="Training"
+    data-coord="Stage 06 · Qualification"
+    className="relative py-24 sm:py-32 overflow-hidden"
+  >
     <div className="gutter relative">
-      <SectionHeading kanji="学歴" kicker="Education" title="Where I" accent="trained">
+      <SectionHeading stage="06" kicker="Training record" title="Where I" accent="trained" meta={`${span} years`}>
         Electronics and communications engineering first, then a degree in information technology — the
         hardware-to-software path behind the work.
       </SectionHeading>
 
-      {/* Timeline track: each school is a lap segment on the same road */}
-      <div className="hidden md:block relative mb-10" aria-hidden>
-        <div className="relative h-10">
-          <div className="absolute inset-x-0 top-1/2 h-px bg-line/15" />
+      {/* The scale */}
+      <div className="hidden md:block relative mb-12">
+        <div className="relative h-14" aria-hidden>
+          <div className="absolute inset-x-0 top-1/2 h-px bg-rule/15" />
           {education.map((e, i) => (
             <motion.div
               key={e.school}
-              className={`absolute top-1/2 -translate-y-1/2 h-2 -skew-x-12 ${i === 0 ? "bg-drift" : "bg-hud"}`}
-              style={{ left: `${((e.from - START) / span) * 100}%`, width: `${((e.to - e.from) / span) * 100}%` }}
+              className={`absolute top-1/2 -translate-y-1/2 h-[3px] ${i === 0 ? "bg-gold" : "bg-signal"}`}
+              style={{
+                left: `${((e.from - START) / span) * 100}%`,
+                width: `${((e.to - e.from) / span) * 100}%`,
+                transformOrigin: "left",
+              }}
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.9, delay: 0.2 + (2 - i) * 0.25, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 1.6, delay: 0.2 + (2 - i) * 0.3, ease: [0.16, 1, 0.3, 1] }}
+            />
+          ))}
+          {Array.from({ length: span + 1 }, (_, i) => (
+            <span
+              key={i}
+              className="absolute top-1/2 -translate-y-1/2 w-px h-3 bg-rule/25"
+              style={{ left: `${(i / span) * 100}%` }}
             />
           ))}
         </div>
-        <div className="flex justify-between font-hud text-xs tracking-[0.2em] text-ink-dim">
+        <div className="flex justify-between font-tele text-xs tracking-[0.18em] text-ice-dim tabular-nums">
           {Array.from({ length: span + 1 }, (_, i) => START + i).map((y) => (
             <span key={y}>{y}</span>
           ))}
@@ -65,27 +87,28 @@ const EducationSection = () => (
         {[...education].reverse().map((edu, i) => (
           <motion.article
             key={edu.school}
-            initial={{ opacity: 0, y: 40, rotateY: -12 }}
-            whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.8, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-            className="panel panel-hover edge-light p-7 flex flex-col [transform-style:preserve-3d]"
+            transition={{ duration: 1.1, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="panel panel-hover beam p-7 flex flex-col"
           >
-            <div className="flex items-start justify-between mb-10">
-              <GraduationCap className={`w-7 h-7 ${edu.to === END ? "text-drift" : "text-hud"}`} />
-              <span className="font-hud text-xs font-bold tracking-[0.2em] uppercase text-ink-dim">
-                {edu.to === END ? "Graduated" : "Completed year"}
+            <div className="flex items-start justify-between gap-4 mb-12">
+              <GraduationCap className={`w-6 h-6 ${edu.to === END ? "text-gold" : "text-signal"}`} aria-hidden />
+              <span className="font-tele text-xs tracking-[0.2em] uppercase text-ice-dim">
+                {edu.to === END ? "Graduated" : "Year completed"}
               </span>
             </div>
-            <div className="font-display text-5xl sm:text-6xl text-ink leading-none tabular-nums mb-6">
+            <div className="plate text-5xl sm:text-6xl text-ice leading-none tabular-nums mb-7">
               {edu.from}
-              <span className="text-drift">–</span>
-              <span className="text-ink-dim">{String(edu.to).slice(2)}</span>
+              <span className="text-gold">–</span>
+              <span className="text-ice-dim">{String(edu.to).slice(2)}</span>
             </div>
-            <h3 className="font-hud text-xl font-bold uppercase tracking-[0.02em] text-ink leading-snug mb-2">
+            <h3 className="font-tele text-base font-medium uppercase tracking-[0.08em] text-ice leading-snug mb-3">
               {edu.school}
             </h3>
-            <p className="text-ink-dim leading-relaxed mt-auto">{edu.degree}</p>
+            <p className="text-ice-dim leading-relaxed mt-auto text-[0.95rem]">{edu.degree}</p>
+            <span className="sr-only">{edu.period}</span>
           </motion.article>
         ))}
       </div>

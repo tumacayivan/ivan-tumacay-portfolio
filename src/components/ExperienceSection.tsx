@@ -1,7 +1,7 @@
 import { motion, useMotionValueEvent, useScroll, useSpring } from "framer-motion";
 import { useMemo, useRef } from "react";
-import SectionHeading from "./drift/SectionHeading";
-import TougeCar from "./drift/TougeCar";
+import SectionHeading from "./transit/SectionHeading";
+import Craft from "./transit/Craft";
 
 const experiences = [
   {
@@ -74,85 +74,97 @@ const experiences = [
 
 const SEG = 100;
 
-/** A mountain-pass road: one hairpin per job, swinging left and right. */
+/** The trajectory: one long, shallow correction per entry in the log. */
 const buildPath = (n: number) => {
   let d = `M 50 0`;
   for (let i = 0; i < n; i++) {
     const y0 = i * SEG;
-    const side = i % 2 === 0 ? 92 : 8;
-    d += ` C ${side} ${y0 + 20}, ${side} ${y0 + 80}, 50 ${y0 + SEG}`;
+    const side = i % 2 === 0 ? 68 : 32;
+    d += ` C ${side} ${y0 + 26}, ${side} ${y0 + 74}, 50 ${y0 + SEG}`;
   }
   return d;
 };
 
+/**
+ * MISSION LOG — eleven entries, in the order they were filed.
+ *
+ * The ship rides the plotted trajectory as the visitor scrolls; the line
+ * behind it is drawn, the line ahead is still dashed. Entry stamps are the
+ * log index; a period is shown only where one is actually on record.
+ */
 const ExperienceSection = () => {
   const trackRef = useRef<HTMLDivElement>(null);
   const pathRef = useRef<SVGPathElement>(null);
-  const carRef = useRef<HTMLDivElement>(null);
+  const craftRef = useRef<HTMLDivElement>(null);
   const d = useMemo(() => buildPath(experiences.length), []);
   const height = experiences.length * SEG;
 
   const { scrollYProgress } = useScroll({ target: trackRef, offset: ["start 70%", "end 60%"] });
-  const progress = useSpring(scrollYProgress, { stiffness: 90, damping: 24, mass: 0.4 });
+  const progress = useSpring(scrollYProgress, { stiffness: 60, damping: 26, mass: 0.6 });
 
-  // The car follows the drawn line through every hairpin
   useMotionValueEvent(progress, "change", (p) => {
     const path = pathRef.current;
-    const car = carRef.current;
-    if (!path || !car) return;
+    const craft = craftRef.current;
+    if (!path || !craft) return;
     const len = path.getTotalLength();
     const at = Math.max(0, Math.min(1, p)) * len;
     const a = path.getPointAtLength(at);
     const b = path.getPointAtLength(Math.min(len, at + 1));
-    const box = car.parentElement!.getBoundingClientRect();
+    const box = craft.parentElement!.getBoundingClientRect();
     const sx = box.width / 100;
     const sy = box.height / height;
     const angle = (Math.atan2((b.y - a.y) * sy, (b.x - a.x) * sx) * 180) / Math.PI;
-    car.style.transform = `translate(${a.x * sx}px, ${a.y * sy}px) translate(-50%, -50%) rotate(${angle}deg)`;
+    craft.style.transform = `translate(${a.x * sx}px, ${a.y * sy}px) translate(-50%, -50%) rotate(${angle}deg)`;
   });
 
   return (
-    <section id="experience" data-scene="Race log" data-kanji="経歴" className="relative py-24 sm:py-32 overflow-hidden bg-asphalt-2">
+    <section
+      id="experience"
+      data-scene="Mission log"
+      data-coord="Stage 07 · Record"
+      className="relative py-24 sm:py-32 overflow-hidden bg-deep-2"
+    >
       <div className="gutter relative">
-        <SectionHeading kanji="経歴" kicker="Work experience · downhill run" title="The race" accent="log" meta={`${experiences.length} roles`}>
+        <SectionHeading
+          stage="07"
+          kicker="Work experience"
+          title="The mission"
+          accent="log"
+          meta={`${experiences.length} entries`}
+        >
           Creative design, video production, social media and enterprise software engineering across many
-          industries. Scroll down the pass — every hairpin is a role.
+          industries — filed in the order the work was logged.
         </SectionHeading>
 
-        <div ref={trackRef} className="relative grid grid-cols-[56px_1fr] md:grid-cols-[1fr_120px_1fr] gap-x-4 md:gap-x-8">
-          {/* THE PASS */}
+        <div ref={trackRef} className="relative grid grid-cols-[56px_minmax(0,1fr)] md:grid-cols-[minmax(0,1fr)_120px_minmax(0,1fr)] gap-x-4 md:gap-x-10">
+          {/* TRAJECTORY */}
           <div
             className="col-start-1 md:col-start-2 relative"
             style={{ gridRow: `1 / ${experiences.length + 1}` }}
             aria-hidden
           >
             <svg viewBox={`0 0 100 ${height}`} preserveAspectRatio="none" className="absolute inset-0 w-full h-full overflow-visible">
-              {/* guardrail glow */}
-              <path d={d} fill="none" stroke="hsl(var(--line) / 0.10)" strokeWidth="16" vectorEffect="non-scaling-stroke" strokeLinecap="round" />
-              <path d={d} fill="none" stroke="hsl(var(--line) / 0.25)" strokeWidth="1" strokeDasharray="6 8" vectorEffect="non-scaling-stroke" />
+              <path d={d} fill="none" stroke="hsl(var(--rule) / 0.2)" strokeWidth="1" strokeDasharray="4 7" vectorEffect="non-scaling-stroke" />
               <motion.path
                 ref={pathRef}
                 d={d}
                 fill="none"
-                stroke="url(#pass-grad)"
-                strokeWidth="3"
+                stroke="url(#trajectory)"
+                strokeWidth="2"
                 strokeLinecap="round"
                 vectorEffect="non-scaling-stroke"
                 style={{ pathLength: progress }}
               />
               <defs>
-                <linearGradient id="pass-grad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="hsl(var(--hud))" />
-                  <stop offset="60%" stopColor="hsl(var(--drift))" />
-                  <stop offset="100%" stopColor="hsl(var(--sign))" />
+                <linearGradient id="trajectory" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="hsl(var(--signal))" />
+                  <stop offset="100%" stopColor="hsl(var(--gold))" />
                 </linearGradient>
               </defs>
             </svg>
-            {/* The car follows the road; drop-shadow gives it a neon underglow */}
-            <div ref={carRef} className="absolute left-0 top-0 z-10 will-change-transform">
-              <TougeCar className="w-14 h-7 sm:w-16 sm:h-8 drop-shadow-[0_0_10px_hsl(var(--drift)/0.8)]" />
+            <div ref={craftRef} className="absolute left-0 top-0 z-10 will-change-transform">
+              <Craft className="w-12 h-6 sm:w-16 sm:h-8 drop-shadow-[0_0_14px_hsl(var(--gold)/0.6)]" />
             </div>
-            <div className="absolute -top-8 left-1/2 -translate-x-1/2 neon-kanji text-lg whitespace-nowrap">峠</div>
           </div>
 
           {experiences.map((exp, i) => {
@@ -160,35 +172,39 @@ const ExperienceSection = () => {
             return (
               <motion.article
                 key={`${exp.company}-${i}`}
-                initial={{ opacity: 0, x: left ? -60 : 60, skewX: left ? 4 : -4 }}
-                whileInView={{ opacity: 1, x: 0, skewX: 0 }}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
                 style={{ gridRowStart: i + 1 }}
-                className={`col-start-2 ${left ? "md:col-start-1 md:text-right" : "md:col-start-3"} py-6 md:py-10`}
+                className={`col-start-2 ${left ? "md:col-start-1" : "md:col-start-3"} py-6 md:py-10`}
               >
-                <div className="panel panel-hover edge-light p-6 sm:p-7 text-left">
-                  <div className={`flex flex-wrap items-center gap-x-3 gap-y-1 mb-3 ${left ? "md:justify-end" : ""}`}>
-                    <span className="hud-label">{exp.company}</span>
+                <div className="panel panel-hover beam p-6 sm:p-7">
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-4">
+                    <span className="font-tele text-xs tracking-[0.24em] uppercase text-gold tabular-nums">
+                      Entry {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span aria-hidden className="h-px w-6 bg-rule/20" />
+                    <span className="tele-label">{exp.company}</span>
                   </div>
-                  <h3 className={`font-hud text-xl sm:text-2xl font-bold uppercase leading-tight text-ink mb-3 ${left ? "md:text-right" : ""}`}>
-                    {exp.role}
-                  </h3>
+                  <h3 className="plate text-2xl sm:text-3xl text-ice leading-tight mb-4">{exp.role}</h3>
                   {exp.period && (
-                    <div className={`mb-3 ${left ? "md:text-right" : ""}`}>
-                      <span className="inline-block font-hud text-xs font-bold tracking-[0.14em] uppercase bg-drift text-on-drift px-2.5 py-1 -skew-x-12">
+                    <div className="mb-4">
+                      <span className="inline-block font-tele text-xs tracking-[0.16em] uppercase text-ice-dim border border-rule/15 px-2.5 py-1">
                         {exp.period}
                       </span>
                     </div>
                   )}
-                  <p className={`text-ink-dim leading-relaxed ${left ? "md:text-right" : ""}`}>{exp.description}</p>
+                  <p className="text-ice-dim leading-relaxed text-[0.95rem]">{exp.description}</p>
                 </div>
               </motion.article>
             );
           })}
         </div>
 
-        <div className="mt-12 text-center hud-label !text-ink-dim">Finish line · {experiences.length} corners cleared</div>
+        <div className="mt-14 text-center font-tele text-xs tracking-[0.3em] uppercase text-ice-dim">
+          End of log · {experiences.length} entries filed
+        </div>
       </div>
     </section>
   );
