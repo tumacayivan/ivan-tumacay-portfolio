@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0b0a18" />
+    <meta name="theme-color" content="#0e0d0c" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Chakra+Petch:wght@400;500;600;700&family=Dela+Gothic+One&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;600;800;900&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <title>Ivan Tumacay — Full-Stack Developer & Digital Operations Specialist</title>
     <meta name="description" content="Ivan Tumacay - Experienced Full-Stack Developer, Software Engineer & Digital Operations Specialist. 10+ years of freelance development and 5 years corporate experience in enterprise systems, AI automation, full-stack development, virtual assistant services, and comprehensive digital operations. Based in Philippines." />
     <meta name="author" content="Ivan Tumacay" />
@@ -32,15 +32,15 @@
   </head>
 
   <body>
-    <!-- Apply the saved theme before first paint. Night (dark) is the
-         default; day mode is opt-in and remembered once chosen. -->
+    <!-- Pick the colour grade before first paint. The colour-graded view is
+         the default; the monochrome grade is opt-in and remembered. -->
     <script>
       (function () {
-        var night = true;
+        var colour = true;
         try {
-          night = localStorage.getItem("drift-theme") !== "light";
+          colour = localStorage.getItem("grade") !== "mono";
         } catch (e) {}
-        document.documentElement.classList.toggle("dark", night);
+        document.documentElement.classList.toggle("dark", colour);
       })();
     </script>
     <div id="root"></div>

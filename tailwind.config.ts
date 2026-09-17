@@ -14,10 +14,13 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ['"Dela Gothic One"', '"Barlow"', "sans-serif"],
-        hud: ['"Chakra Petch"', '"Barlow"', "sans-serif"],
-        body: ['"Barlow"', "system-ui", "sans-serif"],
-        heading: ['"Dela Gothic One"', '"Barlow"', "sans-serif"],
+        // Stencilled signage — headlines and numerals
+        display: ['"Big Shoulders Display"', '"IBM Plex Sans"', "sans-serif"],
+        heading: ['"Big Shoulders Display"', '"IBM Plex Sans"', "sans-serif"],
+        // Typed documents, data, testimony
+        doc: ['"IBM Plex Mono"', "ui-monospace", "SFMono-Regular", "monospace"],
+        // Reading copy
+        body: ['"IBM Plex Sans"', "system-ui", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -53,9 +56,9 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        asphalt: {
-          DEFAULT: "hsl(var(--asphalt) / <alpha-value>)",
-          2: "hsl(var(--asphalt-2) / <alpha-value>)",
+        base: {
+          DEFAULT: "hsl(var(--base) / <alpha-value>)",
+          2: "hsl(var(--base-2) / <alpha-value>)",
         },
         panel: "hsl(var(--panel) / <alpha-value>)",
         ink: {
@@ -63,10 +66,18 @@ export default {
           dim: "hsl(var(--ink-dim) / <alpha-value>)",
         },
         line: "hsl(var(--line) / <alpha-value>)",
-        drift: "hsl(var(--drift) / <alpha-value>)",
-        "on-drift": "hsl(var(--on-drift) / <alpha-value>)",
-        hud: "hsl(var(--hud) / <alpha-value>)",
-        sign: "hsl(var(--sign) / <alpha-value>)",
+        ember: {
+          DEFAULT: "hsl(var(--ember) / <alpha-value>)",
+          hot: "hsl(var(--ember-hot) / <alpha-value>)",
+          deep: "hsl(var(--ember-deep) / <alpha-value>)",
+        },
+        "on-ember": "hsl(var(--on-ember) / <alpha-value>)",
+        doc: {
+          paper: "hsl(var(--doc-paper) / <alpha-value>)",
+          2: "hsl(var(--doc-paper-2) / <alpha-value>)",
+          ink: "hsl(var(--doc-ink) / <alpha-value>)",
+          accent: "hsl(var(--doc-accent) / <alpha-value>)",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -80,8 +91,8 @@ export default {
       },
       borderRadius: {
         lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        md: "var(--radius)",
+        sm: "var(--radius)",
       },
       keyframes: {
         "accordion-down": {
@@ -96,16 +107,11 @@ export default {
           "0%": { opacity: "0", transform: "translateY(20px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
-        "float": {
-          "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-10px)" },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in": "fade-in 0.6s ease-out forwards",
-        "float": "float 6s ease-in-out infinite",
       },
     },
   },
