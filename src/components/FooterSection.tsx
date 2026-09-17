@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight, MapPin, Mail, Github, Send, MessageCircle, FileText, ArrowUp } from "lucide-react";
 import { useRef } from "react";
-import { MaskLine } from "./drift/Reveal";
+import { MaskLine } from "./reaction/Reveal";
 
 const channels = [
   { icon: Mail, label: "Email", value: "tumacayivan@gmail.com", href: "mailto:tumacayivan@gmail.com" },
@@ -15,39 +15,44 @@ const credits = [
   { role: "Designed & engineered by", name: "Ivan Tumacay" },
   { role: "Filmed on location in", name: "Cavite, Philippines" },
   { role: "Soundtrack", name: "Six Days — DJ Shadow feat. Mos Def" },
-  { role: "Inspired by", name: "Tokyo street racing & mountain-pass downhill culture" },
+  { role: "Graded after", name: "Mid-century laboratory paperwork & atomic-age cinema" },
 ];
 
+/**
+ * Authorisation — the last page of the file. Everything above it was the
+ * record; this is the part somebody has to sign.
+ */
 const FooterSection = () => {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end end"] });
-  const bigX = useTransform(scrollYProgress, [0, 1], ["12%", "-8%"]);
+  const bigX = useTransform(scrollYProgress, [0, 1], ["10%", "-8%"]);
 
   return (
     <footer
       id="contact"
       ref={ref}
-      data-scene="Contact"
-      data-kanji="連絡"
-      className="relative pt-24 sm:pt-32 overflow-hidden bg-asphalt-2"
+      data-scene="Authorisation"
+      data-code="Part IV · 10"
+      className="relative pt-24 sm:pt-32 overflow-hidden bg-base-2"
     >
-      <div aria-hidden className="absolute inset-x-0 top-0 h-2 livery" />
+      <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-ember" />
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
-        style={{ background: "radial-gradient(ellipse at 50% 100%, hsl(var(--drift) / calc(0.18 * var(--glow-strength))), transparent 60%)" }}
+        style={{
+          background: "radial-gradient(ellipse at 50% 100%, hsl(var(--ember) / calc(0.16 * var(--bloom))), transparent 62%)",
+        }}
       />
 
       <div className="gutter relative">
         <div className="flex items-center gap-3 mb-6">
-          <span className="neon-kanji text-xl" aria-hidden>連絡</span>
-          <span className="hud-label">Contact · open for new projects</span>
+          <span className="slug">Authorisation · open for new projects</span>
         </div>
 
-        <h2 className="display-xl text-[15vw] sm:text-[11vw] lg:text-[8.5vw] text-ink mb-10">
-          <MaskLine>Let's build</MaskLine>
-          <MaskLine delay={0.12} className="pl-[0.35em] -ml-[0.35em]">
-            <span className="lean speed-trail">something fast</span>
+        <h2 className="display text-[16vw] sm:text-[11vw] lg:text-[8.5vw] text-ink mb-10">
+          <MaskLine>Start the</MaskLine>
+          <MaskLine delay={0.12}>
+            <span className="ignited">reaction</span>
           </MaskLine>
         </h2>
 
@@ -57,13 +62,18 @@ const FooterSection = () => {
               Need a software engineer, a virtual assistant or someone to run your digital operations? Send a
               message — replies usually land within 24 hours.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <a href="mailto:tumacayivan@gmail.com" className="btn-drift !py-4 !px-8 !text-base">
+            <div className="flex flex-wrap gap-3">
+              <a href="mailto:tumacayivan@gmail.com" className="btn-primary !py-4 !px-8 !text-sm">
                 <span className="flex items-center gap-2">
                   Email Ivan <ArrowUpRight className="w-5 h-5" />
                 </span>
               </a>
-              <a href="/Ivan-Tumacay-Portfolio.pdf" target="_blank" rel="noopener noreferrer" className="btn-ghost !py-4 !px-8 !text-base">
+              <a
+                href="/Ivan-Tumacay-Portfolio.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-quiet !py-4 !px-8 !text-sm"
+              >
                 <span className="flex items-center gap-2">
                   <FileText className="w-5 h-5" /> View resume
                 </span>
@@ -71,26 +81,26 @@ const FooterSection = () => {
             </div>
           </div>
 
-          <ul className="border-t border-line/10">
+          <ul className="border-t border-line/15">
             {channels.map(({ icon: Icon, label, value, href }, i) => {
               const inner = (
                 <>
-                  <Icon className="w-5 h-5 text-hud shrink-0" />
-                  <span className="hud-label !text-ink-dim w-36 shrink-0 hidden sm:block">{label}</span>
-                  <span className="font-hud text-lg font-semibold text-ink truncate">{value}</span>
+                  <Icon className="w-5 h-5 text-ember shrink-0" />
+                  <span className="slug slug-dim w-36 shrink-0 hidden sm:block">{label}</span>
+                  <span className="font-doc text-base font-medium text-ink truncate">{value}</span>
                   {href && (
-                    <ArrowUpRight className="w-5 h-5 ml-auto shrink-0 text-ink-dim group-hover:text-drift group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+                    <ArrowUpRight className="w-5 h-5 ml-auto shrink-0 text-ink-dim group-hover:text-ember group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
                   )}
                 </>
               );
               return (
                 <motion.li
                   key={label}
-                  initial={{ opacity: 0, x: 30 }}
+                  initial={{ opacity: 0, x: 24 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
-                  className="border-b border-line/10"
+                  className="border-b border-line/15"
                 >
                   {href ? (
                     <a
@@ -111,39 +121,64 @@ const FooterSection = () => {
           </ul>
         </div>
 
-        {/* End credits */}
-        <div className="border-t border-line/10 pt-12 pb-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center sm:text-left">
-          {credits.map((c, i) => (
-            <motion.div
-              key={c.role}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <div className="hud-label !text-ink-dim mb-2">{c.role}</div>
-              <div className="font-hud text-lg font-bold uppercase tracking-[0.04em] text-ink">{c.name}</div>
-            </motion.div>
-          ))}
+        {/* The signature block */}
+        <div className="border-t border-line/15 pt-12 grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-10 items-end">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8">
+            {credits.map((c, i) => (
+              <motion.div
+                key={c.role}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <div className="slug slug-dim mb-2">{c.role}</div>
+                <div className="font-doc text-sm font-semibold uppercase tracking-[0.04em] text-ink leading-snug">
+                  {c.name}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="shrink-0"
+          >
+            <div className="border-b border-line/40 pb-1 min-w-[240px]">
+              <span className="block font-body italic text-3xl tracking-tight text-ink leading-none">
+                Ivan Tumacay
+              </span>
+            </div>
+            <div className="mt-2 flex items-center justify-between gap-4">
+              <span className="slug slug-dim">Signed</span>
+              <span className="stamp text-ember">Approved for release</span>
+            </div>
+          </motion.div>
         </div>
       </div>
 
-      {/* Closing title rolls past */}
-      <div aria-hidden className="relative select-none pointer-events-none overflow-hidden">
+      {/* The name rolls past one last time */}
+      <div aria-hidden className="relative select-none pointer-events-none overflow-hidden mt-16">
         <motion.div
           style={{ x: bigX }}
-          className="display-xl whitespace-nowrap text-[22vw] leading-[0.8] text-transparent [-webkit-text-stroke:1.5px_hsl(var(--line)/0.18)] translate-y-[12%]"
+          className="display whitespace-nowrap text-[22vw] leading-[0.8] text-transparent [-webkit-text-stroke:1.5px_hsl(var(--line)/0.2)] translate-y-[12%]"
         >
-          Ivan Tumacay 東京
+          Ivan Tumacay
         </motion.div>
       </div>
 
-      <div className="relative gutter py-5 border-t border-line/10 flex flex-col sm:flex-row items-center justify-between gap-3 bg-asphalt-2">
-        <p className="font-hud text-xs tracking-[0.18em] uppercase text-ink-dim">
+      <div className="relative gutter py-5 border-t border-line/15 flex flex-col sm:flex-row items-center justify-between gap-3 bg-base-2">
+        <p className="font-doc text-[11px] tracking-[0.16em] uppercase text-ink-dim text-center sm:text-left">
           © {new Date().getFullYear()} Ivan Tumacay · Software engineer &amp; digital operations specialist
         </p>
-        <a href="#top" className="flex items-center gap-2 font-hud text-xs font-bold tracking-[0.2em] uppercase text-ink hover:text-drift transition-colors">
-          Back to the start line <ArrowUp className="w-4 h-4" />
+        <a
+          href="#top"
+          className="flex items-center gap-2 font-doc text-[11px] font-semibold tracking-[0.2em] uppercase text-ink hover:text-ember transition-colors"
+        >
+          Back to the beginning <ArrowUp className="w-4 h-4" />
         </a>
       </div>
     </footer>

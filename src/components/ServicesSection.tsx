@@ -6,7 +6,7 @@ import {
   Wrench, BarChart3, ClipboardList, GraduationCap, Check, ArrowUpRight,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import SectionHeading from "./drift/SectionHeading";
+import SectionHeading from "./reaction/SectionHeading";
 
 interface Service {
   title: string;
@@ -34,29 +34,33 @@ const services: Service[] = [
   { title: "Executive & Personal Assistant", description: "High-level support for executives, entrepreneurs, and busy professionals.", icon: GraduationCap, services: ["Executive calendar management", "Priority inbox management", "Confidential document handling", "Personal errand coordination", "Event planning and logistics", "Travel itinerary management", "Client relationship support"] },
 ];
 
-const Detail = ({ service }: { service: Service }) => (
+/** One item of the programme, typed out on its own sheet. */
+const Detail = ({ service, index }: { service: Service; index: number }) => (
   <motion.div
     key={service.title}
-    initial={{ opacity: 0, x: 40, skewX: -4 }}
-    animate={{ opacity: 1, x: 0, skewX: 0 }}
-    exit={{ opacity: 0, x: -40 }}
-    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+    initial={{ opacity: 0, y: 18 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -12 }}
+    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
   >
-    <service.icon className="w-10 h-10 text-drift mb-6" />
-    <h3 className="font-display text-3xl sm:text-4xl uppercase text-ink leading-[1.05] mb-3">{service.title}</h3>
+    <div className="flex items-center gap-4 mb-6">
+      <service.icon className="w-8 h-8 text-ember" />
+      <span className="slug slug-dim">Item {String(index + 1).padStart(2, "0")} of {services.length}</span>
+    </div>
+    <h3 className="display text-3xl sm:text-4xl text-ink leading-[1.02] mb-3">{service.title}</h3>
     <p className="text-lg text-ink-dim leading-relaxed mb-8">{service.description}</p>
 
-    <div className="hud-label mb-4">What's included</div>
-    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 mb-8">
+    <div className="slug mb-4">Scope of work</div>
+    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5 mb-8">
       {service.services.map((item, i) => (
         <motion.li
           key={item}
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 + i * 0.03 }}
-          className="flex items-start gap-2.5 text-ink"
+          initial={{ opacity: 0, x: -8 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.08 + i * 0.03 }}
+          className="flex items-start gap-2.5 text-ink font-doc text-sm leading-relaxed"
         >
-          <Check className="w-4 h-4 mt-1 shrink-0 text-hud" />
+          <Check className="w-4 h-4 mt-0.5 shrink-0 text-ember" />
           <span>{item}</span>
         </motion.li>
       ))}
@@ -64,18 +68,18 @@ const Detail = ({ service }: { service: Service }) => (
 
     {service.tools && (
       <>
-        <div className="hud-label mb-3">Tools</div>
-        <div className="flex flex-wrap gap-2 mb-8">
+        <div className="slug mb-3">Instruments</div>
+        <div className="flex flex-wrap gap-1.5 mb-8">
           {service.tools.split(",").map((t) => (
-            <span key={t} className="chip">{t.trim()}</span>
+            <span key={t} className="tag">{t.trim()}</span>
           ))}
         </div>
       </>
     )}
 
-    <a href="#contact" className="btn-drift">
+    <a href="#contact" className="btn-primary">
       <span className="flex items-center gap-2">
-        Book this service <ArrowUpRight className="w-4 h-4" />
+        Requisition this <ArrowUpRight className="w-4 h-4" />
       </span>
     </a>
   </motion.div>
@@ -85,51 +89,65 @@ const ServicesSection = () => {
   const [active, setActive] = useState(0);
 
   return (
-    <section id="services" data-scene="Services" data-kanji="サービス" className="relative py-24 sm:py-32 bg-asphalt-2 overflow-hidden">
-      <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-drift to-transparent" />
+    <section
+      id="services"
+      data-scene="Working programme"
+      data-code="Part II · 05"
+      className="relative py-24 sm:py-32 bg-base-2 overflow-hidden"
+    >
+      <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-line/20" />
       <div className="gutter relative">
-        <SectionHeading kanji="サービス" kicker="Pit menu" title="What I" accent="offer" meta={`${services.length} services`}>
+        <SectionHeading
+          code="Doc · 05"
+          kicker="Working programme"
+          title="What I"
+          accent="run"
+          meta={`${services.length} items`}
+        >
           Virtual assistant, digital operations and software engineering services to take work off your plate
-          and help your business scale. Pick one to see exactly what's included.
+          and help your business scale. Pick an item to read exactly what it covers.
         </SectionHeading>
 
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-8 lg:gap-14 items-start">
-          <ul className="border-t border-line/10" role="tablist" aria-label="Services" aria-orientation="vertical">
+          <ul className="border-t border-line/15" role="tablist" aria-label="Working programme" aria-orientation="vertical">
             {services.map((s, i) => {
               const isActive = i === active;
               return (
-                <li key={s.title} className="border-b border-line/10">
+                <li key={s.title} className="border-b border-line/15">
                   <button
                     type="button"
                     role="tab"
                     aria-selected={isActive}
                     onClick={() => setActive(i)}
-                    className={`group relative w-full flex items-center gap-4 py-4 sm:py-5 text-left transition-colors ${
-                      isActive ? "text-drift" : "text-ink/75 hover:text-ink"
+                    className={`group relative w-full flex items-center gap-4 py-4 text-left transition-colors ${
+                      isActive ? "text-ember" : "text-ink/80 hover:text-ink"
                     }`}
                   >
                     <motion.span
                       aria-hidden
-                      className="absolute left-0 top-2 bottom-2 w-[3px] bg-drift origin-top"
+                      className="absolute left-0 top-2 bottom-2 w-[2px] bg-ember origin-top"
                       initial={false}
                       animate={{ scaleY: isActive ? 1 : 0 }}
                     />
                     <motion.span
                       className="flex items-center gap-4 min-w-0"
-                      animate={{ x: isActive ? 18 : 0 }}
+                      animate={{ x: isActive ? 16 : 0 }}
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     >
-                      <s.icon className={`w-5 h-5 shrink-0 ${isActive ? "text-drift" : "text-hud"}`} />
-                      <span className="font-hud text-base sm:text-lg font-bold uppercase tracking-[0.04em] leading-tight">
+                      <span className={`font-doc text-xs tabular-nums shrink-0 ${isActive ? "text-ember" : "text-ink-dim"}`}>
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <s.icon className={`w-4 h-4 shrink-0 ${isActive ? "text-ember" : "text-ink-dim"}`} />
+                      <span className="font-doc text-sm sm:text-base font-medium uppercase tracking-[0.06em] leading-tight">
                         {s.title}
                       </span>
                     </motion.span>
-                    <span className={`ml-auto font-hud text-xs tabular-nums ${isActive ? "text-drift" : "text-ink-dim"}`}>
+                    <span className={`ml-auto font-doc text-xs tabular-nums ${isActive ? "text-ember" : "text-ink-dim"}`}>
                       {s.services.length}
                     </span>
                   </button>
 
-                  {/* Mobile: details open under the chosen service */}
+                  {/* Small screens: the sheet opens under the item it belongs to */}
                   <AnimatePresence initial={false}>
                     {isActive && (
                       <motion.div
@@ -139,8 +157,8 @@ const ServicesSection = () => {
                         exit={{ height: 0 }}
                         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                       >
-                        <div className="pb-8 pt-2">
-                          <Detail service={s} />
+                        <div className="pb-8 pt-3">
+                          <Detail service={s} index={i} />
                         </div>
                       </motion.div>
                     )}
@@ -151,10 +169,9 @@ const ServicesSection = () => {
           </ul>
 
           <div className="hidden lg:block sticky top-28">
-            <div className="panel p-8 xl:p-10 min-h-[560px] overflow-hidden">
-              <div aria-hidden className="absolute right-6 top-6 neon-kanji vertical text-2xl opacity-80">整備</div>
+            <div className="plate p-8 xl:p-10 min-h-[560px] overflow-hidden">
               <AnimatePresence mode="wait">
-                <Detail key={active} service={services[active]} />
+                <Detail key={active} service={services[active]} index={active} />
               </AnimatePresence>
             </div>
           </div>

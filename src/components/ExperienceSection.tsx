@@ -1,7 +1,6 @@
 import { motion, useMotionValueEvent, useScroll, useSpring } from "framer-motion";
 import { useMemo, useRef } from "react";
-import SectionHeading from "./drift/SectionHeading";
-import TougeCar from "./drift/TougeCar";
+import SectionHeading from "./reaction/SectionHeading";
 
 const experiences = [
   {
@@ -74,85 +73,91 @@ const experiences = [
 
 const SEG = 100;
 
-/** A mountain-pass road: one hairpin per job, swinging left and right. */
+/** The decay chain: one step down for each test, drifting off the centre. */
 const buildPath = (n: number) => {
   let d = `M 50 0`;
   for (let i = 0; i < n; i++) {
     const y0 = i * SEG;
-    const side = i % 2 === 0 ? 92 : 8;
-    d += ` C ${side} ${y0 + 20}, ${side} ${y0 + 80}, 50 ${y0 + SEG}`;
+    const side = i % 2 === 0 ? 64 : 36;
+    d += ` C ${side} ${y0 + 28}, ${side} ${y0 + 72}, 50 ${y0 + SEG}`;
   }
   return d;
 };
 
+/**
+ * The test log.
+ *
+ * Every role is one event in a chain, recorded in order. A single particle
+ * travels the line as you scroll, and the line behind it stays lit — the
+ * reaction has already happened there.
+ */
 const ExperienceSection = () => {
   const trackRef = useRef<HTMLDivElement>(null);
   const pathRef = useRef<SVGPathElement>(null);
-  const carRef = useRef<HTMLDivElement>(null);
+  const markerRef = useRef<HTMLDivElement>(null);
   const d = useMemo(() => buildPath(experiences.length), []);
   const height = experiences.length * SEG;
 
   const { scrollYProgress } = useScroll({ target: trackRef, offset: ["start 70%", "end 60%"] });
   const progress = useSpring(scrollYProgress, { stiffness: 90, damping: 24, mass: 0.4 });
 
-  // The car follows the drawn line through every hairpin
+  // The particle rides the drawn line. Written straight to the DOM.
   useMotionValueEvent(progress, "change", (p) => {
     const path = pathRef.current;
-    const car = carRef.current;
-    if (!path || !car) return;
+    const marker = markerRef.current;
+    if (!path || !marker) return;
     const len = path.getTotalLength();
     const at = Math.max(0, Math.min(1, p)) * len;
     const a = path.getPointAtLength(at);
-    const b = path.getPointAtLength(Math.min(len, at + 1));
-    const box = car.parentElement!.getBoundingClientRect();
+    const box = marker.parentElement!.getBoundingClientRect();
     const sx = box.width / 100;
     const sy = box.height / height;
-    const angle = (Math.atan2((b.y - a.y) * sy, (b.x - a.x) * sx) * 180) / Math.PI;
-    car.style.transform = `translate(${a.x * sx}px, ${a.y * sy}px) translate(-50%, -50%) rotate(${angle}deg)`;
+    marker.style.transform = `translate(${a.x * sx}px, ${a.y * sy}px) translate(-50%, -50%)`;
   });
 
   return (
-    <section id="experience" data-scene="Race log" data-kanji="経歴" className="relative py-24 sm:py-32 overflow-hidden bg-asphalt-2">
+    <section
+      id="experience"
+      data-scene="Test log"
+      data-code="Part III · 07"
+      className="relative py-24 sm:py-32 overflow-hidden bg-base-2"
+    >
       <div className="gutter relative">
-        <SectionHeading kanji="経歴" kicker="Work experience · downhill run" title="The race" accent="log" meta={`${experiences.length} roles`}>
+        <SectionHeading
+          code="Doc · 07"
+          kicker="Work experience · in order"
+          title="The test"
+          accent="log"
+          meta={`${experiences.length} records`}
+        >
           Creative design, video production, social media and enterprise software engineering across many
-          industries. Scroll down the pass — every hairpin is a role.
+          industries. Every entry is one event in the chain.
         </SectionHeading>
 
-        <div ref={trackRef} className="relative grid grid-cols-[56px_1fr] md:grid-cols-[1fr_120px_1fr] gap-x-4 md:gap-x-8">
-          {/* THE PASS */}
+        <div ref={trackRef} className="relative grid grid-cols-[48px_1fr] md:grid-cols-[1fr_110px_1fr] gap-x-4 md:gap-x-8">
+          {/* THE CHAIN */}
           <div
             className="col-start-1 md:col-start-2 relative"
             style={{ gridRow: `1 / ${experiences.length + 1}` }}
             aria-hidden
           >
             <svg viewBox={`0 0 100 ${height}`} preserveAspectRatio="none" className="absolute inset-0 w-full h-full overflow-visible">
-              {/* guardrail glow */}
-              <path d={d} fill="none" stroke="hsl(var(--line) / 0.10)" strokeWidth="16" vectorEffect="non-scaling-stroke" strokeLinecap="round" />
-              <path d={d} fill="none" stroke="hsl(var(--line) / 0.25)" strokeWidth="1" strokeDasharray="6 8" vectorEffect="non-scaling-stroke" />
+              <path d={d} fill="none" stroke="hsl(var(--line) / 0.16)" strokeWidth="1" vectorEffect="non-scaling-stroke" strokeDasharray="4 7" />
               <motion.path
                 ref={pathRef}
                 d={d}
                 fill="none"
-                stroke="url(#pass-grad)"
-                strokeWidth="3"
-                strokeLinecap="round"
+                stroke="hsl(var(--ember))"
+                strokeWidth="2"
+                strokeLinecap="square"
                 vectorEffect="non-scaling-stroke"
                 style={{ pathLength: progress }}
               />
-              <defs>
-                <linearGradient id="pass-grad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="hsl(var(--hud))" />
-                  <stop offset="60%" stopColor="hsl(var(--drift))" />
-                  <stop offset="100%" stopColor="hsl(var(--sign))" />
-                </linearGradient>
-              </defs>
             </svg>
-            {/* The car follows the road; drop-shadow gives it a neon underglow */}
-            <div ref={carRef} className="absolute left-0 top-0 z-10 will-change-transform">
-              <TougeCar className="w-14 h-7 sm:w-16 sm:h-8 drop-shadow-[0_0_10px_hsl(var(--drift)/0.8)]" />
+            {/* The particle itself */}
+            <div ref={markerRef} className="absolute left-0 top-0 z-10 will-change-transform">
+              <span className="block w-2.5 h-2.5 bg-ember-hot shadow-[0_0_18px_4px_hsl(var(--ember)/0.75)]" />
             </div>
-            <div className="absolute -top-8 left-1/2 -translate-x-1/2 neon-kanji text-lg whitespace-nowrap">峠</div>
           </div>
 
           {experiences.map((exp, i) => {
@@ -160,23 +165,26 @@ const ExperienceSection = () => {
             return (
               <motion.article
                 key={`${exp.company}-${i}`}
-                initial={{ opacity: 0, x: left ? -60 : 60, skewX: left ? 4 : -4 }}
-                whileInView={{ opacity: 1, x: 0, skewX: 0 }}
+                initial={{ opacity: 0, x: left ? -40 : 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 style={{ gridRowStart: i + 1 }}
                 className={`col-start-2 ${left ? "md:col-start-1 md:text-right" : "md:col-start-3"} py-6 md:py-10`}
               >
-                <div className="panel panel-hover edge-light p-6 sm:p-7 text-left">
-                  <div className={`flex flex-wrap items-center gap-x-3 gap-y-1 mb-3 ${left ? "md:justify-end" : ""}`}>
-                    <span className="hud-label">{exp.company}</span>
+                <div className="plate plate-hover filament ticks p-6 sm:p-7 text-left">
+                  <div className={`flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-3 ${left ? "md:justify-end" : ""}`}>
+                    <span className="font-doc text-xs text-ember tabular-nums">
+                      {String(experiences.length - i).padStart(2, "0")}
+                    </span>
+                    <span className="slug slug-dim">{exp.company}</span>
                   </div>
-                  <h3 className={`font-hud text-xl sm:text-2xl font-bold uppercase leading-tight text-ink mb-3 ${left ? "md:text-right" : ""}`}>
+                  <h3 className={`font-doc text-lg sm:text-xl font-semibold uppercase tracking-[0.02em] leading-tight text-ink mb-3 ${left ? "md:text-right" : ""}`}>
                     {exp.role}
                   </h3>
                   {exp.period && (
                     <div className={`mb-3 ${left ? "md:text-right" : ""}`}>
-                      <span className="inline-block font-hud text-xs font-bold tracking-[0.14em] uppercase bg-drift text-on-drift px-2.5 py-1 -skew-x-12">
+                      <span className="inline-block font-doc text-[11px] font-semibold tracking-[0.14em] uppercase bg-ember text-on-ember px-2.5 py-1">
                         {exp.period}
                       </span>
                     </div>
@@ -188,7 +196,9 @@ const ExperienceSection = () => {
           })}
         </div>
 
-        <div className="mt-12 text-center hud-label !text-ink-dim">Finish line · {experiences.length} corners cleared</div>
+        <div className="mt-12 text-center slug slug-dim">
+          End of log · {experiences.length} records held
+        </div>
       </div>
     </section>
   );

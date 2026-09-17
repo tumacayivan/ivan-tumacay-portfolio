@@ -12,7 +12,6 @@ import {
   Share2,
   Lock,
   KeyRound,
-  Power,
 } from "lucide-react";
 import itbAnalytics from "@/assets/ivan-trading-bots/itb-01-analytics.png";
 import itbTrackRecord from "@/assets/ivan-trading-bots/itb-02-track-record.png";
@@ -21,7 +20,7 @@ import itbLinkTiming from "@/assets/ivan-trading-bots/itb-04-link-timing.png";
 import itbBridgeHost from "@/assets/ivan-trading-bots/itb-05-bridge-host.png";
 import itbTelemetry from "@/assets/ivan-trading-bots/itb-06-telemetry.png";
 import itbProcessorNetwork from "@/assets/ivan-trading-bots/itb-07-processor-network.png";
-import SectionHeading from "./drift/SectionHeading";
+import SectionHeading from "./reaction/SectionHeading";
 
 const SITE_URL = "https://ivan-trading-bots.onrender.com/";
 const CLEARANCE_KEY = "itb-clearance";
@@ -63,53 +62,48 @@ const buildTags = [
   { label: "Access", value: "By request" },
 ];
 
-type Ignition = "locked" | "starting" | "running";
+type Clearance = "sealed" | "opening" | "open";
 
-const readIgnition = (): Ignition => {
+const readClearance = (): Clearance => {
   try {
-    return sessionStorage.getItem(CLEARANCE_KEY) === "cleared" ? "running" : "locked";
+    return sessionStorage.getItem(CLEARANCE_KEY) === "cleared" ? "open" : "sealed";
   } catch {
-    return "locked";
+    return "sealed";
   }
 };
 
+/** Words struck out of the abstract until clearance is granted. */
 const Hidden = ({ shown, children }: { shown: boolean; children: ReactNode }) => (
-  <span
-    className={`transition-colors duration-700 ${
-      shown ? "text-ink font-semibold" : "bg-ink/80 text-transparent select-none rounded-[2px]"
-    }`}
-  >
-    {children}
-  </span>
+  <span className={`transition-colors duration-700 ${shown ? "text-ink font-semibold" : "redact"}`}>{children}</span>
 );
 
 const TradingBotsSection = () => {
-  const [ignition, setIgnition] = useState<Ignition>(readIgnition);
+  const [clearance, setClearance] = useState<Clearance>(readClearance);
   const [active, setActive] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
-  const running = ignition === "running";
+  const open = clearance === "open";
   const exhibit = exhibits[active];
 
   useEffect(() => {
-    if (ignition !== "starting") return;
+    if (clearance !== "opening") return;
     const id = setTimeout(() => {
-      setIgnition("running");
+      setClearance("open");
       try {
         sessionStorage.setItem(CLEARANCE_KEY, "cleared");
       } catch {
-        /* storage unavailable — unlock lasts for this view only */
+        /* storage unavailable — clearance lasts for this view only */
       }
-    }, 1700);
+    }, 1600);
     return () => clearTimeout(id);
-  }, [ignition]);
+  }, [clearance]);
 
-  // Keep the locked garage out of the tab order until the engine is running.
+  // Keep the sealed file out of the tab order until it is open.
   useEffect(() => {
-    if (contentRef.current) contentRef.current.inert = !running;
-  }, [running]);
+    if (contentRef.current) contentRef.current.inert = !open;
+  }, [open]);
 
-  const lock = () => {
-    setIgnition("locked");
+  const reseal = () => {
+    setClearance("sealed");
     try {
       sessionStorage.removeItem(CLEARANCE_KEY);
     } catch {
@@ -121,34 +115,36 @@ const TradingBotsSection = () => {
   return (
     <section
       id="trading-bots"
-      data-scene="Trading bots"
-      data-kanji="自動売買"
-      className="relative py-24 sm:py-32 overflow-hidden bg-asphalt-2"
+      data-scene="The apparatus"
+      data-code="Part II · 03"
+      className="relative py-24 sm:py-32 overflow-hidden bg-base-2"
     >
-      <div aria-hidden className="absolute inset-x-0 top-0 h-2 livery" />
+      <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-ember" />
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
-        style={{ background: "radial-gradient(ellipse at 80% 0%, hsl(var(--hud) / calc(0.12 * var(--glow-strength))), transparent 60%)" }}
+        style={{
+          background: "radial-gradient(ellipse at 80% 0%, hsl(var(--ember) / calc(0.1 * var(--bloom))), transparent 62%)",
+        }}
       />
 
       <div className="gutter relative">
         <SectionHeading
-          kanji="自動売買"
-          kicker="Private build · Researched & developed by Ivan"
+          code="Doc · 03"
+          kicker="Private build · researched & developed by Ivan"
           title="Ivan Trading"
           accent="Bots"
         >
-          A proprietary <Hidden shown={running}>algorithmic trading</Hidden> system with a live command terminal
-          that audits every trade for <Hidden shown={running}>performance and risk</Hidden>.
+          A proprietary <Hidden shown={open}>algorithmic trading</Hidden> system with a live command terminal that
+          audits every trade for <Hidden shown={open}>performance and risk</Hidden>.
         </SectionHeading>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-line/10 border border-line/10 mb-10 max-w-3xl">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-line/15 border border-line/15 mb-10 max-w-3xl">
           {buildTags.map((t) => (
-            <div key={t.label} className="bg-asphalt-2 px-4 py-3">
-              <div className="hud-label !text-ink-dim !text-[10px]">{t.label}</div>
-              <div className="font-hud text-lg font-bold uppercase text-ink flex items-center gap-2">
-                {t.label === "Status" && <span className="w-2 h-2 rounded-full bg-hud animate-pulse" />}
+            <div key={t.label} className="bg-base-2 px-4 py-3">
+              <div className="slug slug-dim !text-[10px]">{t.label}</div>
+              <div className="font-doc text-base font-semibold uppercase text-ink flex items-center gap-2 mt-1">
+                {t.label === "Status" && <span className="w-1.5 h-1.5 bg-ember tick-pulse" aria-hidden />}
                 {t.value}
               </div>
             </div>
@@ -158,26 +154,24 @@ const TradingBotsSection = () => {
         <div className="relative">
           <div
             ref={contentRef}
-            aria-hidden={!running}
+            aria-hidden={!open}
             className={`transition-[filter,opacity] duration-1000 ${
-              running ? "" : "max-h-[640px] sm:max-h-[760px] overflow-hidden blur-md saturate-0 opacity-60 select-none pointer-events-none"
+              open ? "" : "max-h-[640px] sm:max-h-[760px] overflow-hidden blur-md saturate-0 opacity-50 select-none pointer-events-none"
             }`}
           >
-            {/* WINDSCREEN VIEWER */}
+            {/* PLATE VIEWER */}
             <div className="grid grid-cols-1 xl:grid-cols-[1fr_320px] gap-6 mb-16">
               <a href={SITE_URL} target="_blank" rel="noopener noreferrer" className="group block relative">
-                <div className="panel !border-line/15 overflow-hidden shadow-[0_40px_90px_-40px_hsl(var(--hud)/0.5)]">
-                  <div className="flex items-center justify-between gap-3 px-4 py-2.5 border-b border-line/10 bg-asphalt">
-                    <span className="flex gap-1.5 shrink-0" aria-hidden>
-                      <span className="w-2.5 h-2.5 rounded-full bg-sign" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-drift" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-hud" />
+                <div className="plate !border-line/20 overflow-hidden shadow-[0_40px_90px_-40px_hsl(var(--shadow))]">
+                  <div className="flex items-center justify-between gap-3 px-4 py-2.5 border-b border-line/15 bg-base">
+                    <span className="font-doc text-[11px] tracking-[0.2em] uppercase text-ember shrink-0">
+                      Plate {String.fromCharCode(65 + active)}
                     </span>
-                    <span className="font-hud text-[11px] tracking-[0.2em] uppercase text-ink-dim truncate">
-                      Exhibit {String.fromCharCode(65 + active)} — {exhibit.title}
+                    <span className="font-doc text-[11px] tracking-[0.16em] uppercase text-ink-dim truncate">
+                      {exhibit.title}
                     </span>
-                    <span className="hidden sm:flex items-center gap-1.5 font-hud text-[10px] tracking-[0.24em] text-sign uppercase">
-                      <span className="w-1.5 h-1.5 rounded-full bg-sign animate-pulse" /> Live
+                    <span className="hidden sm:flex items-center gap-1.5 font-doc text-[10px] tracking-[0.24em] text-ink-dim uppercase">
+                      <span className="w-1.5 h-1.5 bg-ember tick-pulse" /> Live
                     </span>
                   </div>
                   <div className="relative overflow-hidden aspect-[2.08/1] bg-[hsl(var(--void))]">
@@ -186,16 +180,16 @@ const TradingBotsSection = () => {
                         key={active}
                         src={exhibit.image}
                         alt={`Ivan Trading Bots terminal — ${exhibit.title}`}
-                        initial={{ opacity: 0, x: 60, filter: "blur(8px)" }}
-                        animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-                        exit={{ opacity: 0, x: -60, filter: "blur(8px)" }}
-                        transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                        initial={{ opacity: 0, filter: "blur(10px)" }}
+                        animate={{ opacity: 1, filter: "blur(0px)" }}
+                        exit={{ opacity: 0, filter: "blur(10px)" }}
+                        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                         className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-[1.02] transition-transform duration-700"
                       />
                     </AnimatePresence>
-                    <div className="absolute inset-0 scanlines opacity-30 pointer-events-none" />
-                    <div className="absolute inset-0 bg-[hsl(var(--void)/0.8)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <span className="btn-drift">
+                    <div aria-hidden className="absolute -inset-[12%] grain-layer" />
+                    <div className="absolute inset-0 bg-[hsl(var(--void)/0.82)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <span className="btn-primary">
                         <span className="flex items-center gap-2">
                           <ExternalLink className="w-4 h-4" /> Open live terminal
                         </span>
@@ -207,7 +201,7 @@ const TradingBotsSection = () => {
 
               <div className="flex flex-col gap-4">
                 <p className="text-ink-dim leading-relaxed">
-                  <span className="hud-label block mb-1">Exhibit {String.fromCharCode(65 + active)}</span>
+                  <span className="slug block mb-1.5">Plate {String.fromCharCode(65 + active)}</span>
                   {exhibit.caption}
                 </p>
                 <div className="grid grid-cols-4 xl:grid-cols-2 gap-2">
@@ -217,13 +211,13 @@ const TradingBotsSection = () => {
                       type="button"
                       onClick={() => setActive(i)}
                       aria-pressed={i === active}
-                      aria-label={`Show exhibit ${String.fromCharCode(65 + i)}: ${ex.title}`}
+                      aria-label={`Show plate ${String.fromCharCode(65 + i)}: ${ex.title}`}
                       className={`relative overflow-hidden border transition-all ${
-                        i === active ? "border-drift ring-1 ring-drift" : "border-line/10 opacity-60 hover:opacity-100"
+                        i === active ? "border-ember ring-1 ring-ember" : "border-line/15 opacity-55 hover:opacity-100"
                       }`}
                     >
-                      <img src={ex.image} alt="" loading="lazy" className="w-full aspect-video object-cover object-top" />
-                      <span className="absolute top-0 left-0 bg-drift text-on-drift font-hud text-[10px] font-bold px-1.5">
+                      <img src={ex.image} alt="" loading="lazy" className="w-full aspect-video object-cover object-top grayscale" />
+                      <span className="absolute top-0 left-0 bg-ember text-on-ember font-doc text-[10px] font-bold px-1.5">
                         {String.fromCharCode(65 + i)}
                       </span>
                     </button>
@@ -232,120 +226,121 @@ const TradingBotsSection = () => {
               </div>
             </div>
 
-            {/* TELEMETRY */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-line/10 border border-line/10 mb-3">
+            {/* RECORDED RESULTS */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-line/15 border border-line/15 mb-3">
               {snapshotStats.map((s, i) => (
                 <motion.div
                   key={s.label}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 18 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                  className="bg-asphalt-2 p-5 sm:p-6"
+                  className="bg-base-2 p-5 sm:p-6"
                 >
-                  <div className="hud-label !text-ink-dim">{s.label}</div>
-                  <div className="font-display text-3xl sm:text-5xl text-hud leading-tight mt-2 tabular-nums">
-                    <span className="text-lg align-middle mr-1 text-drift">▲</span>
+                  <div className="slug slug-dim">{s.label}</div>
+                  <div className="font-display text-[1.6rem] sm:text-4xl lg:text-5xl text-ink leading-none mt-2.5 tabular-nums">
                     {s.value}
                   </div>
-                  <div className="text-sm text-ink-dim mt-1">{s.note}</div>
+                  <div className="text-sm text-ink-dim mt-1.5">{s.note}</div>
                 </motion.div>
               ))}
             </div>
-            <p className="font-hud text-[11px] tracking-[0.2em] uppercase text-ink-dim mb-10">
+            <p className="font-doc text-[11px] tracking-[0.2em] uppercase text-ink-dim mb-10">
               Demo account · all-time track record · 3 active days
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 mb-20">
-              <a href={SITE_URL} target="_blank" rel="noopener noreferrer" className="btn-drift">
+            <div className="flex flex-col sm:flex-row gap-3 mb-20">
+              <a href={SITE_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">
                 <span className="flex items-center gap-2">
                   <ExternalLink className="w-4 h-4" /> Launch live terminal
                 </span>
               </a>
-              <a href="#contact" className="btn-ghost">
+              <a href="#contact" className="btn-quiet">
                 <span>Request a bot</span>
               </a>
             </div>
 
-            {/* CAPABILITIES */}
+            {/* INSTRUMENTATION */}
             <div className="flex items-center gap-4 mb-8">
-              <h3 className="font-display text-3xl sm:text-4xl uppercase text-ink">Under the hood</h3>
-              <span className="flex-1 h-px bg-line/15" />
-              <span className="hud-label !text-ink-dim">{capabilities.length} systems</span>
+              <h3 className="display text-3xl sm:text-4xl text-ink">Instrumentation</h3>
+              <span className="flex-1 h-px bg-line/20" />
+              <span className="slug slug-dim">{capabilities.length} systems</span>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {capabilities.map((c, i) => (
                 <motion.div
                   key={c.title}
-                  initial={{ opacity: 0, y: 24 }}
+                  initial={{ opacity: 0, y: 22 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.55, delay: (i % 4) * 0.07, ease: [0.16, 1, 0.3, 1] }}
-                  className="panel panel-hover edge-light p-6 group"
+                  className="plate plate-hover filament ticks p-6 group"
                 >
-                  <c.icon className="w-6 h-6 text-hud mb-5 group-hover:text-drift transition-colors" />
-                  <h4 className="font-hud text-lg font-bold uppercase tracking-[0.04em] text-ink mb-2">{c.title}</h4>
+                  <c.icon className="w-6 h-6 text-ember mb-5" />
+                  <h4 className="font-doc text-base font-semibold uppercase tracking-[0.06em] text-ink mb-2">
+                    {c.title}
+                  </h4>
                   <p className="text-ink-dim leading-relaxed">{c.body}</p>
                 </motion.div>
               ))}
             </div>
           </div>
 
-          {/* IGNITION GATE */}
+          {/* CLEARANCE GATE */}
           <AnimatePresence>
-            {!running && (
+            {!open && (
               <motion.div
                 key="gate"
-                exit={{ opacity: 0, scale: 1.05 }}
+                exit={{ opacity: 0, scale: 1.03 }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute inset-0 z-30 flex items-start justify-center pt-12 sm:pt-24 bg-gradient-to-b from-asphalt-2/30 via-asphalt-2/60 to-asphalt-2"
+                className="absolute inset-0 z-30 flex items-start justify-center pt-12 sm:pt-24 bg-gradient-to-b from-base-2/40 via-base-2/70 to-base-2"
               >
-                <div className="panel !border-line/20 w-full max-w-lg p-7 sm:p-10 text-center shadow-[0_40px_100px_-30px_hsl(var(--shadow))]">
-                  <div className="absolute inset-x-0 top-0 h-1.5 livery" />
+                <div className="plate !border-line/25 w-full max-w-lg p-7 sm:p-10 text-center shadow-[0_40px_100px_-30px_hsl(var(--shadow))]">
+                  <div aria-hidden className="absolute inset-x-0 top-0 h-1 bg-ember" />
 
                   <motion.div
-                    className="mx-auto mb-6 w-20 h-20 rounded-full border-2 flex items-center justify-center"
+                    className="mx-auto mb-6 w-20 h-20 border flex items-center justify-center"
                     animate={
-                      ignition === "starting"
-                        ? { borderColor: "hsl(var(--drift))", rotate: [0, -35, 0], boxShadow: "0 0 40px hsl(var(--drift) / 0.6)" }
-                        : { borderColor: "hsl(var(--line) / 0.2)", rotate: 0 }
+                      clearance === "opening"
+                        ? { borderColor: "hsl(var(--ember))", rotate: [0, -30, 0] }
+                        : { borderColor: "hsl(var(--line) / 0.25)", rotate: 0 }
                     }
                     transition={{ duration: 0.6 }}
                   >
-                    {ignition === "starting" ? (
-                      <KeyRound className="w-8 h-8 text-drift" />
+                    {clearance === "opening" ? (
+                      <KeyRound className="w-8 h-8 text-ember" />
                     ) : (
                       <Lock className="w-8 h-8 text-ink" />
                     )}
                   </motion.div>
 
-                  <div className="hud-label mb-3">Private garage · Build ITB-001</div>
-                  <h3 className="font-display text-4xl sm:text-5xl uppercase text-ink leading-none mb-4">
-                    Engine <span className="lean">off</span>
+                  <div className="slug mb-3">Restricted · build ITB-001</div>
+                  <h3 className="display text-4xl sm:text-5xl text-ink leading-none mb-4">
+                    Sealed <span className="ignited">file</span>
                   </h3>
                   <p className="text-ink-dim text-lg leading-relaxed mb-8">
-                    The Ivan Trading Bots showcase is parked. Turn the key to open the live terminal screenshots and
-                    results.
+                    The Ivan Trading Bots record is closed. Grant yourself clearance to read the live terminal
+                    plates and the results behind them.
                   </p>
 
-                  {ignition === "starting" ? (
+                  {clearance === "opening" ? (
                     <div aria-live="polite">
-                      <div className="font-hud text-sm font-bold tracking-[0.24em] uppercase text-drift mb-3">
-                        Starting engine…
+                      <div className="font-doc text-sm font-semibold tracking-[0.24em] uppercase text-ember mb-3">
+                        Verifying…
                       </div>
-                      <div className="h-2 bg-line/10 overflow-hidden -skew-x-12">
+                      <div className="h-1.5 bg-line/15 overflow-hidden">
                         <motion.div
                           initial={{ width: "0%" }}
-                          animate={{ width: ["0%", "85%", "60%", "100%"] }}
-                          transition={{ duration: 1.6, times: [0, 0.45, 0.6, 1], ease: "easeInOut" }}
-                          className="h-full bg-gradient-to-r from-hud via-drift to-sign"
+                          animate={{ width: ["0%", "70%", "58%", "100%"] }}
+                          transition={{ duration: 1.5, times: [0, 0.45, 0.62, 1], ease: "easeInOut" }}
+                          className="h-full bg-ember"
                         />
                       </div>
                     </div>
                   ) : (
-                    <button type="button" onClick={() => setIgnition("starting")} className="btn-drift w-full sm:w-auto">
+                    <button type="button" onClick={() => setClearance("opening")} className="btn-primary w-full sm:w-auto">
                       <span className="flex items-center gap-2">
-                        <Power className="w-4 h-4" /> Turn the key
+                        <KeyRound className="w-4 h-4" /> Grant clearance
                       </span>
                     </button>
                   )}
@@ -355,14 +350,14 @@ const TradingBotsSection = () => {
           </AnimatePresence>
         </div>
 
-        {running && (
+        {open && (
           <div className="mt-12 flex justify-end">
             <button
               type="button"
-              onClick={lock}
-              className="inline-flex items-center gap-2 font-hud text-xs tracking-[0.24em] uppercase text-ink-dim hover:text-drift transition-colors"
+              onClick={reseal}
+              className="inline-flex items-center gap-2 font-doc text-xs tracking-[0.24em] uppercase text-ink-dim hover:text-ember transition-colors"
             >
-              <Lock className="w-3.5 h-3.5" /> Park it again
+              <Lock className="w-3.5 h-3.5" /> Seal it again
             </button>
           </div>
         )}

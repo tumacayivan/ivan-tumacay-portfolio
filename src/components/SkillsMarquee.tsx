@@ -35,32 +35,34 @@ const half = Math.ceil(allSkills.length / 2);
 const rows = [allSkills.slice(0, half), allSkills.slice(half)];
 
 /**
- * Two counter-rotating LED boards, tilted like highway gantry signs seen
- * from a car in a slide. Hover or focus pauses them.
+ * Two lengths of teletype tape running in opposite directions — the
+ * capability index, printing itself out. Hover or focus stops the feed.
  */
 const SkillsMarquee = () => (
-  <section aria-label="Skills" className="relative py-16 sm:py-20 overflow-hidden">
-    <div className="relative -rotate-2 scale-[1.04] marquee-container">
+  <section aria-label="Capability index" className="relative py-10 sm:py-14 overflow-hidden">
+    <div className="relative ticker-track">
       {rows.map((row, r) => (
         <div
           key={r}
           className={`relative overflow-hidden border-y ${
-            r === 0 ? "bg-drift text-on-drift border-drift" : "bg-panel text-ink border-line/10 -mt-px"
+            r === 0 ? "bg-ember text-on-ember border-ember" : "bg-panel text-ink border-line/15 -mt-px"
           }`}
         >
-          <div
-            className={`flex w-max ${r === 0 ? "animate-marquee-left" : "animate-marquee-right"}`}
-          >
+          {/* Sprocket holes down the edge of the tape */}
+          <div aria-hidden className={`absolute inset-x-0 top-0 h-1 perforated ${r === 0 ? "opacity-40" : "opacity-70"}`} />
+          <div className={`flex w-max ${r === 0 ? "ticker-left" : "ticker-right"}`}>
             {[...row, ...row, ...row, ...row].map(({ icon: Icon, label }, i) => (
               <span
                 key={`${label}-${i}`}
                 aria-hidden={i >= row.length}
-                className="flex items-center gap-4 px-6 sm:px-8 py-4 sm:py-5 shrink-0"
+                className="flex items-center gap-3 px-5 sm:px-7 py-3.5 sm:py-4 shrink-0"
               >
-                <Icon className={`w-5 h-5 ${r === 0 ? "" : "text-drift"}`} />
-                <span className="font-display text-xl sm:text-3xl uppercase whitespace-nowrap">{label}</span>
-                <span className={`ml-4 sm:ml-6 text-lg ${r === 0 ? "opacity-60" : "text-sign"}`} aria-hidden>
-                  ◆
+                <Icon className={`w-4 h-4 ${r === 0 ? "" : "text-ember"}`} />
+                <span className="font-doc text-sm sm:text-lg font-medium uppercase tracking-[0.1em] whitespace-nowrap">
+                  {label}
+                </span>
+                <span className={`ml-3 sm:ml-5 text-xs ${r === 0 ? "opacity-60" : "text-ember"}`} aria-hidden>
+                  ///
                 </span>
               </span>
             ))}

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { GraduationCap } from "lucide-react";
-import SectionHeading from "./drift/SectionHeading";
+import SectionHeading from "./reaction/SectionHeading";
 
 const education = [
   {
@@ -30,22 +30,32 @@ const START = 2014;
 const END = 2020;
 const span = END - START;
 
+/**
+ * Training — the quiet section. A chalk diagram sits behind it, the way a
+ * lecture room still holds the last thing written on the board.
+ */
 const EducationSection = () => (
-  <section id="education" data-scene="Education" data-kanji="学歴" className="relative py-24 sm:py-32 overflow-hidden">
+  <section
+    id="education"
+    data-scene="Training"
+    data-code="Part III · 06"
+    className="relative py-24 sm:py-32 overflow-hidden"
+  >
+    <div aria-hidden className="absolute inset-0 chalkboard [mask-image:linear-gradient(to_bottom,transparent,#000_30%,#000_70%,transparent)]" />
     <div className="gutter relative">
-      <SectionHeading kanji="学歴" kicker="Education" title="Where I" accent="trained">
+      <SectionHeading code="Doc · 06" kicker="Training" title="Where the theory" accent="came from">
         Electronics and communications engineering first, then a degree in information technology — the
         hardware-to-software path behind the work.
       </SectionHeading>
 
-      {/* Timeline track: each school is a lap segment on the same road */}
-      <div className="hidden md:block relative mb-10" aria-hidden>
-        <div className="relative h-10">
-          <div className="absolute inset-x-0 top-1/2 h-px bg-line/15" />
+      {/* The years, measured out */}
+      <div className="hidden md:block relative mb-12" aria-hidden>
+        <div className="relative h-8">
+          <div className="absolute inset-x-0 top-1/2 h-px bg-line/20" />
           {education.map((e, i) => (
             <motion.div
               key={e.school}
-              className={`absolute top-1/2 -translate-y-1/2 h-2 -skew-x-12 ${i === 0 ? "bg-drift" : "bg-hud"}`}
+              className={`absolute top-1/2 -translate-y-1/2 h-1.5 ${i === 0 ? "bg-ember" : "bg-ink/45"}`}
               style={{ left: `${((e.from - START) / span) * 100}%`, width: `${((e.to - e.from) / span) * 100}%` }}
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
@@ -54,7 +64,7 @@ const EducationSection = () => (
             />
           ))}
         </div>
-        <div className="flex justify-between font-hud text-xs tracking-[0.2em] text-ink-dim">
+        <div className="flex justify-between font-doc text-xs tracking-[0.18em] text-ink-dim tabular-nums">
           {Array.from({ length: span + 1 }, (_, i) => START + i).map((y) => (
             <span key={y}>{y}</span>
           ))}
@@ -65,24 +75,24 @@ const EducationSection = () => (
         {[...education].reverse().map((edu, i) => (
           <motion.article
             key={edu.school}
-            initial={{ opacity: 0, y: 40, rotateY: -12 }}
-            whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
+            initial={{ opacity: 0, y: 32 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.8, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-            className="panel panel-hover edge-light p-7 flex flex-col [transform-style:preserve-3d]"
+            className="plate plate-hover filament ticks p-7 flex flex-col"
           >
             <div className="flex items-start justify-between mb-10">
-              <GraduationCap className={`w-7 h-7 ${edu.to === END ? "text-drift" : "text-hud"}`} />
-              <span className="font-hud text-xs font-bold tracking-[0.2em] uppercase text-ink-dim">
+              <GraduationCap className={`w-7 h-7 ${edu.to === END ? "text-ember" : "text-ink-dim"}`} />
+              <span className="font-doc text-[11px] font-semibold tracking-[0.2em] uppercase text-ink-dim">
                 {edu.to === END ? "Graduated" : "Completed year"}
               </span>
             </div>
             <div className="font-display text-5xl sm:text-6xl text-ink leading-none tabular-nums mb-6">
               {edu.from}
-              <span className="text-drift">–</span>
+              <span className="text-ember">–</span>
               <span className="text-ink-dim">{String(edu.to).slice(2)}</span>
             </div>
-            <h3 className="font-hud text-xl font-bold uppercase tracking-[0.02em] text-ink leading-snug mb-2">
+            <h3 className="font-doc text-base font-semibold uppercase tracking-[0.04em] text-ink leading-snug mb-2">
               {edu.school}
             </h3>
             <p className="text-ink-dim leading-relaxed mt-auto">{edu.degree}</p>
