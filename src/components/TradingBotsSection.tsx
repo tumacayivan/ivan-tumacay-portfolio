@@ -12,8 +12,7 @@ import {
   Share2,
   Lock,
   KeyRound,
-  ShieldCheck,
-  FileWarning,
+  Power,
 } from "lucide-react";
 import itbAnalytics from "@/assets/ivan-trading-bots/itb-01-analytics.png";
 import itbTrackRecord from "@/assets/ivan-trading-bots/itb-02-track-record.png";
@@ -22,6 +21,7 @@ import itbLinkTiming from "@/assets/ivan-trading-bots/itb-04-link-timing.png";
 import itbBridgeHost from "@/assets/ivan-trading-bots/itb-05-bridge-host.png";
 import itbTelemetry from "@/assets/ivan-trading-bots/itb-06-telemetry.png";
 import itbProcessorNetwork from "@/assets/ivan-trading-bots/itb-07-processor-network.png";
+import SectionHeading from "./drift/SectionHeading";
 
 const SITE_URL = "https://ivan-trading-bots.onrender.com/";
 const CLEARANCE_KEY = "itb-clearance";
@@ -37,100 +37,79 @@ const exhibits = [
   { image: itbProcessorNetwork, title: "Processor & Network", caption: "Machine and bridge CPU, network in and out, and the live console." },
 ];
 
-const letterOf = (i: number) => String.fromCharCode(65 + i);
-
 // Figures from the demo account's track record shown in the screenshots.
 const snapshotStats = [
-  { label: "Net Profit", value: "$1,715.04", note: "12 closed trades", up: true },
-  { label: "Win Rate", value: "91.7%", note: "11 wins · 1 loss", up: true },
-  { label: "Profit Factor", value: "90.37", note: "Gross win ÷ gross loss", up: true },
-  { label: "Expectancy", value: "$142.92", note: "Average per closed trade", up: true },
+  { label: "Net profit", value: "$1,715.04", note: "12 closed trades" },
+  { label: "Win rate", value: "91.7%", note: "11 wins · 1 loss" },
+  { label: "Profit factor", value: "90.37", note: "Gross win ÷ gross loss" },
+  { label: "Expectancy", value: "$142.92", note: "Average per closed trade" },
 ];
 
 const capabilities = [
-  { icon: Activity, title: "Live Account State", body: "Equity, balance, floating P&L, free margin and open exposure streamed live from the trading terminal." },
-  { icon: LineChart, title: "Track Record", body: "Realised net, win rate, expectancy, profit factor, profitable days and a period-by-period breakdown." },
-  { icon: ShieldAlert, title: "Risk Analytics", body: "Max drawdown, recovery factor, annualised Sharpe and average hold time behind every result." },
-  { icon: Wallet, title: "Funding Ledger", body: "Deposits, withdrawals and index-CFD dividends split out so trading results are never inflated by cash moves." },
-  { icon: PieChart, title: "Symbol Attribution", body: "Sources of profit and loss charted per instrument, filterable across every traded symbol." },
-  { icon: CloudDownload, title: "Cloud Sync Snapshots", body: "When the terminal is offline, the last synced account is served from storage so the record stays viewable." },
-  { icon: Clock, title: "Server Telemetry", body: "Rack-style system console with link timing, port status, host load and per-second latency and tick-flow charts." },
-  { icon: Share2, title: "Share & Report", body: "One-click share link, QR code and a generated PDF performance report." },
+  { icon: Activity, title: "Live account state", body: "Equity, balance, floating P&L, free margin and open exposure streamed live from the trading terminal." },
+  { icon: LineChart, title: "Track record", body: "Realised net, win rate, expectancy, profit factor, profitable days and a period-by-period breakdown." },
+  { icon: ShieldAlert, title: "Risk analytics", body: "Max drawdown, recovery factor, annualised Sharpe and average hold time behind every result." },
+  { icon: Wallet, title: "Funding ledger", body: "Deposits, withdrawals and index-CFD dividends split out so trading results are never inflated by cash moves." },
+  { icon: PieChart, title: "Symbol attribution", body: "Sources of profit and loss charted per instrument, filterable across every traded symbol." },
+  { icon: CloudDownload, title: "Cloud sync snapshots", body: "When the terminal is offline, the last synced account is served from storage so the record stays viewable." },
+  { icon: Clock, title: "Server telemetry", body: "Rack-style system console with link timing, port status, host load and per-second latency and tick-flow charts." },
+  { icon: Share2, title: "Share & report", body: "One-click share link, QR code and a generated PDF performance report." },
 ];
 
-const stack = ["Algorithmic Execution", "Real-Time Analytics", "Cloud Sync", "PDF Reporting"];
-
-const fileMarkings = [
-  { label: "Classification", value: "TOP SECRET" },
-  { label: "Clearance", value: "LEVEL 5" },
-  { label: "Handling", value: "EYES ONLY" },
-  { label: "File No.", value: "ITB-001" },
-  { label: "Status", value: "ACTIVE OPERATION" },
+const buildTags = [
+  { label: "Build", value: "ITB-001" },
+  { label: "Status", value: "Live" },
+  { label: "Engine", value: "Algorithmic" },
+  { label: "Access", value: "By request" },
 ];
 
-type Clearance = "locked" | "verifying" | "cleared";
+type Ignition = "locked" | "starting" | "running";
 
-const readClearance = (): Clearance => {
+const readIgnition = (): Ignition => {
   try {
-    return sessionStorage.getItem(CLEARANCE_KEY) === "cleared" ? "cleared" : "locked";
+    return sessionStorage.getItem(CLEARANCE_KEY) === "cleared" ? "running" : "locked";
   } catch {
     return "locked";
   }
 };
 
-const ClassificationBanner = () => (
-  <div className="relative z-10">
-    <div className="diag-stripes h-1.5" />
-    <div className="bg-[hsl(var(--accent-red))] text-[hsl(var(--on-red))] border-y border-[hsl(var(--accent-red-deep))] shadow-[0_0_28px_hsl(var(--accent-red)/0.45)]">
-      <div className="px-4 py-1.5 flex items-center justify-center gap-3 font-blackops text-[13px] sm:text-[16px] tracking-[0.28em] sm:tracking-[0.4em] text-center">
-        <Lock className="w-3.5 h-3.5 shrink-0" />
-        <span>TOP SECRET // EYES ONLY<span className="hidden sm:inline"> // NO UNAUTHORISED DISCLOSURE</span></span>
-        <Lock className="w-3.5 h-3.5 shrink-0" />
-      </div>
-    </div>
-    <div className="diag-stripes h-1.5" />
-  </div>
-);
-
-const Redactable = ({ cleared, children }: { cleared: boolean; children: ReactNode }) => (
+const Hidden = ({ shown, children }: { shown: boolean; children: ReactNode }) => (
   <span
-    className={
-      cleared
-        ? "font-bold text-[hsl(var(--accent-bone))] underline decoration-[hsl(var(--accent-red))] underline-offset-4 transition-colors duration-700"
-        : "redacted transition-colors duration-700"
-    }
+    className={`transition-colors duration-700 ${
+      shown ? "text-ink font-semibold" : "bg-ink/80 text-transparent select-none rounded-[2px]"
+    }`}
   >
     {children}
   </span>
 );
 
 const TradingBotsSection = () => {
-  const [clearance, setClearance] = useState<Clearance>(readClearance);
+  const [ignition, setIgnition] = useState<Ignition>(readIgnition);
   const [active, setActive] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
-  const cleared = clearance === "cleared";
+  const running = ignition === "running";
   const exhibit = exhibits[active];
 
   useEffect(() => {
-    if (clearance !== "verifying") return;
+    if (ignition !== "starting") return;
     const id = setTimeout(() => {
-      setClearance("cleared");
+      setIgnition("running");
       try {
         sessionStorage.setItem(CLEARANCE_KEY, "cleared");
       } catch {
-        /* storage unavailable — clearance lasts for this view only */
+        /* storage unavailable — unlock lasts for this view only */
       }
-    }, 1600);
+    }, 1700);
     return () => clearTimeout(id);
-  }, [clearance]);
+  }, [ignition]);
 
-  // Keep the sealed file out of the tab order until it is declassified.
+  // Keep the locked garage out of the tab order until the engine is running.
   useEffect(() => {
-    if (contentRef.current) contentRef.current.inert = !cleared;
-  }, [cleared]);
+    if (contentRef.current) contentRef.current.inert = !running;
+  }, [running]);
 
-  const seal = () => {
-    setClearance("locked");
+  const lock = () => {
+    setIgnition("locked");
     try {
       sessionStorage.removeItem(CLEARANCE_KEY);
     } catch {
@@ -142,349 +121,252 @@ const TradingBotsSection = () => {
   return (
     <section
       id="trading-bots"
-      className="dark relative overflow-hidden bg-[hsl(var(--paper))] text-[hsl(var(--ink-charcoal))]"
-      style={{ backgroundImage: "var(--noise-body), var(--body-gradient)" }}
+      data-scene="Trading bots"
+      data-kanji="自動売買"
+      className="relative py-24 sm:py-32 overflow-hidden bg-asphalt-2"
     >
-      <ClassificationBanner />
+      <div aria-hidden className="absolute inset-x-0 top-0 h-2 livery" />
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: "radial-gradient(ellipse at 80% 0%, hsl(var(--hud) / calc(0.12 * var(--glow-strength))), transparent 60%)" }}
+      />
 
-      <div className="relative py-16 sm:py-24 paper-grain">
-        <div className="absolute inset-0 tactical-grid opacity-[0.5] pointer-events-none" />
-        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_30%_30%,var(--wash-red)_0%,transparent_60%)]" />
-        <div className="absolute inset-0 pointer-events-none flex items-center justify-start overflow-hidden">
-          <div className="watermark text-[17vw] leading-none rotate-[-6deg] -ml-10">TOP SECRET</div>
+      <div className="gutter relative">
+        <SectionHeading
+          kanji="自動売買"
+          kicker="Private build · Researched & developed by Ivan"
+          title="Ivan Trading"
+          accent="Bots"
+        >
+          A proprietary <Hidden shown={running}>algorithmic trading</Hidden> system with a live command terminal
+          that audits every trade for <Hidden shown={running}>performance and risk</Hidden>.
+        </SectionHeading>
+
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-line/10 border border-line/10 mb-10 max-w-3xl">
+          {buildTags.map((t) => (
+            <div key={t.label} className="bg-asphalt-2 px-4 py-3">
+              <div className="hud-label !text-ink-dim !text-[10px]">{t.label}</div>
+              <div className="font-hud text-lg font-bold uppercase text-ink flex items-center gap-2">
+                {t.label === "Status" && <span className="w-2 h-2 rounded-full bg-hud animate-pulse" />}
+                {t.value}
+              </div>
+            </div>
+          ))}
         </div>
 
-        <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-20 relative">
-          {/* HEADER */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="relative mb-10"
+        <div className="relative">
+          <div
+            ref={contentRef}
+            aria-hidden={!running}
+            className={`transition-[filter,opacity] duration-1000 ${
+              running ? "" : "max-h-[640px] sm:max-h-[760px] overflow-hidden blur-md saturate-0 opacity-60 select-none pointer-events-none"
+            }`}
           >
-            <motion.div
-              initial={{ opacity: 0, scale: 2.2, rotate: -20 }}
-              whileInView={{ opacity: 1, scale: 1, rotate: -8 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.5, ease: [0.2, 0.7, 0.2, 1] }}
-              className="hidden lg:flex !absolute right-0 top-2 stamp !text-5xl !px-6 !py-3 z-10"
-            >
-              TOP SECRET
-            </motion.div>
-
-            <div className="flex flex-wrap items-center gap-3 mb-3">
-              <div className="section-eyebrow">
-                <FileWarning className="w-4 h-4 text-[hsl(var(--accent-red))]" />
-                CLASSIFIED FILE // CLEARANCE LEVEL 5
-              </div>
-              <span className="inline-flex items-center gap-1.5 bg-[hsl(var(--accent-red))] text-[hsl(var(--on-red))] font-blackops text-[12px] tracking-[0.3em] px-2.5 py-1 glow-red">
-                <Lock className="w-3 h-3" /> HIGHLY CLASSIFIED
-              </span>
-            </div>
-            <p className="font-courier text-[12px] tracking-[0.4em] text-[hsl(var(--accent-red))] mb-3 uppercase">
-              Researched and developed by Ivan Tumacay
-            </p>
-            <h2 className="display-title text-6xl sm:text-8xl md:text-9xl uppercase">
-              IVAN <span className="accent">TRADING</span> BOTS
-            </h2>
-
-            {/* File markings */}
-            <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 border border-[hsl(var(--accent-red)/0.6)] max-w-5xl">
-              {fileMarkings.map((m) => (
-                <div
-                  key={m.label}
-                  className="px-3 py-2 border-b border-r border-[hsl(var(--accent-red)/0.3)] bg-[hsl(var(--surface-1)/0.8)]"
-                >
-                  <div className="font-courier text-[10px] tracking-[0.3em] text-[hsl(var(--ink-brown))] uppercase">{m.label}</div>
-                  <div className="font-blackops text-lg tracking-[0.14em] text-[hsl(var(--accent-red))] leading-tight">{m.value}</div>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-6 paper-card-cream p-5 max-w-3xl relative">
-              <div className="absolute -top-3 left-4 stamp stamp-black !text-[12px] !p-1 !rotate-0 bg-[hsl(var(--paper))]">INTELLIGENCE BRIEF</div>
-              <p className="font-typewriter text-xl text-[hsl(var(--ink-charcoal))] leading-relaxed mt-1">
-                A proprietary <Redactable cleared={cleared}>algorithmic trading</Redactable> system with a live command
-                terminal that audits every trade for <Redactable cleared={cleared}>performance and risk</Redactable>.
-              </p>
-            </div>
-          </motion.div>
-
-          {/* SEALED FILE */}
-          <div className="relative">
-            <div
-              ref={contentRef}
-              aria-hidden={!cleared}
-              className={`transition-[filter,max-height] duration-700 ${
-                cleared ? "" : "max-h-[620px] sm:max-h-[720px] overflow-hidden blur-[7px] grayscale select-none pointer-events-none"
-              }`}
-            >
-              {/* EXHIBITS */}
-              <div className="flex flex-col gap-10 mb-14">
-                <a href={SITE_URL} target="_blank" rel="noopener noreferrer" className="group block relative">
-                  <div className="tape w-20 h-5 -top-2.5 left-10 rotate-[-4deg] z-20" />
-                  <div className="tape tape-clear w-14 h-4 -top-2 right-14 rotate-[5deg] z-20" />
-
-                  <div className="relative bg-[hsl(0_0%_4%)] border-2 border-[hsl(var(--accent-red))] glow-red transition-transform duration-300 group-hover:-translate-y-1">
-                    <div className="flex items-center justify-between gap-3 px-4 py-2.5 border-b border-[hsl(var(--accent-red)/0.5)] bg-[hsl(0_0%_7%)]">
-                      <div className="flex items-center gap-2 shrink-0">
-                        <span className="w-2.5 h-2.5 rounded-full bg-[hsl(358_79%_51%)]" />
-                        <span className="w-2.5 h-2.5 rounded-full bg-[hsl(42_95%_52%)]" />
-                        <span className="w-2.5 h-2.5 rounded-full bg-[hsl(142_70%_45%)]" />
-                      </div>
-                      <span className="font-courier text-[11px] tracking-[0.2em] text-[hsl(40_12%_70%)] truncate uppercase">
-                        EXHIBIT {letterOf(active)} // {exhibit.title}
-                      </span>
-                      <span className="hidden sm:flex items-center font-courier text-[10px] tracking-[0.3em] text-[hsl(var(--accent-red))] shrink-0">
-                        <span className="status-pulse" /> REC
-                      </span>
-                    </div>
-
-                    <div className="relative overflow-hidden">
-                      <img
+            {/* WINDSCREEN VIEWER */}
+            <div className="grid grid-cols-1 xl:grid-cols-[1fr_320px] gap-6 mb-16">
+              <a href={SITE_URL} target="_blank" rel="noopener noreferrer" className="group block relative">
+                <div className="panel !border-line/15 overflow-hidden shadow-[0_40px_90px_-40px_hsl(var(--hud)/0.5)]">
+                  <div className="flex items-center justify-between gap-3 px-4 py-2.5 border-b border-line/10 bg-asphalt">
+                    <span className="flex gap-1.5 shrink-0" aria-hidden>
+                      <span className="w-2.5 h-2.5 rounded-full bg-sign" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-drift" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-hud" />
+                    </span>
+                    <span className="font-hud text-[11px] tracking-[0.2em] uppercase text-ink-dim truncate">
+                      Exhibit {String.fromCharCode(65 + active)} — {exhibit.title}
+                    </span>
+                    <span className="hidden sm:flex items-center gap-1.5 font-hud text-[10px] tracking-[0.24em] text-sign uppercase">
+                      <span className="w-1.5 h-1.5 rounded-full bg-sign animate-pulse" /> Live
+                    </span>
+                  </div>
+                  <div className="relative overflow-hidden aspect-[2.08/1] bg-[hsl(246_44%_4%)]">
+                    <AnimatePresence mode="popLayout" initial={false}>
+                      <motion.img
                         key={active}
                         src={exhibit.image}
                         alt={`Ivan Trading Bots terminal — ${exhibit.title}`}
-                        className="w-full aspect-[2.08/1] object-cover object-top group-hover:scale-[1.015] transition-transform duration-500"
+                        initial={{ opacity: 0, x: 60, filter: "blur(8px)" }}
+                        animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                        exit={{ opacity: 0, x: -60, filter: "blur(8px)" }}
+                        transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                        className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-[1.02] transition-transform duration-700"
                       />
-                      <div className="scan-bar" />
-
-                      <div className="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-[hsl(var(--accent-red))]" />
-                      <div className="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-[hsl(var(--accent-red))]" />
-                      <div className="absolute bottom-3 left-3 w-6 h-6 border-l-2 border-b-2 border-[hsl(var(--accent-red))]" />
-                      <div className="absolute bottom-3 right-3 w-6 h-6 border-r-2 border-b-2 border-[hsl(var(--accent-red))]" />
-
-                      <div className="absolute inset-0 bg-[hsl(0_0%_3%/0.85)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-2 px-4">
-                        <div className="w-16 h-16 border-2 border-[hsl(var(--accent-red))] flex items-center justify-center bg-[hsl(var(--accent-red)/0.18)] glow-red">
-                          <ExternalLink className="w-6 h-6 text-[hsl(var(--accent-red))]" />
-                        </div>
-                        <span className="font-blackops text-base text-[hsl(40_22%_94%)] tracking-[0.28em] uppercase">
-                          Open Live Terminal
+                    </AnimatePresence>
+                    <div className="absolute inset-0 scanlines opacity-30 pointer-events-none" />
+                    <div className="absolute inset-0 bg-[hsl(246_44%_4%/0.8)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <span className="btn-drift">
+                        <span className="flex items-center gap-2">
+                          <ExternalLink className="w-4 h-4" /> Open live terminal
                         </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <AnimatePresence>
-                    {cleared && (
-                      <motion.div
-                        initial={{ opacity: 0, scale: 2.4, rotate: -22 }}
-                        animate={{ opacity: 1, scale: 1, rotate: -7 }}
-                        transition={{ duration: 0.6, delay: 0.3, ease: [0.2, 0.7, 0.2, 1] }}
-                        className="!absolute -bottom-5 -right-2 sm:-right-4 stamp !text-[15px] sm:!text-[20px] !p-2 sm:!px-4 bg-[hsl(var(--paper))] z-20"
-                      >
-                        DECLASSIFIED · ACCESS GRANTED
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </a>
-
-                {/* Exhibit index */}
-                <div className="-mt-2">
-                  <div className="flex flex-wrap items-baseline justify-between gap-2 mb-3">
-                    <p className="font-courier text-[13px] text-[hsl(var(--ink-charcoal))] leading-relaxed">
-                      <span className="font-blackops tracking-[0.3em] text-[hsl(var(--accent-red))]">EXHIBIT {letterOf(active)} //</span>{" "}
-                      {exhibit.caption}
-                    </p>
-                    <span className="font-courier text-[11px] tracking-[0.3em] text-[hsl(var(--ink-brown))] uppercase">
-                      {active + 1} of {exhibits.length} exhibits
-                    </span>
-                  </div>
-                  <div className="grid grid-cols-4 sm:grid-cols-7 gap-2 sm:gap-3">
-                    {exhibits.map((ex, i) => (
-                      <button
-                        key={ex.title}
-                        type="button"
-                        onClick={() => setActive(i)}
-                        aria-pressed={i === active}
-                        aria-label={`Show exhibit ${letterOf(i)}: ${ex.title}`}
-                        className={`group/thumb relative text-left border-2 transition-colors ${
-                          i === active
-                            ? "border-[hsl(var(--accent-red))] glow-red"
-                            : "border-[hsl(var(--line)/0.15)] hover:border-[hsl(var(--accent-red)/0.6)]"
-                        }`}
-                      >
-                        <img
-                          src={ex.image}
-                          alt=""
-                          loading="lazy"
-                          className={`w-full aspect-[16/9] object-cover object-top transition ${
-                            i === active ? "" : "opacity-60 grayscale group-hover/thumb:opacity-100 group-hover/thumb:grayscale-0"
-                          }`}
-                        />
-                        <span className="absolute top-0 left-0 bg-[hsl(var(--accent-red))] text-[hsl(var(--on-red))] font-blackops text-[11px] tracking-[0.2em] px-1.5">
-                          {letterOf(i)}
-                        </span>
-                        <span className="block px-1.5 py-1 font-courier text-[10px] tracking-[0.12em] uppercase truncate text-[hsl(var(--ink-brown))] bg-[hsl(var(--surface-1))]">
-                          {ex.title}
-                        </span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Dossier panel */}
-                <div className="paper-card-cream p-5 sm:p-6 paper-grain relative">
-                  <div className="flex items-center justify-between border-b border-dashed-ink pb-2 mb-4">
-                    <span className="font-courier text-[11px] tracking-[0.3em] text-[hsl(var(--accent-red))]">FILE · ITB-001</span>
-                    <span className="font-blackops text-[12px] tracking-[0.3em] text-[hsl(var(--ink-charcoal))] flex items-center gap-1.5">
-                      <span className="status-pulse" /> OPERATIONAL
-                    </span>
-                  </div>
-
-                  <div className="font-courier text-[11px] tracking-[0.3em] text-[hsl(var(--accent-red))] uppercase mb-1">◉ INTERCEPTED RESULTS</div>
-                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-3">
-                    {snapshotStats.map((s) => (
-                      <div key={s.label} className="border border-[hsl(var(--line)/0.15)] bg-[hsl(var(--surface-1))] p-3">
-                        <div className="font-courier text-[10px] tracking-[0.28em] text-[hsl(var(--ink-brown))] uppercase">{s.label}</div>
-                        <div
-                          className={`font-display text-3xl sm:text-4xl leading-tight ${
-                            s.up ? "text-[hsl(142_70%_48%)]" : "text-[hsl(var(--accent-bone))]"
-                          }`}
-                        >
-                          {s.up && <span className="text-lg align-middle mr-0.5">▲</span>}
-                          {s.value}
-                        </div>
-                        <div className="font-courier text-[11px] text-[hsl(var(--ink-brown))] leading-snug">{s.note}</div>
-                      </div>
-                    ))}
-                  </div>
-                  <p className="font-courier text-[11px] tracking-[0.18em] text-[hsl(var(--ink-brown))] uppercase mb-5">
-                    Demo account · all-time track record · 3 active days
-                  </p>
-
-                  <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 border-t border-dashed-ink pt-4">
-                    <div className="font-courier text-[12px] tracking-[0.22em] text-[hsl(var(--ink-brown))] uppercase leading-relaxed">
-                      <span className="font-blackops text-[hsl(var(--accent-red))]">STACK ·</span> {stack.join(" · ")}
-                    </div>
-
-                    <div className="flex flex-col sm:flex-row gap-3 shrink-0">
-                      <a href={SITE_URL} target="_blank" rel="noopener noreferrer" className="dossier-cta justify-center text-sm flex-1">
-                        <ExternalLink className="w-4 h-4" />
-                        <span>LAUNCH LIVE TERMINAL</span>
-                      </a>
-                      <a href="#contact" className="dossier-cta-ghost justify-center text-sm">
-                        <span>REQUEST A BOT</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* CAPABILITIES */}
-              <div className="flex items-center gap-3 sm:gap-5 mb-6">
-                <div className="diag-stripes-red h-2 w-12 sm:w-20" />
-                <h3 className="font-blackops text-3xl sm:text-4xl text-[hsl(var(--accent-bone))] tracking-[0.06em] leading-none">
-                  CLASSIFIED CAPABILITIES
-                </h3>
-                <div className="flex-1 border-t border-[hsl(var(--accent-red)/0.4)]" />
-                <span className="hidden md:inline font-courier text-[11px] tracking-[0.3em] text-[hsl(var(--ink-brown))] uppercase">
-                  {capabilities.length} OPERATIONS
-                </span>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                {capabilities.map((c, i) => (
-                  <div
-                    key={c.title}
-                    className="paper-card-cream p-5 paper-grain relative group transition-transform duration-300 hover:-translate-y-1"
-                  >
-                    <div className="flex items-center justify-between border-b border-dashed-ink pb-2 mb-3">
-                      <span className="font-courier text-[11px] tracking-[0.3em] text-[hsl(var(--accent-red))]">
-                        OP-{String(i + 1).padStart(2, "0")}
                       </span>
-                      <div className="p-1.5 border border-[hsl(var(--accent-red)/0.5)] bg-[hsl(var(--surface-1))] text-[hsl(var(--accent-red))] group-hover:bg-[hsl(var(--accent-red))] group-hover:text-[hsl(var(--on-red))] transition-colors">
-                        <c.icon className="w-4 h-4" />
-                      </div>
                     </div>
-                    <h4 className="font-blackops text-lg text-[hsl(var(--accent-bone))] uppercase tracking-[0.06em] leading-tight mb-2 group-hover:text-[hsl(var(--accent-red))] transition-colors">
-                      {c.title}
-                    </h4>
-                    <p className="font-courier text-[13px] text-[hsl(var(--ink-charcoal))] leading-relaxed">{c.body}</p>
                   </div>
-                ))}
+                </div>
+              </a>
+
+              <div className="flex flex-col gap-4">
+                <p className="text-ink-dim leading-relaxed">
+                  <span className="hud-label block mb-1">Exhibit {String.fromCharCode(65 + active)}</span>
+                  {exhibit.caption}
+                </p>
+                <div className="grid grid-cols-4 xl:grid-cols-2 gap-2">
+                  {exhibits.map((ex, i) => (
+                    <button
+                      key={ex.title}
+                      type="button"
+                      onClick={() => setActive(i)}
+                      aria-pressed={i === active}
+                      aria-label={`Show exhibit ${String.fromCharCode(65 + i)}: ${ex.title}`}
+                      className={`relative overflow-hidden border transition-all ${
+                        i === active ? "border-drift ring-1 ring-drift" : "border-line/10 opacity-60 hover:opacity-100"
+                      }`}
+                    >
+                      <img src={ex.image} alt="" loading="lazy" className="w-full aspect-video object-cover object-top" />
+                      <span className="absolute top-0 left-0 bg-drift text-on-drift font-hud text-[10px] font-bold px-1.5">
+                        {String.fromCharCode(65 + i)}
+                      </span>
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
 
-            {/* ACCESS GATE */}
-            <AnimatePresence>
-              {!cleared && (
+            {/* TELEMETRY */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-line/10 border border-line/10 mb-3">
+              {snapshotStats.map((s, i) => (
                 <motion.div
-                  key="gate"
-                  initial={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="absolute inset-0 z-30 flex items-start justify-center pt-10 sm:pt-20 bg-gradient-to-b from-[hsl(var(--paper)/0.35)] via-[hsl(var(--paper)/0.6)] to-[hsl(var(--paper))]"
+                  key={s.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                  className="bg-asphalt-2 p-5 sm:p-6"
                 >
-                  <div className="paper-folder border-2 !border-[hsl(var(--accent-red))] glow-red w-full max-w-xl p-6 sm:p-8 text-center relative">
-                    <div className="absolute top-2 left-2 w-5 h-5 border-l-2 border-t-2 border-[hsl(var(--accent-red))]" />
-                    <div className="absolute top-2 right-2 w-5 h-5 border-r-2 border-t-2 border-[hsl(var(--accent-red))]" />
-                    <div className="absolute bottom-2 left-2 w-5 h-5 border-l-2 border-b-2 border-[hsl(var(--accent-red))]" />
-                    <div className="absolute bottom-2 right-2 w-5 h-5 border-r-2 border-b-2 border-[hsl(var(--accent-red))]" />
-
-                    <div className="mx-auto mb-4 w-16 h-16 border-2 border-[hsl(var(--accent-red))] flex items-center justify-center bg-[hsl(var(--accent-red)/0.15)] glow-red">
-                      {clearance === "verifying" ? (
-                        <KeyRound className="w-7 h-7 text-[hsl(var(--accent-red))] animate-pulse" />
-                      ) : (
-                        <Lock className="w-7 h-7 text-[hsl(var(--accent-red))]" />
-                      )}
-                    </div>
-                    <div className="font-courier text-[11px] tracking-[0.35em] text-[hsl(var(--accent-red))] uppercase mb-2">
-                      Security notice · File ITB-001
-                    </div>
-                    <h3 className="font-display text-4xl sm:text-5xl text-[hsl(var(--accent-bone))] uppercase leading-none mb-3">
-                      Access Restricted
-                    </h3>
-                    <p className="font-typewriter text-base sm:text-lg text-[hsl(var(--ink-charcoal))] leading-relaxed mb-6">
-                      This file contains highly classified information. Level 5 clearance is required to open the Ivan Trading Bots dossier.
-                    </p>
-
-                    {clearance === "verifying" ? (
-                      <div aria-live="polite">
-                        <div className="font-blackops text-sm tracking-[0.3em] text-[hsl(var(--accent-red))] mb-2">
-                          VERIFYING CLEARANCE…
-                        </div>
-                        <div className="h-2 border border-[hsl(var(--accent-red)/0.6)] bg-[hsl(var(--surface-0))]">
-                          <motion.div
-                            initial={{ width: "0%" }}
-                            animate={{ width: "100%" }}
-                            transition={{ duration: 1.5, ease: "easeInOut" }}
-                            className="h-full bg-[hsl(var(--accent-red))] shadow-[0_0_12px_hsl(var(--accent-red)/0.8)]"
-                          />
-                        </div>
-                      </div>
-                    ) : (
-                      <button type="button" onClick={() => setClearance("verifying")} className="dossier-cta justify-center text-base w-full sm:w-auto">
-                        <ShieldCheck className="w-4 h-4" />
-                        <span>DECLASSIFY FILE</span>
-                      </button>
-                    )}
-
-                    <div className="mt-5 font-courier text-[10px] tracking-[0.3em] text-[hsl(var(--ink-brown))] uppercase">
-                      All access is logged · Eyes only
-                    </div>
+                  <div className="hud-label !text-ink-dim">{s.label}</div>
+                  <div className="font-display text-3xl sm:text-5xl text-hud leading-tight mt-2 tabular-nums">
+                    <span className="text-lg align-middle mr-1 text-drift">▲</span>
+                    {s.value}
                   </div>
+                  <div className="text-sm text-ink-dim mt-1">{s.note}</div>
                 </motion.div>
-              )}
-            </AnimatePresence>
+              ))}
+            </div>
+            <p className="font-hud text-[11px] tracking-[0.2em] uppercase text-ink-dim mb-10">
+              Demo account · all-time track record · 3 active days
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 mb-20">
+              <a href={SITE_URL} target="_blank" rel="noopener noreferrer" className="btn-drift">
+                <span className="flex items-center gap-2">
+                  <ExternalLink className="w-4 h-4" /> Launch live terminal
+                </span>
+              </a>
+              <a href="#contact" className="btn-ghost">
+                <span>Request a bot</span>
+              </a>
+            </div>
+
+            {/* CAPABILITIES */}
+            <div className="flex items-center gap-4 mb-8">
+              <h3 className="font-display text-3xl sm:text-4xl uppercase text-ink">Under the hood</h3>
+              <span className="flex-1 h-px bg-line/15" />
+              <span className="hud-label !text-ink-dim">{capabilities.length} systems</span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {capabilities.map((c, i) => (
+                <motion.div
+                  key={c.title}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.55, delay: (i % 4) * 0.07, ease: [0.16, 1, 0.3, 1] }}
+                  className="panel panel-hover edge-light p-6 group"
+                >
+                  <c.icon className="w-6 h-6 text-hud mb-5 group-hover:text-drift transition-colors" />
+                  <h4 className="font-hud text-lg font-bold uppercase tracking-[0.04em] text-ink mb-2">{c.title}</h4>
+                  <p className="text-ink-dim leading-relaxed">{c.body}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
 
-          <div className="mt-12 flex flex-wrap items-center justify-between gap-3 font-courier text-[11px] text-[hsl(var(--ink-brown))] tracking-[0.3em] border-t border-[hsl(var(--accent-red)/0.3)] pt-3 uppercase">
-            <span><span className="text-[hsl(var(--accent-red))]">◉</span> END OF CLASSIFIED FILE</span>
-            <span>UNAUTHORISED DISCLOSURE IS PROHIBITED</span>
-            {cleared ? (
-              <button type="button" onClick={seal} className="inline-flex items-center gap-1.5 text-[hsl(var(--accent-red))] hover:underline underline-offset-4 tracking-[0.3em] uppercase">
-                <Lock className="w-3 h-3" /> RE-SEAL FILE
-              </button>
-            ) : (
-              <span>HANDLING · EYES ONLY</span>
+          {/* IGNITION GATE */}
+          <AnimatePresence>
+            {!running && (
+              <motion.div
+                key="gate"
+                exit={{ opacity: 0, scale: 1.05 }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                className="absolute inset-0 z-30 flex items-start justify-center pt-12 sm:pt-24 bg-gradient-to-b from-asphalt-2/30 via-asphalt-2/60 to-asphalt-2"
+              >
+                <div className="panel !border-line/20 w-full max-w-lg p-7 sm:p-10 text-center shadow-[0_40px_100px_-30px_hsl(var(--shadow))]">
+                  <div className="absolute inset-x-0 top-0 h-1.5 livery" />
+
+                  <motion.div
+                    className="mx-auto mb-6 w-20 h-20 rounded-full border-2 flex items-center justify-center"
+                    animate={
+                      ignition === "starting"
+                        ? { borderColor: "hsl(var(--drift))", rotate: [0, -35, 0], boxShadow: "0 0 40px hsl(var(--drift) / 0.6)" }
+                        : { borderColor: "hsl(var(--line) / 0.2)", rotate: 0 }
+                    }
+                    transition={{ duration: 0.6 }}
+                  >
+                    {ignition === "starting" ? (
+                      <KeyRound className="w-8 h-8 text-drift" />
+                    ) : (
+                      <Lock className="w-8 h-8 text-ink" />
+                    )}
+                  </motion.div>
+
+                  <div className="hud-label mb-3">Private garage · Build ITB-001</div>
+                  <h3 className="font-display text-4xl sm:text-5xl uppercase text-ink leading-none mb-4">
+                    Engine <span className="lean">off</span>
+                  </h3>
+                  <p className="text-ink-dim text-lg leading-relaxed mb-8">
+                    The Ivan Trading Bots showcase is parked. Turn the key to open the live terminal screenshots and
+                    results.
+                  </p>
+
+                  {ignition === "starting" ? (
+                    <div aria-live="polite">
+                      <div className="font-hud text-sm font-bold tracking-[0.24em] uppercase text-drift mb-3">
+                        Starting engine…
+                      </div>
+                      <div className="h-2 bg-line/10 overflow-hidden -skew-x-12">
+                        <motion.div
+                          initial={{ width: "0%" }}
+                          animate={{ width: ["0%", "85%", "60%", "100%"] }}
+                          transition={{ duration: 1.6, times: [0, 0.45, 0.6, 1], ease: "easeInOut" }}
+                          className="h-full bg-gradient-to-r from-hud via-drift to-sign"
+                        />
+                      </div>
+                    </div>
+                  ) : (
+                    <button type="button" onClick={() => setIgnition("starting")} className="btn-drift w-full sm:w-auto">
+                      <span className="flex items-center gap-2">
+                        <Power className="w-4 h-4" /> Turn the key
+                      </span>
+                    </button>
+                  )}
+                </div>
+              </motion.div>
             )}
-          </div>
+          </AnimatePresence>
         </div>
-      </div>
 
-      <ClassificationBanner />
+        {running && (
+          <div className="mt-12 flex justify-end">
+            <button
+              type="button"
+              onClick={lock}
+              className="inline-flex items-center gap-2 font-hud text-xs tracking-[0.24em] uppercase text-ink-dim hover:text-drift transition-colors"
+            >
+              <Lock className="w-3.5 h-3.5" /> Park it again
+            </button>
+          </div>
+        )}
+      </div>
     </section>
   );
 };

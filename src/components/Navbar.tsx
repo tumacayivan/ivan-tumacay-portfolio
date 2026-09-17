@@ -1,178 +1,148 @@
-import { motion } from "framer-motion";
-import { Menu, X, Radio, Lock, Crosshair, FileText } from "lucide-react";
-import { useState, useEffect } from "react";
+import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
+import { Menu, X, FileText, ArrowUpRight } from "lucide-react";
+import { useEffect, useState } from "react";
 import ThemeToggle from "./ThemeToggle";
 
 const navItems = [
-  { label: "Trading Bots", href: "#trading-bots", code: "TOP SECRET" },
-  { label: "Services", href: "#services", code: "SEC 03" },
-  { label: "Experience", href: "#experience", code: "SEC 05" },
-  { label: "Portfolio", href: "#portfolio", code: "SEC 04" },
-  { label: "Education", href: "#education", code: "SEC 02" },
-  { label: "Why Me", href: "#why", code: "SEC 06" },
+  { label: "Trading Bots", href: "#trading-bots", kanji: "自動売買" },
+  { label: "Showreel", href: "#portfolio", kanji: "作品" },
+  { label: "Services", href: "#services", kanji: "サービス" },
+  { label: "Experience", href: "#experience", kanji: "経歴" },
+  { label: "Garage", href: "#software-portfolio", kanji: "車庫" },
 ];
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [now, setNow] = useState<string>("");
+  const [scrolled, setScrolled] = useState(false);
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 30, mass: 0.3 });
 
   useEffect(() => {
-    const tick = () => {
-      const d = new Date();
-      const hh = d.getUTCHours().toString().padStart(2, "0");
-      const mm = d.getUTCMinutes().toString().padStart(2, "0");
-      const ss = d.getUTCSeconds().toString().padStart(2, "0");
-      setNow(`${hh}:${mm}:${ss}Z`);
-    };
-    tick();
-    const id = setInterval(tick, 1000);
-    return () => clearInterval(id);
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
     <motion.nav
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      className="fixed top-0 left-0 right-0 z-50"
+      initial={{ y: -80, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+      className={`fixed top-0 inset-x-0 z-50 transition-[background,border-color,backdrop-filter] duration-500 border-b ${
+        scrolled
+          ? "bg-[hsl(var(--asphalt)/0.78)] backdrop-blur-xl border-line/10"
+          : "bg-transparent border-transparent"
+      }`}
     >
-      {/* Red/black warning stripe — classified signature */}
-      <div className="diag-stripes h-1.5" />
+      <div className="gutter flex items-center justify-between h-16 sm:h-[72px]">
+        <a href="#top" className="flex items-center gap-3 group" aria-label="Ivan Tumacay — back to top">
+          <span className="plate w-[62px] h-[36px] text-[9px] group-hover:-rotate-3 transition-transform">
+            <span className="tracking-[0.08em]">東京 26</span>
+            <span className="text-[15px] tracking-[0.04em]">IT·01</span>
+          </span>
+          <span className="hidden sm:flex lg:hidden xl:flex flex-col leading-none whitespace-nowrap">
+            <span className="font-display text-lg tracking-tight text-ink uppercase">
+              Ivan <span className="text-drift">Tumacay</span>
+            </span>
+            <span className="font-hud text-[10px] tracking-[0.22em] text-ink-dim uppercase mt-1">Engineer · Operator</span>
+          </span>
+        </a>
 
-      {/* Top classified bar — red live indicator + system time */}
-      <div className="bg-[hsl(var(--surface-1))] text-[hsl(var(--ink-charcoal))] font-courier text-[11px] sm:text-[12px] tracking-[0.35em] py-1.5 px-4 sm:px-6 flex items-center justify-between border-b border-[hsl(var(--accent-red)/0.35)]">
-        <span className="flex items-center gap-2">
-          <span className="relative inline-block w-2 h-2 rounded-full bg-[hsl(var(--accent-red))] animate-pulse-classified" />
-          <span className="hidden sm:inline">TOP SECRET // EYES ONLY // DOSSIER ACCESS</span>
-          <span className="sm:hidden">TOP SECRET // ACTIVE</span>
-        </span>
-        <span className="hidden md:flex items-center gap-3">
-          <Radio className="w-3 h-3 text-[hsl(var(--accent-red))]" />
-          <span>FREQ 19.875</span>
-          <span className="text-[hsl(var(--accent-red))]">|</span>
-          <span>SYS-TIME {now}</span>
-        </span>
-      </div>
-
-      {/* Main bar — concrete black with red brand mark */}
-      <div className="bg-[hsl(var(--surface-2))] border-b border-[hsl(var(--line)/0.10)] relative">
-        {/* Subtle blueprint grid in nav */}
-        <div className="absolute inset-0 opacity-[0.05] pointer-events-none"
-             style={{
-               backgroundImage:
-                 "linear-gradient(hsl(var(--line) / 0.6) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--line) / 0.6) 1px, transparent 1px)",
-               backgroundSize: "32px 32px",
-             }} />
-        <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-20 flex items-center justify-between h-16 sm:h-[72px] relative">
-          <a href="#" className="flex items-center gap-3 group">
-            {/* Red mark — the Professor's emblem */}
-            <div className="relative shrink-0">
-              <div className="w-9 h-9 sm:w-10 sm:h-10 border-2 border-[hsl(var(--accent-red))] flex items-center justify-center bg-[hsl(var(--surface-1))] glow-red">
-                <Crosshair className="w-4 h-4 sm:w-5 sm:h-5 text-[hsl(var(--accent-red))]" />
-              </div>
-            </div>
-
-            <div className="hidden sm:flex flex-col items-start leading-none pr-3 border-r border-[hsl(var(--line)/0.15)]">
-              <span className="font-courier text-[10px] tracking-[0.32em] text-[hsl(var(--ink-brown))]">FILE NO.</span>
-              <span className="font-blackops text-[15px] text-[hsl(var(--accent-red))] tracking-[0.18em]">IT—2026</span>
-            </div>
-
-            <div className="flex flex-col leading-none">
-              <span className="font-blackops text-[22px] sm:text-[28px] tracking-[0.14em] text-[hsl(var(--ink-charcoal))] uppercase leading-none">
-                IVAN <span className="text-[hsl(var(--accent-red))]">TUMACAY</span>
-              </span>
-              <span className="hidden md:inline font-courier text-[10px] tracking-[0.32em] text-[hsl(var(--ink-brown))] mt-0.5">
-                MOST WANTED · PRIORITY TARGET
-              </span>
-            </div>
-          </a>
-
-          <div className="hidden md:flex items-center gap-0.5">
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="group relative px-2 xl:px-4 py-2 whitespace-nowrap font-blackops text-[14px] xl:text-[15px] text-[hsl(var(--ink-charcoal))] uppercase tracking-[0.16em] xl:tracking-[0.22em] hover:text-[hsl(var(--accent-red))] transition-colors"
-              >
-                <span className="absolute -top-1 left-1/2 -translate-x-1/2 font-courier text-[9px] tracking-[0.2em] text-[hsl(var(--accent-red))] opacity-60 group-hover:opacity-100 transition-opacity">
-                  {item.code}
-                </span>
-                {item.label}
-                <span className="absolute left-3 right-3 bottom-1.5 h-px bg-[hsl(var(--accent-red))] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
-              </a>
-            ))}
+        <div className="hidden lg:flex items-center gap-1">
+          {navItems.map((item) => (
             <a
-              href="/Ivan-Tumacay-Portfolio.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="dossier-cta-ghost ml-3 text-[13px] !py-2.5 !px-3 xl:!px-4"
-              aria-label="Resume"
+              key={item.href}
+              href={item.href}
+              className="group relative whitespace-nowrap px-2.5 xl:px-4 py-2 font-hud text-[13px] font-semibold uppercase tracking-[0.14em] text-ink/80 hover:text-ink transition-colors"
             >
-              <FileText className="w-3.5 h-3.5" />
-              <span className="hidden xl:inline">RESUME</span>
+              <span className="absolute left-1/2 -translate-x-1/2 -top-2.5 text-[9px] tracking-[0.1em] text-sign opacity-0 group-hover:opacity-100 group-hover:-translate-y-0.5 transition-all">
+                {item.kanji}
+              </span>
+              {item.label}
+              <span className="absolute left-3 right-3 xl:left-4 xl:right-4 bottom-1 h-[2px] bg-drift scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 skew-x-[-20deg]" />
             </a>
-            <a
-              href="#contact"
-              className="dossier-cta ml-2 text-[13px] !py-2.5 !px-4"
-            >
-              <Lock className="w-3.5 h-3.5" />
-              <span>INITIATE CONTACT</span>
-            </a>
-            <ThemeToggle className="ml-2" />
-          </div>
-
-          <div className="md:hidden flex items-center gap-3">
-            <ThemeToggle />
-            <button
-              className="text-[hsl(var(--ink-charcoal))] border border-[hsl(var(--accent-red))] p-2 hover:bg-[hsl(var(--accent-red))] hover:text-[hsl(var(--on-red))] transition-colors"
-              onClick={() => setMobileOpen(!mobileOpen)}
-              aria-label="Toggle menu"
-            >
-              {mobileOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
-            </button>
-          </div>
+          ))}
         </div>
 
+        <div className="flex items-center gap-2">
+          <a
+            href="/Ivan-Tumacay-Portfolio.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="icon-btn hidden md:inline-flex"
+            aria-label="Resume (PDF)"
+            title="Resume (PDF)"
+          >
+            <FileText className="w-4 h-4" />
+            <span className="hidden xl:inline font-hud text-[11px] font-semibold tracking-[0.18em] uppercase">Resume</span>
+          </a>
+          <ThemeToggle />
+          <a href="#contact" className="btn-drift hidden sm:inline-flex !py-2.5 !px-5 !text-[12px]">
+            <span className="flex items-center gap-1.5">
+              Contact <ArrowUpRight className="w-3.5 h-3.5" />
+            </span>
+          </a>
+          <button
+            className="icon-btn lg:hidden"
+            onClick={() => setMobileOpen((o) => !o)}
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
+          >
+            {mobileOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+          </button>
+        </div>
+      </div>
+
+      {/* Scroll progress — the rev bar */}
+      <motion.div
+        aria-hidden
+        className="absolute left-0 right-0 -bottom-px h-[2px] origin-left bg-gradient-to-r from-hud via-drift to-sign"
+        style={{ scaleX: progress }}
+      />
+
+      <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            className="md:hidden border-t border-[hsl(var(--accent-red)/0.35)] bg-[hsl(var(--surface-1))]"
+            initial={{ clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" }}
+            animate={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}
+            exit={{ clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" }}
+            transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
+            className="lg:hidden bg-[hsl(var(--asphalt)/0.97)] backdrop-blur-xl border-b border-line/10"
           >
-            <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-20 py-5 flex flex-col gap-3">
-              {navItems.map((item) => (
-                <a
-                  key={item.label}
+            <div className="gutter py-6 flex flex-col">
+              {navItems.map((item, i) => (
+                <motion.a
+                  key={item.href}
                   href={item.href}
-                  className="flex items-center justify-between font-blackops text-base tracking-[0.22em] text-[hsl(var(--ink-charcoal))] uppercase hover:text-[hsl(var(--accent-red))] transition-colors border-b border-dashed-ink pb-2"
+                  initial={{ x: -30, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: 0.1 + i * 0.05, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex items-baseline justify-between py-3 border-b border-line/10 font-display text-2xl uppercase text-ink hover:text-drift transition-colors"
                   onClick={() => setMobileOpen(false)}
                 >
                   <span>{item.label}</span>
-                  <span className="font-courier text-[10px] tracking-[0.25em] text-[hsl(var(--accent-red))]">{item.code}</span>
-                </a>
+                  <span className="neon-kanji text-sm">{item.kanji}</span>
+                </motion.a>
               ))}
-              <a
-                href="#contact"
-                className="dossier-cta mt-2 justify-center text-sm"
-                onClick={() => setMobileOpen(false)}
-              >
-                <Lock className="w-3.5 h-3.5" />
-                INITIATE CONTACT
-              </a>
-              <a
-                href="/Ivan-Tumacay-Portfolio.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="dossier-cta-ghost justify-center text-sm"
-                onClick={() => setMobileOpen(false)}
-              >
-                <FileText className="w-3.5 h-3.5" />
-                VIEW RESUME
-              </a>
+              <div className="grid grid-cols-2 gap-3 mt-6">
+                <a href="#contact" className="btn-drift" onClick={() => setMobileOpen(false)}>
+                  <span>Contact</span>
+                </a>
+                <a
+                  href="/Ivan-Tumacay-Portfolio.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-ghost"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  <span>Resume</span>
+                </a>
+              </div>
             </div>
           </motion.div>
         )}
-      </div>
+      </AnimatePresence>
     </motion.nav>
   );
 };

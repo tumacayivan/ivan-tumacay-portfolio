@@ -1,165 +1,152 @@
-import { motion } from "framer-motion";
-import { ArrowUpRight, MapPin, Mail, Github, Radio, Lock, FileText, Send, MessageCircle } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowUpRight, MapPin, Mail, Github, Send, MessageCircle, FileText, ArrowUp } from "lucide-react";
+import { useRef } from "react";
+import { MaskLine } from "./drift/Reveal";
 
-const personalInfo = [
-  { icon: MapPin, label: "Location", value: "Philippines" },
+const channels = [
   { icon: Mail, label: "Email", value: "tumacayivan@gmail.com", href: "mailto:tumacayivan@gmail.com" },
-  { icon: Github, label: "GitHub", value: "github.com/tumacayivan", href: "https://github.com/tumacayivan" },
-  { icon: Send, label: "Telegram", value: "t.me/tumacaygroup", href: "https://t.me/tumacaygroup" },
   { icon: MessageCircle, label: "WhatsApp & Viber", value: "+63 991 686 8942", href: "https://wa.me/639916868942" },
+  { icon: Send, label: "Telegram", value: "t.me/tumacaygroup", href: "https://t.me/tumacaygroup" },
+  { icon: Github, label: "GitHub", value: "github.com/tumacayivan", href: "https://github.com/tumacayivan" },
+  { icon: MapPin, label: "Location", value: "Cavite, Philippines" },
+];
+
+const credits = [
+  { role: "Designed & engineered by", name: "Ivan Tumacay" },
+  { role: "Filmed on location in", name: "Cavite, Philippines" },
+  { role: "Soundtrack", name: "Six Days — DJ Shadow feat. Mos Def" },
+  { role: "Inspired by", name: "Tokyo street racing & mountain-pass downhill culture" },
 ];
 
 const FooterSection = () => {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end end"] });
+  const bigX = useTransform(scrollYProgress, [0, 1], ["12%", "-8%"]);
+
   return (
-    <section id="contact" className="relative py-20 sm:py-28 overflow-hidden bg-[hsl(var(--paper))] border-t border-[hsl(var(--accent-red)/0.3)]">
-      <div className="absolute inset-0 tactical-grid opacity-[0.55] pointer-events-none" />
-      <div className="absolute inset-x-0 top-0 h-[420px] pointer-events-none"
-           style={{ background: "radial-gradient(ellipse at 50% 0%, var(--wash-red) 0%, transparent 60%)" }} />
+    <footer
+      id="contact"
+      ref={ref}
+      data-scene="Contact"
+      data-kanji="連絡"
+      className="relative pt-24 sm:pt-32 overflow-hidden bg-asphalt-2"
+    >
+      <div aria-hidden className="absolute inset-x-0 top-0 h-2 livery" />
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: "radial-gradient(ellipse at 50% 100%, hsl(var(--drift) / calc(0.18 * var(--glow-strength))), transparent 60%)" }}
+      />
 
-      <div className="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden">
-        <div className="watermark text-[24vw] leading-none rotate-[-6deg]">
-          SECURE LINE
-        </div>
-      </div>
-
-      <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-20 relative">
-        {/* Top classified bar */}
-        <div className="bg-[hsl(var(--surface-1))] border border-[hsl(var(--accent-red))] text-[hsl(var(--accent-red))] font-blackops text-[12px] sm:text-sm tracking-[0.3em] py-2.5 px-3 sm:px-4 flex items-center justify-between mb-0 shadow-[0_0_22px_hsl(var(--accent-red)/0.2)]">
-          <span className="flex items-center gap-2">
-            <Lock className="w-3.5 h-3.5" /> ENCRYPTED CHANNEL // AUTHORIZED PERSONNEL ONLY
-          </span>
-          <span className="flex items-center gap-2">
-            <Radio className="w-3.5 h-3.5 animate-pulse-classified" /> SIGNAL ACQUIRED
-          </span>
+      <div className="gutter relative">
+        <div className="flex items-center gap-3 mb-6">
+          <span className="neon-kanji text-xl" aria-hidden>連絡</span>
+          <span className="hud-label">Contact · open for new projects</span>
         </div>
 
-        <div className="paper-card-cream p-6 sm:p-10 md:p-14 border-t-0 relative">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <p className="section-eyebrow justify-center mb-4 mx-auto" style={{ display: "inline-flex" }}>
-              ANNEX 07 · SECURE TRANSMISSION CHANNEL
+        <h2 className="display-xl text-[15vw] sm:text-[11vw] lg:text-[8.5vw] text-ink mb-10">
+          <MaskLine>Let's build</MaskLine>
+          <MaskLine delay={0.12} className="pl-[0.35em] -ml-[0.35em]">
+            <span className="lean speed-trail">something fast</span>
+          </MaskLine>
+        </h2>
+
+        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-12 items-end mb-24">
+          <div>
+            <p className="text-xl sm:text-2xl leading-relaxed text-ink-dim max-w-xl mb-8">
+              Need a software engineer, a virtual assistant or someone to run your digital operations? Send a
+              message — replies usually land within 24 hours.
             </p>
-            <h2 className="display-title text-6xl sm:text-7xl md:text-8xl uppercase leading-[0.86] mb-5">
-              LET'S <span className="accent">CONNECT</span>
-            </h2>
-
-            <p className="font-typewriter text-lg sm:text-xl max-w-2xl mx-auto text-[hsl(var(--ink-charcoal))] leading-relaxed mb-8">
-              <span className="font-blackops text-[hsl(var(--accent-red))] text-sm tracking-[0.3em]">DISPATCH //</span>{" "}
-              Need a{" "}
-              <span className="font-bold underline decoration-[hsl(var(--accent-red))] underline-offset-4">software engineer</span>,{" "}
-              <span className="font-bold underline decoration-[hsl(var(--accent-red))] underline-offset-4">virtual assistant</span>, or{" "}
-              <span className="font-bold underline decoration-[hsl(var(--accent-red))] underline-offset-4">digital operations specialist</span>?
-              Let's talk.
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-              <a
-                href="mailto:tumacayivan@gmail.com"
-                className="dossier-cta inline-flex group text-base sm:text-lg !py-4 !px-7"
-              >
-                <span className="status-pulse" />
-                <span>INITIATE SECURE CONTACT</span>
-                <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-              </a>
-              <a
-                href="/Ivan-Tumacay-Portfolio.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="dossier-cta-ghost inline-flex group text-base sm:text-lg !py-4 !px-7"
-              >
-                <FileText className="w-5 h-5" />
-                <span>VIEW RESUME</span>
-                <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-              </a>
-            </div>
-            <div className="mt-3 font-courier text-[11px] text-[hsl(var(--ink-brown))] tracking-[0.32em] uppercase">
-              · TRANSMISSION ENCRYPTED · ETA IMMEDIATE
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10 max-w-5xl mx-auto"
-          >
-            {personalInfo.map(({ icon: Icon, label, value, href }, i) => (
-              <div
-                key={label}
-                className="bg-[hsl(var(--surface-1))] border border-[hsl(var(--accent-red)/0.45)] p-4 flex items-center gap-3 relative hover:border-[hsl(var(--accent-red))] transition-colors group"
-              >
-                <span className="absolute -top-2 left-3 bg-[hsl(var(--surface-1))] px-2 font-courier text-[10px] tracking-[0.3em] text-[hsl(var(--accent-red))]">
-                  CH-{String(i + 1).padStart(2, "0")}
+            <div className="flex flex-wrap gap-4">
+              <a href="mailto:tumacayivan@gmail.com" className="btn-drift !py-4 !px-8 !text-base">
+                <span className="flex items-center gap-2">
+                  Email Ivan <ArrowUpRight className="w-5 h-5" />
                 </span>
-                <div className="p-2 border border-[hsl(var(--accent-red)/0.5)] bg-[hsl(var(--surface-0))] text-[hsl(var(--accent-red))] shrink-0 group-hover:bg-[hsl(var(--accent-red))] group-hover:text-[hsl(var(--on-red))] transition-colors">
-                  <Icon className="w-5 h-5" />
-                </div>
-                <div className="min-w-0">
-                  <p className="font-blackops text-[11px] tracking-[0.3em] text-[hsl(var(--ink-brown))] uppercase">
-                    {label}
-                  </p>
+              </a>
+              <a href="/Ivan-Tumacay-Portfolio.pdf" target="_blank" rel="noopener noreferrer" className="btn-ghost !py-4 !px-8 !text-base">
+                <span className="flex items-center gap-2">
+                  <FileText className="w-5 h-5" /> View resume
+                </span>
+              </a>
+            </div>
+          </div>
+
+          <ul className="border-t border-line/10">
+            {channels.map(({ icon: Icon, label, value, href }, i) => {
+              const inner = (
+                <>
+                  <Icon className="w-5 h-5 text-hud shrink-0" />
+                  <span className="hud-label !text-ink-dim w-36 shrink-0 hidden sm:block">{label}</span>
+                  <span className="font-hud text-lg font-semibold text-ink truncate">{value}</span>
+                  {href && (
+                    <ArrowUpRight className="w-5 h-5 ml-auto shrink-0 text-ink-dim group-hover:text-drift group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+                  )}
+                </>
+              );
+              return (
+                <motion.li
+                  key={label}
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
+                  className="border-b border-line/10"
+                >
                   {href ? (
                     <a
                       href={href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-typewriter text-base text-[hsl(var(--accent-bone))] hover:text-[hsl(var(--accent-red))] transition-colors break-all"
+                      aria-label={`${label}: ${value}`}
+                      className="group flex items-center gap-4 py-4 hover:pl-3 transition-all"
                     >
-                      {value}
+                      {inner}
                     </a>
                   ) : (
-                    <p className="font-typewriter text-base text-[hsl(var(--accent-bone))]">{value}</p>
+                    <div className="flex items-center gap-4 py-4">{inner}</div>
                   )}
-                </div>
-              </div>
-            ))}
-          </motion.div>
-
-          {/* Terminal */}
-          <div className="max-w-4xl mx-auto border border-[hsl(var(--accent-red)/0.5)] bg-[hsl(var(--surface-0))] p-4 font-courier text-[14px] sm:text-sm leading-relaxed relative overflow-hidden">
-            <div className="absolute inset-0 opacity-[0.06] pointer-events-none"
-                 style={{
-                   backgroundImage:
-                     "repeating-linear-gradient(0deg, hsl(var(--accent-red)) 0 1px, transparent 1px 3px)",
-                 }} />
-            <div className="flex items-center justify-between border-b border-dashed-ink pb-1.5 mb-2 relative">
-              <span className="font-blackops text-[hsl(var(--accent-red))] tracking-[0.3em] flex items-center gap-2">
-                <span className="status-pulse" /> LIVE TERMINAL
-              </span>
-              <span className="text-[hsl(var(--ink-brown))]">SESSION_ID 0xIT-001</span>
-            </div>
-            <div className="text-[hsl(var(--ink-charcoal))] relative">
-              <div><span className="text-[hsl(var(--accent-red))]">$</span> establishing-handshake.exe ........ <span className="text-[hsl(var(--accent-red-bright))]">[ OK ]</span></div>
-              <div><span className="text-[hsl(var(--accent-red))]">$</span> encrypting-channel ............... <span className="text-[hsl(var(--accent-red-bright))]">[ OK ]</span></div>
-              <div><span className="text-[hsl(var(--accent-red))]">$</span> verifying-clearance .............. <span className="text-[hsl(var(--accent-red-bright))]">[ GRANTED ]</span></div>
-              <div><span className="text-[hsl(var(--accent-red))]">$</span> awaiting-operator-input
-                <span className="inline-block w-2 h-3.5 bg-[hsl(var(--accent-red))] ml-1 animate-pulse-classified align-middle" />
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-10 pt-4 border-t border-[hsl(var(--accent-red)/0.3)] flex flex-col sm:flex-row items-center justify-between gap-3">
-            <p className="font-courier text-[12px] text-[hsl(var(--ink-brown))] tracking-[0.3em] uppercase">
-              © {new Date().getFullYear()} IVAN TUMACAY · ALL RECORDS RESERVED
-            </p>
-            <p className="font-blackops text-sm text-[hsl(var(--accent-red))] tracking-[0.22em] uppercase">
-              Software Engineer &amp; Digital Operations Specialist
-            </p>
-          </div>
+                </motion.li>
+              );
+            })}
+          </ul>
         </div>
 
-        <div className="diag-stripes h-2 mt-0" />
-        <div className="bg-[hsl(var(--surface-1))] text-[hsl(var(--accent-red))] font-blackops text-[12px] sm:text-sm tracking-[0.32em] py-2 px-4 text-center border-t border-[hsl(var(--accent-red)/0.3)]">
-          END OF DOSSIER · TOP SECRET // EYES ONLY
+        {/* End credits */}
+        <div className="border-t border-line/10 pt-12 pb-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center sm:text-left">
+          {credits.map((c, i) => (
+            <motion.div
+              key={c.role}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className="hud-label !text-ink-dim mb-2">{c.role}</div>
+              <div className="font-hud text-lg font-bold uppercase tracking-[0.04em] text-ink">{c.name}</div>
+            </motion.div>
+          ))}
         </div>
       </div>
-    </section>
+
+      {/* Closing title rolls past */}
+      <div aria-hidden className="relative select-none pointer-events-none overflow-hidden">
+        <motion.div
+          style={{ x: bigX }}
+          className="display-xl whitespace-nowrap text-[22vw] leading-[0.8] text-transparent [-webkit-text-stroke:1.5px_hsl(var(--line)/0.18)] translate-y-[12%]"
+        >
+          Ivan Tumacay 東京
+        </motion.div>
+      </div>
+
+      <div className="relative gutter py-5 border-t border-line/10 flex flex-col sm:flex-row items-center justify-between gap-3 bg-asphalt-2">
+        <p className="font-hud text-xs tracking-[0.18em] uppercase text-ink-dim">
+          © {new Date().getFullYear()} Ivan Tumacay · Software engineer &amp; digital operations specialist
+        </p>
+        <a href="#top" className="flex items-center gap-2 font-hud text-xs font-bold tracking-[0.2em] uppercase text-ink hover:text-drift transition-colors">
+          Back to the start line <ArrowUp className="w-4 h-4" />
+        </a>
+      </div>
+    </footer>
   );
 };
 

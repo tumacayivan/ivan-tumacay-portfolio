@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { Code2, Globe, Smartphone, Zap, Folder, FileText, ExternalLink, MonitorPlay } from "lucide-react";
+import { Code2, Globe, Smartphone, Zap, ArrowUpRight } from "lucide-react";
+import SectionHeading from "./drift/SectionHeading";
 import ivanTumacayGroup from "@/assets/ivan-tumacay-group-website.png";
 import ivanTumacayGroupTrading from "@/assets/ivan-tumacay-group-trading.png";
 import marketHacker1 from "@/assets/market-hacker-website1.png";
@@ -260,266 +261,155 @@ const getCategoryIcon = (category: Project["category"]) => {
   }
 };
 
+const siteHost = (url: string) => url.replace(/^https?:\/\//, "").replace(/\/$/, "");
+
+const LiveSiteCard = ({ site, index }: { site: LiveSite; index: number }) => (
+  <motion.a
+    href={site.url}
+    target="_blank"
+    rel="noopener noreferrer"
+    initial={{ opacity: 0, y: 50, rotateX: 10 }}
+    whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+    viewport={{ once: true, margin: "-60px" }}
+    transition={{ duration: 0.8, delay: (index % 3) * 0.08, ease: [0.16, 1, 0.3, 1] }}
+    className="group panel edge-light block overflow-hidden hover:!border-drift/60 transition-colors"
+  >
+    {/* Browser chrome + screenshot that scrolls on hover */}
+    <div className="flex items-center gap-2 px-3 py-2 border-b border-line/10 bg-asphalt">
+      <span className="flex gap-1" aria-hidden>
+        <span className="w-2 h-2 rounded-full bg-line/20" />
+        <span className="w-2 h-2 rounded-full bg-line/20" />
+        <span className="w-2 h-2 rounded-full bg-line/20" />
+      </span>
+      <span className="flex-1 truncate font-hud text-[11px] tracking-[0.06em] text-ink-dim">{siteHost(site.url)}</span>
+      <span className="flex items-center gap-1 font-hud text-[10px] font-bold tracking-[0.16em] uppercase text-hud">
+        <span className="w-1.5 h-1.5 rounded-full bg-hud animate-pulse" /> Live
+      </span>
+    </div>
+    <div className="relative aspect-[16/10] overflow-hidden bg-asphalt">
+      <img
+        src={site.image}
+        alt={`${site.name} — live website screenshot`}
+        loading="lazy"
+        className="absolute inset-0 w-full h-full object-cover object-top transition-[object-position,transform] duration-[2600ms] ease-in-out group-hover:object-bottom group-hover:scale-[1.02]"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-[hsl(246_44%_4%/0.7)] via-transparent to-transparent" />
+      <span className="plate absolute left-3 bottom-3 w-[72px] h-[40px]">
+        <span className="text-[8px] tracking-[0.06em]">東京 500</span>
+        <span className="text-[15px]">{String(index + 1).padStart(2, "0")}-{String(index * 7 + 13).slice(-2)}</span>
+      </span>
+      <span className="absolute right-3 bottom-3 w-10 h-10 rounded-full bg-drift text-on-drift flex items-center justify-center translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+        <ArrowUpRight className="w-5 h-5" />
+      </span>
+    </div>
+
+    <div className="p-5 sm:p-6">
+      <div className="hud-label mb-2">{site.tagline}</div>
+      <h4 className="font-display text-2xl uppercase text-ink leading-tight mb-2 group-hover:text-drift transition-colors">
+        {site.name}
+      </h4>
+      <p className="text-ink-dim leading-relaxed mb-4">{site.description}</p>
+      <div className="flex flex-wrap gap-1.5">
+        {site.stack.split("·").map((t) => (
+          <span key={t} className="font-hud text-[11px] font-semibold tracking-[0.08em] uppercase text-ink-dim border border-line/15 px-2 py-0.5">
+            {t.trim()}
+          </span>
+        ))}
+      </div>
+    </div>
+  </motion.a>
+);
+
 const SoftwarePortfolioSection = () => {
   const totalProjects = portfolioData.reduce((acc, g) => acc + g.count, 0);
 
   return (
-    <section id="software-portfolio" className="relative py-20 sm:py-28 overflow-hidden paper-grain">
-      <div className="absolute inset-0 tactical-grid opacity-[0.35] pointer-events-none" />
-      <div className="absolute inset-0 pointer-events-none flex items-center justify-end overflow-hidden">
-        <div className="watermark text-[17vw] leading-none rotate-[4deg] -mr-10">
-          MISSIONS
-        </div>
-      </div>
+    <section
+      id="software-portfolio"
+      data-scene="Garage"
+      data-kanji="車庫"
+      className="relative py-24 sm:py-32 overflow-hidden"
+    >
+      <div aria-hidden className="absolute inset-0 grid-floor opacity-40 [mask-image:linear-gradient(to_bottom,#000,transparent_40%)]" />
+      <div className="gutter relative">
+        <SectionHeading kanji="車庫" kicker="Software portfolio" title="The" accent="Garage" meta={`${liveSites.length} live · ${totalProjects} built`}>
+          Projects delivered for clients and enterprise organisations across industries and stacks. Every car
+          on the floor is running — hover to scroll the page, click to take it for a drive.
+        </SectionHeading>
 
-      <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-20 relative">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-12"
-        >
-          <div className="section-eyebrow mb-3">
-            <Folder className="w-4 h-4 text-[hsl(var(--accent-red))]" />
-            ANNEX 01 // SOFTWARE DEVELOPMENT PORTFOLIO
-            <span className="font-courier text-[11px] text-[hsl(var(--accent-red))] tracking-[0.3em] hidden sm:inline ml-2">
-              · {totalProjects} OPERATIONS LOGGED
-            </span>
-          </div>
-          <p className="font-courier text-[12px] tracking-[0.4em] text-[hsl(var(--accent-red))] mb-3 uppercase">
-            Software Development Portfolio
-          </p>
-          <h2 className="display-title text-6xl sm:text-8xl md:text-9xl uppercase">
-            PROJECT <span className="accent">SHOWCASE</span>
-          </h2>
-          <div className="mt-4 paper-card-cream p-5 max-w-3xl relative">
-            <div className="absolute -top-3 left-4 stamp stamp-black !text-[12px] !p-1 !rotate-0 bg-[hsl(var(--paper))]">MISSION SUMMARY</div>
-            <p className="font-typewriter text-xl text-[hsl(var(--ink-charcoal))] leading-relaxed mt-1">
-              A curated selection of projects delivered for{" "}
-              <span className="font-bold text-[hsl(var(--accent-bone))] underline decoration-[hsl(var(--accent-red))] underline-offset-4">clients</span> and{" "}
-              <span className="font-bold text-[hsl(var(--accent-bone))] underline decoration-[hsl(var(--accent-red))] underline-offset-4">enterprise organizations</span>, showcasing expertise across industries and technologies.
-            </p>
-          </div>
-        </motion.div>
-
-        {/* LIVE DEPLOYMENTS */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
-        >
-          <div className="flex items-center gap-3 sm:gap-5 mb-6">
-            <div className="diag-stripes-red h-2 w-12 sm:w-20" />
-            <div className="paper-card-cream px-4 py-2 flex items-center gap-3 relative">
-              <div className="absolute -top-2 -left-2 w-3 h-3 border-l-2 border-t-2 border-[hsl(var(--accent-red))]" />
-              <div className="absolute -top-2 -right-2 w-3 h-3 border-r-2 border-t-2 border-[hsl(var(--accent-red))]" />
-              <div className="absolute -bottom-2 -left-2 w-3 h-3 border-l-2 border-b-2 border-[hsl(var(--accent-red))]" />
-              <div className="absolute -bottom-2 -right-2 w-3 h-3 border-r-2 border-b-2 border-[hsl(var(--accent-red))]" />
-              <MonitorPlay className="w-5 h-5 text-[hsl(var(--accent-red))]" />
-              <span className="font-courier text-[11px] tracking-[0.32em] text-[hsl(var(--accent-red))]">FEATURED</span>
-              <h3 className="font-blackops text-3xl sm:text-4xl text-[hsl(var(--accent-bone))] tracking-[0.06em] leading-none">
-                LIVE DEPLOYMENTS
-              </h3>
-              <span className="font-courier text-[12px] tracking-[0.28em] text-[hsl(var(--ink-charcoal))]">
-                {liveSites.length} SITES
-              </span>
-            </div>
-            <div className="flex-1 border-t border-[hsl(var(--accent-red)/0.4)]" />
-            <span className="hidden md:flex items-center gap-2 font-courier text-[11px] tracking-[0.32em] text-[hsl(var(--ink-brown))] uppercase">
-              <span className="status-pulse" /> DEPLOYED · IN PRODUCTION
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {liveSites.map((site, i) => {
-              const rot = ((i * 23) % 5) - 2;
-              return (
-                <motion.a
-                  key={site.name + i}
-                  href={site.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.06 }}
-                  className="paper-card-cream p-4 sm:p-5 paper-grain relative group block transition-transform duration-300 hover:!rotate-0 hover:-translate-y-1"
-                  style={{ transform: `rotate(${rot * 0.3}deg)` }}
-                >
-                  <div className="tape w-16 h-4 -top-2 left-8 rotate-[-4deg] z-10" />
-                  <div className="tape tape-clear w-12 h-3 -top-1.5 right-10 rotate-[5deg] z-10" />
-
-                  <div className="flex items-center justify-between border-b border-dashed-ink pb-2 mb-3">
-                    <span className="font-courier text-[11px] tracking-[0.3em] text-[hsl(var(--accent-red))]">
-                      LIVE·{String(i + 1).padStart(3, "0")}
-                    </span>
-                    <span className="font-blackops text-[12px] tracking-[0.3em] text-[hsl(var(--ink-charcoal))] flex items-center gap-1.5">
-                      <span className="status-pulse" /> DEPLOYED
-                    </span>
-                  </div>
-
-                  <div className="relative overflow-hidden border border-[hsl(var(--accent-red)/0.4)] mb-4 group-hover:border-[hsl(var(--accent-red))] transition-colors">
-                    <div className="absolute -top-1 left-3 z-10 bg-[hsl(var(--surface-1))] border border-[hsl(var(--accent-red))] px-2 py-0.5 font-courier text-[10px] tracking-[0.28em] text-[hsl(var(--accent-red))] rotate-[-2deg]">
-                      EXHIBIT·{String(i + 1).padStart(3, "0")}
-                    </div>
-
-                    <img
-                      src={site.image}
-                      alt={`${site.name} - live website screenshot`}
-                      className="w-full h-[260px] sm:h-[300px] md:h-[340px] lg:h-[360px] object-cover object-top photocopy-strong group-hover:scale-[1.02] transition-transform duration-500"
-                    />
-
-                    {/* Cinematic gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--surface-0)/0.5)] via-transparent to-transparent pointer-events-none" />
-
-                    <div className="absolute top-2 left-2 w-5 h-5 border-l-2 border-t-2 border-[hsl(var(--accent-red))]" />
-                    <div className="absolute top-2 right-2 w-5 h-5 border-r-2 border-t-2 border-[hsl(var(--accent-red))]" />
-                    <div className="absolute bottom-2 left-2 w-5 h-5 border-l-2 border-b-2 border-[hsl(var(--accent-red))]" />
-                    <div className="absolute bottom-2 right-2 w-5 h-5 border-r-2 border-b-2 border-[hsl(var(--accent-red))]" />
-
-                    <div className="absolute top-3 right-6 stamp !text-[11px] !p-1.5 !rotate-[-6deg]">
-                      DEPLOYED
-                    </div>
-
-                    <div className="absolute inset-0 bg-[hsl(var(--surface-0)/0.88)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-2 px-4">
-                      <div className="w-16 h-16 border-2 border-[hsl(var(--accent-red))] flex items-center justify-center bg-[hsl(var(--accent-red)/0.18)] glow-red">
-                        <ExternalLink className="w-6 h-6 text-[hsl(var(--accent-red))]" />
-                      </div>
-                      <span className="font-blackops text-base text-[hsl(var(--accent-bone))] tracking-[0.28em] uppercase">
-                        Visit Live Site
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="mb-2">
-                    <div className="font-courier text-[11px] tracking-[0.3em] text-[hsl(var(--accent-red))] uppercase mb-1">
-                      ◉ SUBJECT SITE
-                    </div>
-                    <h4 className="font-blackops text-2xl sm:text-3xl text-[hsl(var(--accent-bone))] uppercase tracking-[0.06em] leading-tight">
-                      {site.name}
-                    </h4>
-                    <p className="font-typewriter text-base text-[hsl(var(--ink-charcoal))] underline decoration-[hsl(var(--accent-red))] underline-offset-4 decoration-1 mt-1">
-                      {site.tagline}
-                    </p>
-                  </div>
-
-                  <p className="font-courier text-[14px] text-[hsl(var(--ink-charcoal))] leading-relaxed border-t border-dashed-ink pt-2 mb-3">
-                    <span className="font-blackops text-[11px] tracking-[0.3em] text-[hsl(var(--accent-red))]">DOSSIER //</span>{" "}
-                    {site.description}
-                  </p>
-
-                  <div className="font-courier text-[12px] tracking-[0.22em] text-[hsl(var(--ink-brown))] border-t border-dashed-ink pt-2 mb-3 uppercase">
-                    <span className="font-blackops text-[hsl(var(--accent-red))]">STACK ·</span> {site.stack}
-                  </div>
-
-                  <div className="dossier-cta w-full sm:w-auto justify-center text-sm">
-                    <ExternalLink className="w-4 h-4" />
-                    <span>VISIT LIVE SITE</span>
-                  </div>
-
-                  <div className="mt-3 flex items-center justify-between font-courier text-[10px] tracking-[0.3em] text-[hsl(var(--ink-brown))] uppercase">
-                    <span>OPEN-IN-NEW-TAB · ENCRYPTED</span>
-                    <span className="text-[hsl(var(--accent-red))]">VERIFIED</span>
-                  </div>
-                </motion.a>
-              );
-            })}
-          </div>
-
-          <div className="mt-6 flex flex-wrap items-center justify-between gap-3 font-courier text-[11px] text-[hsl(var(--ink-brown))] tracking-[0.3em] uppercase">
-            <span><span className="text-[hsl(var(--accent-red))]">◉</span> ALL SITES PUBLICLY ACCESSIBLE · CLEARANCE PUBLIC</span>
-            <span>END OF LIVE DEPLOYMENTS SECTION</span>
-          </div>
-        </motion.div>
-
-        <div className="space-y-14">
-          {portfolioData.map((yearGroup, groupIndex) => (
-            <motion.div
-              key={yearGroup.year}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: groupIndex * 0.06 }}
-            >
-              <div className="flex items-center gap-3 sm:gap-5 mb-6">
-                <div className="diag-stripes-red h-2 w-12 sm:w-20" />
-                <div className="paper-card-cream px-4 py-2 flex items-center gap-3 relative">
-                  <div className="absolute -top-2 -left-2 w-3 h-3 border-l-2 border-t-2 border-[hsl(var(--accent-red))]" />
-                  <div className="absolute -top-2 -right-2 w-3 h-3 border-r-2 border-t-2 border-[hsl(var(--accent-red))]" />
-                  <div className="absolute -bottom-2 -left-2 w-3 h-3 border-l-2 border-b-2 border-[hsl(var(--accent-red))]" />
-                  <div className="absolute -bottom-2 -right-2 w-3 h-3 border-r-2 border-b-2 border-[hsl(var(--accent-red))]" />
-                  <span className="font-courier text-[11px] tracking-[0.3em] text-[hsl(var(--accent-red))]">YEAR</span>
-                  <h3 className="font-display text-5xl sm:text-6xl text-[hsl(var(--accent-bone))] tracking-tight leading-none">
-                    {yearGroup.year}
-                  </h3>
-                  <span className="font-courier text-[12px] tracking-[0.28em] text-[hsl(var(--ink-charcoal))]">
-                    {yearGroup.count} {yearGroup.count === 1 ? "MISSION" : "MISSIONS"}
-                  </span>
-                </div>
-                <div className="flex-1 border-t border-[hsl(var(--accent-red)/0.4)]" />
-                <span className="hidden md:inline font-courier text-[11px] tracking-[0.3em] text-[hsl(var(--ink-brown))] uppercase">
-                  ARCHIVE-Y{yearGroup.year}
-                </span>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                {yearGroup.projects.map((project, projectIndex) => {
-                  const Icon = getCategoryIcon(project.category);
-                  const rot = ((projectIndex * 17) % 5) - 2;
-                  return (
-                    <motion.div
-                      key={`${yearGroup.year}-${project.name}-${projectIndex}`}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: projectIndex * 0.04 }}
-                      className="paper-card-cream p-5 paper-grain relative group transition-all duration-300 hover:!rotate-0 hover:-translate-y-1"
-                      style={{ transform: `rotate(${rot * 0.3}deg)` }}
-                    >
-                      <div className="tape w-10 h-3 -top-1.5 left-6 rotate-[-4deg]" />
-
-                      <div className="flex items-center justify-between border-b border-dashed-ink pb-2 mb-3">
-                        <span className="font-courier text-[11px] tracking-[0.3em] text-[hsl(var(--accent-red))]">
-                          M-{yearGroup.year}-{String(projectIndex + 1).padStart(2, "0")}
-                        </span>
-                        <span className="font-blackops text-[12px] tracking-[0.28em] text-[hsl(var(--ink-charcoal))] px-1.5 border border-[hsl(var(--accent-red)/0.4)]">{project.category.toUpperCase()}</span>
-                      </div>
-
-                      <div className="flex items-start gap-3 mb-3">
-                        <div className="p-2 border border-[hsl(var(--accent-red)/0.5)] bg-[hsl(var(--surface-1))] text-[hsl(var(--accent-red))] shrink-0 group-hover:bg-[hsl(var(--accent-red))] group-hover:text-[hsl(var(--on-red))] transition-colors">
-                          <Icon className="w-4 h-4" />
-                        </div>
-                        <div className="min-w-0 flex-1">
-                          <h4 className="font-blackops text-base sm:text-lg text-[hsl(var(--accent-bone))] uppercase tracking-[0.06em] leading-tight group-hover:text-[hsl(var(--accent-red))] transition-colors">
-                            {project.name}
-                          </h4>
-                        </div>
-                      </div>
-
-                      <p className="font-courier text-[14px] text-[hsl(var(--ink-charcoal))] leading-relaxed border-t border-dashed-ink pt-2">
-                        <span className="font-blackops text-[11px] tracking-[0.3em] text-[hsl(var(--accent-red))]">SYS //</span>{" "}
-                        {project.description}
-                      </p>
-
-                      <div className="mt-3 flex items-center justify-between font-courier text-[10px] tracking-[0.3em] text-[hsl(var(--ink-brown))] uppercase">
-                        <span><FileText className="w-3 h-3 inline mr-1 -mt-0.5 text-[hsl(var(--accent-red))]" />MISSION RECORD</span>
-                        <span className="text-[hsl(var(--accent-red))]">VERIFIED</span>
-                      </div>
-                    </motion.div>
-                  );
-                })}
-              </div>
-            </motion.div>
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 [perspective:1600px] mb-24">
+          {liveSites.map((site, i) => (
+            <LiveSiteCard key={site.url} site={site} index={i} />
           ))}
         </div>
 
-        <div className="mt-12 flex flex-wrap items-center justify-between gap-3 font-courier text-[11px] text-[hsl(var(--ink-brown))] tracking-[0.3em] border-t border-[hsl(var(--accent-red)/0.3)] pt-3 uppercase">
-          <span><span className="text-[hsl(var(--accent-red))]">◉</span> END OF MISSIONS ANNEX</span>
-          <span>TOTAL ENGAGEMENTS: {totalProjects}</span>
-          <span>FILED BY OPERATIONS DIRECTORATE</span>
+        {/* BUILD HISTORY */}
+        <div className="flex flex-wrap items-end justify-between gap-4 mb-8">
+          <div>
+            <div className="hud-label mb-2">Build history · 2016 – 2025</div>
+            <h3 className="font-display text-4xl sm:text-5xl uppercase text-ink">
+              Every <span className="lean">lap</span>
+            </h3>
+          </div>
+          <div className="flex flex-wrap gap-4 font-hud text-xs tracking-[0.14em] uppercase text-ink-dim">
+            {(["Web", "Automation", "API", "Mobile"] as const).map((c) => {
+              const Icon = getCategoryIcon(c);
+              return (
+                <span key={c} className="flex items-center gap-1.5">
+                  <Icon className="w-3.5 h-3.5 text-hud" /> {c}
+                </span>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="border-t border-line/10">
+          {portfolioData.map((group) => (
+            <motion.div
+              key={group.year}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.6 }}
+              className="group grid grid-cols-1 md:grid-cols-[180px_1fr] gap-4 md:gap-8 py-8 border-b border-line/10"
+            >
+              <div className="flex md:flex-col items-baseline md:items-start gap-3">
+                <motion.span
+                  initial={{ x: -40, opacity: 0 }}
+                  whileInView={{ x: 0, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                  className="font-display text-5xl sm:text-6xl leading-none text-ink group-hover:text-drift transition-colors tabular-nums"
+                >
+                  {group.year}
+                </motion.span>
+                <span className="hud-label !text-ink-dim">
+                  {group.count} {group.count === 1 ? "project" : "projects"}
+                </span>
+              </div>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {group.projects.map((project, i) => {
+                  const Icon = getCategoryIcon(project.category);
+                  return (
+                    <motion.li
+                      key={`${group.year}-${project.name}`}
+                      initial={{ opacity: 0, y: 14 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.45, delay: i * 0.04, ease: [0.16, 1, 0.3, 1] }}
+                      className="flex items-start gap-3 p-4 bg-panel/60 border border-line/10 hover:border-hud/50 transition-colors"
+                    >
+                      <Icon className="w-4 h-4 mt-1 text-hud shrink-0" aria-label={project.category} />
+                      <div className="min-w-0">
+                        <div className="font-hud font-bold uppercase tracking-[0.02em] text-ink leading-snug">{project.name}</div>
+                        <div className="text-sm text-ink-dim mt-0.5">{project.description}</div>
+                      </div>
+                    </motion.li>
+                  );
+                })}
+              </ul>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

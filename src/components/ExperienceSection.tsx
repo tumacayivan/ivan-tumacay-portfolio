@@ -1,5 +1,6 @@
-import { motion } from "framer-motion";
-import { Briefcase, MapPin } from "lucide-react";
+import { motion, useMotionValueEvent, useScroll, useSpring } from "framer-motion";
+import { useMemo, useRef } from "react";
+import SectionHeading from "./drift/SectionHeading";
 
 const experiences = [
   {
@@ -70,123 +71,128 @@ const experiences = [
   },
 ];
 
+const SEG = 100;
+
+/** A mountain-pass road: one hairpin per job, swinging left and right. */
+const buildPath = (n: number) => {
+  let d = `M 50 0`;
+  for (let i = 0; i < n; i++) {
+    const y0 = i * SEG;
+    const side = i % 2 === 0 ? 92 : 8;
+    d += ` C ${side} ${y0 + 20}, ${side} ${y0 + 80}, 50 ${y0 + SEG}`;
+  }
+  return d;
+};
+
 const ExperienceSection = () => {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const pathRef = useRef<SVGPathElement>(null);
+  const carRef = useRef<HTMLDivElement>(null);
+  const d = useMemo(() => buildPath(experiences.length), []);
+  const height = experiences.length * SEG;
+
+  const { scrollYProgress } = useScroll({ target: trackRef, offset: ["start 70%", "end 60%"] });
+  const progress = useSpring(scrollYProgress, { stiffness: 90, damping: 24, mass: 0.4 });
+
+  // The car follows the drawn line through every hairpin
+  useMotionValueEvent(progress, "change", (p) => {
+    const path = pathRef.current;
+    const car = carRef.current;
+    if (!path || !car) return;
+    const len = path.getTotalLength();
+    const at = Math.max(0, Math.min(1, p)) * len;
+    const a = path.getPointAtLength(at);
+    const b = path.getPointAtLength(Math.min(len, at + 1));
+    const box = car.parentElement!.getBoundingClientRect();
+    const sx = box.width / 100;
+    const sy = box.height / height;
+    const angle = (Math.atan2((b.y - a.y) * sy, (b.x - a.x) * sx) * 180) / Math.PI;
+    car.style.transform = `translate(${a.x * sx}px, ${a.y * sy}px) translate(-50%, -50%) rotate(${angle}deg)`;
+  });
+
   return (
-    <section id="experience" className="relative py-20 sm:py-28 bg-[hsl(var(--paper-beige))] border-y border-[hsl(var(--accent-red)/0.25)] overflow-hidden">
-      <div className="absolute inset-0 tactical-grid opacity-[0.4] pointer-events-none" />
-      <div className="absolute inset-0 pointer-events-none flex items-start justify-start overflow-hidden">
-        <div className="watermark text-[18vw] leading-none rotate-[-3deg] ml-[-2vw] mt-12">
-          FIELD OPS
-        </div>
-      </div>
+    <section id="experience" data-scene="Race log" data-kanji="経歴" className="relative py-24 sm:py-32 overflow-hidden bg-asphalt-2">
+      <div className="gutter relative">
+        <SectionHeading kanji="経歴" kicker="Work experience · downhill run" title="The race" accent="log" meta={`${experiences.length} roles`}>
+          Creative design, video production, social media and enterprise software engineering across many
+          industries. Scroll down the pass — every hairpin is a role.
+        </SectionHeading>
 
-      <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-20 relative">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-12 grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-6 items-end"
-        >
-          <div>
-            <div className="section-eyebrow mb-3">
-              <MapPin className="w-4 h-4 text-[hsl(var(--accent-red))]" />
-              SECTION 05 // FIELD OPERATIONS TIMELINE
+        <div ref={trackRef} className="relative grid grid-cols-[56px_1fr] md:grid-cols-[1fr_120px_1fr] gap-x-4 md:gap-x-8">
+          {/* THE PASS */}
+          <div
+            className="col-start-1 md:col-start-2 relative"
+            style={{ gridRow: `1 / ${experiences.length + 1}` }}
+            aria-hidden
+          >
+            <svg viewBox={`0 0 100 ${height}`} preserveAspectRatio="none" className="absolute inset-0 w-full h-full overflow-visible">
+              {/* guardrail glow */}
+              <path d={d} fill="none" stroke="hsl(var(--line) / 0.10)" strokeWidth="16" vectorEffect="non-scaling-stroke" strokeLinecap="round" />
+              <path d={d} fill="none" stroke="hsl(var(--line) / 0.25)" strokeWidth="1" strokeDasharray="6 8" vectorEffect="non-scaling-stroke" />
+              <motion.path
+                ref={pathRef}
+                d={d}
+                fill="none"
+                stroke="url(#pass-grad)"
+                strokeWidth="3"
+                strokeLinecap="round"
+                vectorEffect="non-scaling-stroke"
+                style={{ pathLength: progress }}
+              />
+              <defs>
+                <linearGradient id="pass-grad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="hsl(var(--hud))" />
+                  <stop offset="60%" stopColor="hsl(var(--drift))" />
+                  <stop offset="100%" stopColor="hsl(var(--sign))" />
+                </linearGradient>
+              </defs>
+            </svg>
+            {/* The car: white body, black bonnet — a two-tone hatch heading downhill */}
+            <div ref={carRef} className="absolute left-0 top-0 will-change-transform">
+              <div className="relative w-7 h-4 rounded-[3px] overflow-hidden shadow-[0_0_18px_hsl(var(--drift)/0.9)]">
+                <div className="absolute inset-0 bg-[hsl(0_0%_96%)]" />
+                <div className="absolute inset-y-0 right-0 w-1/3 bg-[hsl(246_30%_8%)]" />
+                <div className="absolute right-0 top-0.5 w-[3px] h-[3px] bg-[hsl(50_100%_70%)] rounded-full" />
+                <div className="absolute right-0 bottom-0.5 w-[3px] h-[3px] bg-[hsl(50_100%_70%)] rounded-full" />
+              </div>
             </div>
-            <p className="font-courier text-[12px] tracking-[0.4em] text-[hsl(var(--accent-red))] mb-2 uppercase">
-              Career · Operational History
-            </p>
-            <h2 className="display-title text-6xl sm:text-8xl md:text-9xl uppercase">
-              WORK <span className="accent">EXPERIENCE</span>
-            </h2>
+            <div className="absolute -top-8 left-1/2 -translate-x-1/2 neon-kanji text-lg whitespace-nowrap">峠</div>
           </div>
-          <div className="paper-card-cream p-5 relative">
-            <div className="absolute -top-3 left-4 stamp stamp-blue !text-[12px] !p-1 !rotate-0 bg-[hsl(var(--paper-beige))]">SUMMARY BRIEFING</div>
-            <p className="font-typewriter text-lg text-[hsl(var(--ink-charcoal))] leading-relaxed mt-1">
-              Extensive experience in{" "}
-              <span className="font-bold text-[hsl(var(--accent-bone))] underline decoration-[hsl(var(--accent-red))] underline-offset-4">creative design</span>,{" "}
-              <span className="font-bold text-[hsl(var(--accent-bone))] underline decoration-[hsl(var(--accent-red))] underline-offset-4">video production</span>,{" "}
-              <span className="font-bold text-[hsl(var(--accent-bone))] underline decoration-[hsl(var(--accent-red))] underline-offset-4">social media management</span>, and{" "}
-              <span className="font-bold text-[hsl(var(--accent-bone))] underline decoration-[hsl(var(--accent-red))] underline-offset-4">enterprise software engineering</span> across multiple industries.
-            </p>
-          </div>
-        </motion.div>
 
-        <div className="relative">
-          {/* Red thread connecting all missions */}
-          <div className="absolute left-4 sm:left-6 top-2 bottom-2 w-[2px] bg-gradient-to-b from-[hsl(var(--accent-red))] via-[hsl(var(--accent-red-bright))] to-[hsl(var(--accent-red-deep))] shadow-[0_0_8px_hsl(var(--accent-red)/0.5)]" />
-          <div className="absolute left-[7px] sm:left-[15px] top-0 w-5 h-5 border-2 border-[hsl(var(--accent-red))] bg-[hsl(var(--surface-1))] rotate-45 shadow-[0_0_12px_hsl(var(--accent-red)/0.5)]" />
-          <div className="absolute left-[7px] sm:left-[15px] bottom-0 w-5 h-5 border-2 border-[hsl(var(--accent-red))] bg-[hsl(var(--surface-1))] rotate-45 shadow-[0_0_12px_hsl(var(--accent-red)/0.5)]" />
-
-          <div className="space-y-6">
-            {experiences.map((exp, i) => {
-              const rot = (i % 5) - 2;
-              return (
-                <motion.div
-                  key={`${exp.company}-${i}`}
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: i * 0.04 }}
-                  className="relative pl-12 sm:pl-20"
-                >
-                  {/* Red node */}
-                  <div className="absolute left-2 sm:left-4 top-6 w-6 h-6 rounded-full bg-[hsl(var(--accent-red))] border-2 border-[hsl(var(--surface-1))] shadow-[0_0_18px_hsl(var(--accent-red)/0.6)] flex items-center justify-center">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--on-red))] animate-pulse-classified" />
+          {experiences.map((exp, i) => {
+            const left = i % 2 === 1;
+            return (
+              <motion.article
+                key={`${exp.company}-${i}`}
+                initial={{ opacity: 0, x: left ? -60 : 60, skewX: left ? 4 : -4 }}
+                whileInView={{ opacity: 1, x: 0, skewX: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                style={{ gridRowStart: i + 1 }}
+                className={`col-start-2 ${left ? "md:col-start-1 md:text-right" : "md:col-start-3"} py-6 md:py-10`}
+              >
+                <div className="panel panel-hover edge-light p-6 sm:p-7 text-left">
+                  <div className={`flex flex-wrap items-center gap-x-3 gap-y-1 mb-3 ${left ? "md:justify-end" : ""}`}>
+                    <span className="hud-label">{exp.company}</span>
                   </div>
-                  <div className="absolute left-8 sm:left-10 top-9 w-4 sm:w-10 h-px bg-[hsl(var(--accent-red))]" />
-
-                  <div
-                    className="paper-card-cream p-5 sm:p-6 relative paper-grain transition-all duration-300 hover:!rotate-0 hover:-translate-y-0.5"
-                    style={{ transform: `rotate(${rot * 0.3}deg)` }}
-                  >
-                    <div className="tape tape-clear w-10 h-3 -top-1.5 right-6 rotate-[3deg]" />
-
-                    <div className="flex items-center justify-between border-b border-dashed-ink pb-2 mb-3">
-                      <span className="font-courier text-[11px] tracking-[0.3em] text-[hsl(var(--accent-red))]">
-                        OP·{String(i + 1).padStart(3, "0")}
+                  <h3 className={`font-hud text-xl sm:text-2xl font-bold uppercase leading-tight text-ink mb-3 ${left ? "md:text-right" : ""}`}>
+                    {exp.role}
+                  </h3>
+                  {exp.period && (
+                    <div className={`mb-3 ${left ? "md:text-right" : ""}`}>
+                      <span className="inline-block font-hud text-xs font-bold tracking-[0.14em] uppercase bg-drift text-on-drift px-2.5 py-1 -skew-x-12">
+                        {exp.period}
                       </span>
-                      <div className="flex items-center gap-2">
-                        <Briefcase className="w-3.5 h-3.5 text-[hsl(var(--accent-red))]" />
-                        <span className="font-blackops text-[12px] tracking-[0.3em] text-[hsl(var(--ink-charcoal))]">FIELD REPORT</span>
-                      </div>
                     </div>
-
-                    <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-1">
-                      <h3 className="font-blackops text-lg sm:text-xl text-[hsl(var(--accent-bone))] uppercase tracking-[0.06em] leading-tight">
-                        {exp.role}
-                      </h3>
-                      {exp.period && (
-                        <span className="font-courier text-[13px] text-[hsl(var(--accent-red))] tracking-[0.2em] border border-[hsl(var(--accent-red)/0.5)] px-2 py-0.5 whitespace-nowrap bg-[hsl(var(--surface-1))]">
-                          {exp.period}
-                        </span>
-                      )}
-                    </div>
-
-                    <p className="font-typewriter text-lg text-[hsl(var(--ink-charcoal))] mb-3 underline decoration-[hsl(var(--accent-red))] underline-offset-4 decoration-1">
-                      · {exp.company}
-                    </p>
-
-                    <p className="font-courier text-[14px] text-[hsl(var(--ink-charcoal))]/90 leading-relaxed">
-                      <span className="font-blackops text-[12px] tracking-[0.3em] text-[hsl(var(--accent-red))]">DEBRIEF //</span>{" "}
-                      {exp.description}
-                    </p>
-
-                    <div className="mt-4 pt-2 border-t border-dashed-ink flex items-center justify-between font-courier text-[11px] tracking-[0.3em] text-[hsl(var(--ink-brown))] uppercase">
-                      <span>OPERATIVE: <span className="text-[hsl(var(--accent-red))]">IT-X</span></span>
-                      <span>SIGNED</span>
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
+                  )}
+                  <p className={`text-ink-dim leading-relaxed ${left ? "md:text-right" : ""}`}>{exp.description}</p>
+                </div>
+              </motion.article>
+            );
+          })}
         </div>
 
-        <div className="mt-10 flex flex-wrap items-center justify-between gap-3 font-courier text-[11px] text-[hsl(var(--ink-brown))] tracking-[0.3em] border-t border-[hsl(var(--accent-red)/0.3)] pt-3 uppercase">
-          <span><span className="text-[hsl(var(--accent-red))]">◉</span> TIMELINE ARCHIVED · INVESTIGATIVE WALL COMPLETE</span>
-          <span>{experiences.length} DOCUMENTED ENGAGEMENTS</span>
-        </div>
+        <div className="mt-12 text-center hud-label !text-ink-dim">Finish line · {experiences.length} corners cleared</div>
       </div>
     </section>
   );

@@ -1,16 +1,17 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { Moon, Volume2, X } from "lucide-react";
+import { Sun, Volume2, X } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
+import { useIntroDone } from "./drift/IntroSequence";
 
 const SEEN_KEY = "controls-notice-seen";
-const SHOW_DELAY_MS = 1500;
+const SHOW_DELAY_MS = 1200;
 const AUTO_DISMISS_MS = 12000;
 
 /**
  * ControlsNotice
  *
- * A one-time field briefing shown shortly after the page loads, telling the
- * visitor that the site has a light/dark toggle and a music mute button.
+ * A one-time briefing shown after the opening sequence, telling the
+ * visitor that the site has a day/night toggle and a music mute button.
  * While it is open, `html.controls-hint` makes the real controls pulse
  * (see [data-control-hint] in index.css) so the visitor can find them.
  */
@@ -26,15 +27,18 @@ const ControlsNotice = () => {
     }
   }, []);
 
+  const introDone = useIntroDone();
+
   useEffect(() => {
+    if (!introDone) return;
     try {
       if (localStorage.getItem(SEEN_KEY)) return;
     } catch {
       /* storage blocked — still show it */
     }
-    const id = setTimeout(() => setOpen(true), SHOW_DELAY_MS);
-    return () => clearTimeout(id);
-  }, []);
+    const timer = setTimeout(() => setOpen(true), SHOW_DELAY_MS);
+    return () => clearTimeout(timer);
+  }, [introDone]);
 
   useEffect(() => {
     if (!open) return;
@@ -55,50 +59,47 @@ const ControlsNotice = () => {
         <motion.aside
           role="status"
           aria-live="polite"
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 16 }}
-          transition={{ duration: 0.35 }}
-          className="fixed bottom-16 right-4 left-4 sm:left-auto z-50 sm:w-[340px] border border-[hsl(var(--accent-red))] bg-[hsl(var(--surface-2))] text-[hsl(var(--ink-charcoal))] shadow-[0_24px_48px_-20px_var(--shadow-3)]"
+          initial={{ opacity: 0, x: 40, skewX: -8 }}
+          animate={{ opacity: 1, x: 0, skewX: 0 }}
+          exit={{ opacity: 0, x: 40 }}
+          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+          className="panel fixed bottom-20 right-5 left-5 sm:left-auto z-50 sm:w-[340px] shadow-[0_30px_60px_-20px_hsl(var(--shadow))]"
         >
-          <div className="diag-stripes h-1" />
+          <div className="livery h-1.5" />
           <div className="flex items-center justify-between px-4 pt-3">
-            <span className="flex items-center gap-2 font-courier text-[10px] tracking-[0.3em] text-[hsl(var(--accent-red))]">
-              <span className="inline-block w-1.5 h-1.5 rounded-full bg-[hsl(var(--accent-red))] animate-pulse-classified" />
-              FIELD BRIEFING
-            </span>
+            <span className="hud-label">Before you roll</span>
             <button
               type="button"
               onClick={dismiss}
               aria-label="Dismiss notice"
-              className="p-1 text-[hsl(var(--ink-brown))] hover:text-[hsl(var(--accent-red))] transition-colors"
+              className="p-1 text-ink-dim hover:text-drift transition-colors"
             >
-              <X className="w-3.5 h-3.5" />
+              <X className="w-4 h-4" />
             </button>
           </div>
 
-          <ul className="px-4 pt-2 pb-3 space-y-2.5 font-courier text-[12px] leading-snug">
+          <ul className="px-4 pt-2 pb-3 space-y-3">
             <li className="flex gap-3">
-              <Moon className="w-4 h-4 shrink-0 mt-0.5 text-[hsl(var(--accent-red))]" />
+              <Sun className="w-4 h-4 shrink-0 mt-1 text-drift" />
               <span>
-                <strong className="font-blackops text-[14px] tracking-[0.14em] uppercase">Light / dark mode</strong>
+                <strong className="font-hud font-bold uppercase tracking-[0.08em] text-ink">Day / night mode</strong>
                 <br />
-                <span className="text-[hsl(var(--ink-brown))]">Switch with the lights button in the top bar.</span>
+                <span className="text-ink-dim">Switch with the sun and moon button in the top bar.</span>
               </span>
             </li>
             <li className="flex gap-3">
-              <Volume2 className="w-4 h-4 shrink-0 mt-0.5 text-[hsl(var(--accent-red))]" />
+              <Volume2 className="w-4 h-4 shrink-0 mt-1 text-drift" />
               <span>
-                <strong className="font-blackops text-[14px] tracking-[0.14em] uppercase">Soundtrack on</strong>
+                <strong className="font-hud font-bold uppercase tracking-[0.08em] text-ink">Soundtrack</strong>
                 <br />
-                <span className="text-[hsl(var(--ink-brown))]">Music plays once you scroll. Mute or unmute with the speaker button below.</span>
+                <span className="text-ink-dim">Music plays once you scroll or tap. Mute or unmute with the speaker button below.</span>
               </span>
             </li>
           </ul>
 
           <div className="px-4 pb-4">
-            <button type="button" onClick={dismiss} className="dossier-cta w-full justify-center text-[13px] !py-2">
-              Got it
+            <button type="button" onClick={dismiss} className="btn-drift w-full !py-2.5">
+              <span>Got it</span>
             </button>
           </div>
         </motion.aside>

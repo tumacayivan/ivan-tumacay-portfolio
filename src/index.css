@@ -1,962 +1,387 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Anton&family=JetBrains+Mono:wght@400;500;700&family=Special+Elite&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Cutive+Mono&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* =====================================================================
-   MOST WANTED — TOP-SECRET INTELLIGENCE DOSSIER DESIGN SYSTEM
+   NIGHT RUN — TOKYO DRIFT DESIGN SYSTEM
 
-   Two themes, one dossier. LIGHT (default) is the file pulled out and
-   read on the desk: manila stock, charcoal ink, red stamp. DARK is the
-   same file read in the vault: concrete, bone white, red stamp.
+   NIGHT (default) is the car park at 2am: indigo asphalt, Veilside
+   orange livery, cyan gauge light and magenta kanji signs.
+   DAY is the same garage with the shutters up.
 
-   Every utility below reads role tokens (--surface-*, --line, --shadow-*,
-   --edge-*, --noise-*) rather than literal colors, so both themes stay
-   coherent from a single set of rules.
+   Colour roles are strict:
+     --drift  (orange)  actions, brand, livery
+     --hud    (cyan)    data, gauges, labels
+     --sign   (magenta) neon kanji signage only
    ===================================================================== */
 
 @layer base {
-  /* ---------------------------------------------------------------
-     LIGHT MODE (default) — DECLASSIFIED PAPER DOSSIER
-     Manila/cream stock, charcoal ink, the same iconic classified red.
-     --------------------------------------------------------------- */
+  /* ---------- DAY ---------- */
   :root {
-    --background: 40 33% 94%;          /* manila paper */
-    --foreground: 25 18% 14%;          /* charcoal ink */
+    --asphalt: 250 16% 92%;
+    --asphalt-2: 250 14% 87%;
+    --panel: 250 30% 98%;
+    --ink: 246 26% 9%;
+    --ink-dim: 246 9% 38%;
+    --line: 246 26% 9%;
+    --drift: 20 90% 46%;
+    --on-drift: 0 0% 100%;
+    --hud: 186 100% 28%;
+    --sign: 338 84% 46%;
 
-    --card: 42 40% 97%;
-    --card-foreground: 25 18% 14%;
+    --sky-top: 212 60% 78%;
+    --sky-bottom: 28 80% 88%;
+    --city: 246 18% 30%;
+    --city-far: 240 14% 62%;
+    --window: 44 30% 88%;
+    --road: 246 10% 26%;
+    --glow-strength: 0.35;
+    --shadow: 246 30% 20%;
 
-    --popover: 42 40% 97%;
-    --popover-foreground: 25 18% 14%;
-
-    --primary: 358 74% 44%;            /* CLASSIFIED RED */
-    --primary-foreground: 40 22% 96%;
-
-    --secondary: 38 24% 88%;
-    --secondary-foreground: 25 18% 14%;
-
-    --muted: 38 20% 87%;
-    --muted-foreground: 28 14% 38%;
-
-    --accent: 358 74% 44%;
-    --accent-foreground: 40 22% 96%;
-
-    --destructive: 358 74% 44%;
-    --destructive-foreground: 40 22% 96%;
-
-    --border: 30 16% 78%;
-    --input: 30 16% 78%;
-    --ring: 358 74% 44%;
-
-    --radius: 0rem;
-
-    --sidebar-background: 40 30% 91%;
-    --sidebar-foreground: 25 18% 14%;
-    --sidebar-primary: 358 74% 44%;
-    --sidebar-primary-foreground: 40 22% 96%;
-    --sidebar-accent: 38 24% 88%;
-    --sidebar-accent-foreground: 25 18% 14%;
-    --sidebar-border: 30 16% 78%;
-    --sidebar-ring: 358 74% 44%;
-
-    --gold-glow: 358 74% 44%;
-    --surface-hover: 38 26% 90%;
-
-    /* SEMANTIC ALIASES — "paper" = the document stock, "ink" = what is
-       printed on it, anything stamped "red" stays iconic red. */
-    --paper: 40 33% 94%;
-    --paper-cream: 42 40% 97%;
-    --paper-beige: 40 30% 91%;
-    --paper-gray: 38 20% 88%;
-    --ink-charcoal: 25 18% 14%;
-    --ink-brown: 28 14% 38%;
-    --stamp-red: 358 74% 44%;
-    --stamp-blue: 358 66% 36%;
-
-    --accent-red: 358 74% 44%;
-    --accent-red-deep: 358 72% 33%;
-    --accent-red-bright: 0 82% 52%;
-    --accent-bone: 25 22% 12%;          /* on light stock, "bone" prints as ink */
-    --accent-concrete: 40 26% 89%;
-    --accent-graphite: 38 16% 80%;
-    --accent-blueprint: 205 70% 34%;
-
-    /* ROLE TOKENS — every hard surface / edge / shadow in the system
-       reads these, so both themes stay coherent without duplicate rules. */
-    --surface-0: 38 28% 84%;            /* deepest chrome (bars, wells) */
-    --surface-1: 40 32% 90%;
-    --surface-2: 42 36% 95%;
-    --surface-3: 44 44% 98%;            /* highest / lit surface */
-    --line: 25 20% 20%;                 /* hairline base, always used with alpha */
-    --on-red: 40 22% 96%;               /* text printed over the red */
-
-    /* Depth is tuned per theme: paper casts short soft shadows,
-       concrete casts long black ones. */
-    --shadow-1: hsl(30 25% 38% / 0.10);
-    --shadow-2: hsl(30 25% 32% / 0.16);
-    --shadow-3: hsl(30 25% 28% / 0.22);
-    --edge-hi: hsl(0 0% 100% / 0.85);   /* lit top edge of a raised surface */
-    --edge-lo: hsl(30 20% 45% / 0.16);  /* seam where it meets the page */
-
-    --grain-blend: multiply;
-    --wash-red: hsl(358 60% 45% / 0.10);   /* ambient red bleed behind sections */
-    /* Ink sitting ON light stock needs more weight than glow on black */
-    --watermark-red: hsl(358 74% 44% / 0.10);
-    --watermark-ink: hsl(25 20% 20% / 0.08);
-    --scanline-color: 30 20% 40% / 0.05;
-    --scanline-opacity: 0.35;
-    --photo-filter: grayscale(30%) contrast(1.05) brightness(1.02) sepia(0.12);
-    --photo-filter-strong: grayscale(18%) contrast(1.08) brightness(1.01) saturate(0.95);
-
-    /* Paper fibre grain — dark specks pressed into light stock */
-    --noise-body: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.28  0 0 0 0 0.22  0 0 0 0 0.14  0 0 0 0.09 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    --noise-card: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.28  0 0 0 0 0.22  0 0 0 0 0.14  0 0 0 0.07 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    --noise-folder: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.30  0 0 0 0 0.24  0 0 0 0 0.15  0 0 0 0.10 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    --noise-grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.28  0 0 0 0 0.22  0 0 0 0 0.14  0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-
-    /* Warm desk-lamp wash falling across the document */
-    --body-gradient:
-      radial-gradient(ellipse at 50% 110%, hsl(358 55% 45% / 0.10) 0%, transparent 55%),
-      radial-gradient(ellipse at 50% -10%, hsl(40 40% 99% / 0.9) 0%, transparent 60%),
-      linear-gradient(to bottom, hsl(42 36% 96%) 0%, hsl(38 28% 90%) 100%);
+    /* shadcn bridge */
+    --background: var(--asphalt);
+    --foreground: var(--ink);
+    --card: var(--panel);
+    --card-foreground: var(--ink);
+    --popover: var(--panel);
+    --popover-foreground: var(--ink);
+    --primary: var(--drift);
+    --primary-foreground: var(--on-drift);
+    --secondary: var(--asphalt-2);
+    --secondary-foreground: var(--ink);
+    --muted: var(--asphalt-2);
+    --muted-foreground: var(--ink-dim);
+    --accent: var(--hud);
+    --accent-foreground: var(--on-drift);
+    --destructive: var(--sign);
+    --destructive-foreground: 0 0% 100%;
+    --border: 246 12% 80%;
+    --input: 246 12% 80%;
+    --ring: var(--hud);
+    --radius: 0.125rem;
+    --sidebar-background: var(--panel);
+    --sidebar-foreground: var(--ink);
+    --sidebar-primary: var(--drift);
+    --sidebar-primary-foreground: var(--on-drift);
+    --sidebar-accent: var(--asphalt-2);
+    --sidebar-accent-foreground: var(--ink);
+    --sidebar-border: 246 12% 80%;
+    --sidebar-ring: var(--hud);
   }
 
-  /* ---------------------------------------------------------------
-     DARK MODE — TOP-SECRET CONCRETE NOIR
-     Deep concrete, bone white, urgent red under a single bare bulb.
-     --------------------------------------------------------------- */
+  /* ---------- NIGHT ---------- */
   .dark {
-    --background: 0 0% 7%;
-    --foreground: 40 18% 92%;
+    --asphalt: 246 44% 6%;
+    --asphalt-2: 246 36% 9%;
+    --panel: 246 32% 11%;
+    --ink: 250 40% 97%;
+    --ink-dim: 246 14% 68%;
+    --line: 250 40% 97%;
+    --drift: 22 100% 54%;
+    --on-drift: 246 44% 6%;
+    --hud: 184 88% 54%;
+    --sign: 336 100% 60%;
 
-    --card: 0 0% 11%;
-    --card-foreground: 40 18% 92%;
+    --sky-top: 250 60% 4%;
+    --sky-bottom: 290 50% 14%;
+    --city: 248 40% 5%;
+    --city-far: 252 34% 10%;
+    --window: 42 100% 70%;
+    --road: 246 30% 7%;
+    --glow-strength: 1;
+    --shadow: 250 60% 2%;
 
-    --popover: 0 0% 11%;
-    --popover-foreground: 40 18% 92%;
-
-    --primary: 358 79% 51%;
-    --primary-foreground: 40 22% 96%;
-
-    --secondary: 0 0% 14%;
-    --secondary-foreground: 40 18% 92%;
-
-    --muted: 0 0% 16%;
-    --muted-foreground: 38 8% 65%;
-
-    --accent: 358 79% 51%;
-    --accent-foreground: 40 22% 96%;
-
-    --destructive: 358 79% 51%;
-    --destructive-foreground: 40 22% 96%;
-
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 358 79% 51%;
-
-    --sidebar-background: 0 0% 9%;
-    --sidebar-foreground: 40 18% 92%;
-    --sidebar-primary: 358 79% 51%;
-    --sidebar-primary-foreground: 40 22% 96%;
-    --sidebar-accent: 0 0% 14%;
-    --sidebar-accent-foreground: 40 18% 92%;
-    --sidebar-border: 0 0% 20%;
-    --sidebar-ring: 358 79% 51%;
-
-    --gold-glow: 358 79% 51%;
-    --surface-hover: 0 0% 14%;
-
-    --paper: 0 0% 7%;
-    --paper-cream: 0 0% 11%;
-    --paper-beige: 0 0% 9%;
-    --paper-gray: 0 0% 14%;
-    --ink-charcoal: 40 18% 92%;
-    --ink-brown: 38 8% 65%;
-    --stamp-red: 358 79% 51%;
-    --stamp-blue: 358 70% 42%;
-
-    --accent-red: 358 79% 51%;
-    --accent-red-deep: 358 75% 38%;
-    --accent-red-bright: 0 92% 62%;
-    --accent-bone: 40 22% 94%;
-    --accent-concrete: 0 0% 11%;
-    --accent-graphite: 0 0% 18%;
-    --accent-blueprint: 195 65% 60%;
-
-    --surface-0: 0 0% 3%;
-    --surface-1: 0 0% 5%;
-    --surface-2: 0 0% 7%;
-    --surface-3: 0 0% 11%;
-    --line: 40 12% 90%;
-    --on-red: 40 22% 96%;
-
-    --shadow-1: hsl(0 0% 0% / 0.6);
-    --shadow-2: hsl(0 0% 0% / 0.82);
-    --shadow-3: hsl(0 0% 0% / 0.92);
-    --edge-hi: hsl(40 18% 96% / 0.05);
-    --edge-lo: hsl(0 0% 0% / 0.6);
-
-    --grain-blend: screen;
-    --wash-red: hsl(358 65% 30% / 0.26);
-    --watermark-red: hsl(358 79% 51% / 0.05);
-    --watermark-ink: hsl(40 18% 92% / 0.035);
-    --scanline-color: 0 0% 0% / 0.18;
-    --scanline-opacity: 0.45;
-    --photo-filter: grayscale(85%) contrast(1.1) brightness(0.85) sepia(0.05);
-    --photo-filter-strong: grayscale(55%) contrast(1.18) brightness(0.86) saturate(0.85);
-
-    --noise-body: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.95  0 0 0 0 0.90  0 0 0 0.05 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    --noise-card: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.95  0 0 0 0 0.90  0 0 0 0.04 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    --noise-folder: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.95  0 0 0 0 0.88  0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    --noise-grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.95  0 0 0 0 0.88  0 0 0 0.04 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-
-    --body-gradient:
-      radial-gradient(ellipse at 50% 110%, hsl(358 70% 22% / 0.22) 0%, transparent 55%),
-      radial-gradient(ellipse at 50% -10%, hsl(0 0% 14% / 0.85) 0%, transparent 60%),
-      linear-gradient(to bottom, hsl(0 0% 6%) 0%, hsl(0 0% 8%) 100%);
+    --border: 246 22% 20%;
+    --input: 246 22% 20%;
+    --sidebar-border: 246 22% 20%;
   }
-}
 
-@layer base {
   * { @apply border-border; }
 
   html {
-    background-color: hsl(var(--paper));
+    background-color: hsl(var(--asphalt));
     color-scheme: light;
+    scroll-behavior: smooth;
   }
   html.dark { color-scheme: dark; }
 
+  /* Keep jump targets clear of the fixed nav */
+  [data-scene] { scroll-margin-top: 4.5rem; }
+
   body {
-    @apply bg-background text-foreground font-body antialiased;
-    color: hsl(var(--ink-charcoal));
-    background-color: hsl(var(--paper));
-    /* Stock texture + the light falling across it */
-    background-image: var(--noise-body), var(--body-gradient);
+    @apply font-body antialiased;
+    color: hsl(var(--ink));
+    background-color: hsl(var(--asphalt));
+    background-image:
+      radial-gradient(60vw 40vw at 100% 0%, hsl(var(--sign) / calc(0.10 * var(--glow-strength))), transparent 70%),
+      radial-gradient(60vw 40vw at 0% 100%, hsl(var(--hud) / calc(0.08 * var(--glow-strength))), transparent 70%);
     background-attachment: fixed;
   }
 
-  h1, h2, h3, h4, h5, h6 { @apply font-heading; }
+  h1, h2, h3, h4 { @apply font-display; font-weight: 400; }
 
-  /* Ambient surveillance vignette + horizontal scanline shimmer */
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    background:
-      radial-gradient(circle at 14% 18%, hsl(358 60% 30% / 0.08) 0%, transparent 12%),
-      radial-gradient(circle at 86% 72%, hsl(358 60% 30% / 0.06) 0%, transparent 14%);
-  }
-
-  body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    background-image: repeating-linear-gradient(
-      to bottom,
-      transparent 0,
-      transparent 2px,
-      hsl(var(--scanline-color)) 3px,
-      transparent 3px,
-      transparent 4px
-    );
-    mix-blend-mode: multiply;
-    opacity: var(--scanline-opacity);
-  }
-
-  /* Selection color = classified red */
   ::selection {
-    background: hsl(var(--accent-red));
-    color: hsl(var(--on-red));
+    background: hsl(var(--drift));
+    color: hsl(var(--on-drift));
   }
 
-  /* Custom scrollbar — narrow red */
-  ::-webkit-scrollbar { width: 10px; height: 10px; }
-  ::-webkit-scrollbar-track { background: hsl(var(--surface-1)); }
-  ::-webkit-scrollbar-thumb {
-    background: hsl(var(--accent-red) / 0.65);
-    border: 2px solid hsl(var(--surface-1));
+  :focus-visible {
+    outline: 2px solid hsl(var(--hud));
+    outline-offset: 3px;
   }
-  ::-webkit-scrollbar-thumb:hover { background: hsl(var(--accent-red)); }
+
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: hsl(var(--asphalt)); }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(hsl(var(--drift)), hsl(var(--sign)));
+    border: 3px solid hsl(var(--asphalt));
+  }
 }
 
-@layer utilities {
-  /* ===== TYPOGRAPHY =====
-     Display: Bebas Neue / Anton — bold cinematic-poster condensed caps
-     Body / data: Courier Prime, JetBrains Mono — surveillance terminal
-     Handwritten: Special Elite — Professor's notebook
-  */
-  .font-typewriter { font-family: 'Special Elite', 'Courier Prime', monospace; }
-  .font-courier    { font-family: 'JetBrains Mono', 'Courier Prime', 'Cutive Mono', monospace; letter-spacing: -0.005em; }
-  .font-cutive     { font-family: 'Cutive Mono', 'Courier Prime', monospace; }
-  .font-stencil    { font-family: 'Oswald', 'Bebas Neue', sans-serif; font-weight: 600; letter-spacing: 0.08em; }
-  .font-blackops   { font-family: 'Bebas Neue', 'Anton', 'Oswald', sans-serif; font-weight: 400; letter-spacing: 0.04em; }
-  .font-display    { font-family: 'Anton', 'Bebas Neue', sans-serif; font-weight: 400; letter-spacing: -0.005em; }
+@layer components {
+  /* Full-bleed page gutter used by every section */
+  .gutter { @apply w-full px-5 sm:px-10 lg:px-16 xl:px-20; }
 
-  /* ===== COLORS =====
-     "ink" = the foreground (now bone white).
-     "stamp-red/blue" = the urgent classified red.
-     "paper-*" = dark concrete surfaces.
-  */
-  .text-ink        { color: hsl(var(--ink-charcoal)); }
-  .text-ink-brown  { color: hsl(var(--ink-brown)); }
-  .text-stamp-red  { color: hsl(var(--accent-red)); }
-  .text-stamp-blue { color: hsl(var(--accent-red-deep)); }
-  .text-classified-red  { color: hsl(var(--accent-red)); }
-  .text-classified-bright { color: hsl(var(--accent-red-bright)); }
-  .text-blueprint  { color: hsl(var(--accent-blueprint)); }
-  .text-bone       { color: hsl(var(--accent-bone)); }
-
-  .bg-paper        { background-color: hsl(var(--paper)); }
-  .bg-paper-cream  { background-color: hsl(var(--paper-cream)); }
-  .bg-paper-beige  { background-color: hsl(var(--paper-beige)); }
-  .bg-paper-gray   { background-color: hsl(var(--paper-gray)); }
-  .bg-classified-red    { background-color: hsl(var(--accent-red)); }
-  .bg-classified-red-deep { background-color: hsl(var(--accent-red-deep)); }
-  .bg-classified-bone   { background-color: hsl(var(--accent-bone)); }
-  .bg-concrete     { background-color: hsl(var(--accent-concrete)); }
-
-  .border-ink         { border-color: hsl(var(--ink-charcoal)); }
-  .border-stamp       { border-color: hsl(var(--accent-red)); }
-  .border-classified-red   { border-color: hsl(var(--accent-red)); }
-  .border-bone        { border-color: hsl(var(--accent-bone)); }
-
-  .bg-ink          { background-color: hsl(var(--ink-charcoal)); }
-  .bg-stamp-red    { background-color: hsl(var(--accent-red)); }
-
-  /* ===== CARDS / SURFACES =====
-     The dossier cards become concrete dossier slabs with a faint red
-     left-edge accent and a subtle interior grain. Every paper-card
-     hover lifts and warms with a red glow.
-  */
-  .paper-card {
-    position: relative;
-    background-color: hsl(var(--paper-cream));
-    background-image: var(--noise-card);
-    border: 1px solid hsl(var(--line) / 0.10);
-    box-shadow:
-      inset 0 1px 0 var(--edge-hi),
-      0 1px 0 var(--edge-lo),
-      0 12px 28px -16px var(--shadow-2);
+  /* ---------- TYPE ---------- */
+  .hud-label {
+    font-family: "Chakra Petch", sans-serif;
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: hsl(var(--hud));
   }
 
-  .paper-card-cream {
-    position: relative;
-    background-color: hsl(var(--paper-cream));
-    background-image: var(--noise-card);
-    border: 1px solid hsl(var(--line) / 0.10);
-    box-shadow:
-      inset 0 1px 0 var(--edge-hi),
-      inset 4px 0 0 hsl(var(--accent-red) / 0.0),
-      0 1px 0 var(--edge-lo),
-      0 16px 32px -20px var(--shadow-2);
-    transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+  .display-xl {
+    font-family: "Dela Gothic One", sans-serif;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
   }
-  .paper-card-cream::before {
+
+  /* Leaning word — the "drift" of the headline */
+  .lean {
+    display: inline-block;
+    transform: skewX(-12deg);
+    color: hsl(var(--drift));
+  }
+
+  /* Speed trail: stacked ghost copies smeared to the left */
+  .speed-trail {
+    text-shadow:
+      -0.06em 0 0 hsl(var(--sign) / calc(0.55 * var(--glow-strength))),
+      -0.12em 0 0 hsl(var(--sign) / calc(0.30 * var(--glow-strength))),
+      -0.20em 0 0 hsl(var(--hud) / calc(0.18 * var(--glow-strength))),
+      0 0 40px hsl(var(--drift) / calc(0.45 * var(--glow-strength)));
+  }
+
+  /* Neon kanji — the only place magenta lives */
+  .neon-kanji {
+    font-family: "Dela Gothic One", sans-serif;
+    color: hsl(var(--sign));
+    text-shadow:
+      0 0 4px hsl(var(--sign) / calc(0.9 * var(--glow-strength))),
+      0 0 18px hsl(var(--sign) / calc(0.7 * var(--glow-strength))),
+      0 0 42px hsl(var(--sign) / calc(0.5 * var(--glow-strength)));
+    animation: neon-flicker 7s linear infinite;
+  }
+  .vertical { writing-mode: vertical-rl; text-orientation: upright; letter-spacing: 0.08em; }
+
+  /* ---------- SURFACES ---------- */
+  /* Chamfered motorsport panel (top-right corner cut) */
+  .panel {
+    position: relative;
+    background: hsl(var(--panel));
+    border: 1px solid hsl(var(--line) / 0.10);
+    clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 0 100%);
+  }
+  .panel-hover { transition: transform 0.35s cubic-bezier(.2,.8,.2,1), border-color 0.35s; }
+  .panel-hover:hover { transform: translateY(-4px); border-color: hsl(var(--drift) / 0.6); }
+
+  /* Orange edge light that sweeps in on hover */
+  .edge-light::after {
     content: "";
     position: absolute;
-    top: 0; bottom: 0; left: 0;
-    width: 3px;
-    background: linear-gradient(180deg,
-      hsl(var(--accent-red) / 0.0) 0%,
-      hsl(var(--accent-red) / 0.55) 22%,
-      hsl(var(--accent-red) / 0.55) 78%,
-      hsl(var(--accent-red) / 0.0) 100%);
-    pointer-events: none;
-    transition: background 0.35s ease, width 0.25s ease;
+    left: 0; bottom: 0;
+    height: 2px; width: 100%;
+    background: linear-gradient(90deg, hsl(var(--drift)), hsl(var(--sign)));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.45s cubic-bezier(.2,.8,.2,1);
   }
-  .paper-card-cream:hover {
-    border-color: hsl(var(--accent-red) / 0.45);
-    box-shadow:
-      inset 0 1px 0 var(--edge-hi),
-      0 1px 0 var(--edge-lo),
-      0 0 0 1px hsl(var(--accent-red) / 0.18),
-      0 28px 50px -24px hsl(358 60% 30% / 0.30),
-      0 18px 30px -22px var(--shadow-3);
-  }
-  .paper-card-cream:hover::before {
-    background: linear-gradient(180deg,
-      hsl(var(--accent-red)) 0%,
-      hsl(var(--accent-red-bright)) 50%,
-      hsl(var(--accent-red)) 100%);
-    width: 4px;
+  .edge-light:hover::after,
+  .edge-light:focus-visible::after { transform: scaleX(1); }
+
+  /* Veilside livery stripes */
+  .livery {
+    background-image: repeating-linear-gradient(
+      -60deg,
+      hsl(var(--drift)) 0 10px,
+      transparent 10px 18px,
+      hsl(var(--sign)) 18px 22px,
+      transparent 22px 34px
+    );
   }
 
-  /* Vault folder — heavier concrete slab for the hero's subject file */
-  .paper-folder {
+  /* Japanese private-car number plate */
+  .plate {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: hsl(60 20% 96%);
+    color: hsl(150 70% 22%);
+    border: 2px solid hsl(150 70% 22%);
+    border-radius: 4px;
+    font-family: "Chakra Petch", sans-serif;
+    font-weight: 700;
+    line-height: 1;
+    box-shadow: inset 0 0 0 2px hsl(60 20% 96%), inset 0 0 0 3px hsl(150 70% 22% / 0.35);
+  }
+
+  /* ---------- BUTTONS ---------- */
+  .btn-drift,
+  .btn-ghost {
     position: relative;
-    background-color: hsl(var(--surface-3));
-    background-image: var(--noise-folder);
-    border: 1px solid hsl(var(--line) / 0.15);
-    box-shadow:
-      inset 0 1px 0 var(--edge-hi),
-      inset 0 -1px 0 var(--edge-lo),
-      0 30px 60px -28px var(--shadow-3);
-  }
-
-  /* Subtle photocopier/concrete grain overlay */
-  .paper-grain::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background-image: var(--noise-grain);
-    opacity: 0.3;
-    mix-blend-mode: var(--grain-blend);
-  }
-
-  /* ===== CLASSIFIED RUBBER STAMP =====
-     Iconic red ink stamp — slightly rotated, distressed.
-  */
-  .stamp {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Bebas Neue', 'Anton', sans-serif;
-    font-weight: 400;
-    color: hsl(var(--accent-red));
-    border: 3px double hsl(var(--accent-red));
-    padding: 0.35rem 1rem;
-    letter-spacing: 0.20em;
-    text-transform: uppercase;
-    transform: rotate(-4deg);
-    background: transparent;
-    text-shadow: 0 0 1px hsl(var(--accent-red) / 0.4);
-    position: relative;
-    box-shadow: 0 0 18px hsl(var(--accent-red) / 0.18);
-  }
-  .stamp::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image:
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.6' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.05  0 0 0 0 0.05  0 0 0 0 0.05  0 0 0 0.85 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    mix-blend-mode: multiply;
-    opacity: 0.30;
-    pointer-events: none;
-  }
-  .stamp-blue {
-    color: hsl(var(--accent-red-deep));
-    border-color: hsl(var(--accent-red-deep));
-    box-shadow: 0 0 18px hsl(var(--accent-red-deep) / 0.18);
-  }
-  .stamp-black {
-    color: hsl(var(--accent-bone));
-    border-color: hsl(var(--accent-bone));
-    box-shadow: 0 0 12px hsl(40 18% 90% / 0.08);
-  }
-  .stamp-straight { transform: rotate(0deg); }
-
-  /* Watermark — faded red CLASSIFIED poster behind sections */
-  .watermark {
-    font-family: 'Anton', 'Bebas Neue', sans-serif;
-    font-weight: 400;
-    color: var(--watermark-red);
-    letter-spacing: -0.01em;
-    text-transform: uppercase;
-    pointer-events: none;
-    user-select: none;
-    white-space: nowrap;
-    text-shadow:
-      0 0 1px var(--watermark-red),
-      0 0 24px var(--watermark-red);
-  }
-  .watermark-dark { color: var(--watermark-ink); text-shadow: none; }
-
-  /* Redacted bar — now a classified-red censor bar */
-  .redacted {
-    background-color: hsl(var(--accent-red));
-    color: hsl(var(--accent-red));
-    padding: 0 0.35em;
-    user-select: none;
-    box-shadow: 0 0 8px hsl(var(--accent-red) / 0.5);
-  }
-
-  /* ===== TAPE =====
-     Red duct tape securing dossier corners. Faintly translucent.
-  */
-  .tape {
-    position: absolute;
-    background: hsl(var(--accent-red) / 0.85);
-    border: 1px solid hsl(var(--accent-red-deep) / 0.7);
-    box-shadow:
-      0 1px 2px var(--shadow-1),
-      inset 0 1px 0 hsl(var(--accent-red-bright) / 0.3),
-      inset 0 -1px 0 hsl(var(--accent-red-deep) / 0.5);
-    background-image: repeating-linear-gradient(
-      90deg,
-      transparent 0 2px,
-      hsl(var(--accent-red-deep) / 0.18) 2px 3px
-    );
-  }
-  .tape-yellow { background: hsl(358 79% 51% / 0.85); }
-  .tape-clear  {
-    background: hsl(var(--line) / 0.08);
-    border: 1px solid hsl(var(--line) / 0.3);
-    box-shadow: 0 1px 2px var(--shadow-1);
-  }
-
-  /* Steel paperclip */
-  .paperclip {
-    position: absolute;
-    width: 14px;
-    height: 36px;
-    border: 2px solid hsl(40 8% 75%);
-    border-radius: 7px;
-    background: transparent;
-    box-shadow: 0 2px 4px var(--shadow-1);
-  }
-
-  .border-dashed-ink { border: 1.5px dashed hsl(var(--line) / 0.28); }
-  .border-dotted-ink { border: 2px dotted hsl(var(--line) / 0.25); }
-
-  /* ===== PHOTO / IMAGE TREATMENTS =====
-     Cinematic noir grade — deep contrast, slight cold cast, scanline
-     for a surveillance-camera feel.
-  */
-  .photocopy {
-    filter: var(--photo-filter);
-    mix-blend-mode: normal;
-  }
-  .photocopy-strong {
-    filter: var(--photo-filter-strong);
-    mix-blend-mode: normal;
-  }
-
-  .scanline-overlay::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background-image: repeating-linear-gradient(
-      0deg,
-      transparent 0,
-      transparent 3px,
-      hsl(var(--scanline-color)) 3px,
-      hsl(var(--scanline-color)) 4px
-    );
-    mix-blend-mode: multiply;
-  }
-
-  .halftone {
-    background-image: radial-gradient(hsl(var(--accent-red) / 0.55) 1px, transparent 1.5px);
-    background-size: 4px 4px;
-  }
-
-  .crosshatch-bg {
-    background-image:
-      repeating-linear-gradient(45deg, hsl(var(--line) / 0.05) 0 1px, transparent 1px 6px),
-      repeating-linear-gradient(-45deg, hsl(var(--accent-red) / 0.045) 0 1px, transparent 1px 8px);
-  }
-
-  /* ===== TACTICAL / BLUEPRINT GRID =====
-     The Professor's planning room reads. Subtle red+bone lattice.
-  */
-  .tactical-grid {
-    background-image:
-      linear-gradient(hsl(var(--line) / 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--line) / 0.05) 1px, transparent 1px),
-      linear-gradient(hsl(var(--accent-red) / 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--accent-red) / 0.04) 1px, transparent 1px);
-    background-size: 40px 40px, 40px 40px, 200px 200px, 200px 200px;
-  }
-
-  .blueprint-grid {
-    background-color: hsl(var(--surface-0));
-    background-image:
-      linear-gradient(hsl(var(--accent-blueprint) / 0.12) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--accent-blueprint) / 0.12) 1px, transparent 1px),
-      linear-gradient(hsl(var(--accent-blueprint) / 0.06) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--accent-blueprint) / 0.06) 1px, transparent 1px);
-    background-size: 80px 80px, 80px 80px, 16px 16px, 16px 16px;
-  }
-
-  /* ===== RED THREAD =====
-     Connecting clues on the Professor's board.
-  */
-  .red-thread {
-    position: relative;
-  }
-  .red-thread::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: -28px;
-    width: 1px;
-    height: 28px;
-    background: linear-gradient(to bottom,
-      hsl(var(--accent-red) / 0.0),
-      hsl(var(--accent-red) / 0.6));
-    box-shadow: 0 0 6px hsl(var(--accent-red) / 0.45);
-  }
-
-  /* ===== DOSSIER NUM =====
-     Mission code text styling.
-  */
-  .dossier-num {
-    font-family: 'JetBrains Mono', monospace;
+    gap: 0.6rem;
+    padding: 0.9rem 1.6rem;
+    font-family: "Chakra Petch", sans-serif;
     font-weight: 700;
-    color: hsl(var(--ink-brown));
-    letter-spacing: 0.15em;
-    font-size: 0.75rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transform: skewX(-12deg);
+    transition: transform 0.25s cubic-bezier(.2,.8,.2,1), background 0.25s, color 0.25s, box-shadow 0.25s;
   }
-
-  /* ===== STICKY NOTES — Professor's handwritten warnings ===== */
-  .sticky-note {
-    background: hsl(var(--accent-red));
-    color: hsl(var(--on-red));
+  .btn-drift > *, .btn-ghost > * { transform: skewX(12deg); }
+  .btn-drift {
+    background: hsl(var(--drift));
+    color: hsl(var(--on-drift));
+    box-shadow: 0 10px 30px -10px hsl(var(--drift) / calc(0.8 * var(--glow-strength)));
+  }
+  .btn-drift:hover {
+    transform: skewX(-12deg) translateX(4px);
     box-shadow:
-      0 1px 0 var(--shadow-1),
-      0 12px 22px -10px var(--shadow-2),
-      inset 0 1px 0 hsl(var(--accent-red-bright) / 0.35);
-    font-family: 'Special Elite', cursive;
-    padding: 0.75rem 1rem;
-    position: relative;
-    border: 1px solid hsl(var(--accent-red-deep));
+      -8px 0 0 hsl(var(--sign) / 0.9),
+      0 14px 40px -10px hsl(var(--drift) / var(--glow-strength));
   }
-  .sticky-pink, .sticky-blue { background: hsl(var(--accent-red-deep)); }
-
-  .handwritten {
-    font-family: 'Special Elite', cursive;
-    color: hsl(var(--ink-charcoal));
-    transform: rotate(-1.5deg);
-    display: inline-block;
+  .btn-ghost {
+    color: hsl(var(--ink));
+    box-shadow: inset 0 0 0 1.5px hsl(var(--line) / 0.35);
   }
-  .handwritten-red {
-    font-family: 'Special Elite', cursive;
-    color: hsl(var(--on-red));
-    text-shadow: 0 0 6px hsl(var(--accent-red) / 0.6);
+  .btn-ghost:hover {
+    color: hsl(var(--hud));
+    box-shadow: inset 0 0 0 1.5px hsl(var(--hud));
+    transform: skewX(-12deg) translateX(4px);
   }
 
-  /* ===== STATUS PULSE — red live indicator ===== */
-  .status-pulse::before {
-    content: "";
-    display: inline-block;
-    width: 0.6em;
-    height: 0.6em;
-    margin-right: 0.5em;
-    background: hsl(var(--accent-red));
-    border-radius: 50%;
-    box-shadow:
-      0 0 0 0 hsl(var(--accent-red) / 0.9),
-      0 0 8px hsl(var(--accent-red) / 0.6);
-    animation: pulse-classified 1.6s ease-in-out infinite;
-    vertical-align: middle;
+  /* Small square icon button used by nav + floating controls */
+  .icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 2.5rem;
+    min-width: 2.5rem;
+    padding: 0 0.7rem;
+    color: hsl(var(--ink));
+    background: hsl(var(--panel) / 0.8);
+    border: 1px solid hsl(var(--line) / 0.15);
+    backdrop-filter: blur(10px);
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .icon-btn:hover { color: hsl(var(--hud)); border-color: hsl(var(--hud)); }
+
+  /* ---------- CHIPS ---------- */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.4rem 0.75rem;
+    font-family: "Chakra Petch", sans-serif;
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: hsl(var(--ink));
+    border: 1px solid hsl(var(--line) / 0.15);
+    background: hsl(var(--panel) / 0.6);
+  }
+}
+
+@layer utilities {
+  /* ---------- SCENES ---------- */
+  .scanlines {
+    background-image: repeating-linear-gradient(0deg, hsl(var(--shadow) / 0.18) 0 1px, transparent 1px 3px);
   }
 
-  /* ===== ANIMATIONS ===== */
-  @keyframes typewriter { from { width: 0; } to { width: 100%; } }
-  @keyframes blink-caret { 50% { border-color: transparent; } }
-  .typewriter-text {
-    display: inline-block;
-    overflow: hidden;
-    white-space: nowrap;
-    border-right: 2px solid hsl(var(--accent-red));
-    animation: typewriter 2.6s steps(40, end) 0.3s 1 both, blink-caret 0.85s step-end infinite;
+  .grid-floor {
+    background-image:
+      linear-gradient(hsl(var(--hud) / 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--hud) / 0.08) 1px, transparent 1px);
+    background-size: 56px 56px;
   }
 
-  @keyframes stamp-impact {
-    0%   { opacity: 0; transform: rotate(-18deg) scale(2.4); filter: blur(2px); }
-    30%  { opacity: 1; filter: blur(0); }
-    60%  { transform: rotate(-4deg) scale(1.05); }
-    100% { transform: rotate(-4deg) scale(1); opacity: 1; }
+  /* Perspective road with rushing lane lines */
+  .road-plane {
+    background:
+      linear-gradient(90deg, transparent 49.2%, hsl(var(--drift) / 0.9) 49.2%, hsl(var(--drift) / 0.9) 50.8%, transparent 50.8%) 0 0 / 100% 120px,
+      linear-gradient(90deg, hsl(var(--hud) / 0.5) 0 2px, transparent 2px calc(100% - 2px), hsl(var(--hud) / 0.5) calc(100% - 2px)),
+      linear-gradient(hsl(var(--hud) / 0.12) 1px, transparent 1px) 0 0 / 100% 60px,
+      hsl(var(--road));
+    -webkit-mask-image: linear-gradient(to top, #000 30%, transparent 100%);
+    mask-image: linear-gradient(to top, #000 30%, transparent 100%);
+    animation: road-rush 0.9s linear infinite;
   }
-  .animate-stamp { animation: stamp-impact 0.9s cubic-bezier(.2,.7,.2,1) 0.4s both; }
-  .animate-stamp-blue { animation: stamp-impact 0.9s cubic-bezier(.2,.7,.2,1) 0.7s both; }
+  .road-dashes {
+    background: repeating-linear-gradient(to bottom, hsl(var(--drift)) 0 60px, transparent 60px 120px);
+  }
 
-  @keyframes scanner-flicker {
-    0%, 100% { opacity: 0.08; }
-    45% { opacity: 0.22; } 50% { opacity: 0.05; } 55% { opacity: 0.24; }
-  }
-  .scanner-flicker { animation: scanner-flicker 3.4s ease-in-out infinite; }
+  .animate-marquee-left { animation: marquee-left 70s linear infinite; }
+  .animate-marquee-right { animation: marquee-right 70s linear infinite; }
+  .marquee-container:hover .animate-marquee-left,
+  .marquee-container:hover .animate-marquee-right,
+  .marquee-container:focus-within .animate-marquee-left,
+  .marquee-container:focus-within .animate-marquee-right { animation-play-state: paused; }
 
-  @keyframes pulse-classified {
-    0%, 100% {
-      opacity: 1;
-      box-shadow: 0 0 0 0 hsl(var(--accent-red) / 0.6), 0 0 10px hsl(var(--accent-red) / 0.7);
-    }
-    70% {
-      opacity: 0.85;
-      box-shadow: 0 0 0 8px hsl(var(--accent-red) / 0), 0 0 6px hsl(var(--accent-red) / 0.5);
-    }
-  }
-  .animate-pulse-classified { animation: pulse-classified 1.4s ease-in-out infinite; }
+  .animate-blink { animation: blink 1.1s steps(2, start) infinite; }
 
   /* Controls briefing — while ControlsNotice is open, the real theme and
      music buttons pulse so the visitor can spot them. */
   html.controls-hint [data-control-hint] {
-    animation: pulse-classified 1.4s ease-in-out infinite;
+    animation: hint-pulse 1.4s ease-in-out infinite;
   }
-  @media (prefers-reduced-motion: reduce) {
-    html.controls-hint [data-control-hint] {
-      animation: none;
-      box-shadow: 0 0 0 2px hsl(var(--accent-red));
-    }
-  }
+}
 
-  @keyframes scan-down {
-    0% { transform: translateY(-100%); } 100% { transform: translateY(120%); }
-  }
-  .scan-bar {
-    position: absolute; left: 0; right: 0; height: 36px; pointer-events: none;
-    background: linear-gradient(to bottom,
-      hsl(var(--accent-red) / 0) 0%,
-      hsl(var(--accent-red) / 0.18) 50%,
-      hsl(var(--accent-red) / 0) 100%);
-    mix-blend-mode: screen;
-    animation: scan-down 5s ease-in-out infinite;
-    filter: blur(2px);
-  }
+@keyframes neon-flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: 0.45; }
+}
+@keyframes road-rush {
+  from { background-position: 0 0, 0 0, 0 0, 0 0; }
+  to   { background-position: 0 120px, 0 0, 0 60px, 0 0; }
+}
+@keyframes marquee-left { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes marquee-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+@keyframes blink { to { visibility: hidden; } }
+@keyframes sheen { 0%, 100% { background-position: 100% 0; } 50% { background-position: 0% 0; } }
+@keyframes eq { from { transform: scaleY(0.25); } to { transform: scaleY(1); } }
+@keyframes hint-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 hsl(var(--hud) / 0.7); }
+  70% { box-shadow: 0 0 0 10px hsl(var(--hud) / 0); }
+}
 
-  @keyframes paper-rise {
-    from { opacity: 0; transform: translateY(20px) rotate(var(--rot, 0deg)); }
-    to   { opacity: 1; transform: translateY(0) rotate(var(--rot, 0deg)); }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
   }
-  .paper-rise { animation: paper-rise 0.8s ease-out both; }
-
-  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-  .animate-float { animation: float 6s ease-in-out infinite; }
-
-  @keyframes pulse-gold { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
-  .animate-pulse-gold { animation: pulse-gold 3s ease-in-out infinite; }
-
-  .text-gradient-gold {
-    background: linear-gradient(180deg, hsl(var(--accent-red-bright)) 0%, hsl(var(--accent-red)) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-  .border-gradient-gold { border-color: hsl(var(--accent-red)); }
-  .glow-gold {
-    box-shadow:
-      0 0 0 1px hsl(var(--accent-red) / 0.4),
-      0 8px 22px -8px hsl(var(--accent-red) / 0.45),
-      0 16px 32px -16px var(--shadow-2);
-  }
-  .glow-red {
-    box-shadow:
-      0 0 0 1px hsl(var(--accent-red) / 0.4),
-      0 0 22px hsl(var(--accent-red) / 0.4),
-      0 16px 32px -16px var(--shadow-2);
-  }
-  .glass-card {
-    position: relative;
-    background-color: hsl(var(--paper-cream) / 0.85);
-    backdrop-filter: blur(8px);
-    border: 1px solid hsl(var(--line) / 0.10);
-    box-shadow:
-      inset 0 1px 0 var(--edge-hi),
-      0 16px 32px -18px var(--shadow-2);
-  }
-  .grid-pattern {
-    background-image:
-      linear-gradient(hsl(var(--line) / 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--line) / 0.05) 1px, transparent 1px);
-    background-size: 50px 50px;
-  }
-
-  @keyframes marquee-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-  @keyframes marquee-right { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
-  .animate-marquee-left  { animation: marquee-left 120s linear infinite; }
-  .animate-marquee-right { animation: marquee-right 120s linear infinite; }
-
-  .marquee-container:hover .animate-marquee-left,
-  .marquee-container:hover .animate-marquee-right {
-    animation-play-state: paused;
-  }
-
-  .animate-ticker { animation: marquee-left 45s linear infinite; }
-
-  /* Classified warning stripes (red+black) */
-  .diag-stripes {
-    background-image: repeating-linear-gradient(
-      45deg,
-      hsl(var(--accent-red)) 0 14px,
-      hsl(var(--surface-0)) 14px 28px
-    );
-    box-shadow: inset 0 -1px 0 var(--edge-lo), inset 0 1px 0 var(--edge-lo);
-  }
-  .diag-stripes-red {
-    background-image: repeating-linear-gradient(
-      45deg,
-      hsl(var(--accent-red-bright)) 0 10px,
-      hsl(var(--surface-1)) 10px 20px
-    );
-  }
-
-  /* Bone-colored barcode (legible on dark surfaces) */
-  .barcode {
-    background-image: repeating-linear-gradient(
-      90deg,
-      hsl(var(--accent-bone)) 0 1px, transparent 1px 3px,
-      hsl(var(--accent-bone)) 3px 5px, transparent 5px 6px,
-      hsl(var(--accent-bone)) 6px 8px, transparent 8px 11px,
-      hsl(var(--accent-bone)) 11px 12px, transparent 12px 15px,
-      hsl(var(--accent-bone)) 15px 17px, transparent 17px 20px
-    );
-  }
-
-  /* ===== CLASSIFIED-SPECIFIC NEW UTILITIES ===== */
-
-  /* Surveillance corner brackets — anchor critical content */
-  .surveillance-frame {
-    position: relative;
-  }
-  .surveillance-frame::before,
-  .surveillance-frame::after,
-  .surveillance-frame > .sv-tl,
-  .surveillance-frame > .sv-tr {
-    content: "";
-    position: absolute;
-    width: 22px;
-    height: 22px;
-    border: 2px solid hsl(var(--accent-red));
-    pointer-events: none;
-  }
-  .surveillance-frame::before { top: -2px; left: -2px; border-right: 0; border-bottom: 0; }
-  .surveillance-frame::after  { bottom: -2px; right: -2px; border-left: 0; border-top: 0; }
-
-  /* Vault rivet — small steel circle marker */
-  .rivet {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, hsl(40 8% 80%) 0%, hsl(40 6% 50%) 60%, hsl(40 6% 30%) 100%);
-    box-shadow: inset 0 -1px 1px var(--shadow-1), 0 1px 1px var(--shadow-1);
-    display: inline-block;
-  }
-
-  /* Cash-money pattern overlay */
-  .money-pattern {
-    background-image:
-      repeating-linear-gradient(
-        90deg,
-        hsl(var(--accent-red) / 0.04) 0 1px,
-        transparent 1px 8px
-      ),
-      repeating-linear-gradient(
-        0deg,
-        hsl(var(--accent-red) / 0.04) 0 1px,
-        transparent 1px 8px
-      );
-  }
-
-  /* Glitch text shake — used sparingly */
-  @keyframes glitch-shake {
-    0%, 100% { transform: translate(0); }
-    20% { transform: translate(-1px, 1px); }
-    40% { transform: translate(-1px, -1px); }
-    60% { transform: translate(1px, 1px); }
-    80% { transform: translate(1px, -1px); }
-  }
-  .glitch:hover { animation: glitch-shake 0.25s linear; }
-
-  /* Classified CTA — primary button (red urgent) */
-  .dossier-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    background: hsl(var(--accent-red));
-    color: hsl(var(--on-red));
-    font-family: 'Bebas Neue', sans-serif;
-    letter-spacing: 0.18em;
-    padding: 0.85rem 1.25rem;
-    border: 1px solid hsl(var(--accent-red-deep));
-    box-shadow:
-      inset 0 1px 0 hsl(var(--accent-red-bright) / 0.45),
-      inset 0 -1px 0 var(--shadow-1),
-      0 0 22px hsl(var(--accent-red) / 0.45),
-      0 16px 28px -14px var(--shadow-2);
-    transition: all 0.2s ease;
-    text-transform: uppercase;
-    position: relative;
-    overflow: hidden;
-  }
-  .dossier-cta:hover {
-    background: hsl(var(--accent-red-bright));
-    box-shadow:
-      inset 0 1px 0 hsl(var(--accent-red-bright) / 0.7),
-      inset 0 -1px 0 var(--shadow-1),
-      0 0 32px hsl(var(--accent-red) / 0.7),
-      0 18px 36px -14px var(--shadow-3);
-    transform: translateY(-1px);
-  }
-
-  /* Ghost CTA — outlined secondary */
-  .dossier-cta-ghost {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    background: transparent;
-    color: hsl(var(--ink-charcoal));
-    font-family: 'Bebas Neue', sans-serif;
-    letter-spacing: 0.18em;
-    padding: 0.85rem 1.25rem;
-    border: 1px solid hsl(var(--line) / 0.25);
-    text-transform: uppercase;
-    transition: all 0.2s ease;
-  }
-  .dossier-cta-ghost:hover {
-    border-color: hsl(var(--accent-red));
-    color: hsl(var(--accent-red));
-    box-shadow: 0 0 18px hsl(var(--accent-red) / 0.25);
-  }
-
-  /* Section header eyebrow with red bracket icon */
-  .section-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.32em;
-    text-transform: uppercase;
-    color: hsl(var(--ink-brown));
-  }
-  .section-eyebrow::before {
-    content: "[";
-    color: hsl(var(--accent-red));
-    font-weight: 700;
-  }
-  .section-eyebrow::after {
-    content: "]";
-    color: hsl(var(--accent-red));
-    font-weight: 700;
-  }
-
-  /* Display heading — Anton-driven cinematic title with subtle gradient */
-  .display-title {
-    font-family: 'Anton', 'Bebas Neue', sans-serif;
-    font-weight: 400;
-    letter-spacing: -0.01em;
-    line-height: 0.86;
-    color: hsl(var(--accent-bone));
-    text-shadow:
-      0 1px 0 var(--shadow-1),
-      0 8px 32px var(--shadow-1);
-  }
-  .display-title .accent {
-    color: hsl(var(--accent-red));
-    text-shadow: 0 0 30px hsl(var(--accent-red) / 0.45);
-  }
-  .display-title .stroke {
-    color: transparent;
-    -webkit-text-stroke: 1.5px hsl(var(--accent-bone));
-  }
-
-  /* Map pin / red dot marker */
-  .red-pin {
-    position: relative;
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 35% 30%, hsl(var(--accent-red-bright)) 0%, hsl(var(--accent-red)) 60%, hsl(var(--accent-red-deep)) 100%);
-    box-shadow: 0 0 0 2px var(--shadow-1), 0 0 12px hsl(var(--accent-red) / 0.6);
+  html.controls-hint [data-control-hint] {
+    box-shadow: 0 0 0 2px hsl(var(--hud));
   }
 }

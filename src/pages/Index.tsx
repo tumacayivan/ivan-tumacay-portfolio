@@ -1,6 +1,9 @@
 import Navbar from "@/components/Navbar";
 import BackgroundMusic from "@/components/BackgroundMusic";
 import ControlsNotice from "@/components/ControlsNotice";
+import IntroSequence from "@/components/drift/IntroSequence";
+import SceneCut from "@/components/drift/SceneCut";
+import DriftHUD from "@/components/drift/DriftHUD";
 import HeroSection from "@/components/HeroSection";
 import SubjectProfileSection from "@/components/SubjectProfileSection";
 import SkillsMarquee from "@/components/SkillsMarquee";
@@ -15,22 +18,25 @@ import FooterSection from "@/components/FooterSection";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="relative min-h-screen overflow-x-clip">
+      <IntroSequence />
+      <SceneCut />
       <BackgroundMusic />
       <ControlsNotice />
+      <DriftHUD />
       <Navbar />
-      <HeroSection />
-      <SubjectProfileSection />
-      <SkillsMarquee />
-      <TradingBotsSection />
-      <PortfolioSection />
-      <ServicesSection />
-      <EducationSection />
-      <ExperienceSection />
-      <SoftwarePortfolioSection />
-      <div id="why">
+      <main>
+        <HeroSection />
+        <SubjectProfileSection />
+        <SkillsMarquee />
+        <TradingBotsSection />
+        <PortfolioSection />
+        <ServicesSection />
+        <EducationSection />
+        <ExperienceSection />
+        <SoftwarePortfolioSection />
         <WhySection />
-      </div>
+      </main>
       <FooterSection />
     </div>
   );

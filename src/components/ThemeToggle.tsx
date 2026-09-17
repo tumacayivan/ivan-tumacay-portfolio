@@ -2,27 +2,34 @@ import { Moon, Sun } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 
 /**
- * LIGHT is the default: the dossier read on the desk.
- * DARK is the same file read in the vault.
+ * NIGHT is the default: the car park at 2am.
+ * DAY is the same garage with the shutters up.
  *
  * The initial class is applied by the boot script in index.html so the
- * page never flashes the wrong theme; we just read back what it decided.
+ * page never flashes the wrong theme; every toggle instance stays in sync
+ * by watching the <html> class instead of keeping its own copy.
  */
 const ThemeToggle = ({ className = "" }: { className?: string }) => {
-  const [dark, setDark] = useState(
-    () => typeof document !== "undefined" && document.documentElement.classList.contains("dark"),
+  const [night, setNight] = useState(
+    () => typeof document === "undefined" || document.documentElement.classList.contains("dark"),
   );
 
   useEffect(() => {
-    document.documentElement.classList.toggle("dark", dark);
+    const root = document.documentElement;
+    const observer = new MutationObserver(() => setNight(root.classList.contains("dark")));
+    observer.observe(root, { attributes: true, attributeFilter: ["class"] });
+    return () => observer.disconnect();
+  }, []);
+
+  const toggle = useCallback(() => {
+    const next = !document.documentElement.classList.contains("dark");
+    document.documentElement.classList.toggle("dark", next);
     try {
-      localStorage.setItem("theme", dark ? "dark" : "light");
+      localStorage.setItem("drift-theme", next ? "dark" : "light");
     } catch {
       /* private mode — theme just won't persist */
     }
-  }, [dark]);
-
-  const toggle = useCallback(() => setDark((d) => !d), []);
+  }, []);
 
   return (
     <button
@@ -30,14 +37,14 @@ const ThemeToggle = ({ className = "" }: { className?: string }) => {
       onClick={toggle}
       role="switch"
       data-control-hint
-      aria-checked={dark}
-      aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
-      title={dark ? "VAULT LIGHTING — ON" : "VAULT LIGHTING — OFF"}
-      className={`group relative inline-flex items-center gap-2 border border-[hsl(var(--accent-red)/0.55)] bg-[hsl(var(--surface-1))] px-2.5 py-2 text-[hsl(var(--ink-charcoal))] transition-colors hover:border-[hsl(var(--accent-red))] hover:text-[hsl(var(--accent-red))] ${className}`}
+      aria-checked={!night}
+      aria-label={night ? "Switch to day mode" : "Switch to night mode"}
+      title={night ? "Day mode" : "Night mode"}
+      className={`icon-btn ${className}`}
     >
-      {dark ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />}
-      <span className="hidden lg:inline font-courier text-[10px] tracking-[0.28em] uppercase leading-none">
-        {dark ? "Lights on" : "Lights out"}
+      {night ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+      <span className="hidden xl:inline font-hud text-[11px] font-semibold tracking-[0.18em] uppercase">
+        {night ? "Day" : "Night"}
       </span>
     </button>
   );

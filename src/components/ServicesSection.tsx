@@ -1,12 +1,22 @@
-import { motion } from "framer-motion";
-import ServiceCard from "./ServiceCard";
+import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
 import {
   Mail, Headphones, Share2, Palette, Video, FileText,
   Target, ShoppingCart, Megaphone, Building2, Calculator,
-  Wrench, BarChart3, ClipboardList, GraduationCap,
+  Wrench, BarChart3, ClipboardList, GraduationCap, Check, ArrowUpRight,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import SectionHeading from "./drift/SectionHeading";
 
-const services = [
+interface Service {
+  title: string;
+  description: string;
+  icon: LucideIcon;
+  services: string[];
+  tools?: string;
+}
+
+const services: Service[] = [
   { title: "Administrative Virtual Assistant", description: "Professional support for daily business operations and administrative workflows.", icon: Mail, services: ["Email and inbox management", "Calendar management and scheduling", "Meeting coordination", "Data entry and database updates", "File organization and document management", "Online research and data gathering", "Travel planning and booking", "Document preparation and formatting", "CRM data updates", "Spreadsheet organization and reporting"] },
   { title: "Customer Support Virtual Assistant", description: "Helping businesses maintain excellent customer relationships and support systems.", icon: Headphones, services: ["Email customer support", "Live chat support", "Helpdesk and ticketing system management", "Order tracking and follow ups", "Refund and issue resolution", "Customer onboarding support", "Customer feedback monitoring", "FAQ management"], tools: "Zendesk, Freshdesk, Intercom, HubSpot" },
   { title: "Social Media Management", description: "Managing and growing social media presence across multiple platforms.", icon: Share2, services: ["Social media content scheduling", "Comment moderation", "Direct message responses", "Social media strategy assistance", "Hashtag research", "Social media analytics tracking", "Engagement monitoring", "Community management"], tools: "Facebook, Instagram, LinkedIn, TikTok, Twitter/X, YouTube" },
@@ -24,64 +34,130 @@ const services = [
   { title: "Executive & Personal Assistant", description: "High-level support for executives, entrepreneurs, and busy professionals.", icon: GraduationCap, services: ["Executive calendar management", "Priority inbox management", "Confidential document handling", "Personal errand coordination", "Event planning and logistics", "Travel itinerary management", "Client relationship support"] },
 ];
 
-const ServicesSection = () => {
-  return (
-    <section id="services" className="relative py-20 sm:py-28 bg-[hsl(var(--paper))] border-y border-[hsl(var(--accent-red)/0.25)] overflow-hidden">
-      <div className="absolute inset-0 tactical-grid opacity-[0.5] pointer-events-none" />
-      <div className="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden">
-        <div className="watermark text-[22vw] leading-none rotate-[-4deg]">
-          OPERATIONS
-        </div>
-      </div>
+const Detail = ({ service }: { service: Service }) => (
+  <motion.div
+    key={service.title}
+    initial={{ opacity: 0, x: 40, skewX: -4 }}
+    animate={{ opacity: 1, x: 0, skewX: 0 }}
+    exit={{ opacity: 0, x: -40 }}
+    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+  >
+    <service.icon className="w-10 h-10 text-drift mb-6" />
+    <h3 className="font-display text-3xl sm:text-4xl uppercase text-ink leading-[1.05] mb-3">{service.title}</h3>
+    <p className="text-lg text-ink-dim leading-relaxed mb-8">{service.description}</p>
 
-      <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-20 relative">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-12 relative"
+    <div className="hud-label mb-4">What's included</div>
+    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 mb-8">
+      {service.services.map((item, i) => (
+        <motion.li
+          key={item}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 + i * 0.03 }}
+          className="flex items-start gap-2.5 text-ink"
         >
-          <div className="flex items-center justify-between mb-4 pb-3 border-b border-[hsl(var(--accent-red)/0.4)]">
-            <div className="section-eyebrow">
-              <span className="status-pulse" />
-              SECTION 03 // TACTICAL OPERATIONS BOARD
-            </div>
-            <span className="font-courier text-[12px] text-[hsl(var(--accent-red))] tracking-[0.3em] hidden sm:inline">
-              {services.length} CAPABILITIES LOGGED
-            </span>
-          </div>
+          <Check className="w-4 h-4 mt-1 shrink-0 text-hud" />
+          <span>{item}</span>
+        </motion.li>
+      ))}
+    </ul>
 
-          <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-6 items-end">
-            <div>
-              <p className="font-courier text-[12px] tracking-[0.4em] text-[hsl(var(--accent-red))] mb-3 uppercase">
-                Expertise · Operational Capabilities
-              </p>
-              <h2 className="display-title text-6xl sm:text-8xl md:text-9xl uppercase">
-                WHAT I <span className="accent">OFFER</span>
-              </h2>
-            </div>
-            <div className="paper-card-cream p-5 relative">
-              <div className="absolute -top-3 left-4 stamp stamp-black !text-[12px] !p-1 !rotate-0 bg-[hsl(var(--paper))]">FIELD BRIEFING</div>
-              <p className="font-typewriter text-lg sm:text-xl text-[hsl(var(--ink-charcoal))] leading-relaxed mt-2">
-                Comprehensive{" "}
-                <span className="font-bold text-[hsl(var(--accent-bone))] underline decoration-[hsl(var(--accent-red))] underline-offset-4">virtual assistant</span>,{" "}
-                <span className="font-bold text-[hsl(var(--accent-bone))] underline decoration-[hsl(var(--accent-red))] underline-offset-4">digital operations</span>, and{" "}
-                <span className="font-bold text-[hsl(var(--accent-bone))] underline decoration-[hsl(var(--accent-red))] underline-offset-4">software engineering</span> services designed to help your business scale.
-              </p>
-            </div>
-          </div>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {services.map((service, i) => (
-            <ServiceCard key={service.title} {...service} index={i} />
+    {service.tools && (
+      <>
+        <div className="hud-label mb-3">Tools</div>
+        <div className="flex flex-wrap gap-2 mb-8">
+          {service.tools.split(",").map((t) => (
+            <span key={t} className="chip">{t.trim()}</span>
           ))}
         </div>
+      </>
+    )}
 
-        <div className="mt-10 flex flex-wrap items-center justify-between gap-3 font-courier text-[11px] text-[hsl(var(--ink-brown))] tracking-[0.3em] border-t border-[hsl(var(--accent-red)/0.3)] pt-3 uppercase">
-          <span><span className="text-[hsl(var(--accent-red))]">◉</span> BOARD UPDATED · ALL ASSETS VERIFIED</span>
-          <span>OPERATIONS DIRECTORATE / IT</span>
+    <a href="#contact" className="btn-drift">
+      <span className="flex items-center gap-2">
+        Book this service <ArrowUpRight className="w-4 h-4" />
+      </span>
+    </a>
+  </motion.div>
+);
+
+const ServicesSection = () => {
+  const [active, setActive] = useState(0);
+
+  return (
+    <section id="services" data-scene="Services" data-kanji="サービス" className="relative py-24 sm:py-32 bg-asphalt-2 overflow-hidden">
+      <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-drift to-transparent" />
+      <div className="gutter relative">
+        <SectionHeading kanji="サービス" kicker="Pit menu" title="What I" accent="offer" meta={`${services.length} services`}>
+          Virtual assistant, digital operations and software engineering services to take work off your plate
+          and help your business scale. Pick one to see exactly what's included.
+        </SectionHeading>
+
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-8 lg:gap-14 items-start">
+          <ul className="border-t border-line/10" role="tablist" aria-label="Services" aria-orientation="vertical">
+            {services.map((s, i) => {
+              const isActive = i === active;
+              return (
+                <li key={s.title} className="border-b border-line/10">
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected={isActive}
+                    onClick={() => setActive(i)}
+                    className={`group relative w-full flex items-center gap-4 py-4 sm:py-5 text-left transition-colors ${
+                      isActive ? "text-drift" : "text-ink/75 hover:text-ink"
+                    }`}
+                  >
+                    <motion.span
+                      aria-hidden
+                      className="absolute left-0 top-2 bottom-2 w-[3px] bg-drift origin-top"
+                      initial={false}
+                      animate={{ scaleY: isActive ? 1 : 0 }}
+                    />
+                    <motion.span
+                      className="flex items-center gap-4 min-w-0"
+                      animate={{ x: isActive ? 18 : 0 }}
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    >
+                      <s.icon className={`w-5 h-5 shrink-0 ${isActive ? "text-drift" : "text-hud"}`} />
+                      <span className="font-hud text-base sm:text-lg font-bold uppercase tracking-[0.04em] leading-tight">
+                        {s.title}
+                      </span>
+                    </motion.span>
+                    <span className={`ml-auto font-hud text-xs tabular-nums ${isActive ? "text-drift" : "text-ink-dim"}`}>
+                      {s.services.length}
+                    </span>
+                  </button>
+
+                  {/* Mobile: details open under the chosen service */}
+                  <AnimatePresence initial={false}>
+                    {isActive && (
+                      <motion.div
+                        className="lg:hidden overflow-hidden"
+                        initial={{ height: 0 }}
+                        animate={{ height: "auto" }}
+                        exit={{ height: 0 }}
+                        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                      >
+                        <div className="pb-8 pt-2">
+                          <Detail service={s} />
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </li>
+              );
+            })}
+          </ul>
+
+          <div className="hidden lg:block sticky top-28">
+            <div className="panel p-8 xl:p-10 min-h-[560px] overflow-hidden">
+              <div aria-hidden className="absolute right-6 top-6 neon-kanji vertical text-2xl opacity-80">整備</div>
+              <AnimatePresence mode="wait">
+                <Detail key={active} service={services[active]} />
+              </AnimatePresence>
+            </div>
+          </div>
         </div>
       </div>
     </section>

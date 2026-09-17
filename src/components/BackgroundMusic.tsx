@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Volume2, VolumeX } from "lucide-react";
-import soundtrack3 from "@/assets/soundtrack3.mp3";
+import soundtrack from "@/assets/six-days.mp3";
 
 /**
  * BackgroundMusic
@@ -28,7 +28,7 @@ const BackgroundMusic = () => {
   useEffect(() => {
     // Create the audio element programmatically so it lives outside the
     // render tree and is not affected by re-renders.
-    const audio = new Audio(soundtrack3);
+    const audio = new Audio(soundtrack);
     audio.loop = true;
     audio.preload = "auto";
     audio.volume = 0.5; // moderate background volume
@@ -132,15 +132,25 @@ const BackgroundMusic = () => {
     <button
       onClick={toggle}
       data-control-hint
-      aria-label={showAsOn ? "Pause background music" : "Play background music"}
-      title={showAsOn ? "Pause music" : "Play music"}
-      className="fixed bottom-4 right-4 z-50 p-2.5 border border-[hsl(var(--accent-red))] bg-[hsl(var(--surface-1))] text-[hsl(var(--accent-red))] hover:bg-[hsl(var(--accent-red))] hover:text-[hsl(var(--on-red))] transition-colors glow-red"
+      aria-label={showAsOn ? "Mute music" : "Play music"}
+      title={showAsOn ? "Mute music" : "Play music"}
+      className="icon-btn fixed bottom-5 right-5 z-50 !h-11 !px-3.5"
     >
-      {showAsOn ? (
-        <Volume2 className="w-4 h-4" />
-      ) : (
-        <VolumeX className="w-4 h-4" />
-      )}
+      {showAsOn ? <Volume2 className="w-4 h-4 text-hud" /> : <VolumeX className="w-4 h-4" />}
+      {/* Equaliser: bounces while the track is audible, flat when muted */}
+      <span aria-hidden className="flex items-end gap-[3px] h-4">
+        {[0.9, 0.5, 1, 0.7].map((h, i) => (
+          <span
+            key={i}
+            className="w-[3px] bg-drift origin-bottom"
+            style={{
+              height: `${h * 100}%`,
+              transform: showAsOn ? undefined : "scaleY(0.2)",
+              animation: showAsOn ? `eq 0.${6 + i}s ease-in-out ${i * 0.1}s infinite alternate` : "none",
+            }}
+          />
+        ))}
+      </span>
     </button>
   );
 };
