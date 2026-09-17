@@ -89,11 +89,20 @@ const HeroSection = () => {
             <span className="hud-label !text-ink-dim">Cavite, PH · UTC+8 · Remote worldwide</span>
           </motion.div>
 
-          <h1 className="display-xl text-[16vw] sm:text-[12.5vw] lg:text-[7.4vw] xl:text-[7vw] text-ink">
+          <h1 className="relative display-xl text-[16vw] sm:text-[12.5vw] lg:text-[7.4vw] xl:text-[7vw] text-ink">
             <MaskLine play={ready} delay={0.15}>Ivan</MaskLine>
             <MaskLine play={ready} delay={0.3} className="pl-[0.35em] -ml-[0.35em]">
               <span className="lean speed-trail">Tumacay</span>
             </MaskLine>
+            {/* A car goes past: headlights rake across the name */}
+            <motion.span
+              aria-hidden
+              className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 mix-blend-overlay"
+              style={{ background: "linear-gradient(105deg, transparent, hsl(0 0% 100% / 0.85), transparent)" }}
+              initial={{ x: "0%", opacity: 0 }}
+              animate={ready ? { x: "420%", opacity: [0, 1, 1, 0] } : {}}
+              transition={{ duration: 1.1, delay: 1.15, ease: [0.4, 0, 0.2, 1] }}
+            />
           </h1>
 
           <motion.p

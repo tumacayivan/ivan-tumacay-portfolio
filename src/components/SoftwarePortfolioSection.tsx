@@ -268,10 +268,10 @@ const LiveSiteCard = ({ site, index }: { site: LiveSite; index: number }) => (
     href={site.url}
     target="_blank"
     rel="noopener noreferrer"
-    initial={{ opacity: 0, y: 50, rotateX: 10 }}
-    whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+    initial={{ opacity: 0, x: index % 2 ? 70 : -70, rotateY: index % 2 ? -14 : 14 }}
+    whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
     viewport={{ once: true, margin: "-60px" }}
-    transition={{ duration: 0.8, delay: (index % 3) * 0.08, ease: [0.16, 1, 0.3, 1] }}
+    transition={{ duration: 0.85, delay: (index % 3) * 0.07, ease: [0.16, 1, 0.3, 1] }}
     className="group panel edge-light block overflow-hidden hover:!border-drift/60 transition-colors"
   >
     {/* Browser chrome + screenshot that scrolls on hover */}
@@ -337,10 +337,28 @@ const SoftwarePortfolioSection = () => {
           on the floor is running — hover to scroll the page, click to take it for a drive.
         </SectionHeading>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 [perspective:1600px] mb-24">
-          {liveSites.map((site, i) => (
-            <LiveSiteCard key={site.url} site={site} index={i} />
-          ))}
+        <div className="relative mb-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 [perspective:1600px]">
+            {liveSites.map((site, i) => (
+              <LiveSiteCard key={site.url} site={site} index={i} />
+            ))}
+          </div>
+
+          {/* The shutter rolls up the first time you reach the garage */}
+          <motion.div
+            aria-hidden
+            initial={{ scaleY: 1 }}
+            whileInView={{ scaleY: 0 }}
+            viewport={{ once: true, margin: "-120px" }}
+            transition={{ duration: 1.1, ease: [0.76, 0, 0.24, 1] }}
+            className="pointer-events-none absolute inset-0 origin-top z-20"
+            style={{
+              backgroundImage:
+                "repeating-linear-gradient(180deg, hsl(var(--asphalt-2)) 0 12px, hsl(var(--asphalt)) 12px 14px, hsl(var(--panel)) 14px 26px)",
+            }}
+          >
+            <span className="absolute inset-x-0 bottom-0 h-1.5 bg-drift shadow-[0_0_24px_hsl(var(--drift))]" />
+          </motion.div>
         </div>
 
         {/* BUILD HISTORY */}
