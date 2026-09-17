@@ -92,10 +92,14 @@ const HeroSection = () => {
           </motion.div>
 
           <h1 className="display text-[17vw] sm:text-[13vw] lg:text-[7.8vw] xl:text-[7.2vw] text-ink">
-            <MaskLine play={ready} delay={0.15}>Ivan</MaskLine>
-            <MaskLine play={ready} delay={0.3}>
-              <span className="ignited">Tumacay</span>
-            </MaskLine>
+            {/* One name, set on two lines — the space keeps it one name to a screen reader */}
+            <span className="sr-only">Ivan Tumacay</span>
+            <span aria-hidden>
+              <MaskLine play={ready} delay={0.15}>Ivan</MaskLine>
+              <MaskLine play={ready} delay={0.3}>
+                <span className="ignited">Tumacay</span>
+              </MaskLine>
+            </span>
           </h1>
 
           <motion.p
