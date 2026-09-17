@@ -283,7 +283,7 @@ const LiveSiteCard = ({ site, index }: { site: LiveSite; index: number }) => (
       </span>
       <span className="flex-1 truncate font-hud text-[11px] tracking-[0.06em] text-ink-dim">{siteHost(site.url)}</span>
       <span className="flex items-center gap-1 font-hud text-[10px] font-bold tracking-[0.16em] uppercase text-hud">
-        <span className="w-1.5 h-1.5 rounded-full bg-hud animate-pulse" /> Live
+        Live
       </span>
     </div>
     <div className="relative aspect-[16/10] overflow-hidden bg-asphalt">
