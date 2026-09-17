@@ -38,6 +38,16 @@
     --glow-strength: 0.35;
     --shadow: 246 30% 20%;
 
+    /* Fixed in both themes: always-dark scenes (intro, scene cuts,
+       lightbox), the bright neon used on them, and the licence card */
+    --void: 246 44% 4%;
+    --void-ink: 250 40% 97%;
+    --neon-drift: 22 100% 54%;
+    --neon-hud: 184 88% 54%;
+    --neon-sign: 336 100% 60%;
+    --card-ink: 246 30% 12%;
+    --licence-accent: 20 90% 46%;
+
     /* shadcn bridge */
     --background: var(--asphalt);
     --foreground: var(--ink);

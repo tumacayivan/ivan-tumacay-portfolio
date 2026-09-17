@@ -93,7 +93,7 @@ const SceneCut = () => {
           />
           {/* night panel carrying the title card */}
           <motion.div
-            className="absolute inset-y-0 -left-[20%] w-[140%] bg-[hsl(246_44%_5%)] flex items-center justify-center"
+            className="absolute inset-y-0 -left-[20%] w-[140%] bg-[hsl(var(--void))] flex items-center justify-center"
             style={{ skewX: -14 }}
             initial={{ x: "100%" }}
             animate={{ x: "0%" }}
@@ -102,7 +102,7 @@ const SceneCut = () => {
           >
             <div style={{ transform: "skewX(14deg)" }} className="text-center">
               {cut.kanji && <div className="neon-kanji text-3xl sm:text-5xl mb-3">{cut.kanji}</div>}
-              <div className="display-xl text-4xl sm:text-7xl text-[hsl(250_40%_97%)]">
+              <div className="display-xl text-4xl sm:text-7xl text-[hsl(var(--void-ink))]">
                 <span className="lean">{cut.label}</span>
               </div>
             </div>

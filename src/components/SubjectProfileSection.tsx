@@ -28,8 +28,8 @@ const endorsements = ["Full-stack dev", "AI & automation", "Virtual assistant", 
 /** Printed field on the licence: tiny label over bold value. */
 const Field = ({ label, value, className = "" }: { label: string; value: string; className?: string }) => (
   <div className={`min-w-0 ${className}`}>
-    <dt className="font-hud text-[11px] sm:text-xs font-bold tracking-[0.18em] uppercase opacity-55">{label}</dt>
-    <dd className="font-hud text-lg sm:text-xl font-bold leading-tight mt-0.5">{value}</dd>
+    <dt className="font-hud text-[10px] sm:text-[11px] font-bold tracking-[0.18em] uppercase opacity-55">{label}</dt>
+    <dd className="font-hud text-base sm:text-lg font-bold leading-tight mt-0.5 whitespace-nowrap">{value}</dd>
   </div>
 );
 
@@ -63,17 +63,17 @@ const SubjectProfileSection = () => {
           <motion.article
             aria-label="Driver licence of Ivan Tumacay"
             initial={{ opacity: 0, rotateX: 28, rotateZ: -4, y: 80, scale: 0.92 }}
-            whileInView={{ opacity: 1, rotateX: 0, rotateZ: -1, y: 0, scale: 1 }}
+            whileInView={{ opacity: 1, rotateX: 0, rotateZ: 0, y: 0, scale: 1 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            whileHover={{ rotateZ: 0, scale: 1.01 }}
-            className="relative overflow-hidden rounded-2xl sm:rounded-3xl text-[hsl(246_30%_12%)] shadow-[0_50px_120px_-40px_hsl(var(--shadow))] ring-1 ring-black/10 bg-[linear-gradient(135deg,hsl(160_40%_92%),hsl(45_60%_91%)_50%,hsl(200_55%_90%))]"
+            whileHover={{ scale: 1.01 }}
+            className="relative flex flex-col xl:aspect-[1.586/1] overflow-hidden rounded-2xl sm:rounded-3xl text-[hsl(var(--card-ink))] shadow-[0_50px_120px_-40px_hsl(var(--shadow))] ring-1 ring-black/10 bg-[linear-gradient(135deg,hsl(160_40%_92%),hsl(45_60%_91%)_50%,hsl(200_55%_90%))]"
           >
             {/* Security guilloche + holographic sheen */}
             <div
               aria-hidden
               className="absolute inset-0 opacity-[0.07]"
-              style={{ backgroundImage: "repeating-radial-gradient(circle at 70% 40%, hsl(246 30% 12%) 0 1px, transparent 1px 9px)" }}
+              style={{ backgroundImage: "repeating-radial-gradient(circle at 70% 40%, hsl(var(--card-ink)) 0 1px, transparent 1px 9px)" }}
             />
             <div
               aria-hidden
@@ -85,25 +85,25 @@ const SubjectProfileSection = () => {
             </div>
 
             {/* Header band */}
-            <header className="relative flex flex-wrap items-center justify-between gap-x-6 gap-y-2 px-6 sm:px-10 py-4 sm:py-5 bg-[hsl(246_30%_12%)] text-[hsl(45_60%_92%)]">
+            <header className="relative flex flex-wrap items-center justify-between gap-x-6 gap-y-2 px-6 sm:px-10 py-3 sm:py-4 bg-[hsl(var(--card-ink))] text-[hsl(45_60%_92%)]">
               <div className="flex items-baseline gap-4">
-                <span className="font-display text-3xl sm:text-5xl tracking-[0.12em]">運転免許証</span>
+                <span className="font-display text-3xl sm:text-4xl tracking-[0.12em]">運転免許証</span>
                 <span className="hidden md:inline font-hud text-xs font-bold tracking-[0.28em] uppercase opacity-70">
                   Driver licence
                 </span>
               </div>
               <div className="text-right">
                 <div className="font-hud text-[11px] font-bold tracking-[0.24em] uppercase opacity-60">Licence no.</div>
-                <div className="font-hud text-lg sm:text-2xl font-bold tracking-[0.14em] tabular-nums text-[hsl(22_100%_60%)]">
+                <div className="font-hud text-lg sm:text-2xl font-bold tracking-[0.14em] tabular-nums text-[hsl(var(--neon-drift))]">
                   IT-2026-0001
                 </div>
               </div>
             </header>
 
-            <div className="relative grid grid-cols-1 md:grid-cols-[minmax(0,300px)_1fr] lg:grid-cols-[340px_1fr] gap-8 lg:gap-12 p-6 sm:p-10">
+            <div className="relative flex-1 min-h-0 grid grid-cols-1 md:grid-cols-[220px_1fr] xl:grid-cols-[250px_1fr] gap-6 xl:gap-10 px-6 sm:px-10 py-6 xl:py-7">
               {/* Photo column */}
-              <div className="flex flex-col items-center md:items-stretch">
-                <div className="relative w-full max-w-[300px] md:max-w-none aspect-[3/4] overflow-hidden rounded-xl border-2 border-[hsl(246_30%_12%/0.3)] bg-white shadow-[0_20px_40px_-20px_hsl(246_30%_12%/0.6)]">
+              <div className="flex flex-col items-center md:items-stretch min-h-0">
+                <div className="relative w-full max-w-[240px] md:max-w-none aspect-[3/4] overflow-hidden rounded-lg border-2 border-[hsl(var(--card-ink)/0.3)] bg-white shadow-[0_20px_40px_-20px_hsl(var(--card-ink)/0.6)]">
                   <img
                     src={johnDoeAvatar}
                     alt="Ivan Tumacay"
@@ -112,32 +112,29 @@ const SubjectProfileSection = () => {
                   {/* Hologram seal over the photo corner */}
                   <div
                     aria-hidden
-                    className="absolute -right-6 -bottom-6 w-28 h-28 rounded-full opacity-70 mix-blend-screen animate-[sheen_5s_ease-in-out_infinite]"
+                    className="absolute -right-5 -bottom-5 w-20 h-20 rounded-full opacity-70 mix-blend-screen animate-[sheen_5s_ease-in-out_infinite]"
                     style={{ background: "conic-gradient(from 0deg, hsl(184 90% 65%), hsl(336 90% 70%), hsl(45 95% 65%), hsl(184 90% 65%))", backgroundSize: "200% 100%" }}
                   />
-                  <span className="absolute left-3 top-3 font-hud text-[10px] font-bold tracking-[0.2em] uppercase bg-[hsl(246_30%_12%)] text-white px-2 py-1">
-                    Photo
-                  </span>
                 </div>
-                <div className="w-full max-w-[300px] md:max-w-none mt-5 border-b-2 border-[hsl(246_30%_12%/0.35)] pb-1">
-                  <span className="block font-body italic text-3xl -skew-x-12 tracking-tight">Ivan Tumacay</span>
+                <div className="w-full max-w-[240px] md:max-w-none mt-3 border-b-2 border-[hsl(var(--card-ink)/0.35)]">
+                  <span className="block font-body italic text-2xl -skew-x-12 tracking-tight leading-tight">Ivan Tumacay</span>
                 </div>
-                <span className="font-hud text-[11px] font-bold tracking-[0.2em] uppercase opacity-55 mt-1 self-start">
+                <span className="font-hud text-[10px] font-bold tracking-[0.2em] uppercase opacity-55 mt-1 self-start">
                   Holder's signature
                 </span>
               </div>
 
               {/* Details column */}
-              <div className="min-w-0 flex flex-col">
-                <div className="mb-6">
-                  <div className="font-hud text-xs font-bold tracking-[0.2em] uppercase opacity-55">Name · 氏名</div>
-                  <h3 className="font-display text-5xl sm:text-6xl xl:text-7xl uppercase leading-[0.95] mt-1">
-                    Tumacay, <span className="text-[hsl(20_90%_46%)]">Ivan</span>
+              <div className="min-w-0 flex flex-col justify-between gap-5">
+                <div>
+                  <div className="font-hud text-[11px] font-bold tracking-[0.2em] uppercase opacity-55">Name · 氏名</div>
+                  <h3 className="font-display text-4xl sm:text-5xl xl:text-[3.4rem] uppercase leading-none mt-1 xl:whitespace-nowrap">
+                    Tumacay, <span className="text-[hsl(var(--licence-accent))]">Ivan</span>
                   </h3>
-                  <div className="font-display text-xl sm:text-2xl tracking-[0.1em] opacity-70 mt-2">イバン・トゥマカイ</div>
+                  <div className="font-display text-lg tracking-[0.1em] opacity-70 mt-1.5">イバン・トゥマカイ</div>
                 </div>
 
-                <dl className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-5 pb-6 mb-6 border-b border-[hsl(246_30%_12%/0.15)]">
+                <dl className="grid grid-cols-2 sm:grid-cols-4 gap-x-5 gap-y-3.5 py-4 border-y border-[hsl(var(--card-ink)/0.15)]">
                   <Field label="Date of birth" value="28 Jan 1998" />
                   <Field label="Age" value={`${age} years`} />
                   <Field label="Sex" value="Male" />
@@ -145,18 +142,18 @@ const SubjectProfileSection = () => {
                   <Field label="Hair / Eyes" value="Black / Brown" />
                   <Field label="Nationality" value="Filipino" />
                   <Field label="Place of birth" value="Manila, PH" />
-                  <Field label="Languages" value="Filipino · English" />
-                  <Field label="Address" value="Cavite, Philippines" />
-                  <Field label="Coordinates" value="14.28°N 120.87°E" />
+                  <Field label="Languages" value="FIL · ENG" />
+                  <Field label="Address" value="Cavite, PH" />
                   <Field label="Time zone" value="UTC +08:00" />
                   <Field label="Experience" value="~10 years" />
                   <Field label="Class" value="All-rounder" />
-                  <Field label="Conditions" value="Remote · worldwide" />
                 </dl>
 
                 <div>
-                  <div className="font-hud text-xs font-bold tracking-[0.2em] uppercase opacity-55 mb-3">Endorsements</div>
-                  <ul className="flex flex-wrap gap-2">
+                  <div className="font-hud text-[11px] font-bold tracking-[0.2em] uppercase opacity-55 mb-2">
+                    Endorsements · Conditions: remote, worldwide
+                  </div>
+                  <ul className="flex flex-wrap gap-1.5">
                     {endorsements.map((e, i) => (
                       <motion.li
                         key={e}
@@ -164,7 +161,7 @@ const SubjectProfileSection = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.6 + i * 0.07 }}
-                        className="font-hud text-sm sm:text-base font-bold uppercase tracking-[0.06em] px-3 py-1.5 border-2 border-[hsl(246_30%_12%/0.8)] -skew-x-12"
+                        className="font-hud text-xs sm:text-sm font-bold uppercase tracking-[0.04em] px-2.5 py-1 border-2 border-[hsl(var(--card-ink)/0.8)] -skew-x-12"
                       >
                         <span className="inline-block skew-x-12">{e}</span>
                       </motion.li>
@@ -175,9 +172,9 @@ const SubjectProfileSection = () => {
             </div>
 
             {/* Gold band — the "excellent driver" licence */}
-            <footer className="relative flex flex-wrap items-center justify-between gap-4 px-6 sm:px-10 py-4 bg-[linear-gradient(90deg,hsl(43_85%_52%),hsl(48_95%_68%),hsl(40_80%_48%))] text-[hsl(246_30%_12%)]">
+            <footer className="relative flex flex-wrap items-center justify-between gap-4 px-6 sm:px-10 py-3 bg-[linear-gradient(90deg,hsl(43_85%_52%),hsl(48_95%_68%),hsl(40_80%_48%))] text-[hsl(var(--card-ink))]">
               <div className="flex items-center gap-4">
-                <span className="font-display text-3xl sm:text-4xl">優良</span>
+                <span className="font-display text-2xl sm:text-3xl">優良</span>
                 <span className="font-hud text-sm sm:text-base font-bold tracking-[0.16em] uppercase">Gold class · Excellent record</span>
               </div>
               <div className="flex items-center gap-4">
@@ -187,7 +184,7 @@ const SubjectProfileSection = () => {
                   className="hidden sm:block h-8 w-40 opacity-80"
                   style={{
                     backgroundImage:
-                      "repeating-linear-gradient(90deg, hsl(246 30% 12%) 0 2px, transparent 2px 4px, hsl(246 30% 12%) 4px 7px, transparent 7px 9px, hsl(246 30% 12%) 9px 10px, transparent 10px 13px)",
+                      "repeating-linear-gradient(90deg, hsl(var(--card-ink)) 0 2px, transparent 2px 4px, hsl(var(--card-ink)) 4px 7px, transparent 7px 9px, hsl(var(--card-ink)) 9px 10px, transparent 10px 13px)",
                   }}
                 />
               </div>

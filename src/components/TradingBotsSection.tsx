@@ -180,7 +180,7 @@ const TradingBotsSection = () => {
                       <span className="w-1.5 h-1.5 rounded-full bg-sign animate-pulse" /> Live
                     </span>
                   </div>
-                  <div className="relative overflow-hidden aspect-[2.08/1] bg-[hsl(246_44%_4%)]">
+                  <div className="relative overflow-hidden aspect-[2.08/1] bg-[hsl(var(--void))]">
                     <AnimatePresence mode="popLayout" initial={false}>
                       <motion.img
                         key={active}
@@ -194,7 +194,7 @@ const TradingBotsSection = () => {
                       />
                     </AnimatePresence>
                     <div className="absolute inset-0 scanlines opacity-30 pointer-events-none" />
-                    <div className="absolute inset-0 bg-[hsl(246_44%_4%/0.8)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <div className="absolute inset-0 bg-[hsl(var(--void)/0.8)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                       <span className="btn-drift">
                         <span className="flex items-center gap-2">
                           <ExternalLink className="w-4 h-4" /> Open live terminal

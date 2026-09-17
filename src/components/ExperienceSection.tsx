@@ -1,6 +1,7 @@
 import { motion, useMotionValueEvent, useScroll, useSpring } from "framer-motion";
 import { useMemo, useRef } from "react";
 import SectionHeading from "./drift/SectionHeading";
+import TougeCar from "./drift/TougeCar";
 
 const experiences = [
   {
@@ -147,14 +148,9 @@ const ExperienceSection = () => {
                 </linearGradient>
               </defs>
             </svg>
-            {/* The car: white body, black bonnet — a two-tone hatch heading downhill */}
-            <div ref={carRef} className="absolute left-0 top-0 will-change-transform">
-              <div className="relative w-7 h-4 rounded-[3px] overflow-hidden shadow-[0_0_18px_hsl(var(--drift)/0.9)]">
-                <div className="absolute inset-0 bg-[hsl(0_0%_96%)]" />
-                <div className="absolute inset-y-0 right-0 w-1/3 bg-[hsl(246_30%_8%)]" />
-                <div className="absolute right-0 top-0.5 w-[3px] h-[3px] bg-[hsl(50_100%_70%)] rounded-full" />
-                <div className="absolute right-0 bottom-0.5 w-[3px] h-[3px] bg-[hsl(50_100%_70%)] rounded-full" />
-              </div>
+            {/* The car follows the road; drop-shadow gives it a neon underglow */}
+            <div ref={carRef} className="absolute left-0 top-0 z-10 will-change-transform">
+              <TougeCar className="w-14 h-7 sm:w-16 sm:h-8 drop-shadow-[0_0_10px_hsl(var(--drift)/0.8)]" />
             </div>
             <div className="absolute -top-8 left-1/2 -translate-x-1/2 neon-kanji text-lg whitespace-nowrap">峠</div>
           </div>

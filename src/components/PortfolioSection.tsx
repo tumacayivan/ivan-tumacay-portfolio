@@ -492,7 +492,7 @@ const Lightbox = ({
       aria-modal="true"
       aria-label={item.title}
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[120] flex items-center justify-center bg-[hsl(246_44%_3%/0.96)] backdrop-blur-sm text-[hsl(250_40%_97%)]"
+      className="fixed inset-0 z-[120] flex items-center justify-center bg-[hsl(var(--void)/0.96)] backdrop-blur-sm text-[hsl(var(--void-ink))]"
       onClick={onClose}
     >
       {/* Letterbox */}
@@ -500,20 +500,20 @@ const Lightbox = ({
       <motion.div className="absolute bottom-0 inset-x-0 bg-black" initial={{ height: 0 }} animate={{ height: 56 }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} />
 
       <div className="absolute top-0 inset-x-0 h-14 px-4 sm:px-8 flex items-center justify-between z-10">
-        <span className="font-hud text-xs tracking-[0.24em] uppercase text-[hsl(184_88%_54%)]">
+        <span className="font-hud text-xs tracking-[0.24em] uppercase text-[hsl(var(--neon-hud))]">
           {String(currentIndex + 1).padStart(3, "0")} / {String(items.length).padStart(3, "0")}
         </span>
-        <button onClick={onClose} aria-label="Close" className="p-2 text-white/70 hover:text-[hsl(22_100%_54%)] transition-colors">
+        <button onClick={onClose} aria-label="Close" className="p-2 text-white/70 hover:text-[hsl(var(--neon-drift))] transition-colors">
           <X className="w-6 h-6" />
         </button>
       </div>
 
       <button onClick={(e) => { e.stopPropagation(); onPrev(); }} aria-label="Previous"
-        className="absolute left-2 sm:left-6 z-10 p-3 text-white/70 hover:text-[hsl(22_100%_54%)] transition-colors">
+        className="absolute left-2 sm:left-6 z-10 p-3 text-white/70 hover:text-[hsl(var(--neon-drift))] transition-colors">
         <ChevronLeft className="w-8 h-8" />
       </button>
       <button onClick={(e) => { e.stopPropagation(); onNext(); }} aria-label="Next"
-        className="absolute right-2 sm:right-6 z-10 p-3 text-white/70 hover:text-[hsl(22_100%_54%)] transition-colors">
+        className="absolute right-2 sm:right-6 z-10 p-3 text-white/70 hover:text-[hsl(var(--neon-drift))] transition-colors">
         <ChevronRight className="w-8 h-8" />
       </button>
 
@@ -521,13 +521,13 @@ const Lightbox = ({
         <AnimatePresence mode="wait">
           {isVideo && item.embedUrl ? (
             <motion.div key={item.fileId} initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.96 }} transition={{ duration: 0.3 }}
-              className="w-[min(88vw,calc(68vh*16/9))] aspect-video overflow-hidden bg-black shadow-[0_0_80px_-20px_hsl(22_100%_54%/0.5)]">
+              className="w-[min(88vw,calc(68vh*16/9))] aspect-video overflow-hidden bg-black shadow-[0_0_80px_-20px_hsl(var(--neon-drift)/0.5)]">
               <iframe src={item.embedUrl} className="w-full h-full" allow="autoplay; encrypted-media" allowFullScreen title={item.title} />
             </motion.div>
           ) : (
             <motion.img key={item.src} initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.96 }} transition={{ duration: 0.3 }}
               src={item.src} alt={item.title}
-              className="w-auto max-w-[88vw] max-h-[72vh] object-contain shadow-[0_0_80px_-20px_hsl(22_100%_54%/0.5)]"
+              className="w-auto max-w-[88vw] max-h-[72vh] object-contain shadow-[0_0_80px_-20px_hsl(var(--neon-drift)/0.5)]"
               onError={(e) => { (e.target as HTMLImageElement).src = item.thumbnail; }} />
           )}
         </AnimatePresence>
@@ -578,13 +578,13 @@ const Frame = ({ item, kind, shape, delay, onOpen }: { item: PortfolioItem; kind
         onError={handleThumbError(item)}
         className={`absolute inset-0 w-full h-full ${kind === "image" ? "object-cover" : "object-contain"} transition-transform duration-700 ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-105`}
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-[hsl(246_44%_4%/0.85)] via-transparent to-transparent opacity-70 group-hover:opacity-100 transition-opacity" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--void)/0.85)] via-transparent to-transparent opacity-70 group-hover:opacity-100 transition-opacity" />
       <div className="absolute inset-0 flex items-center justify-center">
         <span className="w-14 h-14 rounded-full bg-drift text-on-drift flex items-center justify-center scale-50 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300 shadow-[0_0_30px_hsl(var(--drift))]">
           {kind === "video" ? <Play className="w-5 h-5 ml-0.5" fill="currentColor" /> : <Maximize2 className="w-5 h-5" />}
         </span>
       </div>
-      <span className="absolute left-3 bottom-3 right-3 font-hud text-xs font-semibold tracking-[0.14em] uppercase text-[hsl(250_40%_97%)] truncate translate-y-2 group-hover:translate-y-0 transition-transform">
+      <span className="absolute left-3 bottom-3 right-3 font-hud text-xs font-semibold tracking-[0.14em] uppercase text-[hsl(var(--void-ink))] truncate translate-y-2 group-hover:translate-y-0 transition-transform">
         {item.title}
       </span>
     </div>

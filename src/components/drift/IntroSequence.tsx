@@ -109,13 +109,13 @@ const IntroSequence = () => {
         >
           {/* Two halves of the frame tear apart on a diagonal */}
           <motion.div
-            className="absolute inset-0 bg-[hsl(246_44%_4%)]"
+            className="absolute inset-0 bg-[hsl(var(--void))]"
             style={{ clipPath: "polygon(0 0, 100% 0, 100% 38%, 0 62%)" }}
             exit={{ y: "-70%", x: "-6%" }}
             transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
           />
           <motion.div
-            className="absolute inset-0 bg-[hsl(246_44%_4%)]"
+            className="absolute inset-0 bg-[hsl(var(--void))]"
             style={{ clipPath: "polygon(0 62%, 100% 38%, 100% 100%, 0 100%)" }}
             exit={{ y: "70%", x: "6%" }}
             transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
@@ -126,8 +126,8 @@ const IntroSequence = () => {
             className="absolute left-[-10%] right-[-10%] top-1/2 h-[3px] origin-center"
             style={{
               rotate: "-12deg",
-              background: "linear-gradient(90deg, transparent, hsl(22 100% 54%), hsl(336 100% 60%), transparent)",
-              boxShadow: "0 0 30px hsl(22 100% 54%)",
+              background: "linear-gradient(90deg, transparent, hsl(var(--neon-drift)), hsl(var(--neon-sign)), transparent)",
+              boxShadow: "0 0 30px hsl(var(--neon-drift))",
             }}
             initial={{ scaleX: 0, opacity: 0 }}
             animate={phase === "go" ? { scaleX: 1, opacity: 1 } : { scaleX: 0, opacity: 0 }}
@@ -136,7 +136,7 @@ const IntroSequence = () => {
           />
 
           <motion.div
-            className="relative h-full flex flex-col items-center justify-center text-[hsl(250_40%_97%)] px-6"
+            className="relative h-full flex flex-col items-center justify-center text-[hsl(var(--void-ink))] px-6"
             exit={{ opacity: 0, scale: 1.08, filter: "blur(8px)" }}
             transition={{ duration: 0.4 }}
           >
@@ -148,7 +148,7 @@ const IntroSequence = () => {
               initial={{ opacity: 0, letterSpacing: "0.9em" }}
               animate={{ opacity: 1, letterSpacing: "0.42em" }}
               transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-              className="font-hud text-[11px] sm:text-xs uppercase text-[hsl(184_88%_54%)] mb-5 text-center"
+              className="font-hud text-[11px] sm:text-xs uppercase text-[hsl(var(--neon-hud))] mb-5 text-center"
             >
               A portfolio in motion
             </motion.div>
@@ -159,7 +159,7 @@ const IntroSequence = () => {
               transition={{ duration: 1, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
               className="display-xl text-[15vw] sm:text-[9vw] text-center speed-trail"
             >
-              Ivan <span className="text-[hsl(22_100%_54%)]">Tumacay</span>
+              Ivan <span className="text-[hsl(var(--neon-drift))]">Tumacay</span>
             </motion.p>
             <motion.div
               initial={{ opacity: 0 }}
@@ -179,14 +179,14 @@ const IntroSequence = () => {
                 return (
                   <motion.span
                     key={n}
-                    className="block w-8 h-8 sm:w-11 sm:h-11 rounded-full border-2 border-white/15"
-                    animate={{
-                      backgroundColor: green ? "hsl(140 90% 50%)" : on ? "hsl(22 100% 54%)" : "hsl(246 30% 12%)",
-                      boxShadow: on
-                        ? `0 0 26px ${green ? "hsl(140 90% 50%)" : "hsl(22 100% 54%)"}`
-                        : "0 0 0 transparent",
-                      scale: on ? [1.25, 1] : 1,
-                    }}
+                    className={`block w-8 h-8 sm:w-11 sm:h-11 rounded-full border-2 border-white/15 transition-[background-color,box-shadow] duration-200 ${
+                      green
+                        ? "bg-[hsl(140_90%_50%)] shadow-[0_0_26px_hsl(140_90%_50%)]"
+                        : on
+                          ? "bg-[hsl(var(--neon-drift))] shadow-[0_0_26px_hsl(var(--neon-drift))]"
+                          : "bg-[hsl(var(--card-ink))]"
+                    }`}
+                    animate={{ scale: on ? [1.25, 1] : 1 }}
                     transition={{ duration: 0.25 }}
                   />
                 );

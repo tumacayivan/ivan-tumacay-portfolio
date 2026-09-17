@@ -180,7 +180,7 @@ const HeroSection = () => {
                   style={{ background: "linear-gradient(115deg, hsl(var(--hud) / 0.6), transparent 50%, hsl(var(--sign) / 0.6))" }}
                 />
                 <div className="absolute inset-0 scanlines opacity-50" />
-                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[hsl(246_44%_5%/0.9)] to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[hsl(var(--void)/0.9)] to-transparent" />
                 {/* Pointer glare */}
                 <motion.div
                   className="absolute inset-y-0 w-1/2 -translate-x-1/2 pointer-events-none mix-blend-overlay"
@@ -200,8 +200,8 @@ const HeroSection = () => {
                 </div>
 
                 <div className="absolute left-4 right-4 bottom-4 flex items-end justify-between gap-3">
-                  <div className="text-[hsl(250_40%_97%)]">
-                    <div className="font-hud text-[10px] tracking-[0.24em] uppercase text-[hsl(184_88%_54%)]">Class · all-rounder</div>
+                  <div className="text-[hsl(var(--void-ink))]">
+                    <div className="font-hud text-[10px] tracking-[0.24em] uppercase text-[hsl(var(--neon-hud))]">Class · all-rounder</div>
                     <div className="font-display text-2xl sm:text-3xl uppercase leading-none mt-1">Tumacay, I.</div>
                   </div>
                   <span className="plate w-[92px] h-[52px] shrink-0">

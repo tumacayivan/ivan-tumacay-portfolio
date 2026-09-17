@@ -293,7 +293,7 @@ const LiveSiteCard = ({ site, index }: { site: LiveSite; index: number }) => (
         loading="lazy"
         className="absolute inset-0 w-full h-full object-cover object-top transition-[object-position,transform] duration-[2600ms] ease-in-out group-hover:object-bottom group-hover:scale-[1.02]"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-[hsl(246_44%_4%/0.7)] via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--void)/0.7)] via-transparent to-transparent" />
       <span className="plate absolute left-3 bottom-3 w-[72px] h-[40px]">
         <span className="text-[8px] tracking-[0.06em]">東京 500</span>
         <span className="text-[15px]">{String(index + 1).padStart(2, "0")}-{String(index * 7 + 13).slice(-2)}</span>
