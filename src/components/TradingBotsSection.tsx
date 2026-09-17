@@ -148,7 +148,6 @@ const TradingBotsSection = () => {
             <div key={t.label} className="bg-asphalt-2 px-4 py-3">
               <div className="hud-label !text-ink-dim !text-[10px]">{t.label}</div>
               <div className="font-hud text-lg font-bold uppercase text-ink flex items-center gap-2">
-                {t.label === "Status" && <span className="w-2 h-2 rounded-full bg-hud animate-pulse" />}
                 {t.value}
               </div>
             </div>

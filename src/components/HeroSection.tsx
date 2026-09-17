@@ -78,23 +78,17 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
             className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-6"
           >
-            <span className="flex items-center gap-2 hud-label !text-ink">
-              <span className="relative flex w-2 h-2">
-                <span className="absolute inset-0 rounded-full bg-hud animate-ping opacity-70" />
-                <span className="relative w-2 h-2 rounded-full bg-hud" />
-              </span>
-              Open for new projects
-            </span>
+            <span className="hud-label !text-ink">Open for new projects</span>
             <span className="h-px w-8 bg-line/30" />
             <span className="hud-label !text-ink-dim">Cavite, PH · UTC+8 · Remote worldwide</span>
           </motion.div>
 
-          <h1 className="relative display-xl text-[16vw] sm:text-[12.5vw] lg:text-[7.4vw] xl:text-[7vw] text-ink">
+          <h1 className="relative display-xl text-[13.5vw] sm:text-[11vw] lg:text-[7vw] xl:text-[6.6vw] text-ink">
             {/* One name on two lines — the space keeps it one name to a screen reader */}
             <span className="sr-only">Ivan Tumacay</span>
             <span aria-hidden>
               <MaskLine play={ready} delay={0.15}>Ivan</MaskLine>
-              <MaskLine play={ready} delay={0.3} className="pl-[0.35em] -ml-[0.35em]">
+              <MaskLine play={ready} delay={0.3} className="pl-[0.35em] -ml-[0.35em] pr-[0.2em]">
                 <span className="lean speed-trail">Tumacay</span>
               </MaskLine>
             </span>
