@@ -41,6 +41,11 @@
           night = localStorage.getItem("drift-theme") !== "light";
         } catch (e) {}
         document.documentElement.classList.toggle("dark", night);
+        var paint = null;
+        try {
+          paint = localStorage.getItem("drift-paint");
+        } catch (e) {}
+        if (paint) document.documentElement.classList.add("paint-" + paint);
       })();
     </script>
     <div id="root"></div>

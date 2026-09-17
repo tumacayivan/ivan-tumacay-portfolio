@@ -5,6 +5,7 @@ import IntroSequence from "@/components/drift/IntroSequence";
 import SceneCut from "@/components/drift/SceneCut";
 import DriftHUD from "@/components/drift/DriftHUD";
 import CarPass from "@/components/drift/CarPass";
+import PitStopSection from "@/components/PitStopSection";
 import HeroSection from "@/components/HeroSection";
 import SubjectProfileSection from "@/components/SubjectProfileSection";
 import SkillsMarquee from "@/components/SkillsMarquee";
@@ -35,6 +36,7 @@ const Index = () => {
         <PortfolioSection />
         <CarPass variant="rivalB" direction="left" label="Next · what I can run for you" />
         <ServicesSection />
+        <PitStopSection />
         <EducationSection />
         <ExperienceSection />
         <SoftwarePortfolioSection />

@@ -7,6 +7,7 @@ const SCENES: { id: string; label: string }[] = [
   { id: "trading-bots", label: "Trading bots" },
   { id: "portfolio", label: "Showreel" },
   { id: "services", label: "Services" },
+  { id: "process", label: "Pit stop" },
   { id: "education", label: "Education" },
   { id: "experience", label: "Race log" },
   { id: "software-portfolio", label: "Garage" },
@@ -62,7 +63,7 @@ const DriftHUD = () => {
     const tick = (t: number) => {
       const dt = Math.max(1, t - lastT);
       const y = window.scrollY;
-      const raw = (Math.abs(y - lastY) / dt) * 1000 * 0.06; // px/s → "km/h"
+      const raw = (Math.abs(y - lastY) / dt) * 1000 * 0.06; // px/s converted to "km/h"
       lastY = y;
       lastT = t;
 

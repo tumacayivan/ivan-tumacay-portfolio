@@ -2,6 +2,7 @@ import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
 import { Menu, X, FileText, ArrowUpRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import ThemeToggle from "./ThemeToggle";
+import PaintShop from "./drift/PaintShop";
 
 const navItems = [
   { label: "Trading Bots", href: "#trading-bots", kanji: "自動売買" },
@@ -77,6 +78,7 @@ const Navbar = () => {
             <FileText className="w-4 h-4" />
             <span className="hidden xl:inline font-hud text-[11px] font-semibold tracking-[0.18em] uppercase">Resume</span>
           </a>
+          <PaintShop />
           <ThemeToggle />
           <a href="#contact" className="btn-drift hidden sm:inline-flex !py-2.5 !px-5 !text-[12px]">
             <span className="flex items-center gap-1.5">
