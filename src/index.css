@@ -3,50 +3,50 @@
 @tailwind utilities;
 
 /* =====================================================================
-   NIGHT RUN — TOKYO DRIFT DESIGN SYSTEM
+   RX-7 LIME — TOKYO DRIFT DESIGN SYSTEM
 
-   NIGHT (default) is the car park at 2am: indigo asphalt, Veilside
-   orange livery, cyan gauge light and magenta kanji signs.
+   NIGHT (default) is the underground garage: carbon green-black,
+   Veilside orange livery, lime gauge light and teal kanji signs.
    DAY is the same garage with the shutters up.
 
    Colour roles are strict:
-     --drift  (orange)  actions, brand, livery
-     --hud    (cyan)    data, gauges, labels
-     --sign   (magenta) neon kanji signage only
+     --drift  (orange) actions, brand, livery
+     --hud    (lime)   data, gauges, labels
+     --sign   (teal)   neon kanji signage only
    ===================================================================== */
 
 @layer base {
   /* ---------- DAY ---------- */
   :root {
-    --asphalt: 250 16% 92%;
-    --asphalt-2: 250 14% 87%;
-    --panel: 250 30% 98%;
-    --ink: 246 26% 9%;
-    --ink-dim: 246 9% 38%;
-    --line: 246 26% 9%;
-    --drift: 20 90% 46%;
+    --asphalt: 90 10% 92%;
+    --asphalt-2: 90 8% 87%;
+    --panel: 80 20% 98%;
+    --ink: 160 20% 8%;
+    --ink-dim: 150 6% 36%;
+    --line: 160 20% 8%;
+    --drift: 22 95% 46%;
     --on-drift: 0 0% 100%;
-    --hud: 186 100% 28%;
-    --sign: 338 84% 46%;
+    --hud: 95 70% 30%;
+    --sign: 174 80% 30%;
 
-    --sky-top: 212 60% 78%;
-    --sky-bottom: 28 80% 88%;
-    --city: 246 18% 30%;
-    --city-far: 240 14% 62%;
-    --window: 44 30% 88%;
-    --road: 246 10% 26%;
+    --sky-top: 180 40% 80%;
+    --sky-bottom: 40 80% 86%;
+    --city: 160 12% 28%;
+    --city-far: 150 10% 60%;
+    --window: 60 40% 88%;
+    --road: 160 8% 26%;
     --glow-strength: 0.35;
-    --shadow: 246 30% 20%;
+    --shadow: 160 25% 18%;
 
     /* Fixed in both themes: always-dark scenes (intro, scene cuts,
        lightbox), the bright neon used on them, and the licence card */
-    --void: 246 44% 4%;
-    --void-ink: 250 40% 97%;
-    --neon-drift: 22 100% 54%;
-    --neon-hud: 184 88% 54%;
-    --neon-sign: 336 100% 60%;
-    --card-ink: 246 30% 12%;
-    --licence-accent: 20 90% 46%;
+    --void: 160 18% 4%;
+    --void-ink: 80 30% 96%;
+    --neon-drift: 24 100% 54%;
+    --neon-hud: 88 90% 55%;
+    --neon-sign: 172 95% 48%;
+    --card-ink: 160 20% 10%;
+    --licence-accent: 22 95% 44%;
 
     /* shadcn bridge */
     --background: var(--asphalt);
@@ -65,8 +65,8 @@
     --accent-foreground: var(--on-drift);
     --destructive: var(--sign);
     --destructive-foreground: 0 0% 100%;
-    --border: 246 12% 80%;
-    --input: 246 12% 80%;
+    --border: 120 8% 78%;
+    --input: 120 8% 78%;
     --ring: var(--hud);
     --radius: 0.125rem;
     --sidebar-background: var(--panel);
@@ -75,35 +75,35 @@
     --sidebar-primary-foreground: var(--on-drift);
     --sidebar-accent: var(--asphalt-2);
     --sidebar-accent-foreground: var(--ink);
-    --sidebar-border: 246 12% 80%;
+    --sidebar-border: 120 8% 78%;
     --sidebar-ring: var(--hud);
   }
 
   /* ---------- NIGHT ---------- */
   .dark {
-    --asphalt: 246 44% 6%;
-    --asphalt-2: 246 36% 9%;
-    --panel: 246 32% 11%;
-    --ink: 250 40% 97%;
-    --ink-dim: 246 14% 68%;
-    --line: 250 40% 97%;
-    --drift: 22 100% 54%;
-    --on-drift: 246 44% 6%;
-    --hud: 184 88% 54%;
-    --sign: 336 100% 60%;
+    --asphalt: 160 18% 5%;
+    --asphalt-2: 160 14% 8%;
+    --panel: 160 12% 11%;
+    --ink: 80 30% 96%;
+    --ink-dim: 120 8% 66%;
+    --line: 80 30% 96%;
+    --drift: 24 100% 54%;
+    --on-drift: 160 18% 5%;
+    --hud: 88 90% 55%;
+    --sign: 172 95% 48%;
 
-    --sky-top: 250 60% 4%;
-    --sky-bottom: 290 50% 14%;
-    --city: 248 40% 5%;
-    --city-far: 252 34% 10%;
-    --window: 42 100% 70%;
-    --road: 246 30% 7%;
+    --sky-top: 170 50% 4%;
+    --sky-bottom: 160 40% 12%;
+    --city: 160 25% 4%;
+    --city-far: 165 20% 9%;
+    --window: 70 100% 70%;
+    --road: 160 16% 7%;
     --glow-strength: 1;
-    --shadow: 250 60% 2%;
+    --shadow: 160 50% 2%;
 
-    --border: 246 22% 20%;
-    --input: 246 22% 20%;
-    --sidebar-border: 246 22% 20%;
+    --border: 160 10% 20%;
+    --input: 160 10% 20%;
+    --sidebar-border: 160 10% 20%;
   }
 
   * { @apply border-border; }
