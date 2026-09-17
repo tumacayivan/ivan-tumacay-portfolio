@@ -195,11 +195,13 @@ const SubjectProfileSection = () => {
 
             {/* Clearance band */}
             <footer className="relative z-10 flex flex-wrap items-center justify-between gap-4 px-6 sm:px-10 py-4 bg-[hsl(var(--beam-gold))] text-[hsl(var(--slab-ink))]">
-              <span className="font-tele text-sm sm:text-base font-semibold tracking-[0.2em] uppercase">
+              <span className="font-tele text-xs sm:text-base font-semibold tracking-[0.12em] sm:tracking-[0.2em] uppercase">
                 Flight status · cleared for launch
               </span>
               <span className="flex items-center gap-4">
-                <span className="font-tele text-sm font-medium tracking-[0.16em] uppercase">Certified to build</span>
+                <span className="font-tele text-xs sm:text-sm font-medium tracking-[0.12em] sm:tracking-[0.16em] uppercase">
+                  Certified to build
+                </span>
                 <span
                   aria-hidden
                   className="hidden sm:block h-7 w-40 opacity-85"

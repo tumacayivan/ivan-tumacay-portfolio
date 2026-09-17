@@ -75,7 +75,7 @@ const FooterSection = () => {
         </div>
 
         <h2 className="plate text-[15vw] sm:text-[11vw] lg:text-[8vw] text-ice mb-12">
-          <MaskLine>Send a</MaskLine>
+          <MaskLine>{"Send a "}</MaskLine>
           <MaskLine delay={0.16}>
             <span className="lit">message home</span>
           </MaskLine>

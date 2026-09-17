@@ -306,9 +306,9 @@ const LiveSiteCard = ({ site, index }: { site: LiveSite; index: number }) => (
 
     <div className="p-5 sm:p-6">
       <div className="tele-label mb-3">{site.tagline}</div>
-      <h4 className="plate text-2xl text-ice leading-tight mb-3 group-hover:text-gold transition-colors duration-500">
+      <h3 className="plate text-2xl text-ice leading-tight mb-3 group-hover:text-gold transition-colors duration-500">
         {site.name}
-      </h4>
+      </h3>
       <p className="text-ice-dim leading-relaxed text-[0.95rem] mb-5">{site.description}</p>
       <div className="flex flex-wrap gap-1.5">
         {site.stack.split("·").map((t) => (

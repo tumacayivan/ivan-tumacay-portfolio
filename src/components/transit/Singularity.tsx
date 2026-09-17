@@ -135,15 +135,23 @@ const Singularity = ({ className = "" }: { className?: string }) => {
     let visible = true;
     let theme = "";
 
+    // getComputedStyle is not free, so the palette is read once per theme
+    // rather than once per token per frame.
+    let pal = { hot: "44 100% 88%", mid: "38 100% 62%", cool: "22 80% 44%", star: "200 40% 92%", horizon: "220 60% 2%", glow: 1 };
+
     const readTheme = () => {
       const key = document.documentElement.classList.contains("dark") ? "dark" : "light";
       if (key === theme) return;
       theme = key;
-      disc = buildDisc(
-        cssVar("--disc-hot", "44 100% 88%"),
-        cssVar("--disc-mid", "38 100% 62%"),
-        cssVar("--disc-cool", "22 80% 44%"),
-      );
+      pal = {
+        hot: cssVar("--disc-hot", "44 100% 88%"),
+        mid: cssVar("--disc-mid", "38 100% 62%"),
+        cool: cssVar("--disc-cool", "22 80% 44%"),
+        star: cssVar("--star", "200 40% 92%"),
+        horizon: cssVar("--horizon", "220 60% 2%"),
+        glow: parseFloat(cssVar("--glow", "1")) || 1,
+      };
+      disc = buildDisc(pal.hot, pal.mid, pal.cool);
     };
 
     const seedStars = () => {
@@ -174,7 +182,7 @@ const Singularity = ({ className = "" }: { className?: string }) => {
     const draw = (time: number) => {
       if (!size) return;
       const mid = size / 2;
-      const glow = parseFloat(cssVar("--glow", "1")) || 1;
+      const glow = pal.glow;
 
       // Scroll opens the disc up and pulls the camera in a little
       const p = Math.max(0, Math.min(1, window.scrollY / Math.max(1, window.innerHeight)));
@@ -185,7 +193,7 @@ const Singularity = ({ className = "" }: { className?: string }) => {
       ctx.clearRect(0, 0, size, size);
 
       /* ---- star field, parallaxed by scroll ---- */
-      const starTone = cssVar("--star", "200 40% 92%");
+      const starTone = pal.star;
       for (let i = 0; i < stars.length; i++) {
         const s = stars[i];
         const drift = ((s.y + p * s.z * 0.35) % 1) * size;
@@ -232,7 +240,7 @@ const Singularity = ({ className = "" }: { className?: string }) => {
       clipHalf(false, () => paintDisc(0.62, -spin * 0.86, 0.34 * glow + 0.16));
 
       // 4. the shadow itself, and the photon ring around it
-      const horizon = cssVar("--horizon", "220 60% 2%");
+      const horizon = pal.horizon;
       const shadow = ctx.createRadialGradient(mid, mid, R * 0.7, mid, mid, R * 1.08);
       shadow.addColorStop(0, hsla(horizon, 1));
       shadow.addColorStop(0.86, hsla(horizon, 1));
@@ -244,7 +252,7 @@ const Singularity = ({ className = "" }: { className?: string }) => {
 
       ctx.save();
       ctx.globalCompositeOperation = "lighter";
-      ctx.strokeStyle = hsla(cssVar("--disc-hot", "44 100% 88%"), 0.85);
+      ctx.strokeStyle = hsla(pal.hot, 0.85);
       ctx.lineWidth = Math.max(1, 1.4 * dpr);
       ctx.beginPath();
       ctx.arc(mid, mid, R * 1.02, 0, Math.PI * 2);
@@ -258,8 +266,8 @@ const Singularity = ({ className = "" }: { className?: string }) => {
       ctx.save();
       ctx.globalCompositeOperation = "lighter";
       const beam = ctx.createLinearGradient(0, 0, size, 0);
-      beam.addColorStop(0, hsla(cssVar("--disc-hot", "44 100% 88%"), 0.16 * glow));
-      beam.addColorStop(0.42, hsla(cssVar("--disc-hot", "44 100% 88%"), 0));
+      beam.addColorStop(0, hsla(pal.hot, 0.16 * glow));
+      beam.addColorStop(0.42, hsla(pal.hot, 0));
       ctx.fillStyle = beam;
       ctx.beginPath();
       ctx.ellipse(mid, mid, discR, discR * Math.max(tilt, 0.1), 0, 0, Math.PI * 2);
@@ -270,8 +278,8 @@ const Singularity = ({ className = "" }: { className?: string }) => {
       ctx.save();
       ctx.globalCompositeOperation = "lighter";
       const bloom = ctx.createRadialGradient(mid, mid, R, mid, mid, discR * 1.15);
-      bloom.addColorStop(0, hsla(cssVar("--disc-mid", "38 100% 62%"), 0.1 * glow));
-      bloom.addColorStop(1, hsla(cssVar("--disc-mid", "38 100% 62%"), 0));
+      bloom.addColorStop(0, hsla(pal.mid, 0.1 * glow));
+      bloom.addColorStop(1, hsla(pal.mid, 0));
       ctx.fillStyle = bloom;
       ctx.fillRect(0, 0, size, size);
       ctx.restore();

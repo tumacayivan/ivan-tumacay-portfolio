@@ -162,14 +162,16 @@ const IntroSequence = () => {
               Mission 001 · Departure
             </motion.p>
 
-            <motion.h1
+            {/* Deliberately not a heading: the page's only h1 belongs to
+                the hero underneath this. */}
+            <motion.p
               initial={{ opacity: 0, letterSpacing: "0.5em", filter: "blur(6px)" }}
               animate={{ opacity: 1, letterSpacing: "0.06em", filter: "blur(0px)" }}
               transition={{ duration: 2.2, delay: 0.2, ease: EASE }}
               className="plate text-[13vw] sm:text-[8vw] lg:text-[6.4vw] mt-6 mb-8 text-center"
             >
               Ivan Tumacay
-            </motion.h1>
+            </motion.p>
 
             <div className="h-28 flex flex-col items-center justify-start">
               {phase === "hold" && (

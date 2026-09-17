@@ -149,14 +149,14 @@ const ExperienceSection = () => {
                 ref={pathRef}
                 d={d}
                 fill="none"
-                stroke="url(#trajectory)"
+                stroke="url(#mission-log-trajectory)"
                 strokeWidth="2"
                 strokeLinecap="round"
                 vectorEffect="non-scaling-stroke"
                 style={{ pathLength: progress }}
               />
               <defs>
-                <linearGradient id="trajectory" x1="0" y1="0" x2="0" y2="1">
+                <linearGradient id="mission-log-trajectory" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="0%" stopColor="hsl(var(--signal))" />
                   <stop offset="100%" stopColor="hsl(var(--gold))" />
                 </linearGradient>

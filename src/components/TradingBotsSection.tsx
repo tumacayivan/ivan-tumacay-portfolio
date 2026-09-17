@@ -192,6 +192,7 @@ const TradingBotsSection = () => {
                         key={active}
                         src={exhibit.image}
                         alt={`Ivan Trading Bots terminal — ${exhibit.title}`}
+                        loading="lazy"
                         initial={{ opacity: 0, scale: 1.04, filter: "blur(10px)" }}
                         animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                         exit={{ opacity: 0, filter: "blur(10px)" }}

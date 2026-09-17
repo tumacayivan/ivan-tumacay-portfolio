@@ -87,9 +87,7 @@ const HeroSection = () => {
           </motion.div>
 
           <h1 className="plate text-[17vw] sm:text-[13vw] lg:text-[8.4vw] xl:text-[7.6vw] text-ice">
-            <MaskLine play={ready} delay={0.2}>
-              Ivan
-            </MaskLine>
+            <MaskLine play={ready} delay={0.2}>{"Ivan "}</MaskLine>
             <MaskLine play={ready} delay={0.42}>
               <span className="lit">Tumacay</span>
             </MaskLine>
