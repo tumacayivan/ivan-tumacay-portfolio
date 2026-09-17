@@ -440,13 +440,24 @@ const handleThumbError = (item: PortfolioItem) => (e: SyntheticEvent<HTMLImageEl
   target.src = chain[retry] ?? FALLBACK(item.title);
 };
 
+/** Short-form reels are shot vertically; long-form work stays widescreen. */
+const PORTRAIT_REELS = new Set([
+  "AI Videos",
+  "Short-Form Videos (Reels)",
+  "Dropshipping (DTC / VSL / UGC)",
+  "Captioned / Transcript Videos",
+  "Fast-Paced Videos",
+]);
+
+type Shape = "poster" | "portrait" | "landscape";
+
 const reels = [
-  { key: "graphics", title: "Graphics Design", short: "Graphics", kind: "image" as const, items: graphicItems },
+  { key: "graphics", title: "Graphics Design", kind: "image" as const, shape: "poster" as Shape, items: graphicItems },
   ...videoCategories.map((c) => ({
     key: c.title,
     title: c.title,
-    short: c.title.replace(/\s*\(.*\)$/, "").replace(/ Videos$/, ""),
     kind: "video" as const,
+    shape: (PORTRAIT_REELS.has(c.title) ? "portrait" : "landscape") as Shape,
     items: c.items,
   })),
 ].filter((r) => r.items.length > 0);
@@ -534,7 +545,13 @@ const Lightbox = ({
   );
 };
 
-const Frame = ({ item, kind, delay, onOpen }: { item: PortfolioItem; kind: "image" | "video"; delay: number; onOpen: () => void }) => (
+const SHAPE_CLASS: Record<Shape, string> = {
+  poster: "aspect-[4/5]",
+  portrait: "aspect-[9/16]",
+  landscape: "aspect-video",
+};
+
+const Frame = ({ item, kind, shape, delay, onOpen }: { item: PortfolioItem; kind: "image" | "video"; shape: Shape; delay: number; onOpen: () => void }) => (
   <motion.button
     type="button"
     initial={{ opacity: 0, y: 30, rotateX: -12 }}
@@ -545,13 +562,21 @@ const Frame = ({ item, kind, delay, onOpen }: { item: PortfolioItem; kind: "imag
     aria-label={`Open ${item.title}`}
     className="group relative block w-full text-left overflow-hidden bg-panel border border-line/10 hover:border-drift transition-colors"
   >
-    <div className={`relative overflow-hidden ${kind === "image" ? "aspect-[4/5]" : "aspect-video"}`}>
+    <div className={`relative overflow-hidden ${SHAPE_CLASS[shape]}`}>
+      {/* Blurred fill, so a clip shot in the other orientation still fills the frame without being cropped */}
+      <img
+        src={item.thumbnail}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="absolute inset-0 w-full h-full object-cover blur-xl scale-110 opacity-60"
+      />
       <img
         src={item.thumbnail}
         alt=""
         loading="lazy"
         onError={handleThumbError(item)}
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-110"
+        className={`absolute inset-0 w-full h-full ${kind === "image" ? "object-cover" : "object-contain"} transition-transform duration-700 ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-105`}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-[hsl(246_44%_4%/0.85)] via-transparent to-transparent opacity-70 group-hover:opacity-100 transition-opacity" />
       <div className="absolute inset-0 flex items-center justify-center">
@@ -566,8 +591,16 @@ const Frame = ({ item, kind, delay, onOpen }: { item: PortfolioItem; kind: "imag
   </motion.button>
 );
 
+const GRID_CLASS: Record<Shape, string> = {
+  poster: "grid-cols-2 sm:grid-cols-3 lg:grid-cols-5",
+  portrait: "grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6",
+  landscape: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4",
+};
+
+const FIRST_ROW: Record<Shape, number> = { poster: 10, portrait: 12, landscape: 8 };
+
 const ReelBlock = ({ reel, onOpen }: { reel: (typeof reels)[number]; onOpen: (items: PortfolioItem[], index: number) => void }) => {
-  const first = reel.kind === "image" ? 10 : 8;
+  const first = FIRST_ROW[reel.shape];
   const [expanded, setExpanded] = useState(false);
   const items = expanded ? reel.items : reel.items.slice(0, first);
 
@@ -577,7 +610,7 @@ const ReelBlock = ({ reel, onOpen }: { reel: (typeof reels)[number]; onOpen: (it
         <div className="min-w-0">
           <div className="hud-label !text-ink-dim mb-2 flex items-center gap-2">
             {reel.kind === "video" ? <Film className="w-3.5 h-3.5 text-hud" /> : <ImageIcon className="w-3.5 h-3.5 text-hud" />}
-            {reel.kind === "video" ? "Video reel" : "Design reel"}
+            {reel.kind === "image" ? "Design reel" : reel.shape === "portrait" ? "Vertical reel · 9:16" : "Widescreen reel · 16:9"}
           </div>
           <motion.h3
             initial={{ opacity: 0, x: -40, skewX: -12 }}
@@ -598,15 +631,14 @@ const ReelBlock = ({ reel, onOpen }: { reel: (typeof reels)[number]; onOpen: (it
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, margin: "-80px" }}
-        className={`grid gap-3 sm:gap-4 [perspective:1400px] ${
-          reel.kind === "image" ? "grid-cols-2 sm:grid-cols-3 lg:grid-cols-5" : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
-        }`}
+        className={`grid gap-3 sm:gap-4 [perspective:1400px] ${GRID_CLASS[reel.shape]}`}
       >
         {items.map((item, i) => (
           <Frame
             key={`${item.fileId}-${i}`}
             item={item}
             kind={reel.kind}
+            shape={reel.shape}
             delay={(i % first) * 0.04}
             onOpen={() => onOpen(reel.items, i)}
           />
