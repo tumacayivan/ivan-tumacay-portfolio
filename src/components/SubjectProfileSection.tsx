@@ -171,6 +171,20 @@ const SubjectProfileSection = () => {
               </div>
             </div>
 
+            {/* The inspection stamp comes down on the card */}
+            <motion.span
+              aria-hidden
+              initial={{ opacity: 0, scale: 2.8, rotate: -34, filter: "blur(6px)" }}
+              whileInView={{ opacity: 1, scale: 1, rotate: -13, filter: "blur(0px)" }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.5, delay: 1.1, ease: [0.2, 1.6, 0.4, 1] }}
+              className="hidden sm:flex absolute right-8 bottom-24 xl:bottom-28 flex-col items-center justify-center w-[178px] h-[92px] border-[3px] border-[hsl(var(--licence-accent))] text-[hsl(var(--licence-accent))] font-display uppercase tracking-[0.12em] leading-none"
+            >
+              <span className="text-[13px] tracking-[0.3em] opacity-80">Roadworthy</span>
+              <span className="text-2xl my-1">Passed</span>
+              <span className="text-[11px] tracking-[0.24em] opacity-80">Class A · {new Date().getFullYear()}</span>
+            </motion.span>
+
             {/* Gold band — the "excellent driver" licence */}
             <footer className="relative flex flex-wrap items-center justify-between gap-4 px-6 sm:px-10 py-3 bg-[linear-gradient(90deg,hsl(43_85%_52%),hsl(48_95%_68%),hsl(40_80%_48%))] text-[hsl(var(--card-ink))]">
               <div className="flex items-center gap-4">

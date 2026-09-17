@@ -330,6 +330,20 @@ const TradingBotsSection = () => {
 
                   {ignition === "starting" ? (
                     <div aria-live="polite">
+                      {/* The needle sweeps its range the way a cluster does at start-up */}
+                      <svg aria-hidden viewBox="0 0 120 70" className="w-40 mx-auto mb-2">
+                        <path d="M 12 62 A 48 48 0 0 1 108 62" fill="none" stroke="hsl(var(--line) / 0.15)" strokeWidth="5" />
+                        <path d="M 82 20 A 48 48 0 0 1 108 62" fill="none" stroke="hsl(var(--sign))" strokeWidth="5" />
+                        <motion.line
+                          x1="60" y1="62" x2="60" y2="22"
+                          stroke="hsl(var(--drift))" strokeWidth="3" strokeLinecap="round"
+                          style={{ originX: "60px", originY: "62px" }}
+                          initial={{ rotate: -82 }}
+                          animate={{ rotate: [-82, 60, 10, 82, 40] }}
+                          transition={{ duration: 1.6, times: [0, 0.4, 0.55, 0.85, 1], ease: "easeInOut" }}
+                        />
+                        <circle cx="60" cy="62" r="4" fill="hsl(var(--drift))" />
+                      </svg>
                       <div className="font-hud text-sm font-bold tracking-[0.24em] uppercase text-drift mb-3">
                         Starting engine…
                       </div>

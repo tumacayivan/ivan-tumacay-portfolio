@@ -73,9 +73,19 @@ const EducationSection = () => (
           >
             <div className="flex items-start justify-between mb-10">
               <GraduationCap className={`w-7 h-7 ${edu.to === END ? "text-drift" : "text-hud"}`} />
-              <span className="font-hud text-xs font-bold tracking-[0.2em] uppercase text-ink-dim">
-                {edu.to === END ? "Graduated" : "Completed year"}
-              </span>
+              {/* Licence seal — the year it was signed off */}
+              <motion.span
+                aria-hidden
+                initial={{ opacity: 0, scale: 2.2, rotate: -25 }}
+                whileInView={{ opacity: 1, scale: 1, rotate: -8 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: 0.5 + i * 0.12, ease: [0.2, 1.6, 0.4, 1] }}
+                className={`grid place-items-center w-16 h-16 rounded-full border-2 border-dashed font-hud text-[11px] font-bold tracking-[0.12em] uppercase text-center leading-tight ${
+                  edu.to === END ? "border-drift text-drift" : "border-hud/60 text-hud"
+                }`}
+              >
+                {edu.to === END ? "Full licence" : `Stage ${3 - i}`}
+              </motion.span>
             </div>
             <div className="font-display text-5xl sm:text-6xl text-ink leading-none tabular-nums mb-6">
               {edu.from}
@@ -88,6 +98,21 @@ const EducationSection = () => (
             <p className="text-ink-dim leading-relaxed mt-auto">{edu.degree}</p>
           </motion.article>
         ))}
+      </div>
+
+      {/* Chequered flag: training over, the run starts */}
+      <div className="mt-12 flex items-center gap-5">
+        <span
+          aria-hidden
+          className="h-8 flex-1"
+          style={{
+            backgroundImage:
+              "conic-gradient(hsl(var(--ink)) 25%, transparent 0 50%, hsl(var(--ink)) 0 75%, transparent 0)",
+            backgroundSize: "16px 16px",
+            opacity: 0.85,
+          }}
+        />
+        <span className="hud-label !text-ink-dim shrink-0">Training complete · on to the road</span>
       </div>
     </div>
   </section>

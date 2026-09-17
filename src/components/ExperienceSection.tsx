@@ -1,5 +1,5 @@
-import { motion, useMotionValueEvent, useScroll, useSpring } from "framer-motion";
-import { useMemo, useRef } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
+import { useEffect, useMemo, useRef } from "react";
 import SectionHeading from "./drift/SectionHeading";
 import TougeCar from "./drift/TougeCar";
 
@@ -85,31 +85,82 @@ const buildPath = (n: number) => {
   return d;
 };
 
+/** The pack: the lead car, then two rivals hanging off its bumper. */
+const PACK = [
+  { key: "lead", lag: 0, variant: "lead" as const, size: "w-14 h-7 sm:w-16 sm:h-8", glow: "drop-shadow-[0_0_10px_hsl(var(--drift)/0.8)]" },
+  { key: "rival-a", lag: 0.052, variant: "rivalA" as const, size: "w-12 h-6 sm:w-[3.4rem] sm:h-7", glow: "drop-shadow-[0_0_8px_hsl(var(--sign)/0.6)]" },
+  { key: "rival-b", lag: 0.098, variant: "rivalB" as const, size: "w-11 h-[1.4rem] sm:w-12 sm:h-6", glow: "drop-shadow-[0_0_8px_hsl(var(--hud)/0.5)]" },
+];
+
 const ExperienceSection = () => {
   const trackRef = useRef<HTMLDivElement>(null);
   const pathRef = useRef<SVGPathElement>(null);
-  const carRef = useRef<HTMLDivElement>(null);
+  const carRefs = useRef<(HTMLDivElement | null)[]>([]);
   const d = useMemo(() => buildPath(experiences.length), []);
   const height = experiences.length * SEG;
 
-  const { scrollYProgress } = useScroll({ target: trackRef, offset: ["start 70%", "end 60%"] });
-  const progress = useSpring(scrollYProgress, { stiffness: 90, damping: 24, mass: 0.4 });
+  // How far down the pass we are, measured from the track's own position on
+  // screen every frame — lazy images keep changing the page height, so a
+  // cached scroll range goes stale.
+  const run = useMotionValue(0);
+  const drawn = useSpring(run, { stiffness: 90, damping: 26, mass: 0.4 });
 
-  // The car follows the drawn line through every hairpin
-  useMotionValueEvent(progress, "change", (p) => {
+  useEffect(() => {
     const path = pathRef.current;
-    const car = carRef.current;
-    if (!path || !car) return;
-    const len = path.getTotalLength();
-    const at = Math.max(0, Math.min(1, p)) * len;
-    const a = path.getPointAtLength(at);
-    const b = path.getPointAtLength(Math.min(len, at + 1));
-    const box = car.parentElement!.getBoundingClientRect();
-    const sx = box.width / 100;
-    const sy = box.height / height;
-    const angle = (Math.atan2((b.y - a.y) * sy, (b.x - a.x) * sx) * 180) / Math.PI;
-    car.style.transform = `translate(${a.x * sx}px, ${a.y * sy}px) translate(-50%, -50%) rotate(${angle}deg)`;
-  });
+    const host = carRefs.current[0]?.parentElement;
+    if (!path || !host) return;
+
+    let raf = 0;
+    let shown = 0;
+
+    const frame = () => {
+      raf = requestAnimationFrame(frame);
+      const track = trackRef.current;
+      if (!track) return;
+      const rect = track.getBoundingClientRect();
+      // Off screen: nothing to do this frame
+      if (rect.bottom < -200 || rect.top > window.innerHeight + 200) return;
+
+      const target = Math.max(0, Math.min(1, (window.innerHeight * 0.68 - rect.top) / Math.max(1, rect.height)));
+      shown += (target - shown) * 0.12;
+      run.set(shown);
+
+      const len = path.getTotalLength();
+      const box = host.getBoundingClientRect();
+      const sx = box.width / 100;
+      const sy = box.height / height;
+
+      const headingAt = (dist: number) => {
+        const a = path.getPointAtLength(Math.max(0, Math.min(len, dist)));
+        const b = path.getPointAtLength(Math.max(0, Math.min(len, dist + 4)));
+        return { a, deg: (Math.atan2((b.y - a.y) * sy, (b.x - a.x) * sx) * 180) / Math.PI };
+      };
+
+      PACK.forEach((car, i) => {
+        const el = carRefs.current[i];
+        if (!el) return;
+        const at = Math.max(0, Math.min(1, shown - car.lag)) * len;
+        const here = headingAt(at);
+        const ahead = headingAt(at + 26);
+
+        // How hard the road is turning right here, as a signed angle
+        let turn = ahead.deg - here.deg;
+        while (turn > 180) turn -= 360;
+        while (turn < -180) turn += 360;
+
+        // Counter-steer: the nose points into the corner, the tail hangs out
+        const slide = Math.max(-34, Math.min(34, turn * 0.9)) * (1 - i * 0.18);
+
+        el.style.transform = `translate(${here.a.x * sx}px, ${here.a.y * sy}px) translate(-50%, -50%) rotate(${here.deg + slide}deg)`;
+        el.style.setProperty("--smoke", (Math.min(1, Math.abs(slide) / 26)).toFixed(2));
+        // The lead car is always on the road; the rivals join once it has a gap
+        el.style.opacity = i === 0 || shown > car.lag * 1.4 ? "1" : "0";
+      });
+    };
+
+    raf = requestAnimationFrame(frame);
+    return () => cancelAnimationFrame(raf);
+  }, [height, run]);
 
   return (
     <section id="experience" data-scene="Race log" data-kanji="経歴" className="relative py-24 sm:py-32 overflow-hidden bg-asphalt-2">
@@ -138,7 +189,7 @@ const ExperienceSection = () => {
                 strokeWidth="3"
                 strokeLinecap="round"
                 vectorEffect="non-scaling-stroke"
-                style={{ pathLength: progress }}
+                style={{ pathLength: drawn }}
               />
               <defs>
                 <linearGradient id="pass-grad" x1="0" y1="0" x2="0" y2="1">
@@ -148,10 +199,24 @@ const ExperienceSection = () => {
                 </linearGradient>
               </defs>
             </svg>
-            {/* The car follows the road; drop-shadow gives it a neon underglow */}
-            <div ref={carRef} className="absolute left-0 top-0 z-10 will-change-transform">
-              <TougeCar className="w-14 h-7 sm:w-16 sm:h-8 drop-shadow-[0_0_10px_hsl(var(--drift)/0.8)]" />
-            </div>
+            {/* The pack. Smoke pours off the tyres the harder a car is sliding. */}
+            {PACK.map((car, i) => (
+              <div
+                key={car.key}
+                ref={(el) => (carRefs.current[i] = el)}
+                className="absolute left-0 top-0 z-10 will-change-transform opacity-0 transition-opacity duration-500"
+              >
+                <span
+                  aria-hidden
+                  className="absolute right-full top-1/2 -translate-y-1/2 mr-[-6px] flex items-center gap-1 opacity-[var(--smoke,0)] transition-opacity duration-200"
+                >
+                  <span className="block w-6 h-6 rounded-full bg-[hsl(var(--ink)/0.45)] blur-[5px]" />
+                  <span className="block w-4 h-4 rounded-full bg-[hsl(var(--ink)/0.35)] blur-[4px]" />
+                  <span className="block w-2.5 h-2.5 rounded-full bg-[hsl(var(--ink)/0.3)] blur-[3px]" />
+                </span>
+                <TougeCar variant={car.variant} className={`${car.size} ${car.glow}`} />
+              </div>
+            ))}
             <div className="absolute -top-8 left-1/2 -translate-x-1/2 neon-kanji text-lg whitespace-nowrap">峠</div>
           </div>
 
