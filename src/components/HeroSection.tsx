@@ -34,13 +34,13 @@ const HeroSection = () => {
   const copyOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
   const copyBlur = useTransform(scrollYProgress, [0, 0.75], ["blur(0px)", "blur(10px)"]);
   const cardY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
-  const cardRotate = useTransform(scrollYProgress, [0, 1], [0, -6]);
 
   // Driver card tilts toward the pointer
   const px = useMotionValue(0);
   const py = useMotionValue(0);
-  const rotateY = useSpring(useTransform(px, [-0.5, 0.5], [-10, 10]), { stiffness: 150, damping: 18 });
-  const rotateX = useSpring(useTransform(py, [-0.5, 0.5], [8, -8]), { stiffness: 150, damping: 18 });
+  // A slight lean toward a mouse pointer only; the card always hangs straight
+  const rotateY = useSpring(useTransform(px, [-0.5, 0.5], [-5, 5]), { stiffness: 150, damping: 18 });
+  const rotateX = useSpring(useTransform(py, [-0.5, 0.5], [4, -4]), { stiffness: 150, damping: 18 });
   const glareX = useTransform(px, [-0.5, 0.5], ["0%", "100%"]);
 
   const onPointerMove = (e: PointerEvent<HTMLDivElement>) => {
@@ -161,7 +161,7 @@ const HeroSection = () => {
         </motion.div>
 
         {/* DRIVER CARD */}
-        <motion.div style={{ y: cardY, rotate: cardRotate }} className="lg:col-span-5 relative [perspective:1200px]">
+        <motion.div style={{ y: cardY }} className="lg:col-span-5 relative [perspective:1200px]">
           <motion.div
             initial={{ clipPath: "polygon(100% 0, 100% 0, 100% 100%, 100% 100%)", x: 60 }}
             animate={ready ? { clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)", x: 0 } : {}}
