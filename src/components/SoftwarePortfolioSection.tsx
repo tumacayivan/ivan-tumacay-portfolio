@@ -8,6 +8,7 @@ import ivanQuantModel from "@/assets/ivan-quant-model-website.png";
 import goldenPearl from "@/assets/golden-south-sea-pearl-website.png";
 import tumacayMotors from "@/assets/tumacay-general-motors-website.png";
 import supercomputer from "@/assets/supercomputer.png";
+import futxperform from "@/assets/futxperform-website.png";
 
 interface Project {
   name: string;
@@ -94,6 +95,14 @@ const liveSites: LiveSite[] = [
     image: supercomputer,
     url: "https://ivan-tumacay-group-supercomputer.onrender.com/",
     stack: "HPC · Parallel Computing · AI",
+  },
+  {
+    name: "FUTXPERFORM",
+    tagline: "Football Career Access Platform",
+    description: "Concept build for a pro-player-run football network connecting serious footballers with clubs, scouts, and decision-makers, featuring player signings, video testimonials, and a profile assessment funnel.",
+    image: futxperform,
+    url: "https://futxperform.onrender.com/",
+    stack: "React · Sports · Lead Funnel",
   },
 ];
 
