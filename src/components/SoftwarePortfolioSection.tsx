@@ -6,6 +6,7 @@ import ivanSwarmAi from "@/assets/ivan-swarm-ai-website.png";
 import ivanQuantModel from "@/assets/ivan-quant-model-website.png";
 import goldenPearl from "@/assets/golden-south-sea-pearl-website.png";
 import tumacayMotors from "@/assets/tumacay-general-motors-website.png";
+import futxperform from "@/assets/futxperform-website.png";
 
 interface Project {
   name: string;
@@ -76,6 +77,14 @@ const liveSites: LiveSite[] = [
     image: tumacayMotors,
     url: "https://tumacay-general-motors.onrender.com/",
     stack: "Web App · Firebase · Inventory",
+  },
+  {
+    name: "FUTXPERFORM",
+    tagline: "Football Career Access Platform",
+    description: "Concept build for a pro-player-run football network connecting serious footballers with clubs, scouts, and decision-makers, featuring player signings, video testimonials, and a profile assessment funnel.",
+    image: futxperform,
+    url: "https://futxperform.onrender.com/",
+    stack: "React · Sports · Lead Funnel",
   },
 ];
 
