@@ -18,6 +18,7 @@ import bigBossGlobal from "@/assets/bigboss-global-website.png";
 import bioBlooms from "@/assets/bioblooms-health-wellness-website.png";
 import winermanConstruction from "@/assets/winerman-construction-website.png";
 import jmmSupply from "@/assets/jmm-supply-construction-website.png";
+import futxperform from "@/assets/futxperform-website.png";
 
 interface Project {
   name: string;
@@ -184,6 +185,14 @@ const liveSites: LiveSite[] = [
     image: jmmSupply,
     url: "https://jmm-supply-construction.onrender.com/",
     stack: "React · Construction · Equipment",
+  },
+  {
+    name: "FUTXPERFORM",
+    tagline: "Football Career Access Platform",
+    description: "Concept build for a pro-player-run football network connecting serious footballers with clubs, scouts, and decision-makers, featuring player signings, video testimonials, and a profile assessment funnel.",
+    image: futxperform,
+    url: "https://futxperform.onrender.com/",
+    stack: "React · Sports · Lead Funnel",
   },
 ];
 
