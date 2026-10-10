@@ -20,6 +20,7 @@ import bioBlooms from "@/assets/bioblooms-health-wellness-website.png";
 import winermanConstruction from "@/assets/winerman-construction-website.png";
 import jmmSupply from "@/assets/jmm-supply-construction-website.png";
 import futxperform from "@/assets/futxperform-website.png";
+import coveCafe from "@/assets/cove-cafe-website.png";
 
 interface Project {
   name: string;
@@ -194,6 +195,14 @@ const liveSites: LiveSite[] = [
     image: futxperform,
     url: "https://futxperform.onrender.com/",
     stack: "React · Sports · Lead Funnel",
+  },
+  {
+    name: "Cové Café",
+    tagline: "Coffee Shop Pre-Launch Site",
+    description: "Pre-launch site for a garden café at NextGen Farm in Dasmariñas, Cavite, with a scroll-driven brand film, space tours, an opening menu preview, and a guest-pass sign-up.",
+    image: coveCafe,
+    url: "https://cove-cafe.onrender.com/",
+    stack: "React · Hospitality · Scroll Film",
   },
 ];
 
