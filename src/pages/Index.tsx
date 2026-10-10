@@ -10,6 +10,7 @@ import HeroSection from "@/components/HeroSection";
 import SubjectProfileSection from "@/components/SubjectProfileSection";
 import SkillsMarquee from "@/components/SkillsMarquee";
 import TradingBotsSection from "@/components/TradingBotsSection";
+import TradingAcademySection from "@/components/TradingAcademySection";
 import ServicesSection from "@/components/ServicesSection";
 import ExperienceSection from "@/components/ExperienceSection";
 import PortfolioSection from "@/components/PortfolioSection";
@@ -33,6 +34,7 @@ const Index = () => {
         <SkillsMarquee />
         <CarPass variant="rivalA" direction="right" label="Next · the private build" />
         <TradingBotsSection />
+        <TradingAcademySection />
         <PortfolioSection />
         <CarPass variant="rivalB" direction="left" label="Next · what I can run for you" />
         <ServicesSection />
