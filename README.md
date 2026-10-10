@@ -15,6 +15,7 @@ Ivan Tumacay is an experienced Full-Stack Developer with **10+ years of freelanc
 ## Project Information
 
 **Live URL**: https://ivan-tumacay-portfolio.onrender.com  
+**LinkedIn**: https://www.linkedin.com/in/tumacayivan  
 **GitHub**: https://github.com/tumacayivan  
 **Email**: tumacayivan@gmail.com
 
@@ -74,6 +75,7 @@ This project can be deployed to various platforms:
 ## Contact
 
 - **Email**: tumacayivan@gmail.com
+- **LinkedIn**: [in/tumacayivan](https://www.linkedin.com/in/tumacayivan)
 - **GitHub**: [@tumacayivan](https://github.com/tumacayivan)
 - **Website**: https://ivan-tumacay-portfolio.onrender.com
 - **Location**: Philippines

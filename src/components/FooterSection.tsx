@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowUpRight, MapPin, Mail, Github, Send, MessageCircle, FileText, ArrowUp } from "lucide-react";
+import { ArrowUpRight, MapPin, Mail, Github, Linkedin, Send, MessageCircle, FileText, ArrowUp } from "lucide-react";
 import { useRef } from "react";
 import { MaskLine } from "./drift/Reveal";
 
@@ -7,6 +7,7 @@ const channels = [
   { icon: Mail, label: "Email", value: "tumacayivan@gmail.com", href: "mailto:tumacayivan@gmail.com" },
   { icon: MessageCircle, label: "WhatsApp & Viber", value: "+63 991 686 8942", href: "https://wa.me/639916868942" },
   { icon: Send, label: "Telegram", value: "t.me/tumacaygroup", href: "https://t.me/tumacaygroup" },
+  { icon: Linkedin, label: "LinkedIn", value: "linkedin.com/in/tumacayivan", href: "https://www.linkedin.com/in/tumacayivan" },
   { icon: Github, label: "GitHub", value: "github.com/tumacayivan", href: "https://github.com/tumacayivan" },
   { icon: MapPin, label: "Location", value: "Cavite, Philippines" },
 ];
