@@ -6,6 +6,7 @@ import PaintShop from "./drift/PaintShop";
 
 const navItems = [
   { label: "Trading Bots", href: "#trading-bots", kanji: "自動売買" },
+  { label: "Trading", href: "#trading-academy", kanji: "相場道" },
   { label: "Showreel", href: "#portfolio", kanji: "作品" },
   { label: "Services", href: "#services", kanji: "サービス" },
   { label: "Experience", href: "#experience", kanji: "経歴" },
