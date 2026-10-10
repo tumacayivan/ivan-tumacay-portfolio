@@ -17,6 +17,7 @@ import {
 } from "./story";
 import { useFilm } from "./useFilm";
 import Hud from "./Hud";
+import Academy from "./Academy";
 import "./quant.css";
 
 const World = lazy(() => import("./world/World"));
@@ -401,6 +402,7 @@ const Film = () => {
               </li>
             ))}
           </ul>
+          <Academy />
         </Act>
 
         {/* ============ ACT VII — THE RANGE ============ */}
