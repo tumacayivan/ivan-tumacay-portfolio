@@ -1,15 +1,9 @@
-// THE BEDROOM QUANT — one film, nine acts, one line running through all of it.
+// YOUR REMOTE RIGHT HAND — one film, nine acts, one line running through all of it.
 //
 // `story` is the bridge between the page and the 3D world. GSAP ScrollTriggers on
 // each act write `target` (act index + progress through that act); the world eases
 // `p` toward it every frame and flies the camera along one continuous path.
 
-import groupTrading from "@/assets/quant/ivan-tumacay-group-trading.jpg";
-import marketHacker from "@/assets/quant/market-hacker-website1.jpg";
-import marketHackers from "@/assets/quant/market-hacker-website2.jpg";
-import quantModel from "@/assets/quant/ivan-quant-model-website.jpg";
-import swarmAi from "@/assets/quant/ivan-swarm-ai-website.jpg";
-import supercomputer from "@/assets/quant/supercomputer.jpg";
 import group from "@/assets/quant/ivan-tumacay-group-website.jpg";
 import pearl from "@/assets/quant/golden-south-sea-pearl-website.jpg";
 import motors from "@/assets/quant/tumacay-general-motors-website.jpg";
@@ -24,13 +18,17 @@ import winerman from "@/assets/quant/winerman-construction-website.jpg";
 import jmm from "@/assets/quant/jmm-supply-construction-website.jpg";
 import futx from "@/assets/quant/futxperform-website.jpg";
 import cove from "@/assets/quant/cove-cafe-website.jpg";
-import itb1 from "@/assets/quant/itb-01-analytics.jpg";
-import itb2 from "@/assets/quant/itb-02-track-record.jpg";
-import itb3 from "@/assets/quant/itb-03-server-console.jpg";
-import itb4 from "@/assets/quant/itb-04-link-timing.jpg";
-import itb5 from "@/assets/quant/itb-05-bridge-host.jpg";
-import itb6 from "@/assets/quant/itb-06-telemetry.jpg";
-import itb7 from "@/assets/quant/itb-07-processor-network.jpg";
+import g1 from "@/assets/portfolio-graphic-1.jpg";
+import g2 from "@/assets/portfolio-graphic-2.jpg";
+import g3 from "@/assets/portfolio-graphic-3.jpg";
+import g4 from "@/assets/portfolio-graphic-4.jpg";
+import g5 from "@/assets/portfolio-graphic-5.jpg";
+import g6 from "@/assets/portfolio-graphic-6.jpg";
+import v1 from "@/assets/portfolio-video-1.jpg";
+import v2 from "@/assets/portfolio-video-2.jpg";
+import v3 from "@/assets/portfolio-video-3.jpg";
+import v4 from "@/assets/portfolio-video-4.jpg";
+import v5 from "@/assets/portfolio-video-5.jpg";
 
 /* ------------------------------------------------------------------ */
 /* Shared scroll state                                                 */
@@ -55,15 +53,15 @@ export const LAST_P = 8.5;
 /* ------------------------------------------------------------------ */
 
 export const acts = [
-  { id: "cold-open", act: "Cold open", title: "03:14 AM", time: "03:14", where: "A bedroom in Cavite" },
-  { id: "origin", act: "Act I", title: "The Signal", time: "2014", where: "Dasmariñas · Cavite" },
-  { id: "stack", act: "Act II", title: "The Stack", time: "2019", where: "Enterprise floors" },
-  { id: "after-hours", act: "Act III", title: "After Hours", time: "23:00", where: "Back in the bedroom" },
-  { id: "model", act: "Act IV", title: "The Model", time: "∂L/∂w", where: "Inside the network" },
-  { id: "machine", act: "Act V", title: "The Machine", time: "ITB-001", where: "The private build" },
-  { id: "desk", act: "Act VI", title: "The Desk", time: "LIVE", where: "Ivan Tumacay Group" },
-  { id: "range", act: "Act VII", title: "The Range", time: "18 SITES", where: "Everything else he ships" },
-  { id: "dawn", act: "Final cut", title: "Dawn", time: "06:02", where: "Same bedroom. Different man." },
+  { id: "cold-open", act: "Cold open", title: "03:14 AM", time: "03:14", where: "A home office in Cavite" },
+  { id: "foundation", act: "Act I", title: "The Foundation", time: "2014", where: "Dasmariñas · Cavite" },
+  { id: "systems", act: "Act II", title: "The Systems", time: "2019", where: "Enterprise floors" },
+  { id: "craft", act: "Act III", title: "The Craft", time: "POST · CUT", where: "Design, video, social" },
+  { id: "method", act: "Act IV", title: "The Method", time: "BRIEF → DONE", where: "How the work runs" },
+  { id: "services", act: "Act V", title: "The Services", time: "15 LINES", where: "Everything you can hand off" },
+  { id: "reel", act: "Act VI", title: "The Reel", time: "WORK", where: "Graphics & video samples" },
+  { id: "range", act: "Act VII", title: "The Range", time: "18 SITES", where: "Web & technical support" },
+  { id: "dawn", act: "Final cut", title: "Dawn", time: "06:02", where: "Your day, handled" },
 ] as const;
 
 /* ------------------------------------------------------------------ */
@@ -81,65 +79,68 @@ export const dossier = [
   ["Based", "Cavite, Philippines"],
   ["Time zone", "UTC +08:00"],
   ["Languages", "Filipino · English"],
-  ["Height", "5'11\" · 180 cm"],
+  ["Hours", "Flexible · your time zone"],
   ["Works", "Remote, worldwide"],
 ] as const;
 
 export const roles = [
-  { years: "2019 – 2020", company: "VNR Construction", role: "Web application & API developer", note: "Internal systems, databases, APIs." },
-  { years: "2019 – 2020", company: "St. Paul Technological Institute of Cavite", role: "Front-end & back-end developer", note: "Institutional web apps across the full lifecycle." },
-  { years: "2020 – 2021", company: "AltPayNet — Digital Payment Solutions", role: "Back-end developer", note: "Secure APIs, authentication and financial transaction workflows. Where money first became data.", key: true },
+  { years: "2019 – 2020", company: "VNR Construction", role: "Web application & API developer", note: "Internal business systems, databases and the data behind daily operations." },
+  { years: "2019 – 2020", company: "St. Paul Technological Institute of Cavite", role: "Front-end & back-end developer", note: "Administrative and academic web apps across the full lifecycle." },
+  { years: "2020 – 2021", company: "AltPayNet — Digital Payment Solutions", role: "Back-end developer", note: "Secure, compliant transaction workflows. Where precision stopped being optional.", key: true },
   { years: "2021 – 2022", company: "Payshare Pharmaceutical Trading Intl.", role: "Full-stack developer", note: "Inventory, operations and internal management tools." },
-  { years: "2022 – 2023", company: "Bio Blooms Manufacturing", role: "Full-stack developer", note: "Enterprise systems and workflow automation." },
-  { years: "Jul – Dec 2023", company: "Enprat Philippines Holdings · Enprat Learning School", role: "Full-stack developer", note: "System architecture, development and deployment." },
+  { years: "2022 – 2023", company: "Bio Blooms Manufacturing", role: "Full-stack developer", note: "Workflow automation and data management for manufacturing operations." },
+  { years: "Jul – Dec 2023", company: "Enprat Philippines Holdings · Enprat Learning School", role: "Full-stack developer", note: "Student management, admin functions and internal systems." },
 ];
 
 export const creativeRoles = [
-  "Web designer · Exoskill Creatives",
-  "Graphic designer & video editor · Rovawork Philippines",
-  "Designer, social & video · Next Generation Church",
-  "Freelance designer & editor · multiple clients",
+  { company: "Next Generation Church (Jesus Culture)", role: "Graphic designer, social media manager & video editor", note: "Worship and community content for audiences worldwide — designed, edited, scheduled and moderated." },
+  { company: "Rovawork Philippines", role: "Graphic designer & video editor", note: "Corporate and marketing video with a creative team, cut to each client's brand." },
+  { company: "Exoskill Creatives", role: "Web designer", note: "Client websites that look right and work right, true to each brand." },
+  { company: "Freelance · multiple clients", role: "Graphic designer & video editor", note: "Content creators, small businesses, agencies and independent filmmakers." },
 ];
 
-export const modelStack = [
-  { k: "Data", v: "Tick & bar feeds, cleaning, resampling, feature pipelines" },
-  { k: "Signals", v: "Systematic signal generation and regime filters" },
-  { k: "Learning", v: "Machine learning and neural networks for pattern recognition" },
-  { k: "Testing", v: "Back-tested strategies before a single live order" },
-  { k: "Risk", v: "Drawdown, expectancy, profit factor, Sharpe — the numbers that keep you alive" },
-  { k: "Execution", v: "Automated bots wired to the broker terminal, monitored every second" },
+export const method = [
+  { k: "Brief", v: "Your goals, tools, access and standards — written down, confirmed, no guessing." },
+  { k: "Plan", v: "Tasks, owners and deadlines in your project tool, so you can see everything." },
+  { k: "Execute", v: "The work itself: inbox, calendar, support, content, research, data." },
+  { k: "Report", v: "End-of-day updates: what's done, what's pending, what needs your call." },
+  { k: "Automate", v: "Repeatable work moved into Zapier, Make or n8n so it runs on its own." },
+  { k: "Improve", v: "Weekly review of what slowed us down, and a fix for it." },
 ];
 
-export const itbFeatures = [
-  { title: "Live account state", body: "Equity, balance, floating P&L, free margin and exposure streamed from the terminal." },
-  { title: "Track record", body: "Realised net, win rate, expectancy, profit factor and profitable days, period by period." },
-  { title: "Risk analytics", body: "Max drawdown, recovery factor, annualised Sharpe and average hold time." },
-  { title: "Funding ledger", body: "Deposits, withdrawals and dividends split out so cash moves never inflate results." },
-  { title: "Symbol attribution", body: "Where profit and loss actually came from, per instrument." },
-  { title: "Cloud snapshots", body: "When the terminal sleeps, the last synced account stays viewable." },
-  { title: "Server telemetry", body: "Rack console, link timing, host load, per-second latency and tick flow." },
-  { title: "Share & report", body: "Share link, QR code and a generated PDF performance report." },
+export type Service = { title: string; blurb: string; tasks: string[]; tools?: string };
+
+export const vaServices: Service[] = [
+  { title: "Administrative", blurb: "Daily operations and admin workflows, handled.", tasks: ["Email and inbox management", "Calendar management and scheduling", "Meeting coordination", "Data entry and database updates", "File organisation and document management", "Online research and data gathering", "Travel planning and booking", "Document preparation and formatting", "CRM data updates", "Spreadsheet organisation and reporting"] },
+  { title: "Executive & personal", blurb: "High-level support for founders and busy professionals.", tasks: ["Executive calendar management", "Priority inbox management", "Confidential document handling", "Personal errand coordination", "Event planning and logistics", "Travel itinerary management", "Client relationship support"] },
+  { title: "Customer support", blurb: "Customers answered fast, tickets closed clean.", tasks: ["Email customer support", "Live chat support", "Helpdesk and ticketing management", "Order tracking and follow-ups", "Refund and issue resolution", "Customer onboarding", "Feedback monitoring", "FAQ management"], tools: "Zendesk, Freshdesk, Intercom, HubSpot" },
+  { title: "Social media", blurb: "Presence managed and growing across every platform.", tasks: ["Content scheduling", "Comment moderation", "Direct message responses", "Strategy assistance", "Hashtag research", "Analytics tracking", "Engagement monitoring", "Community management"], tools: "Facebook, Instagram, LinkedIn, TikTok, X, YouTube" },
+  { title: "Graphic design", blurb: "Visuals for brand, marketing and social.", tasks: ["Social media graphics", "Marketing banners", "Promotional materials", "Business presentations", "Infographics", "Brand visual assets", "Thumbnails", "Website graphics"], tools: "Canva, Photoshop, Illustrator" },
+  { title: "Video editing", blurb: "Long-form, short-form and everything in between.", tasks: ["YouTube and social video", "Reels, TikTok and Shorts", "Promotional video", "Captions and subtitles", "Basic motion graphics", "Trimming and enhancement", "Thumbnail design", "Audio sync and editing"], tools: "Premiere Pro, After Effects, CapCut" },
+  { title: "Content & publishing", blurb: "Content produced, formatted and live on schedule.", tasks: ["Blog publishing and formatting", "Uploading and scheduling", "WordPress content management", "Article research and preparation", "Proofreading and editing", "SEO formatting", "Website content updates"] },
+  { title: "Lead generation", blurb: "The right prospects, found and organised.", tasks: ["LinkedIn prospecting", "Lead database building", "Email list building", "Market research", "Contact information gathering", "CRM lead management", "Prospect qualification"] },
+  { title: "E-commerce", blurb: "Online store operations kept moving.", tasks: ["Product listing creation", "Product research", "Inventory management", "Order processing", "Customer inquiries", "Product descriptions", "Shopify store management", "Amazon store support"] },
+  { title: "Digital marketing", blurb: "Campaigns executed, tracked and tuned.", tasks: ["Email marketing campaigns", "Newsletter creation", "Funnel setup and management", "Campaign monitoring and analytics", "Marketing research", "Social ads assistance", "Marketing automation setup"] },
+  { title: "Real estate", blurb: "Support for agents and property businesses.", tasks: ["Property listing updates", "MLS data entry", "Lead follow-ups", "Client communication", "Appointment scheduling", "CRM updates", "Property research"] },
+  { title: "Bookkeeping", blurb: "Financial records organised and reported.", tasks: ["Invoice preparation", "Expense tracking", "Financial data entry", "Reconciliation support", "Financial reports", "Accounting software assistance"], tools: "QuickBooks, Xero, Spreadsheets" },
+  { title: "Technical", blurb: "Websites, systems and automations that keep working.", tasks: ["Website updates and maintenance", "WordPress management", "CRM setup and configuration", "Automation setup", "System troubleshooting", "Technical documentation", "API integration assistance"], tools: "Zapier, Make, n8n" },
+  { title: "Data & research", blurb: "Structured research you can act on.", tasks: ["Market research", "Competitor analysis", "Data collection and organisation", "Report preparation", "Industry trend research", "Data visualisation support"] },
+  { title: "Project management", blurb: "Tasks, people and deadlines kept on track.", tasks: ["Task tracking and management", "Team coordination and follow-ups", "Project timelines", "Progress reporting", "Meeting notes and action items", "Resource allocation support", "Deadline monitoring"], tools: "Trello, Asana, Monday.com, ClickUp, Notion" },
 ];
 
-export const itbExhibits = [
-  { image: itb1, title: "Analytics" },
-  { image: itb2, title: "Track record" },
-  { image: itb3, title: "Server console" },
-  { image: itb4, title: "Link & timing" },
-  { image: itb5, title: "Bridge host" },
-  { image: itb6, title: "Telemetry" },
-  { image: itb7, title: "Processor & network" },
-];
+/** Work samples hung on the machine's ring and around the desk in 3D. */
+export const ringImages = [g1, g2, g3, g4, g5, g6, v1];
+export const deskImages = [v2, v3, v4, v5, g3, g5];
 
-export const ITB_URL = "https://ivan-trading-bots.onrender.com/";
-
-export const deskBuilds = [
-  { name: "Ivan Tumacay Group Trading", tag: "Proprietary trading & market operations", image: groupTrading, url: "https://ivan-tumacay-group-trading.onrender.com/" },
-  { name: "Ivan Quant Model Engine", tag: "Systematic signals & back-tested strategies", image: quantModel, url: "https://ivan-quant-model-engine-1.onrender.com/" },
-  { name: "Market Hacker", tag: "Real-time analytics & signal monitoring", image: marketHacker, url: "https://market-hacker.onrender.com/" },
-  { name: "Market Hackers", tag: "Trader community & shared strategies", image: marketHackers, url: "https://market-hackers.onrender.com/" },
-  { name: "Ivan Swarm AI", tag: "Multi-agent AI orchestration", image: swarmAi, url: "https://ivan-swarm-ai.onrender.com/" },
-  { name: "ITG Supercomputer", tag: "Parallel compute for simulation & AI", image: supercomputer, url: "https://ivan-tumacay-group-supercomputer.onrender.com/" },
+export const toolbelt = [
+  { k: "Project management", v: "Trello · Asana · Monday.com · ClickUp · Notion" },
+  { k: "Support & CRM", v: "Zendesk · Freshdesk · Intercom · HubSpot" },
+  { k: "Design", v: "Canva · Photoshop · Illustrator" },
+  { k: "Video", v: "Premiere Pro · After Effects · CapCut" },
+  { k: "Automation", v: "Zapier · Make · n8n" },
+  { k: "Bookkeeping", v: "QuickBooks · Xero · Spreadsheets" },
+  { k: "Commerce & web", v: "Shopify · Amazon · WordPress" },
+  { k: "Social", v: "Facebook · Instagram · LinkedIn · TikTok · X · YouTube" },
 ];
 
 export const rangeBuilds = [
@@ -157,17 +158,6 @@ export const rangeBuilds = [
   { name: "JMM Supply", tag: "Earthworks & supply", image: jmm, url: "https://jmm-supply-construction.onrender.com/" },
   { name: "FUTXPERFORM", tag: "Football careers", image: futx, url: "https://futxperform.onrender.com/" },
   { name: "Cové Café", tag: "Pre-launch brand film", image: cove, url: "https://cove-cafe.onrender.com/" },
-];
-
-export const services = [
-  "Full-stack software",
-  "Trading systems & dashboards",
-  "AI agents & automation",
-  "APIs & integrations",
-  "Cloud & DevOps",
-  "Virtual assistance",
-  "Graphics & video",
-  "Digital marketing",
 ];
 
 export const contacts = [

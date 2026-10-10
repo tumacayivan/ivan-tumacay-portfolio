@@ -32,7 +32,7 @@ export type ScreenKind = "candles" | "equity" | "book";
  * A monitor that keeps trading: a canvas chart that ticks on its own.
  * Returns the texture and a `tick()` to call a few times a second.
  */
-export const makeScreen = (kind: ScreenKind, seed: number, ticker: string) => {
+export const makeScreen = (kind: ScreenKind, seed: number, ticker: string, sub = "") => {
   const W = 640;
   const H = 360;
   const canvas = document.createElement("canvas");
@@ -138,7 +138,7 @@ export const makeScreen = (kind: ScreenKind, seed: number, ticker: string) => {
       g.lineWidth = 1;
       g.fillStyle = "rgba(220,240,255,0.55)";
       g.font = "14px 'JetBrains Mono', monospace";
-      g.fillText("EQUITY · SIMULATED", 18, 54);
+      g.fillText(sub, 18, 54);
     } else {
       // order book ladder
       g.font = "15px 'JetBrains Mono', monospace";

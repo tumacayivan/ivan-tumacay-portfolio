@@ -1,6 +1,6 @@
 import Film from "@/quant/Film";
 
-// Theme: THE BEDROOM QUANT — the portfolio as one continuous, scroll-driven 3D film.
+// Theme: The Bedroom Quant design, with the virtual assistant portfolio as its content.
 const Index = () => <Film />;
 
 export default Index;

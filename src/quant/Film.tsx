@@ -1,20 +1,8 @@
 import { lazy, Suspense, useCallback, useEffect, useRef, useState, type ReactNode } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import avatar from "@/assets/quant/avatar.jpg";
-import {
-  acts,
-  contacts,
-  creativeRoles,
-  deskBuilds,
-  dossier,
-  education,
-  itbExhibits,
-  itbFeatures,
-  ITB_URL,
-  modelStack,
-  rangeBuilds,
-  roles,
-  services,
-} from "./story";
+import { acts, contacts, creativeRoles, dossier, education, method, rangeBuilds, roles, toolbelt, vaServices } from "./story";
+import { workCount, workReels } from "./work";
 import { useFilm } from "./useFilm";
 import Hud from "./Hud";
 import "./quant.css";
@@ -100,6 +88,78 @@ const Shot = ({ src, alt, ratio = "aspect-[2.09/1]" }: { src: string; alt: strin
   </div>
 );
 
+/** Graphics and video work, by category, linking out to Drive and YouTube. */
+const Reel = () => {
+  const [tab, setTab] = useState(0);
+  const [all, setAll] = useState(false);
+  const reel = workReels[tab];
+  const items = all ? reel.items : reel.items.slice(0, 12);
+  const pick = (i: number) => {
+    setTab(i);
+    setAll(false);
+  };
+  // The grid changes height: let every scroll trigger below re-measure
+  useEffect(() => {
+    const id = window.setTimeout(() => ScrollTrigger.refresh(), 60);
+    return () => window.clearTimeout(id);
+  }, [tab, all]);
+
+  return (
+    <div data-reveal>
+      <div role="tablist" aria-label="Work categories" className="q-scroller flex gap-2 overflow-x-auto pb-3 mb-6 -mx-[var(--q-gutter)] px-[var(--q-gutter)]">
+        {workReels.map((r, i) => (
+          <button
+            key={r.title}
+            role="tab"
+            aria-selected={i === tab}
+            onClick={() => pick(i)}
+            className={`shrink-0 q-mono text-[11px] uppercase tracking-[0.14em] px-4 py-2.5 border transition-colors ${
+              i === tab ? "bg-[var(--q-amber)] text-[var(--q-void)] border-[var(--q-amber)]" : "border-[var(--q-line)] text-[var(--q-dim)] hover:text-[var(--q-ink)]"
+            }`}
+          >
+            {r.title} <span className="opacity-60">· {r.items.length}</span>
+          </button>
+        ))}
+      </div>
+      <ul role="tabpanel" aria-label={reel.title} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+        {items.map((it) => (
+          <li key={it.fileId}>
+            <a href={it.link} target="_blank" rel="noopener noreferrer" className="group block">
+              <div className="q-shot aspect-video">
+                <img
+                  src={it.thumbnail}
+                  alt={it.title}
+                  loading="lazy"
+                  decoding="async"
+                  referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    const img = e.currentTarget;
+                    if (img.dataset.failed) return;
+                    img.dataset.failed = "1";
+                    img.src = it.source === "youtube" ? `https://img.youtube.com/vi/${it.fileId}/mqdefault.jpg` : `https://drive.google.com/thumbnail?id=${it.fileId}&sz=w800`;
+                  }}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                {it.type === "video" && (
+                  <span className="absolute left-2 bottom-2 q-mono text-[10px] uppercase tracking-[0.14em] px-2 py-1 bg-[rgba(3,6,10,0.8)] text-[var(--q-ink)]">
+                    ▶ Play
+                  </span>
+                )}
+              </div>
+              <div className="mt-2 text-sm leading-tight group-hover:text-[var(--q-amber)] transition-colors">{it.title}</div>
+            </a>
+          </li>
+        ))}
+      </ul>
+      {reel.items.length > 12 && (
+        <button onClick={() => setAll((v) => !v)} className="q-btn q-btn--ghost mt-6">
+          {all ? "Show fewer" : `Show all ${reel.items.length}`}
+        </button>
+      )}
+    </div>
+  );
+};
+
 /* ------------------------------------------------------------------ */
 /* The film                                                            */
 /* ------------------------------------------------------------------ */
@@ -133,9 +193,9 @@ const Film = () => {
             <div aria-hidden className="absolute inset-0 q-scrim-left pointer-events-none" />
             <div data-hero-copy className="q-gutter relative h-full flex flex-col justify-center pt-[var(--q-bar)] pb-[var(--q-bar)]">
               <div className="q-label mb-6 flex flex-wrap items-center gap-3">
-                <span className="text-[var(--q-bull)]">03:14 AM</span>
+                <span className="text-[var(--q-bull)]">03:14 AM in Cavite</span>
                 <span className="h-px w-8 bg-[var(--q-line)]" />
-                <span>A bedroom in Cavite, Philippines</span>
+                <span>Mid-afternoon in New York</span>
               </div>
               <h1 className="q-title !text-[clamp(4rem,14vw,13rem)]">
                 <Split text="Ivan" />
@@ -143,18 +203,18 @@ const Film = () => {
                 <Split text="Tumacay" className="italic" />
               </h1>
               <p className="q-serif mt-6 text-[clamp(1.6rem,3.4vw,3rem)] leading-tight">
-                The <Em>Bedroom Quant.</Em>
+                Your <Em>remote right hand.</Em>
               </p>
               <p className="mt-5 max-w-xl text-lg sm:text-xl leading-relaxed text-[var(--q-dim)]">
-                Software engineer by day. Quantitative trader by night. He built the machine that keeps trading
-                while he sleeps — and this is how.
+                Virtual assistant and digital operations specialist. Admin, support, social, design, video and
+                automation — run from a home office in the Philippines, on your hours.
               </p>
               <div className="mt-9 flex flex-wrap gap-3">
-                <a href="#origin" className="q-btn">
+                <a href="#foundation" className="q-btn">
                   Roll the film ↓
                 </a>
-                <a href="#machine" className="q-btn q-btn--ghost">
-                  Skip to the machine
+                <a href="#services" className="q-btn q-btn--ghost">
+                  Skip to services
                 </a>
               </div>
             </div>
@@ -167,17 +227,16 @@ const Film = () => {
           </div>
         </section>
 
-        {/* ============ ACT I — THE SIGNAL ============ */}
+        {/* ============ ACT I — THE FOUNDATION ============ */}
         <Act i={1}>
           <Slate i={1} />
           <Lines
-              lines={[
-              <>Before markets, there were <Em c="ice">signals.</Em></>,
-              <>Electronics and communications engineering: sine waves, noise, filters — the maths of pulling what matters out of what doesn't.</>,
-              <>Two schools of ECE, then a turn to information technology. <Em c="ice">Hardware to software. Signal to code.</Em></>,
-              <>He didn't know it yet, but a price chart is just <Em>another noisy signal.</Em></>,
+            lines={[
+              <>Every good assistant does one thing well: <Em c="ice">pulls the signal out of the noise.</Em></>,
+              <>It started with electronics and communications engineering — systems, signals, filters. Then a degree in information technology.</>,
+              <>Engineering taught me structure. <Em>Structure is what you're really hiring.</Em></>,
             ]}
-            />
+          />
 
           <div className="q-card p-6 sm:p-8" data-reveal>
             <div className="flex items-start gap-5 mb-7">
@@ -185,9 +244,9 @@ const Film = () => {
                 <img src={avatar} alt="Ivan Tumacay" className="absolute inset-0 w-full h-full object-cover object-top grayscale contrast-125" />
               </div>
               <div>
-                <div className="q-label mb-1">Subject</div>
+                <div className="q-label mb-1">Your assistant</div>
                 <div className="q-serif text-3xl leading-none">Mac Neil Ivan Tumacay</div>
-                <div className="q-mono text-xs text-[var(--q-dim)] mt-2">Filipino · Engineer · Trader</div>
+                <div className="q-mono text-xs text-[var(--q-dim)] mt-2">Filipino · Virtual assistant · Engineer</div>
               </div>
             </div>
             <dl className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-4 mb-8" data-stagger>
@@ -211,22 +270,22 @@ const Film = () => {
           </div>
         </Act>
 
-        {/* ============ ACT II — THE STACK ============ */}
+        {/* ============ ACT II — THE SYSTEMS ============ */}
         <Act i={2} side="right">
           <Slate i={2} />
           <Lines
-              lines={[
-              <>2019. The first <Em c="ice">production systems.</Em></>,
-              <>Construction, education, pharmaceuticals, manufacturing, holdings. APIs, databases, deployments — the plumbing businesses run on.</>,
-              <>Then digital payments. Secure APIs moving real money. <Em c="amber">That's where money first became data.</Em></>,
+            lines={[
+              <>2019. Five years inside <Em c="ice">real business operations.</Em></>,
+              <>Construction, education, pharmaceuticals, payments, manufacturing. CRMs, databases, inventory, the internal tools teams live in every day.</>,
+              <>So when you hand me your systems, <Em c="amber">I already speak their language.</Em></>,
             ]}
-            />
+          />
 
           <div className="grid grid-cols-3 gap-px bg-[var(--q-line)] mb-10" data-stagger>
             {[
-              ["10+", "years freelance"],
-              ["5", "years corporate"],
-              ["42", "projects shipped"],
+              ["~10", "years experience"],
+              ["15", "service lines"],
+              [String(workCount), "work samples"],
             ].map(([n, l]) => (
               <div key={l} className="bg-[var(--q-void)] p-4 sm:p-6">
                 <div className="q-serif text-5xl sm:text-6xl leading-none">{n}</div>
@@ -250,37 +309,35 @@ const Film = () => {
               </li>
             ))}
           </ol>
-
-          <div className="mt-10" data-reveal>
-            <div className="q-label mb-3">Before the code, the craft</div>
-            <ul className="flex flex-wrap gap-2">
-              {creativeRoles.map((c) => (
-                <li key={c} className="q-mono text-xs px-3 py-2 border border-[var(--q-line)] text-[var(--q-dim)]">
-                  {c}
-                </li>
-              ))}
-            </ul>
-          </div>
         </Act>
 
-        {/* ============ ACT III — AFTER HOURS ============ */}
+        {/* ============ ACT III — THE CRAFT ============ */}
         <Act i={3}>
           <Slate i={3} />
           <Lines
-              lines={[
-              <>The day job ended at six. <Em>The second shift started at eleven.</Em></>,
-              <>A bedroom. A desk. Screens with charts that never close.</>,
-              <>Bar after bar after bar — until the candles stopped looking like noise and started looking like <Em c="amber">data he could test.</Em></>,
+            lines={[
+              <>Post after post. <Em>Frame after frame.</Em></>,
+              <>Designing, editing, scheduling and moderating for a church with a worldwide audience, a creative studio, agencies and independent creators.</>,
+              <>Content that ships <Em c="amber">on time, on brand, every time.</Em></>,
             ]}
-            />
+          />
+          <ol className="space-y-px mb-10" data-stagger>
+            {creativeRoles.map((r) => (
+              <li key={r.company} className="q-card p-5">
+                <div className="text-lg leading-snug">{r.company}</div>
+                <div className="q-mono text-xs text-[var(--q-bull)] mt-1">{r.role}</div>
+                <p className="text-sm text-[var(--q-dim)] mt-2 leading-relaxed">{r.note}</p>
+              </li>
+            ))}
+          </ol>
           <div className="q-card p-6 sm:p-8" data-reveal>
             <div className="q-label mb-5">House rules · taped to the monitor</div>
             <ol className="space-y-4" data-stagger>
               {[
-                ["No edge, no trade.", "If it can't be measured, it doesn't get capital."],
-                ["Risk first.", "Size the loss before you dream about the win."],
-                ["Test it or forget it.", "Every idea earns its way through the back-test."],
-                ["Automate the discipline.", "Code doesn't get tired at 3am. People do."],
+                ["Your hours are my hours.", "I work in your time zone, not mine."],
+                ["Over-communicate.", "You never have to ask where something is."],
+                ["Document everything.", "Every process written down, so nothing lives in one head."],
+                ["Automate the repeatable.", "If I do it three times, it becomes a workflow."],
               ].map(([h, b], i) => (
                 <li key={h} className="grid grid-cols-[36px_1fr] gap-3">
                   <span className="q-mono text-sm text-[var(--q-bull)]">0{i + 1}</span>
@@ -294,25 +351,25 @@ const Film = () => {
           </div>
         </Act>
 
-        {/* ============ ACT IV — THE MODEL ============ */}
+        {/* ============ ACT IV — THE METHOD ============ */}
         <Act i={4} side="right">
           <Slate i={4} />
           <Lines
-              lines={[
-              <>Discretion doesn't scale. <Em>Models do.</Em></>,
-              <>So the engineer and the trader merged into one seat: data pipelines, features, <Em c="ice">machine learning and neural networks</Em> hunting for structure in the noise.</>,
-              <>Nothing touches real money until it survives the back-test.</>,
+            lines={[
+              <>Busy doesn't scale. <Em>Systems do.</Em></>,
+              <>Every engagement runs on the same loop — brief, plan, execute, report — and anything repeatable gets <Em c="ice">automated with Zapier, Make, n8n and AI agents.</Em></>,
+              <>You get your time back. And you can see exactly where it went.</>,
             ]}
-            />
+          />
 
-          {/* The pipeline, left to right */}
+          {/* The method, left to right */}
           <div className="q-card p-5 sm:p-6 mb-6" data-reveal>
-            <div className="q-label mb-4">Pipeline</div>
+            <div className="q-label mb-4">How the work runs</div>
             <div className="relative">
               <div className="absolute left-0 right-0 top-[7px] h-px bg-[var(--q-line)]" />
               <span className="q-pipeline-dot absolute top-[4px] w-[7px] h-[7px] rounded-full bg-[var(--q-amber)] shadow-[0_0_12px_var(--q-amber)]" />
               <ol className="relative grid grid-cols-3 sm:grid-cols-6 gap-y-5">
-                {modelStack.map((m) => (
+                {method.map((m) => (
                   <li key={m.k} className="pr-2">
                     <span className="block w-[15px] h-[15px] border border-[var(--q-bull)] bg-[var(--q-void)] rotate-45 mb-3" />
                     <span className="q-mono text-[11px] uppercase tracking-[0.14em]">{m.k}</span>
@@ -322,85 +379,77 @@ const Film = () => {
             </div>
           </div>
           <dl className="grid sm:grid-cols-2 gap-px bg-[var(--q-line)]" data-stagger>
-            {modelStack.map((m) => (
+            {method.map((m) => (
               <div key={m.k} className="bg-[rgba(3,6,10,0.9)] p-5">
                 <dt className="q-mono text-xs text-[var(--q-bull)] uppercase tracking-[0.16em]">{m.k}</dt>
                 <dd className="text-sm text-[var(--q-dim)] mt-2 leading-relaxed">{m.v}</dd>
               </div>
             ))}
           </dl>
-          <a href="https://ivan-quant-model-engine-1.onrender.com/" target="_blank" rel="noopener noreferrer" className="q-btn q-btn--ghost mt-8" data-reveal>
-            Open the Quant Model Engine ↗
-          </a>
         </Act>
 
-        {/* ============ ACT V — THE MACHINE ============ */}
+        {/* ============ ACT V — THE SERVICES ============ */}
         <Act i={5} wide>
           <div className="max-w-[44rem]">
             <Slate i={5} />
             <Lines
               lines={[
-                <><Em c="amber">ITB-001.</Em> Ivan Trading Bots.</>,
-                <>A proprietary algorithmic trading system with a live command terminal that audits every trade for <Em>performance and risk.</Em></>,
-                <>Researched, engineered and run from that bedroom desk.</>,
+                <><Em c="amber">Fifteen</Em> things you can stop doing yourself.</>,
+                <>From the inbox to the edit bay to the books — pick one, or hand over the whole back office.</>,
               ]}
             />
           </div>
 
-          <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[var(--q-line)] mb-12" data-stagger>
-            {itbFeatures.map((f, i) => (
-              <li key={f.title} className="bg-[rgba(3,6,10,0.88)] backdrop-blur p-5 sm:p-6">
-                <div className="q-mono text-[11px] text-[var(--q-faint)]">0{i + 1}</div>
-                <div className="q-serif text-2xl mt-3 leading-tight">{f.title}</div>
-                <p className="text-sm text-[var(--q-dim)] mt-2 leading-relaxed">{f.body}</p>
+          <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-[var(--q-line)] mb-12" data-stagger>
+            {vaServices.map((s, i) => (
+              <li key={s.title} className="bg-[rgba(3,6,10,0.88)] backdrop-blur p-5 sm:p-6">
+                <div className="q-mono text-[11px] text-[var(--q-faint)]">{String(i + 1).padStart(2, "0")}</div>
+                <div className="q-serif text-2xl mt-3 leading-tight">{s.title}</div>
+                <p className="text-sm text-[var(--q-dim)] mt-2 leading-relaxed">{s.blurb}</p>
+                <details className="mt-3 group">
+                  <summary className="cursor-pointer list-none q-mono text-[11px] uppercase tracking-[0.14em] text-[var(--q-bull)] hover:text-[var(--q-amber)]">
+                    <span className="group-open:hidden">+ {s.tasks.length} tasks</span>
+                    <span className="hidden group-open:inline">− Hide tasks</span>
+                  </summary>
+                  <ul className="mt-3 space-y-1.5">
+                    {s.tasks.map((t) => (
+                      <li key={t} className="text-sm text-[var(--q-ink)] flex gap-2">
+                        <span className="text-[var(--q-bull)]">›</span>
+                        {t}
+                      </li>
+                    ))}
+                  </ul>
+                </details>
+                {s.tools && <div className="q-mono text-[11px] text-[var(--q-faint)] mt-3">{s.tools}</div>}
               </li>
             ))}
           </ul>
 
-          <div className="flex items-end justify-between gap-4 mb-4" data-reveal>
-            <div className="q-label">Terminal footage · 7 screens</div>
-            <div className="q-label !text-[10px] hidden sm:block">Account, broker & host details redacted</div>
+          <div className="q-card p-6 sm:p-8" data-reveal>
+            <div className="q-label mb-5">The toolbelt</div>
+            <dl className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-5">
+              {toolbelt.map((t) => (
+                <div key={t.k}>
+                  <dt className="q-mono text-[11px] uppercase tracking-[0.14em] text-[var(--q-bull)]">{t.k}</dt>
+                  <dd className="text-sm text-[var(--q-dim)] mt-1.5 leading-relaxed">{t.v}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
-          <div className="q-scroller flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 -mx-[var(--q-gutter)] px-[var(--q-gutter)]" data-stagger>
-            {itbExhibits.map((e) => (
-              <figure key={e.title} className="snap-start shrink-0 w-[82vw] sm:w-[520px]">
-                <Shot src={e.image} alt={`Ivan Trading Bots terminal — ${e.title}`} />
-                <figcaption className="q-mono text-xs text-[var(--q-dim)] mt-2 uppercase tracking-[0.14em]">{e.title}</figcaption>
-              </figure>
-            ))}
-          </div>
-          <a href={ITB_URL} target="_blank" rel="noopener noreferrer" className="q-btn mt-8" data-reveal>
-            Open the terminal ↗
-          </a>
         </Act>
 
-        {/* ============ ACT VI — THE DESK ============ */}
+        {/* ============ ACT VI — THE REEL ============ */}
         <Act i={6} wide>
           <div className="max-w-[44rem]">
             <Slate i={6} />
             <Lines
               lines={[
-                <>One bot became <Em>a desk.</Em></>,
-                <>A trading arm for the Ivan Tumacay Group. A quant model engine. Market analytics for traders and a community around it. A swarm of AI agents — and the compute to run them.</>,
+                <>Don't take my word for it. <Em>Take the reel.</Em></>,
+                <>{workCount} pieces of real client work — graphics, AI video, reels, documentary, DTC ads, motion graphics, captions and long-form podcasts.</>,
               ]}
             />
           </div>
-          <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5" data-stagger>
-            {deskBuilds.map((b) => (
-              <li key={b.name}>
-                <a href={b.url} target="_blank" rel="noopener noreferrer" className="group block q-card p-3">
-                  <Shot src={b.image} alt={`${b.name} website`} />
-                  <div className="flex items-start justify-between gap-3 px-2 pt-4 pb-2">
-                    <div>
-                      <div className="q-serif text-2xl leading-tight">{b.name}</div>
-                      <div className="text-sm text-[var(--q-dim)] mt-1">{b.tag}</div>
-                    </div>
-                    <span className="q-mono text-[var(--q-amber)] transition-transform group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
-                  </div>
-                </a>
-              </li>
-            ))}
-          </ul>
+          <Reel />
         </Act>
 
         {/* ============ ACT VII — THE RANGE ============ */}
@@ -409,12 +458,12 @@ const Film = () => {
             <Slate i={7} />
             <Lines
               lines={[
-                <>The same hands ship <Em c="dawn">everything else.</Em></>,
-                <>Pearls and pickup trucks. Surf schools and campaigns. Builders, wallets, cafés. Full-stack, end to end, live.</>,
+                <>And when the job needs <Em c="dawn">a website,</Em> you don't need a second hire.</>,
+                <>Stores, corporate sites, booking systems, campaigns — built, updated and maintained. The technical VA, end to end.</>,
               ]}
             />
           </div>
-          <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 mb-14" data-stagger>
+          <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4" data-stagger>
             {rangeBuilds.map((b) => (
               <li key={b.name}>
                 <a href={b.url} target="_blank" rel="noopener noreferrer" className="group block">
@@ -425,16 +474,6 @@ const Film = () => {
               </li>
             ))}
           </ul>
-          <div className="q-card p-6 sm:p-8 max-w-4xl" data-reveal>
-            <div className="q-label mb-4">What he can run for you</div>
-            <ul className="flex flex-wrap gap-2">
-              {services.map((s) => (
-                <li key={s} className="q-serif text-xl sm:text-2xl px-4 py-1.5 border border-[var(--q-line)]">
-                  {s}
-                </li>
-              ))}
-            </ul>
-          </div>
         </Act>
 
         {/* ============ FINAL CUT — DAWN ============ */}
@@ -448,19 +487,19 @@ const Film = () => {
             <div className="max-w-[44rem] lg:ml-[2vw]">
               <Slate i={8} />
               <Lines
-              lines={[
-                  <>06:02. The sun's coming up over Cavite.</>,
-                  <>The bot never closed its eyes. <Em c="dawn">Same bedroom. Different man.</Em></>,
+                lines={[
+                  <>06:02 in Cavite. The end of your business day.</>,
+                  <>Inbox at zero. Posts scheduled. Tickets closed. Report sent. <Em c="dawn">You slept through all of it.</Em></>,
                   <>Your move.</>,
                 ]}
-            />
+              />
             </div>
 
             <div className="mt-[30vh] max-w-6xl mx-auto">
               <h2 className="q-title text-center mb-12">
-                <Split text="Open a" />
+                <Split text="Hand it" />
                 <br />
-                <Split text="conversation." className="italic text-[var(--q-dawn)]" />
+                <Split text="off." className="italic text-[var(--q-dawn)]" />
               </h2>
               <ul className="grid sm:grid-cols-2 lg:grid-cols-5 gap-px bg-[var(--q-line)] mb-16" data-stagger>
                 {contacts.map((c) => (
@@ -481,10 +520,10 @@ const Film = () => {
               {/* End credits */}
               <div className="text-center space-y-8 pb-[calc(var(--q-bar)+40px)]" data-stagger>
                 {[
-                  ["Written & directed by", "Ivan Tumacay"],
-                  ["Research, engineering & execution", "Ivan Tumacay"],
-                  ["Stack", "React · TypeScript · Node.js · Laravel · Vue · Angular · Python · Django · Flask · Spring Boot · Firebase · n8n · Make.com · Zapier"],
-                  ["Filmed on location", "Cavite, Philippines · UTC+8 · remote worldwide"],
+                  ["Admin, support & operations", "Ivan Tumacay"],
+                  ["Social, design & video", "Ivan Tumacay"],
+                  ["Toolbelt", "Asana · ClickUp · Notion · Trello · Zendesk · HubSpot · Canva · Photoshop · Premiere Pro · After Effects · CapCut · Zapier · Make · n8n · QuickBooks · Xero · Shopify · WordPress"],
+                  ["Filmed on location", "Cavite, Philippines · UTC+8 · working your time zone"],
                 ].map(([k, v]) => (
                   <div key={k}>
                     <div className="q-label !text-[10px]">{k}</div>
@@ -492,8 +531,7 @@ const Film = () => {
                   </div>
                 ))}
                 <p className="q-mono text-[10px] leading-relaxed text-[var(--q-faint)] max-w-xl mx-auto uppercase tracking-[0.12em]">
-                  Charts and figures in the scenes are simulated. Trading involves substantial risk of loss. Nothing on
-                  this site is financial advice. © {new Date().getFullYear()} Ivan Tumacay.
+                  Dashboards shown in the scenes are illustrative. © {new Date().getFullYear()} Ivan Tumacay.
                 </p>
               </div>
             </div>

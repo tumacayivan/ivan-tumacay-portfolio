@@ -45,7 +45,7 @@ const Hud = ({ act }: { act: number }) => {
           <span className="q-serif text-2xl leading-none">
             I<span className="italic text-[var(--q-bull)]">T</span>
           </span>
-          <span className="q-label hidden sm:inline !text-[var(--q-ink)]">The Bedroom Quant</span>
+          <span className="q-label hidden sm:inline !text-[var(--q-ink)]">Your Remote Right Hand</span>
         </a>
         <div className="q-label truncate text-right">
           <span className="text-[var(--q-bull)]">{a.act}</span>

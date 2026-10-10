@@ -3,7 +3,7 @@ import { Suspense, useEffect, useMemo, useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { EffectComposer, Bloom, Vignette, Noise, ChromaticAberration } from "@react-three/postprocessing";
 import { BlendFunction } from "postprocessing";
-import { LAST_P, story, itbExhibits, deskBuilds, rangeBuilds } from "../story";
+import { LAST_P, story, ringImages, deskImages, rangeBuilds } from "../story";
 import { C, makeScreen, rng } from "./textures";
 import Bedroom from "./Bedroom";
 import { Candles, Desk, Machine, Network, Range, Signal, Stack } from "./SetPieces";
@@ -127,10 +127,10 @@ const Thread = () => {
 const Scene = ({ lite, reduced }: { lite: boolean; reduced: boolean }) => {
   const screens = useMemo(
     () => [
-      makeScreen("candles", 3, "XAUUSD · M5"),
-      makeScreen("equity", 8, "ITB-001"),
-      makeScreen("book", 5, "US30 · DOM"),
-      makeScreen("candles", 12, "NAS100 · M1"),
+      makeScreen("candles", 3, "ENGAGEMENT · 7D"),
+      makeScreen("equity", 8, "CLIENT KPIs", "TASKS CLOSED · ILLUSTRATIVE"),
+      makeScreen("book", 5, "TASK QUEUE"),
+      makeScreen("candles", 12, "REACH · REELS"),
     ],
     [],
   );
@@ -159,10 +159,10 @@ const Scene = ({ lite, reduced }: { lite: boolean; reduced: boolean }) => {
       <Candles z={-66} lite={lite} />
       <Network z={-92} lite={lite} />
       <Suspense fallback={null}>
-        <Machine z={-116} images={itbExhibits.map((e) => e.image)} />
+        <Machine z={-116} images={ringImages} />
       </Suspense>
       <Suspense fallback={null}>
-        <Desk z={-142} lite={lite} images={deskBuilds.map((d) => d.image)} />
+        <Desk z={-142} lite={lite} images={deskImages} />
       </Suspense>
       <Suspense fallback={null}>
         <Range z={-152} images={rangeBuilds.map((d) => d.image)} />
