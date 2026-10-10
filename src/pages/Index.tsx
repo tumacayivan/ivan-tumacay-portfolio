@@ -1,8 +1,15 @@
 import Navbar from "@/components/Navbar";
 import BackgroundMusic from "@/components/BackgroundMusic";
+import ControlsNotice from "@/components/ControlsNotice";
+import IntroSequence from "@/components/drift/IntroSequence";
+import SceneCut from "@/components/drift/SceneCut";
+import DriftHUD from "@/components/drift/DriftHUD";
+import CarPass from "@/components/drift/CarPass";
+import PitStopSection from "@/components/PitStopSection";
 import HeroSection from "@/components/HeroSection";
 import SubjectProfileSection from "@/components/SubjectProfileSection";
 import SkillsMarquee from "@/components/SkillsMarquee";
+import TradingBotsSection from "@/components/TradingBotsSection";
 import ServicesSection from "@/components/ServicesSection";
 import ExperienceSection from "@/components/ExperienceSection";
 import PortfolioSection from "@/components/PortfolioSection";
@@ -13,20 +20,29 @@ import FooterSection from "@/components/FooterSection";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="relative min-h-screen overflow-x-clip">
+      <IntroSequence />
+      <SceneCut />
       <BackgroundMusic />
+      <ControlsNotice />
+      <DriftHUD />
       <Navbar />
-      <HeroSection />
-      <SubjectProfileSection />
-      <SkillsMarquee />
-      <PortfolioSection />
-      <ServicesSection />
-      <EducationSection />
-      <ExperienceSection />
-      <SoftwarePortfolioSection />
-      <div id="why">
+      <main>
+        <HeroSection />
+        <SubjectProfileSection />
+        <SkillsMarquee />
+        <CarPass variant="rivalA" direction="right" label="Next · the private build" />
+        <TradingBotsSection />
+        <PortfolioSection />
+        <CarPass variant="rivalB" direction="left" label="Next · what I can run for you" />
+        <ServicesSection />
+        <PitStopSection />
+        <EducationSection />
+        <ExperienceSection />
+        <SoftwarePortfolioSection />
+        <CarPass variant="lead" direction="right" label="Last corner" />
         <WhySection />
-      </div>
+      </main>
       <FooterSection />
     </div>
   );

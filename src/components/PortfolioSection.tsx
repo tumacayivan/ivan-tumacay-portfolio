@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { Play, Image as ImageIcon, X, ChevronLeft, ChevronRight, ExternalLink, Folder, Camera } from "lucide-react";
-import { useState, useCallback } from "react";
+import { Play, Image as ImageIcon, X, ChevronLeft, ChevronRight, ExternalLink, Film, Maximize2 } from "lucide-react";
+import { useState, useCallback, useEffect, type SyntheticEvent } from "react";
+import SectionHeading from "./drift/SectionHeading";
 
 const getGoogleDriveThumbnail = (fileId: string, size: number = 1000): string =>
   `https://drive.google.com/thumbnail?id=${fileId}&sz=w${size}`;
@@ -45,100 +46,6 @@ const graphicItems = [
   createItem("1qLs86u9entGSnPg3dCo1u5PTQVcLq3FZ", "Graphic Design 2", "https://drive.google.com/file/d/1qLs86u9entGSnPg3dCo1u5PTQVcLq3FZ/view?usp=drive_link", "image"),
   createItem("1IsDzHHcNdcLg4bLshjKzp581SYpujwSR", "Graphic Design 3", "https://drive.google.com/file/d/1IsDzHHcNdcLg4bLshjKzp581SYpujwSR/view?usp=drive_link", "image"),
   createItem("1j0GnAG0c4C3IE74fV5QO1iQEFbI2_6rl", "Graphic Design 4", "https://drive.google.com/file/d/1j0GnAG0c4C3IE74fV5QO1iQEFbI2_6rl/view?usp=drive_link", "image"),
-];
-
-const adEditsItems = [
-  createItem("1dKJvM_r5MEdHgpuu81y1VXRAKWi2hNWk", "Ad Edit 1", "https://drive.google.com/file/d/1dKJvM_r5MEdHgpuu81y1VXRAKWi2hNWk/view?usp=drive_link", "video"),
-  createItem("1mBv75WOUJjVgLFUafp7gHlhjzWYpW3VR", "Ad Edit 2", "https://drive.google.com/file/d/1mBv75WOUJjVgLFUafp7gHlhjzWYpW3VR/view?usp=drive_link", "video"),
-  createItem("1YnCvxFh-5jdXr1ZcsmmxDoYXP2c5RFd2", "Ad Edit 3", "https://drive.google.com/file/d/1YnCvxFh-5jdXr1ZcsmmxDoYXP2c5RFd2/view?usp=drive_link", "video"),
-  createItem("18zp1mzFhnez85z6mmFDAdvjQuBgW01oI", "Ad Edit 4", "https://drive.google.com/file/d/18zp1mzFhnez85z6mmFDAdvjQuBgW01oI/view?usp=drive_link", "video"),
-  createItem("1_A6IhHdfnzdu2PVewoi5ZOmUSwe2vAR3", "Ad Edit 5", "https://drive.google.com/file/d/1_A6IhHdfnzdu2PVewoi5ZOmUSwe2vAR3/view?usp=drive_link", "video"),
-  createItem("1fE-9Hh_K17V2iPpaBINvz57ZtOYq_4Y-", "Ad Edit 6", "https://drive.google.com/file/d/1fE-9Hh_K17V2iPpaBINvz57ZtOYq_4Y-/view?usp=drive_link", "video"),
-];
-
-const aiVideosBaseItems = [
-  createItem("1Q9pgVMD8RiNDL9zyoOEW0kcHgOdoNW5F", "AI Showcase 1", "https://drive.google.com/file/d/1Q9pgVMD8RiNDL9zyoOEW0kcHgOdoNW5F/view?usp=drive_link", "video"),
-  createItem("1-Is5dnzrUG6-DZyjYQpXZuuixfJ52b3a", "AI Showcase 2", "https://drive.google.com/file/d/1-Is5dnzrUG6-DZyjYQpXZuuixfJ52b3a/view?usp=drive_link", "video"),
-  createItem("1if7K64dndKsjgCz2QFdPQB0c-PqDlm0y", "AI Showcase 3", "https://drive.google.com/file/d/1if7K64dndKsjgCz2QFdPQB0c-PqDlm0y/view?usp=drive_link", "video"),
-  createItem("1olt17wzcihPHojy1IoNZmwHV4DYqJgqZ", "AI Showcase 4", "https://drive.google.com/file/d/1olt17wzcihPHojy1IoNZmwHV4DYqJgqZ/view?usp=drive_link", "video"),
-  createItem("1AXFy158z3vNRFKAwKPQQ2OVEIDIRVNgx", "AI Showcase 5", "https://drive.google.com/file/d/1AXFy158z3vNRFKAwKPQQ2OVEIDIRVNgx/view?usp=drive_link", "video"),
-  createItem("1spNPNu6P1bme_luNy_DGCmi0V9OHDEh8", "AI Showcase 6", "https://drive.google.com/file/d/1spNPNu6P1bme_luNy_DGCmi0V9OHDEh8/view?usp=drive_link", "video"),
-];
-
-const digitalProductsItems = [
-  createItem("1T_8c_1fR7jQkVMP9exqp3jUOd4TFCZhE", "Digital Product 1", "https://drive.google.com/file/d/1T_8c_1fR7jQkVMP9exqp3jUOd4TFCZhE/view?usp=drive_link", "video"),
-  createItem("1uk9gVk9uRiGXdb7vjmMxxN0aYYLFRMYc", "Digital Product 2", "https://drive.google.com/file/d/1uk9gVk9uRiGXdb7vjmMxxN0aYYLFRMYc/view?usp=drive_link", "video"),
-  createItem("1TFTyRcOIYxiJRSWrROY6u2IxOeuHq29_", "Digital Product 3", "https://drive.google.com/file/d/1TFTyRcOIYxiJRSWrROY6u2IxOeuHq29_/view?usp=drive_link", "video"),
-  createItem("1YQ8eh_BhsPc2oi2TgA6EnwPYM5mAX-jO", "Digital Product 4", "https://drive.google.com/file/d/1YQ8eh_BhsPc2oi2TgA6EnwPYM5mAX-jO/view?usp=drive_link", "video"),
-  createItem("14caIZ0fmMDS9XpLWRggyRketkvjKou59", "Digital Product 5", "https://drive.google.com/file/d/14caIZ0fmMDS9XpLWRggyRketkvjKou59/view?usp=drive_link", "video"),
-];
-
-const montageVideosItems = [
-  createItem("12N4fPIdf3BLeZR9qD7zDi-Hqo3IneniQ", "Montage Video 1", "https://drive.google.com/file/d/12N4fPIdf3BLeZR9qD7zDi-Hqo3IneniQ/view?usp=drive_link", "video"),
-  createItem("1piUzDzLFvZmI0lkQgdT5HIja_LZ0fSQl", "Montage Video 2", "https://drive.google.com/file/d/1piUzDzLFvZmI0lkQgdT5HIja_LZ0fSQl/view?usp=drive_link", "video"),
-  createItem("17DRQ6UweLA3nIErnCqBdYDtu1ALmnCUp", "Montage Video 3", "https://drive.google.com/file/d/17DRQ6UweLA3nIErnCqBdYDtu1ALmnCUp/view?usp=drive_link", "video"),
-  createItem("1eVm3Q4uyWICtMHIJ91nbJF2W9iKt4bNw", "Montage Video 4", "https://drive.google.com/file/d/1eVm3Q4uyWICtMHIJ91nbJF2W9iKt4bNw/view?usp=drive_link", "video"),
-  createItem("1Got-KF4dRvipGodo9kvvLVeO6jWcxMoI", "Montage Video 5", "https://drive.google.com/file/d/1Got-KF4dRvipGodo9kvvLVeO6jWcxMoI/view?usp=drive_link", "video"),
-];
-
-const movieEditsItems = [
-  createItem("1yR-kT3RT31pfwW7hz-XPYJweoxnSIUED", "Movie Edit 1", "https://drive.google.com/file/d/1yR-kT3RT31pfwW7hz-XPYJweoxnSIUED/view?usp=drive_link", "video"),
-  createItem("16M9BFNmDUYVoihwEFqF5AbbLxdlaCpl9", "Movie Edit 2", "https://drive.google.com/file/d/16M9BFNmDUYVoihwEFqF5AbbLxdlaCpl9/view?usp=drive_link", "video"),
-  createItem("1ImuY-_ASH31xbjuCJ-I7i_IE88PxvHH-", "Movie Edit 3", "https://drive.google.com/file/d/1ImuY-_ASH31xbjuCJ-I7i_IE88PxvHH-/view?usp=drive_link", "video"),
-  createItem("1wiy_eFS2uiRqBZn7MbbW2ZFHjFXsJbpx", "Movie Edit 4", "https://drive.google.com/file/d/1wiy_eFS2uiRqBZn7MbbW2ZFHjFXsJbpx/view?usp=drive_link", "video"),
-  createItem("1GC2sdSQg7QUNXHEq8LxA0zgu5l2hjMT2", "Movie Edit 5", "https://drive.google.com/file/d/1GC2sdSQg7QUNXHEq8LxA0zgu5l2hjMT2/view?usp=drive_link", "video"),
-];
-
-const musicVideosItems = [
-  createItem("1YaGkUQ6wGJ3zRihCcLl4J41zy1w3jPoL", "Music Video 1", "https://drive.google.com/file/d/1YaGkUQ6wGJ3zRihCcLl4J41zy1w3jPoL/view?usp=drive_link", "video"),
-  createItem("1hk1yz5tX9RBAzCfqmBPlBuY8QLFdrfYE", "Music Video 2", "https://drive.google.com/file/d/1hk1yz5tX9RBAzCfqmBPlBuY8QLFdrfYE/view?usp=drive_link", "video"),
-  createItem("1zJPCdpuCXlnnP8epcX40ogGtaevEEbAk", "Music Video 3", "https://drive.google.com/file/d/1zJPCdpuCXlnnP8epcX40ogGtaevEEbAk/view?usp=drive_link", "video"),
-  createItem("1LB2F0ny3nN3vwr9VgGan8EDlGSNyCjvQ", "Music Video 4", "https://drive.google.com/file/d/1LB2F0ny3nN3vwr9VgGan8EDlGSNyCjvQ/view?usp=drive_link", "video"),
-  createItem("1RHsdRy9-_ni6Ut1Z-c02Ac7-4YO1cun7", "Music Video 5", "https://drive.google.com/file/d/1RHsdRy9-_ni6Ut1Z-c02Ac7-4YO1cun7/view?usp=drive_link", "video"),
-  createItem("1mbaghd04NZPsZzfTHIkxvRgMf2IeRpGa", "Music Video 6", "https://drive.google.com/file/d/1mbaghd04NZPsZzfTHIkxvRgMf2IeRpGa/view?usp=drive_link", "video"),
-];
-
-const podcastBaseItems = [
-  createItem("1Z1SdN7ohl88Az4YxifXOa9mcEmtu0au8", "Long Form 1", "https://drive.google.com/file/d/1Z1SdN7ohl88Az4YxifXOa9mcEmtu0au8/view?usp=drive_link", "video"),
-  createItem("1inAXqwnLFXNmhQ6WUpdgJtoYz0VZZUDH", "Long Form 2", "https://drive.google.com/file/d/1inAXqwnLFXNmhQ6WUpdgJtoYz0VZZUDH/view?usp=drive_link", "video"),
-  createItem("1_pn7HONVKK55n8IODsm64I55J2sVognx", "Long Form 3", "https://drive.google.com/file/d/1_pn7HONVKK55n8IODsm64I55J2sVognx/view?usp=drive_link", "video"),
-  createItem("1096Ce1u_COaqtOWxOqwUCPuVBwL2E1i8", "Long Form 4", "https://drive.google.com/file/d/1096Ce1u_COaqtOWxOqwUCPuVBwL2E1i8/view?usp=drive_link", "video"),
-  createItem("13Yu-oZR61IEUWIBWtR6ETalRhqhhcB2-", "Long Form 5", "https://drive.google.com/file/d/13Yu-oZR61IEUWIBWtR6ETalRhqhhcB2-/view?usp=drive_link", "video"),
-];
-
-const realEstateItems = [
-  createItem("1ca_9p71UUIJZ8zwXGK05Dzah_jjye9Ex", "Real Estate 1", "https://drive.google.com/file/d/1ca_9p71UUIJZ8zwXGK05Dzah_jjye9Ex/view?usp=drive_link", "video"),
-  createItem("1AjBzuASxgtA2QkYtepWv0YtvZB-CUAY6", "Real Estate 2", "https://drive.google.com/file/d/1AjBzuASxgtA2QkYtepWv0YtvZB-CUAY6/view?usp=drive_link", "video"),
-  createItem("1ffgzogzd54XO2vBReXkPKNzgRKQ06ccB", "Real Estate 3", "https://drive.google.com/file/d/1ffgzogzd54XO2vBReXkPKNzgRKQ06ccB/view?usp=drive_link", "video"),
-  createItem("1vbLGL62ZrfK82EbkG9vrSMrzT_VQbChh", "Real Estate 4", "https://drive.google.com/file/d/1vbLGL62ZrfK82EbkG9vrSMrzT_VQbChh/view?usp=drive_link", "video"),
-  createItem("1n9YC16fe5bEKLRSIUahWZbmSzBc-1Uae", "Real Estate 5", "https://drive.google.com/file/d/1n9YC16fe5bEKLRSIUahWZbmSzBc-1Uae/view?usp=drive_link", "video"),
-  createItem("1mzXTzaSGpNO0-7hLXSh1x4eOrzXINkNL", "Real Estate 6", "https://drive.google.com/file/d/1mzXTzaSGpNO0-7hLXSh1x4eOrzXINkNL/view?usp=drive_link", "video"),
-];
-
-const reelsBaseItems = [
-  createItem("1eyxc-j7SmF_P69DL0oqcFxeCCqjPfscJ", "Reel/TikTok 1", "https://drive.google.com/file/d/1eyxc-j7SmF_P69DL0oqcFxeCCqjPfscJ/view?usp=sharing", "video"),
-  createItem("1nlx5VSGk7mUeX7YeHmPdDeTTPtLESi7F", "Reel/TikTok 2", "https://drive.google.com/file/d/1nlx5VSGk7mUeX7YeHmPdDeTTPtLESi7F/view?usp=drive_link", "video"),
-  createItem("17Ep5Ui7fjVt7n8ESuyvIjgk78rRrOOXc", "Reel/TikTok 3", "https://drive.google.com/file/d/17Ep5Ui7fjVt7n8ESuyvIjgk78rRrOOXc/view?usp=drive_link", "video"),
-  createItem("18ytVl-cjtw6B4xRxOdAh9mRRJ1OMmctG", "Reel/TikTok 4", "https://drive.google.com/file/d/18ytVl-cjtw6B4xRxOdAh9mRRJ1OMmctG/view?usp=drive_link", "video"),
-  createItem("19Q2bFWr_UBi1H4B7ACf3rLbOdleo6Q14", "Reel/TikTok 5", "https://drive.google.com/file/d/19Q2bFWr_UBi1H4B7ACf3rLbOdleo6Q14/view?usp=drive_link", "video"),
-  createItem("14kW8MlCCe9JRR9yxPOhnreeZVTbzweUM", "Reel/TikTok 6", "https://drive.google.com/file/d/14kW8MlCCe9JRR9yxPOhnreeZVTbzweUM/view?usp=drive_link", "video"),
-];
-
-const sportsHighlightsItems = [
-  createItem("1H2w3qtHauR1zN-nt4N_mqZcaC33nkBaq", "Sports/Highlights 1", "https://drive.google.com/file/d/1H2w3qtHauR1zN-nt4N_mqZcaC33nkBaq/view?usp=drive_link", "video"),
-  createItem("1F0CQT6RvmSfuhCXC-fIPtatTCQI_1pS5", "Sports/Highlights 2", "https://drive.google.com/file/d/1F0CQT6RvmSfuhCXC-fIPtatTCQI_1pS5/view?usp=drive_link", "video"),
-  createItem("136gM5511VQNTcgL_1_RYL2LuIipt-EN6", "Sports/Highlights 3", "https://drive.google.com/file/d/136gM5511VQNTcgL_1_RYL2LuIipt-EN6/view?usp=drive_link", "video"),
-  createItem("1J3m-u_NMVATKcdAu5FHhw5WbskyumEaS", "Sports/Highlights 4", "https://drive.google.com/file/d/1J3m-u_NMVATKcdAu5FHhw5WbskyumEaS/view?usp=drive_link", "video"),
-  createItem("14XnfXNfgYCbQeeU8ht-a_a0Rww5YkoXD", "Sports/Highlights 5", "https://drive.google.com/file/d/14XnfXNfgYCbQeeU8ht-a_a0Rww5YkoXD/view?usp=drive_link", "video"),
-  createItem("1Abi3ekD2RycaM7NbNOabQy_796Gxtb8m", "Sports/Highlights 6", "https://drive.google.com/file/d/1Abi3ekD2RycaM7NbNOabQy_796Gxtb8m/view?usp=drive_link", "video"),
-];
-
-const vlogsItems = [
-  createItem("1ghokM8kLonfohH5gezdFBDnRSfLGft4T", "Vlog 1", "https://drive.google.com/file/d/1ghokM8kLonfohH5gezdFBDnRSfLGft4T/view?usp=drive_link", "video"),
-  createItem("1_mmVVN9k3hAVUh4nHozWLux7Z6FgeKbr", "Vlog 2", "https://drive.google.com/file/d/1_mmVVN9k3hAVUh4nHozWLux7Z6FgeKbr/view?usp=drive_link", "video"),
-  createItem("1-dWkdFfQo3sjhqnUan-6aJGmLYTL3v5t", "Vlog 3", "https://drive.google.com/file/d/1-dWkdFfQo3sjhqnUan-6aJGmLYTL3v5t/view?usp=drive_link", "video"),
-  createItem("1f_w0sbqlcxm7MURvei4J2m0A4mVbNqwq", "Vlog 4", "https://drive.google.com/file/d/1f_w0sbqlcxm7MURvei4J2m0A4mVbNqwq/view?usp=drive_link", "video"),
-  createItem("1A_Oh9kC8HiZBzBT9iHJ2pOV2JA2GYxm8", "Vlog 5", "https://drive.google.com/file/d/1A_Oh9kC8HiZBzBT9iHJ2pOV2JA2GYxm8/view?usp=drive_link", "video"),
 ];
 
 const aiVideosNewItems = [
@@ -484,9 +391,9 @@ const podcastYouTubeItems = [
   createYouTubeItem("xY0UnEpYC4A", "Podcast 33"),
 ];
 
-const aiVideosItems = [...aiVideosBaseItems, ...aiVideosNewItems];
-const reelsTikTokItems = [...reelsBaseItems, ...reelsNewItems];
-const podcastItems = [...podcastBaseItems, ...podcastDriveItems, ...podcastYouTubeItems];
+const aiVideosItems = aiVideosNewItems;
+const reelsTikTokItems = reelsNewItems;
+const podcastItems = [...podcastDriveItems, ...podcastYouTubeItems];
 
 const videoCategories = [
   { title: "AI Videos", items: aiVideosItems },
@@ -498,14 +405,6 @@ const videoCategories = [
   { title: "Captioned / Transcript Videos", items: captionsItems },
   { title: "Fast-Paced Videos", items: fastPacedItems },
   { title: "Long-Form / Podcast", items: podcastItems },
-  { title: "Ad Edits", items: adEditsItems },
-  { title: "Digital Products", items: digitalProductsItems },
-  { title: "Montage", items: montageVideosItems },
-  { title: "Movie Edits", items: movieEditsItems },
-  { title: "Music Videos", items: musicVideosItems },
-  { title: "Real Estate", items: realEstateItems },
-  { title: "Sports / Highlights", items: sportsHighlightsItems },
-  { title: "Vlogs", items: vlogsItems },
 ];
 
 const videoItems = videoCategories.flatMap((c) => c.items);
@@ -518,6 +417,51 @@ type PortfolioItem = {
   source: "drive" | "youtube";
 };
 
+const FALLBACK = (title: string) =>
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%230b0a18' width='400' height='300'/%3E%3Ctext fill='%23ff6a13' font-family='monospace' font-size='14' dy='10.5' font-weight='bold' x='50%25' y='50%25' text-anchor='middle'%3E" +
+  encodeURIComponent(title) +
+  "%3C/text%3E%3C/svg%3E";
+
+/** Walks through Drive/YouTube thumbnail endpoints until one loads. */
+const handleThumbError = (item: PortfolioItem) => (e: SyntheticEvent<HTMLImageElement>) => {
+  const target = e.currentTarget;
+  const retry = parseInt(target.dataset.retryCount || "0");
+  target.dataset.retryCount = String(retry + 1);
+  if (item.source === "youtube") {
+    target.src = retry === 0 ? `https://img.youtube.com/vi/${item.fileId}/mqdefault.jpg` : FALLBACK(item.title);
+    return;
+  }
+  const chain = [
+    `https://drive.google.com/thumbnail?id=${item.fileId}&sz=w800`,
+    `https://drive.google.com/uc?export=view&id=${item.fileId}`,
+    `https://drive.google.com/thumbnail?id=${item.fileId}&sz=w1000&authuser=0`,
+    `https://drive.google.com/uc?export=download&id=${item.fileId}`,
+  ];
+  target.src = chain[retry] ?? FALLBACK(item.title);
+};
+
+/** Short-form reels are shot vertically; long-form work stays widescreen. */
+const PORTRAIT_REELS = new Set([
+  "AI Videos",
+  "Short-Form Videos (Reels)",
+  "Dropshipping (DTC / VSL / UGC)",
+  "Captioned / Transcript Videos",
+  "Fast-Paced Videos",
+]);
+
+type Shape = "poster" | "portrait" | "landscape";
+
+const reels = [
+  { key: "graphics", title: "Graphics Design", kind: "image" as const, shape: "poster" as Shape, items: graphicItems },
+  ...videoCategories.map((c) => ({
+    key: c.title,
+    title: c.title,
+    kind: "video" as const,
+    shape: (PORTRAIT_REELS.has(c.title) ? "portrait" : "landscape") as Shape,
+    items: c.items,
+  })),
+].filter((r) => r.items.length > 0);
+
 const Lightbox = ({
   items, currentIndex, onClose, onPrev, onNext,
 }: {
@@ -527,256 +471,231 @@ const Lightbox = ({
   const item = items[currentIndex];
   const isVideo = item.type === "video";
 
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowLeft") onPrev();
+      if (e.key === "ArrowRight") onNext();
+    };
+    window.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [onClose, onPrev, onNext]);
+
   return (
     <motion.div
+      role="dialog"
+      aria-modal="true"
+      aria-label={item.title}
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-[hsl(0_0%_3%/0.96)]"
+      className="fixed inset-0 z-[120] flex items-center justify-center bg-[hsl(var(--void)/0.96)] backdrop-blur-sm text-[hsl(var(--void-ink))]"
       onClick={onClose}
     >
-      <div className="absolute inset-0 tactical-grid opacity-[0.5] pointer-events-none" />
-      <div className="absolute inset-x-0 top-0 h-1 diag-stripes" />
+      {/* Letterbox */}
+      <motion.div className="absolute top-0 inset-x-0 bg-black" initial={{ height: 0 }} animate={{ height: 56 }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} />
+      <motion.div className="absolute bottom-0 inset-x-0 bg-black" initial={{ height: 0 }} animate={{ height: 56 }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} />
 
-      <div className="absolute top-1 left-0 right-0 bg-[hsl(0_0%_5%)] border-b border-[hsl(var(--accent-red)/0.45)] px-4 py-2.5 flex items-center justify-between z-10">
-        <span className="font-blackops text-[hsl(var(--accent-red))] text-sm tracking-[0.3em] flex items-center gap-2">
-          <span className="status-pulse" />
-          EVIDENCE VIEWER · FILE {String(currentIndex + 1).padStart(3, "0")} / {String(items.length).padStart(3, "0")}
+      <div className="absolute top-0 inset-x-0 h-14 px-4 sm:px-8 flex items-center justify-between z-10">
+        <span className="font-hud text-xs tracking-[0.24em] uppercase text-[hsl(var(--neon-hud))]">
+          {String(currentIndex + 1).padStart(3, "0")} / {String(items.length).padStart(3, "0")}
         </span>
-        <span className="font-courier text-[12px] text-[hsl(var(--ink-brown))] tracking-[0.3em] hidden sm:inline">
-          REF: {item.fileId.slice(0, 10)}
-        </span>
+        <button onClick={onClose} aria-label="Close" className="p-2 text-white/70 hover:text-[hsl(var(--neon-drift))] transition-colors">
+          <X className="w-6 h-6" />
+        </button>
       </div>
 
-      <button onClick={onClose} aria-label="Close"
-        className="absolute top-16 right-4 p-2 bg-[hsl(0_0%_5%)] border border-[hsl(var(--accent-red))] text-[hsl(var(--accent-red))] hover:bg-[hsl(var(--accent-red))] hover:text-[hsl(40_22%_96%)] transition-colors z-10 glow-red">
-        <X className="w-5 h-5" />
-      </button>
       <button onClick={(e) => { e.stopPropagation(); onPrev(); }} aria-label="Previous"
-        className="absolute left-4 sm:left-8 p-2.5 bg-[hsl(0_0%_5%)] border border-[hsl(var(--accent-red))] text-[hsl(var(--accent-red))] hover:bg-[hsl(var(--accent-red))] hover:text-[hsl(40_22%_96%)] transition-colors z-10">
-        <ChevronLeft className="w-6 h-6" />
+        className="absolute left-2 sm:left-6 z-10 p-3 text-white/70 hover:text-[hsl(var(--neon-drift))] transition-colors">
+        <ChevronLeft className="w-8 h-8" />
       </button>
       <button onClick={(e) => { e.stopPropagation(); onNext(); }} aria-label="Next"
-        className="absolute right-4 sm:right-8 p-2.5 bg-[hsl(0_0%_5%)] border border-[hsl(var(--accent-red))] text-[hsl(var(--accent-red))] hover:bg-[hsl(var(--accent-red))] hover:text-[hsl(40_22%_96%)] transition-colors z-10">
-        <ChevronRight className="w-6 h-6" />
+        className="absolute right-2 sm:right-6 z-10 p-3 text-white/70 hover:text-[hsl(var(--neon-drift))] transition-colors">
+        <ChevronRight className="w-8 h-8" />
       </button>
 
-      <div className="relative max-w-[92vw] max-h-[82vh] flex flex-col items-center gap-3 mt-10" onClick={(e) => e.stopPropagation()}>
-        <div className="relative paper-card-cream p-2 sm:p-3">
-          <div className="absolute -top-1 -left-1 w-5 h-5 border-l-2 border-t-2 border-[hsl(var(--accent-red))]" />
-          <div className="absolute -top-1 -right-1 w-5 h-5 border-r-2 border-t-2 border-[hsl(var(--accent-red))]" />
-          <div className="absolute -bottom-1 -left-1 w-5 h-5 border-l-2 border-b-2 border-[hsl(var(--accent-red))]" />
-          <div className="absolute -bottom-1 -right-1 w-5 h-5 border-r-2 border-b-2 border-[hsl(var(--accent-red))]" />
-
+      <div className="relative max-w-[88vw] flex flex-col items-center gap-4" onClick={(e) => e.stopPropagation()}>
+        <AnimatePresence mode="wait">
           {isVideo && item.embedUrl ? (
-            <motion.div key={item.fileId} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.3 }}
-              className="w-full max-w-6xl aspect-video border-2 border-[hsl(var(--accent-red)/0.5)] overflow-hidden bg-black">
+            <motion.div key={item.fileId} initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.96 }} transition={{ duration: 0.3 }}
+              className="w-[min(88vw,calc(68vh*16/9))] aspect-video overflow-hidden bg-black shadow-[0_0_80px_-20px_hsl(var(--neon-drift)/0.5)]">
               <iframe src={item.embedUrl} className="w-full h-full" allow="autoplay; encrypted-media" allowFullScreen title={item.title} />
             </motion.div>
           ) : (
-            <motion.img key={item.src} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.3 }}
+            <motion.img key={item.src} initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.96 }} transition={{ duration: 0.3 }}
               src={item.src} alt={item.title}
-              className="max-w-full max-h-[68vh] object-contain border-2 border-[hsl(var(--accent-red)/0.5)]"
+              className="w-auto max-w-[88vw] max-h-[72vh] object-contain shadow-[0_0_80px_-20px_hsl(var(--neon-drift)/0.5)]"
               onError={(e) => { (e.target as HTMLImageElement).src = item.thumbnail; }} />
           )}
-        </div>
+        </AnimatePresence>
 
-        <div className="paper-card-cream px-4 py-2 flex items-center gap-3">
-          <span className="font-blackops text-[hsl(var(--accent-red))] text-sm tracking-[0.3em]">EVIDENCE TAG:</span>
-          <p className="font-typewriter text-lg text-[hsl(var(--accent-bone))] uppercase tracking-wide">{item.title}</p>
+        <div className="flex flex-wrap items-center justify-center gap-4">
+          <p className="font-display text-xl sm:text-2xl uppercase">{item.title}</p>
+          {item.link && (
+            <a href={item.link} target="_blank" rel="noopener noreferrer" className="btn-drift !py-2 !px-4 !text-xs">
+              <span className="flex items-center gap-2"><ExternalLink className="w-3.5 h-3.5" /> Open original</span>
+            </a>
+          )}
         </div>
-
-        {item.link && (
-          <a href={item.link} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}
-            className="dossier-cta mt-1 text-sm">
-            <ExternalLink className="w-4 h-4" />
-            ACCESS SECURE ARCHIVE
-          </a>
-        )}
       </div>
     </motion.div>
   );
 };
 
-const MarqueeRow = ({
-  items, direction = "left", type, onItemClick,
-}: {
-  items: PortfolioItem[]; direction?: "left" | "right";
-  type: "graphic" | "video"; onItemClick: (item: PortfolioItem) => void;
-}) => {
-  const doubled = [...items, ...items];
-  const animClass = direction === "left" ? "animate-marquee-left" : "animate-marquee-right";
+const SHAPE_CLASS: Record<Shape, string> = {
+  poster: "aspect-[4/5]",
+  portrait: "aspect-[9/16]",
+  landscape: "aspect-video",
+};
+
+const Frame = ({ item, kind, shape, delay, onOpen }: { item: PortfolioItem; kind: "image" | "video"; shape: Shape; delay: number; onOpen: () => void }) => (
+  <motion.button
+    type="button"
+    initial={{ opacity: 0, x: 60, rotateY: 18, filter: "blur(6px)" }}
+    whileInView={{ opacity: 1, x: 0, rotateY: 0, filter: "blur(0px)" }}
+    viewport={{ once: true, margin: "-40px" }}
+    transition={{ duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] }}
+    onClick={onOpen}
+    aria-label={`Open ${item.title}`}
+    className="group relative block w-full text-left overflow-hidden bg-panel border border-line/10 hover:border-drift transition-colors"
+  >
+    <div className={`relative overflow-hidden ${SHAPE_CLASS[shape]}`}>
+      {/* Blurred fill, so a clip shot in the other orientation still fills the frame without being cropped */}
+      <img
+        src={item.thumbnail}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="absolute inset-0 w-full h-full object-cover blur-xl scale-110 opacity-60"
+      />
+      <img
+        src={item.thumbnail}
+        alt=""
+        loading="lazy"
+        onError={handleThumbError(item)}
+        className={`absolute inset-0 w-full h-full ${kind === "image" ? "object-cover" : "object-contain"} transition-transform duration-700 ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-105`}
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--void)/0.85)] via-transparent to-transparent opacity-70 group-hover:opacity-100 transition-opacity" />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <span className="w-14 h-14 rounded-full bg-drift text-on-drift flex items-center justify-center scale-50 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300 shadow-[0_0_30px_hsl(var(--drift))]">
+          {kind === "video" ? <Play className="w-5 h-5 ml-0.5" fill="currentColor" /> : <Maximize2 className="w-5 h-5" />}
+        </span>
+      </div>
+      <span className="absolute left-3 bottom-3 right-3 font-hud text-xs font-semibold tracking-[0.14em] uppercase text-[hsl(var(--void-ink))] truncate translate-y-2 group-hover:translate-y-0 transition-transform">
+        {item.title}
+      </span>
+      {/* Rolling */}
+      <span className="absolute top-2 left-2 flex items-center gap-1.5 px-2 py-1 bg-[hsl(var(--void)/0.75)] opacity-0 group-hover:opacity-100 transition-opacity">
+        <span className="w-1.5 h-1.5 rounded-full bg-sign animate-pulse" />
+        <span className="font-hud text-[10px] font-bold tracking-[0.2em] uppercase text-[hsl(var(--void-ink))]">Rec</span>
+      </span>
+    </div>
+  </motion.button>
+);
+
+const GRID_CLASS: Record<Shape, string> = {
+  poster: "grid-cols-2 sm:grid-cols-3 lg:grid-cols-5",
+  portrait: "grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6",
+  landscape: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4",
+};
+
+const FIRST_ROW: Record<Shape, number> = { poster: 10, portrait: 12, landscape: 8 };
+
+const ReelBlock = ({ reel, onOpen }: { reel: (typeof reels)[number]; onOpen: (items: PortfolioItem[], index: number) => void }) => {
+  const first = FIRST_ROW[reel.shape];
+  const [expanded, setExpanded] = useState(false);
+  const items = expanded ? reel.items : reel.items.slice(0, first);
 
   return (
-    <div className="marquee-container overflow-hidden py-3">
-      <div className={`flex gap-5 ${animClass}`} style={{ width: "max-content" }}>
-        {doubled.map((item, i) => {
-          const rot = ((i * 37) % 7) - 3;
-          return (
-            <div key={`${item.title}-${i}`}
-              className="group relative shrink-0 paper-card-cream p-2 cursor-pointer transition-all duration-300 hover:!rotate-0 hover:-translate-y-1.5"
-              style={{
-                width: type === "graphic" ? 420 : 520,
-                height: type === "graphic" ? 360 : 340,
-                transform: `rotate(${rot}deg)`,
-              }}
-              onClick={() => onItemClick(item)}
-            >
-              <div className="absolute -top-2 left-3 bg-[hsl(0_0%_5%)] border border-[hsl(var(--accent-red))] px-2 py-0.5 font-courier text-[11px] tracking-[0.28em] text-[hsl(var(--accent-red))] z-10 rotate-[-2deg]">
-                EVIDENCE·{String(i + 1).padStart(3, "0")}
-              </div>
-              <div className="tape w-12 h-4 -top-2 right-6 rotate-[5deg] z-10" />
-
-              <div className="relative w-full h-full overflow-hidden border border-[hsl(var(--accent-red)/0.4)] group-hover:border-[hsl(var(--accent-red))] transition-colors">
-                <img src={item.thumbnail} alt={item.title} loading="lazy"
-                  className="w-full h-full object-cover photocopy transition-transform duration-500 group-hover:scale-105"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    const retryCount = parseInt(target.dataset.retryCount || "0");
-                    if (item.source === "youtube") {
-                      if (retryCount === 0) { target.dataset.retryCount = "1"; target.src = `https://img.youtube.com/vi/${item.fileId}/mqdefault.jpg`; }
-                      else { target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%230f0f0f' width='400' height='300'/%3E%3Ctext fill='%23e63946' font-family='monospace' font-size='14' dy='10.5' font-weight='bold' x='50%25' y='50%25' text-anchor='middle'%3E" + encodeURIComponent(item.title) + "%3C/text%3E%3C/svg%3E"; }
-                      return;
-                    }
-                    if (retryCount === 0) { target.dataset.retryCount = "1"; target.src = `https://drive.google.com/thumbnail?id=${item.fileId}&sz=w800`; }
-                    else if (retryCount === 1) { target.dataset.retryCount = "2"; target.src = `https://drive.google.com/uc?export=view&id=${item.fileId}`; }
-                    else if (retryCount === 2) { target.dataset.retryCount = "3"; target.src = `https://drive.google.com/thumbnail?id=${item.fileId}&sz=w1000&authuser=0`; }
-                    else if (retryCount === 3) { target.dataset.retryCount = "4"; target.src = `https://drive.google.com/uc?export=download&id=${item.fileId}`; }
-                    else { target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%230f0f0f' width='400' height='300'/%3E%3Ctext fill='%23e63946' font-family='monospace' font-size='14' dy='10.5' font-weight='bold' x='50%25' y='50%25' text-anchor='middle'%3E" + encodeURIComponent(item.title) + "%3C/text%3E%3C/svg%3E"; }
-                  }}
-                />
-
-                {/* Cinematic noir gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[hsl(0_0%_3%/0.55)] via-transparent to-[hsl(0_0%_3%/0.15)] pointer-events-none" />
-
-                <div className="absolute top-2 left-2 w-4 h-4 border-l-2 border-t-2 border-[hsl(var(--accent-red))]" />
-                <div className="absolute top-2 right-2 w-4 h-4 border-r-2 border-t-2 border-[hsl(var(--accent-red))]" />
-                <div className="absolute bottom-2 left-2 w-4 h-4 border-l-2 border-b-2 border-[hsl(var(--accent-red))]" />
-                <div className="absolute bottom-2 right-2 w-4 h-4 border-r-2 border-b-2 border-[hsl(var(--accent-red))]" />
-
-                <div className="absolute top-2 right-6 stamp text-[12px] !p-1 !rotate-0">
-                  {type === "video" ? "VIDEO REC" : "PHOTO REF"}
-                </div>
-
-                <div className="absolute inset-0 bg-[hsl(0_0%_3%/0.88)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-2 px-4">
-                  {type === "video" ? (
-                    <div className="w-14 h-14 border-2 border-[hsl(var(--accent-red))] flex items-center justify-center bg-[hsl(var(--accent-red)/0.18)] glow-red">
-                      <Play className="w-5 h-5 text-[hsl(var(--accent-red))] ml-0.5" />
-                    </div>
-                  ) : (
-                    <div className="w-14 h-14 border-2 border-[hsl(var(--accent-red))] flex items-center justify-center bg-[hsl(var(--accent-red)/0.18)] glow-red">
-                      <ImageIcon className="w-5 h-5 text-[hsl(var(--accent-red))]" />
-                    </div>
-                  )}
-                  <span className="font-blackops text-base text-[hsl(var(--accent-bone))] text-center tracking-[0.3em] uppercase">
-                    Review Evidence
-                  </span>
-                  <span className="font-courier text-[12px] text-[hsl(var(--accent-red))] tracking-[0.2em]">
-                    {item.title}
-                  </span>
-                </div>
-              </div>
-
-              <div className="mt-1.5 flex items-center justify-between font-courier text-[12px] tracking-[0.22em] text-[hsl(var(--ink-charcoal))]">
-                <span className="truncate uppercase">{item.title}</span>
-                <span className="text-[hsl(var(--accent-red))] shrink-0 ml-2">{item.fileId.slice(0, 8)}</span>
-              </div>
-            </div>
-          );
-        })}
+    <div className="mb-20 last:mb-0">
+      <div className="flex items-end justify-between gap-4 mb-6 border-b border-line/10 pb-4">
+        <div className="min-w-0">
+          <div className="hud-label !text-ink-dim mb-2 flex items-center gap-2">
+            {reel.kind === "video" ? <Film className="w-3.5 h-3.5 text-hud" /> : <ImageIcon className="w-3.5 h-3.5 text-hud" />}
+            {reel.kind === "image" ? "Design reel" : reel.shape === "portrait" ? "Vertical reel · 9:16" : "Widescreen reel · 16:9"}
+          </div>
+          <motion.h3
+            initial={{ opacity: 0, x: -40, skewX: -12 }}
+            whileInView={{ opacity: 1, x: 0, skewX: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="font-display text-3xl sm:text-5xl uppercase text-ink leading-none"
+          >
+            {reel.title}
+          </motion.h3>
+        </div>
+        <span className="font-display text-3xl sm:text-5xl text-drift tabular-nums leading-none shrink-0">
+          {reel.items.length}
+        </span>
       </div>
+
+      {/* Sprocket holes: the reel is a strip of film */}
+      <div aria-hidden className="sprockets h-3 mb-2" />
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-80px" }}
+        className={`grid gap-3 sm:gap-4 [perspective:1400px] ${GRID_CLASS[reel.shape]}`}
+      >
+        {items.map((item, i) => (
+          <Frame
+            key={`${item.fileId}-${i}`}
+            item={item}
+            kind={reel.kind}
+            shape={reel.shape}
+            delay={(i % first) * 0.04}
+            onOpen={() => onOpen(reel.items, i)}
+          />
+        ))}
+      </motion.div>
+
+      <div aria-hidden className="sprockets h-3 mt-2" />
+
+      {reel.items.length > first && (
+        <div className="mt-6 flex justify-center">
+          <button type="button" onClick={() => setExpanded((e) => !e)} className="btn-ghost" aria-expanded={expanded}>
+            <span>{expanded ? "Show less" : `Show all ${reel.items.length}`}</span>
+          </button>
+        </div>
+      )}
     </div>
   );
 };
 
 const PortfolioSection = () => {
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [lightbox, setLightbox] = useState<{ items: PortfolioItem[]; index: number } | null>(null);
 
-  const openLightbox = useCallback((item: PortfolioItem) => {
-    const idx = allItems.findIndex((i) => i.fileId === item.fileId);
-    setLightboxIndex(idx >= 0 ? idx : 0);
-  }, []);
-  const closeLightbox = useCallback(() => setLightboxIndex(null), []);
+  const openLightbox = useCallback((items: PortfolioItem[], index: number) => setLightbox({ items, index }), []);
+  const closeLightbox = useCallback(() => setLightbox(null), []);
   const goPrev = useCallback(() => {
-    setLightboxIndex((prev) => (prev !== null ? (prev - 1 + allItems.length) % allItems.length : null));
+    setLightbox((lb) => (lb ? { ...lb, index: (lb.index - 1 + lb.items.length) % lb.items.length } : lb));
   }, []);
   const goNext = useCallback(() => {
-    setLightboxIndex((prev) => (prev !== null ? (prev + 1) % allItems.length : null));
+    setLightbox((lb) => (lb ? { ...lb, index: (lb.index + 1) % lb.items.length } : lb));
   }, []);
 
   return (
     <>
-      <section id="portfolio" className="relative py-20 sm:py-28 overflow-hidden paper-grain">
-        <div className="absolute inset-0 tactical-grid opacity-[0.35] pointer-events-none" />
-        <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-start justify-end">
-          <div className="watermark watermark-dark text-[17vw] leading-none -rotate-6 -mr-10 mt-10">
-            CASE FILES
-          </div>
-        </div>
+      <section id="portfolio" data-scene="Showreel" data-kanji="作品" className="relative py-24 sm:py-32 overflow-hidden">
+        <div className="gutter relative">
+          <SectionHeading kanji="作品" kicker="Graphics · video · multimedia" title="The" accent="Showreel" meta={`${allItems.length} pieces · ${reels.length} reels`}>
+            Graphics design, video editing and multimedia work delivered for clients. Scroll through every reel
+            and open any piece to watch or view it full screen.
+          </SectionHeading>
 
-        <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-20 relative">
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="mb-12 relative">
-            <div className="section-eyebrow mb-3">
-              <Folder className="w-4 h-4 text-[hsl(var(--accent-red))]" />
-              SECTION 04 // PORTFOLIO
-            </div>
-            <p className="font-courier text-[12px] tracking-[0.4em] text-[hsl(var(--accent-red))] mb-2 uppercase">
-              Classified Missions Archive
-            </p>
-            <h2 className="display-title text-6xl sm:text-8xl md:text-9xl uppercase">
-              FEATURED <span className="accent">WORK</span>
-            </h2>
-            <div className="mt-4 flex items-start gap-4 max-w-3xl">
-              <div className="stamp stamp-black text-[13px] !p-1.5 hidden sm:inline-flex">FILE 04</div>
-              <p className="font-typewriter text-xl sm:text-2xl text-[hsl(var(--ink-charcoal))] leading-relaxed">
-                A selection of{" "}
-                <span className="font-bold text-[hsl(var(--accent-bone))] underline decoration-[hsl(var(--accent-red))] underline-offset-4">graphics design</span>,{" "}
-                <span className="font-bold text-[hsl(var(--accent-bone))] underline decoration-[hsl(var(--accent-red))] underline-offset-4">video editing</span>, and multimedia projects delivered for clients.{" "}
-                <span className="font-bold underline decoration-[hsl(var(--accent-red))] text-[hsl(var(--accent-red))]">Click any item</span> to view full screen.
-              </p>
-            </div>
-          </motion.div>
-
-          <div className="mb-3 flex items-center gap-3">
-            <Camera className="w-5 h-5 text-[hsl(var(--accent-red))]" />
-            <h3 className="font-blackops text-3xl sm:text-4xl text-[hsl(var(--accent-bone))] uppercase tracking-[0.14em]">
-              Graphics Design
-            </h3>
-            <span className="flex-1 h-px bg-[hsl(var(--accent-red)/0.5)]" />
-            <span className="font-courier text-[12px] text-[hsl(var(--accent-red))] tracking-[0.3em]">
-              {graphicItems.length} ARTIFACTS
-            </span>
-          </div>
-        </div>
-
-        <div className="mb-14">
-          <MarqueeRow items={graphicItems} direction="left" type="graphic" onItemClick={openLightbox} />
-        </div>
-
-        {videoCategories.map((cat, idx) => (
-          <div key={cat.title} className="mb-14">
-            <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-20 mb-3 flex items-center gap-3">
-              <Play className="w-5 h-5 text-[hsl(var(--accent-red))]" />
-              <h3 className="font-blackops text-3xl sm:text-4xl text-[hsl(var(--accent-bone))] uppercase tracking-[0.14em]">
-                {cat.title}
-              </h3>
-              <span className="flex-1 h-px bg-[hsl(var(--accent-red)/0.5)]" />
-              <span className="font-courier text-[12px] text-[hsl(var(--accent-red))] tracking-[0.3em] whitespace-nowrap">
-                {cat.items.length} REELS
-              </span>
-            </div>
-            <MarqueeRow items={cat.items} direction={idx % 2 === 0 ? "right" : "left"} type="video" onItemClick={openLightbox} />
-          </div>
-        ))}
-
-        <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-20 mt-10 flex flex-wrap items-center justify-between gap-3 font-courier text-[11px] text-[hsl(var(--ink-brown))] tracking-[0.3em] uppercase border-t border-[hsl(var(--accent-red)/0.3)] pt-3">
-          <span><span className="text-[hsl(var(--accent-red))]">◉</span> EVIDENCE LIVE-FEED ENGAGED</span>
-          <span>{allItems.length} TOTAL ARTIFACTS LOGGED</span>
-          <span>HOVER PAUSES TRANSMISSION</span>
+          {reels.map((reel) => (
+            <ReelBlock key={reel.key} reel={reel} onOpen={openLightbox} />
+          ))}
         </div>
       </section>
 
       <AnimatePresence>
-        {lightboxIndex !== null && (
-          <Lightbox items={allItems} currentIndex={lightboxIndex} onClose={closeLightbox} onPrev={goPrev} onNext={goNext} />
+        {lightbox && (
+          <Lightbox items={lightbox.items} currentIndex={lightbox.index} onClose={closeLightbox} onPrev={goPrev} onNext={goNext} />
         )}
       </AnimatePresence>
     </>
