@@ -5,6 +5,7 @@ import { acts, contacts, creativeRoles, dossier, education, method, rangeBuilds,
 import { workCount, workReels } from "./work";
 import { useFilm } from "./useFilm";
 import Hud from "./Hud";
+import Academy from "./Academy";
 import "./quant.css";
 
 const World = lazy(() => import("./world/World"));
@@ -474,6 +475,7 @@ const Film = () => {
               </li>
             ))}
           </ul>
+          <Academy kicker="Also built by Ivan" />
         </Act>
 
         {/* ============ FINAL CUT — DAWN ============ */}
