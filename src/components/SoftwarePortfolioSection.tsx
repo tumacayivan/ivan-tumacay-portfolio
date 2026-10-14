@@ -1,5 +1,26 @@
 import { motion } from "framer-motion";
-import { Code2, Globe, Smartphone, Zap, Folder, FileText } from "lucide-react";
+import { Code2, Globe, Smartphone, Zap, Folder, FileText, ArrowUpRight } from "lucide-react";
+import ivanTumacayGroup from "@/assets/ivan-tumacay-group-website.png";
+import ivanTumacayGroupTrading from "@/assets/ivan-tumacay-group-trading.png";
+import marketHacker1 from "@/assets/market-hacker-website1.png";
+import marketHacker2 from "@/assets/market-hacker-website2.png";
+import ivanSwarmAi from "@/assets/ivan-swarm-ai-website.png";
+import ivanQuantModel from "@/assets/ivan-quant-model-website.png";
+import goldenPearl from "@/assets/golden-south-sea-pearl-website.png";
+import tumacayMotors from "@/assets/tumacay-general-motors-website.png";
+import supercomputer from "@/assets/supercomputer.png";
+import ivanGlennSurfing from "@/assets/ivan-glenn-surfing-school-website.png";
+import rdrGlobal from "@/assets/rdr-global-system-website.png";
+import jennyBarzaga from "@/assets/jenny-barzaga-website.png";
+import visionTasmania from "@/assets/vision-tasmania-website.png";
+import covenantBuilders from "@/assets/covenant-builders-global-website.png";
+import bigBossGlobal from "@/assets/bigboss-global-website.png";
+import bioBlooms from "@/assets/bioblooms-health-wellness-website.png";
+import winermanConstruction from "@/assets/winerman-construction-website.png";
+import jmmSupply from "@/assets/jmm-supply-construction-website.png";
+import futxperform from "@/assets/futxperform-website.png";
+import coveCafe from "@/assets/cove-cafe-website.png";
+import kalabuyo from "@/assets/kalabuyo-specialty-breads-website.png";
 
 interface Project {
   name: string;
@@ -12,6 +33,186 @@ interface YearGroup {
   count: number;
   projects: Project[];
 }
+
+interface LiveSite {
+  name: string;
+  tagline: string;
+  description: string;
+  image: string;
+  url: string;
+  stack: string;
+}
+
+const liveSites: LiveSite[] = [
+  {
+    name: "Ivan Tumacay Group",
+    tagline: "Corporate Holdings & Ventures",
+    description: "Flagship corporate site for the Ivan Tumacay Group, presenting the holdings portfolio, ventures, and strategic initiatives across software, AI, and enterprise.",
+    image: ivanTumacayGroup,
+    url: "https://ivan-tumacay-group.onrender.com/",
+    stack: "React · Web · Corporate",
+  },
+  {
+    name: "Ivan Tumacay Group Trading",
+    tagline: "Proprietary Trading & Market Operations",
+    description: "Trading arm of the Ivan Tumacay Group, presenting market operations, strategy desks, and the firm's systematic approach to proprietary trading.",
+    image: ivanTumacayGroupTrading,
+    url: "https://ivan-tumacay-group-trading.onrender.com/",
+    stack: "React · Web · Trading",
+  },
+  {
+    name: "Market Hacker",
+    tagline: "Trading Intelligence Platform",
+    description: "Real-time market analytics dashboard with strategy automation and signal monitoring for active traders.",
+    image: marketHacker1,
+    url: "https://market-hacker.onrender.com/",
+    stack: "React · Node · Real-Time Data",
+  },
+  {
+    name: "Market Hackers",
+    tagline: "Trader Community & Strategy Hub",
+    description: "Community-focused trading platform extending Market Hacker with collaborative strategies, shared signals, and group analytics.",
+    image: marketHacker2,
+    url: "https://market-hackers.onrender.com/",
+    stack: "React · Node · Community",
+  },
+  {
+    name: "Ivan Swarm AI",
+    tagline: "Multi-Agent AI Orchestration",
+    description: "AI swarm orchestration platform coordinating multiple intelligent agents for automation, research, and execution workflows.",
+    image: ivanSwarmAi,
+    url: "https://ivan-swarm-ai.onrender.com/",
+    stack: "AI Agents · LangChain · Automation",
+  },
+  {
+    name: "Ivan Quant Model",
+    tagline: "Quantitative Trading Model",
+    description: "Quantitative analysis and model-driven trading platform delivering systematic signal generation and back-tested strategies.",
+    image: ivanQuantModel,
+    url: "https://ivan-quant-model-engine-1.onrender.com/",
+    stack: "Python · Quant · Modelling",
+  },
+  {
+    name: "Golden South Sea Pearl",
+    tagline: "Luxury Pearl E-Commerce",
+    description: "High-end e-commerce storefront showcasing fine pearl jewellery with curated collections and secure checkout.",
+    image: goldenPearl,
+    url: "https://golden-south-sea-pearl.onrender.com/",
+    stack: "Web · Catalog · Checkout",
+  },
+  {
+    name: "Tumacay General Motors",
+    tagline: "Auto Trading & Merchandise Corp.",
+    description: "Corporate website and operational platform for the automotive trading and merchandise enterprise.",
+    image: tumacayMotors,
+    url: "https://tumacay-general-motors.onrender.com/",
+    stack: "Web App · Firebase · Inventory",
+  },
+  {
+    name: "Supercomputer",
+    tagline: "High-Performance Computing Platform",
+    description: "Advanced supercomputing platform delivering massive parallel processing power for complex simulations, AI workloads, and enterprise-scale computation.",
+    image: supercomputer,
+    url: "https://ivan-tumacay-group-supercomputer.onrender.com/",
+    stack: "HPC · Parallel Computing · AI",
+  },
+  {
+    name: "Ivan & Glenn Surfing School",
+    tagline: "Surf Lessons · Siargao Island",
+    description: "Bilingual booking site for a two-coach surf school in General Luna, Siargao, covering lesson tiers, wave conditions, island guides, and instructor profiles.",
+    image: ivanGlennSurfing,
+    url: "https://ivan-glenn-surfing-school.onrender.com/",
+    stack: "React · Booking · Multilingual",
+  },
+  {
+    name: "RDR Global System",
+    tagline: "Brand & Promotion Agent Network",
+    description: "Affiliate operations platform connecting vetted brands with a managed community of promotion agents, tracking every lead and commission from first click to final payout.",
+    image: rdrGlobal,
+    url: "https://rdrglobalsystem.onrender.com/",
+    stack: "Web App · Affiliate · Analytics",
+  },
+  {
+    name: "Jenny Barzaga",
+    tagline: "Congressional Campaign Platform",
+    description: "Filipino-language campaign site for the 4th District of Cavite, featuring the platform, service record, event countdown, and volunteer sign-up.",
+    image: jennyBarzaga,
+    url: "https://jenny-barzaga.onrender.com/",
+    stack: "React · Campaign · Multilingual",
+  },
+  {
+    name: "Vision Tasmania",
+    tagline: "Workforce & Leadership Group",
+    description: "Editorial corporate site for the Hobart-based group, presenting its mission, virtues, leadership, partners, and culture with a refined light/dark experience.",
+    image: visionTasmania,
+    url: "https://vision-tasmania.onrender.com/",
+    stack: "React · Corporate · Editorial",
+  },
+  {
+    name: "Covenant Builders Global",
+    tagline: "Faith, Family & Enterprise Network",
+    description: "Organisational site for CBG, presenting its vision, community-building work, global reach, and gathering schedule with visit planning.",
+    image: covenantBuilders,
+    url: "https://covenant-builders-global.onrender.com/",
+    stack: "React · Community · Web",
+  },
+  {
+    name: "BigBoss Global",
+    tagline: "Private Digital Wallet",
+    description: "Members-only digital wallet platform for holding, sending, and receiving funds with bank-grade protection and second-level transfers.",
+    image: bigBossGlobal,
+    url: "https://bigbossglobal.onrender.com/",
+    stack: "Web App · Fintech · Security",
+  },
+  {
+    name: "BioBlooms Health & Wellness",
+    tagline: "Holistic Naturopathic Hub",
+    description: "Consultation and wellness platform for a licensed naturopathic practice, covering treatment approach, conditions handled, patient stories, and pricing.",
+    image: bioBlooms,
+    url: "https://bioblooms-health-wellness.onrender.com/",
+    stack: "React · Healthcare · Booking",
+  },
+  {
+    name: "Winerman Construction",
+    tagline: "Infrastructure & General Building",
+    description: "Contractor site for a Philippine builder delivering bridges, roads, reclamation works, and bored piles, with a project gallery and permit records.",
+    image: winermanConstruction,
+    url: "https://winerman-construction.onrender.com/",
+    stack: "React · Construction · Portfolio",
+  },
+  {
+    name: "JMM Supply & Construction",
+    tagline: "Hauling, Earthworks & Supply",
+    description: "Corporate site for a Cavite-based supplier of heavy equipment, filling materials, and construction supplies serving land development and road projects.",
+    image: jmmSupply,
+    url: "https://jmm-supply-construction.onrender.com/",
+    stack: "React · Construction · Equipment",
+  },
+  {
+    name: "FUTXPERFORM",
+    tagline: "Football Career Access Platform",
+    description: "Concept build for a pro-player-run football network connecting serious footballers with clubs, scouts, and decision-makers, featuring player signings, video testimonials, and a profile assessment funnel.",
+    image: futxperform,
+    url: "https://futxperform.onrender.com/",
+    stack: "React · Sports · Lead Funnel",
+  },
+  {
+    name: "Cové Café",
+    tagline: "Coffee Shop Pre-Launch Site",
+    description: "Pre-launch site for a garden café at NextGen Farm in Dasmariñas, Cavite, with a scroll-driven brand film, space tours, an opening menu preview, and a guest-pass sign-up.",
+    image: coveCafe,
+    url: "https://cove-cafe.onrender.com/",
+    stack: "React · Hospitality · Scroll Film",
+  },
+  {
+    name: "Kalabuyo Specialty Breads",
+    tagline: "Small-Batch Bakery Ordering Site",
+    description: "Ordering site for a certified home baker in Dasmariñas, with a filterable bread board, a bestseller spotlight, a meet-the-baker story, and an order builder that copies the ticket straight into Messenger.",
+    image: kalabuyo,
+    url: "https://kalabuyo-specialty-breads-dma.onrender.com/",
+    stack: "React · Food & Bakery · Order Builder",
+  },
+];
 
 const portfolioData: YearGroup[] = [
   {
@@ -168,6 +369,74 @@ const SoftwarePortfolioSection = () => {
             </p>
           </div>
         </motion.div>
+
+        <div className="mb-20">
+          <div className="flex items-center gap-3 sm:gap-5 mb-6">
+            <div className="diag-stripes-red h-2 w-12 sm:w-20" />
+            <h3 className="font-blackops text-3xl sm:text-4xl text-ink tracking-tight leading-none">
+              LIVE <span className="text-stamp-red">SITES</span>
+            </h3>
+            <div className="flex-1 border-t-2 border-double border-ink" />
+            <span className="font-courier text-[10px] tracking-widest text-stamp-red">
+              {liveSites.length} ACTIVE
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {liveSites.map((site, siteIndex) => {
+              const rot = ((siteIndex * 17) % 5) - 2;
+
+              return (
+                <motion.a
+                  key={site.url}
+                  href={site.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: (siteIndex % 3) * 0.06 }}
+                  className="paper-card-cream p-3 paper-grain relative group flex flex-col transition-transform duration-300 hover:!rotate-0 hover:-translate-y-0.5"
+                  style={{ transform: `rotate(${rot * 0.3}deg)` }}
+                >
+                  <div className="tape tape-yellow w-12 h-3 -top-1.5 left-1/2 -translate-x-1/2 rotate-[-3deg] z-10" />
+
+                  <div className="relative aspect-[16/9] overflow-hidden border-2 border-ink">
+                    <img
+                      src={site.image}
+                      alt={`${site.name} website`}
+                      loading="lazy"
+                      className="h-full w-full object-cover object-top sepia-[.25] transition duration-500 group-hover:sepia-0 group-hover:scale-[1.03]"
+                    />
+                    <div className="absolute bottom-2 right-2 stamp !text-[10px] !p-1 rotate-[-6deg] bg-paper/80">LIVE</div>
+                  </div>
+
+                  <div className="flex items-center justify-between border-b-2 border-dashed-ink pb-2 mt-3 mb-3 px-1">
+                    <span className="font-courier text-[10px] tracking-widest text-ink-brown">
+                      EXHIBIT W-{String(siteIndex + 1).padStart(2, "0")}
+                    </span>
+                    <span className="font-blackops text-[10px] tracking-widest text-stamp-red">ONLINE</span>
+                  </div>
+
+                  <div className="px-1 flex flex-1 flex-col">
+                    <h4 className="font-blackops text-base text-ink uppercase tracking-[0.04em] leading-tight group-hover:text-stamp-red transition-colors">
+                      {site.name}
+                    </h4>
+                    <p className="font-courier text-xs tracking-wider text-stamp-blue mt-1 uppercase">{site.tagline}</p>
+                    <p className="font-courier text-sm text-ink/80 leading-relaxed mt-3">{site.description}</p>
+
+                    <div className="mt-auto pt-3 flex items-center justify-between gap-3 border-t border-dashed-ink font-courier text-[10px] tracking-widest text-ink-brown">
+                      <span>{site.stack}</span>
+                      <span className="flex items-center gap-1 text-stamp-red shrink-0">
+                        OPEN <ArrowUpRight className="w-3 h-3" />
+                      </span>
+                    </div>
+                  </div>
+                </motion.a>
+              );
+            })}
+          </div>
+        </div>
 
         <div className="space-y-14">
           {portfolioData.map((yearGroup, groupIndex) => (
