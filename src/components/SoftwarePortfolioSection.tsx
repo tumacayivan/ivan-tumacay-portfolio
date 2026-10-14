@@ -19,6 +19,7 @@ import bioBlooms from "@/assets/bioblooms-health-wellness-website.png";
 import winermanConstruction from "@/assets/winerman-construction-website.png";
 import jmmSupply from "@/assets/jmm-supply-construction-website.png";
 import futxperform from "@/assets/futxperform-website.png";
+import kalabuyo from "@/assets/kalabuyo-specialty-breads-website.png";
 
 interface Project {
   name: string;
@@ -193,6 +194,14 @@ const liveSites: LiveSite[] = [
     image: futxperform,
     url: "https://futxperform.onrender.com/",
     stack: "React · Sports · Lead Funnel",
+  },
+  {
+    name: "Kalabuyo Specialty Breads",
+    tagline: "Small-Batch Bakery Ordering Site",
+    description: "Ordering site for a certified home baker in Dasmariñas, with a filterable bread board, a bestseller spotlight, a meet-the-baker story, and an order builder that copies the ticket straight into Messenger.",
+    image: kalabuyo,
+    url: "https://kalabuyo-specialty-breads-dma.onrender.com/",
+    stack: "React · Food & Bakery · Order Builder",
   },
 ];
 
