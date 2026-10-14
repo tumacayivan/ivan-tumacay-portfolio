@@ -24,6 +24,7 @@ import winerman from "@/assets/quant/winerman-construction-website.jpg";
 import jmm from "@/assets/quant/jmm-supply-construction-website.jpg";
 import futx from "@/assets/quant/futxperform-website.jpg";
 import cove from "@/assets/quant/cove-cafe-website.jpg";
+import kalabuyo from "@/assets/quant/kalabuyo-specialty-breads-website.jpg";
 import itb1 from "@/assets/quant/itb-01-analytics.jpg";
 import itb2 from "@/assets/quant/itb-02-track-record.jpg";
 import itb3 from "@/assets/quant/itb-03-server-console.jpg";
@@ -157,6 +158,7 @@ export const rangeBuilds = [
   { name: "JMM Supply", tag: "Earthworks & supply", image: jmm, url: "https://jmm-supply-construction.onrender.com/" },
   { name: "FUTXPERFORM", tag: "Football careers", image: futx, url: "https://futxperform.onrender.com/" },
   { name: "Cové Café", tag: "Pre-launch brand film", image: cove, url: "https://cove-cafe.onrender.com/" },
+  { name: "Kalabuyo Breads", tag: "Small-batch bakery", image: kalabuyo, url: "https://kalabuyo-specialty-breads-dma.onrender.com/" },
 ];
 
 export const services = [
