@@ -6,6 +6,7 @@ import ThemeToggle from "./ThemeToggle";
 const navItems = [
   { label: "Trading Bots", href: "#trading-bots", stage: "03" },
   { label: "Trading", href: "#trading-academy", stage: "03B" },
+  { label: "Tumacay Group", href: "#tumacay-group", stage: "03C" },
   { label: "Archive", href: "#portfolio", stage: "04" },
   { label: "Systems", href: "#services", stage: "05" },
   { label: "Mission Log", href: "#experience", stage: "07" },

@@ -6,6 +6,7 @@ const SCENES: { id: string; label: string }[] = [
   { id: "subject-profile", label: "Crew" },
   { id: "trading-bots", label: "Instrument bay" },
   { id: "trading-academy", label: "Academy deck" },
+  { id: "tumacay-group", label: "Model deck" },
   { id: "portfolio", label: "Archive" },
   { id: "services", label: "The monolith" },
   { id: "education", label: "Training" },
