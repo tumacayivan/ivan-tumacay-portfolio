@@ -20,6 +20,7 @@ import winermanConstruction from "@/assets/winerman-construction-website.png";
 import jmmSupply from "@/assets/jmm-supply-construction-website.png";
 import futxperform from "@/assets/futxperform-website.png";
 import kalabuyo from "@/assets/kalabuyo-specialty-breads-website.png";
+import tumacayGroup from "@/assets/tumacay-group-website.png";
 
 interface Project {
   name: string;
@@ -202,6 +203,14 @@ const liveSites: LiveSite[] = [
     image: kalabuyo,
     url: "https://kalabuyo-specialty-breads-dma.onrender.com/",
     stack: "React · Food & Bakery · Order Builder",
+  },
+  {
+    name: "TUMACAY GROUP",
+    tagline: "Machine Learning Quantitative Trading",
+    description: "Brand site for a fully autonomous machine learning trading model, with a rotating 3D Lady Justice statue, the model's building blocks, a data-to-live-trading pipeline with no human override, and a flip-card glossary of quant terms.",
+    image: tumacayGroup,
+    url: "https://tumacay-group.onrender.com/",
+    stack: "React · Quant Finance · 3D Statue",
   },
 ];
 
