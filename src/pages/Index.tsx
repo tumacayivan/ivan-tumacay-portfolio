@@ -4,6 +4,7 @@ import SkillsMarquee from "@/components/SkillsMarquee";
 import ServicesSection from "@/components/ServicesSection";
 import ExperienceSection from "@/components/ExperienceSection";
 import TradingAcademySection from "@/components/TradingAcademySection";
+import TumacayGroupSection from "@/components/TumacayGroupSection";
 import PortfolioSection from "@/components/PortfolioSection";
 import SoftwarePortfolioSection from "@/components/SoftwarePortfolioSection";
 import EducationSection from "@/components/EducationSection";
@@ -17,6 +18,7 @@ const Index = () => {
       <HeroSection />
       <SkillsMarquee />
       <TradingAcademySection />
+      <TumacayGroupSection />
       <PortfolioSection />
       <ServicesSection />
       <EducationSection />
