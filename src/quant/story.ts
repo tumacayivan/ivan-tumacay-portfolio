@@ -19,6 +19,7 @@ import jmm from "@/assets/quant/jmm-supply-construction-website.jpg";
 import futx from "@/assets/quant/futxperform-website.jpg";
 import cove from "@/assets/quant/cove-cafe-website.jpg";
 import kalabuyo from "@/assets/quant/kalabuyo-specialty-breads-website.jpg";
+import tumacayGroup from "@/assets/quant/tumacay-group-website.jpg";
 import g1 from "@/assets/portfolio-graphic-1.jpg";
 import g2 from "@/assets/portfolio-graphic-2.jpg";
 import g3 from "@/assets/portfolio-graphic-3.jpg";
@@ -160,6 +161,7 @@ export const rangeBuilds = [
   { name: "FUTXPERFORM", tag: "Football careers", image: futx, url: "https://futxperform.onrender.com/" },
   { name: "Cové Café", tag: "Pre-launch brand film", image: cove, url: "https://cove-cafe.onrender.com/" },
   { name: "Kalabuyo Breads", tag: "Small-batch bakery", image: kalabuyo, url: "https://kalabuyo-specialty-breads-dma.onrender.com/" },
+  { name: "TUMACAY GROUP", tag: "Machine learning quant trading", image: tumacayGroup, url: "https://tumacay-group.onrender.com/" },
 ];
 
 export const contacts = [
