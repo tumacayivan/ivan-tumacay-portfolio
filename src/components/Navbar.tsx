@@ -6,6 +6,7 @@ const navItems = [
   { label: "Services", href: "#services", code: "SEC-03" },
   { label: "Experience", href: "#experience", code: "SEC-05" },
   { label: "Trading", href: "#trading-academy", code: "SEC-08" },
+  { label: "Tumacay Group", href: "#tumacay-group", code: "SEC-09" },
   { label: "Portfolio", href: "#portfolio", code: "SEC-04" },
   { label: "Education", href: "#education", code: "SEC-02" },
   { label: "Why Me", href: "#why", code: "SEC-06" },
