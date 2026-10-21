@@ -5,6 +5,7 @@ import ThemeToggle from "./ThemeToggle";
 
 const navItems = [
   { label: "Academy", href: "#trading-academy" },
+  { label: "Tumacay Group", href: "#tumacay-group" },
   { label: "Evidence", href: "#portfolio" },
   { label: "Arsenal", href: "#services" },
   { label: "Archive", href: "#experience" },
