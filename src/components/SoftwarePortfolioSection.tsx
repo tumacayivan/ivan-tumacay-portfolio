@@ -23,6 +23,7 @@ import futxperform from "@/assets/futxperform-website.png";
 import coveCafe from "@/assets/cove-cafe-website.png";
 import kalabuyo from "@/assets/kalabuyo-specialty-breads-website.png";
 import tumacayGroup from "@/assets/tumacay-group-website.png";
+import jolaidaNiccolai from "@/assets/jolaida-niccolai-website.png";
 
 interface Project {
   name: string;
@@ -221,6 +222,14 @@ const liveSites: LiveSite[] = [
     image: tumacayGroup,
     url: "https://tumacay-group.onrender.com/",
     stack: "React · Quant Finance · 3D Statue",
+  },
+  {
+    name: "Jolaida Niccolai Manila",
+    tagline: "Couture Gown Rental House",
+    description: "Site for a Quezon City maison renting bridal, evening and debut gowns, with an oversized serif hero, a signature looks reel, four collection chapters, a filterable 28-photo gallery, a reopening special and book-a-fitting links to Messenger and WhatsApp.",
+    image: jolaidaNiccolai,
+    url: "https://jolaidaniccolai.onrender.com/",
+    stack: "React · Bridal & Fashion · Editorial Gallery",
   },
 ];
 
