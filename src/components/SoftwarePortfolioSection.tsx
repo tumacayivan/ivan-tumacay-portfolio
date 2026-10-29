@@ -23,6 +23,7 @@ import futxperform from "@/assets/futxperform-website.png";
 import kalabuyo from "@/assets/kalabuyo-specialty-breads-website.png";
 import tumacayGroup from "@/assets/tumacay-group-website.png";
 import jolaidaNiccolai from "@/assets/jolaida-niccolai-website.png";
+import tumacayGroupTrading from "@/assets/tumacay-group-trading-website.png";
 
 interface Project {
   name: string;
@@ -221,6 +222,14 @@ const liveSites: LiveSite[] = [
     image: jolaidaNiccolai,
     url: "https://jolaidaniccolai.onrender.com/",
     stack: "React · Bridal & Fashion · Editorial Gallery",
+  },
+  {
+    name: "TUMACAY GROUP Trading",
+    tagline: "Gold & Oil Machine Learning Trading",
+    description: "Site for a fully systematic machine learning model that swing trades gold and crude oil on higher timeframes, built on macro and fundamental data, statistics and probability, with a 3D hero, strategy overview, risk-first rules, a request-access flow and an FAQ.",
+    image: tumacayGroupTrading,
+    url: "https://tumacay-group-trading.onrender.com/",
+    stack: "React · Machine Learning · Commodities",
   },
 ];
 
