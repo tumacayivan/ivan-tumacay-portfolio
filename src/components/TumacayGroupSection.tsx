@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ExternalLink, Database, BrainCircuit, FlaskConical, Radio, Scale, ShieldCheck } from "lucide-react";
+import { ExternalLink, BrainCircuit, Scale, ShieldCheck, Landmark, Sigma, Gauge } from "lucide-react";
 import tgHero from "@/assets/tumacay-group/tg-01-hero.jpg";
-import tgModel from "@/assets/tumacay-group/tg-02-model.jpg";
-import tgCounsel from "@/assets/tumacay-group/tg-03-counsel.jpg";
-import tgBlindfold from "@/assets/tumacay-group/tg-04-blindfold.jpg";
-import tgProcess from "@/assets/tumacay-group/tg-05-process.jpg";
-import tgQuantguage from "@/assets/tumacay-group/tg-06-quantguage.jpg";
-import tgQuestions from "@/assets/tumacay-group/tg-07-questions.jpg";
+import tgOverview from "@/assets/tumacay-group/tg-02-overview.jpg";
+import tgMarkets from "@/assets/tumacay-group/tg-03-markets.jpg";
+import tgApproach from "@/assets/tumacay-group/tg-04-approach.jpg";
+import tgQuantified from "@/assets/tumacay-group/tg-05-quantified.jpg";
+import tgRisk from "@/assets/tumacay-group/tg-06-risk.jpg";
+import tgAccess from "@/assets/tumacay-group/tg-07-access.jpg";
+import tgFaq from "@/assets/tumacay-group/tg-08-faq.jpg";
 import SectionHeading from "./reaction/SectionHeading";
 
 const SITE_URL = "https://tumacay-group.onrender.com/";
@@ -15,36 +16,37 @@ const SITE_URL = "https://tumacay-group.onrender.com/";
 // Plates captured from the live site. Like the site, nothing here claims a
 // return or a win rate, and nothing is investment advice.
 const exhibits = [
-  { image: tgHero, title: "Quantitative trading", caption: "TUMACAY GROUP — 100% machine learning, no human intervention. It places every order itself." },
-  { image: tgModel, title: "The model", caption: "Supervised learning, probability over prediction, statistical inference and the rest of what it is built out of." },
-  { image: tgCounsel, title: "The researcher", caption: "Researched and developed by Ivan Tumacay. Judgment goes into the method and stops when the model goes live." },
-  { image: tgBlindfold, title: "The blindfold", caption: "A gold Lady Justice you can drag to turn. The model never sees whose position it is closing." },
-  { image: tgProcess, title: "How it is built", caption: "Data, training, validation, live. Nothing reaches live trading until the numbers allow it." },
-  { image: tgQuantguage, title: "Quantguage", caption: "Flip cards for the words that decide the position, as they read in a risk report." },
-  { image: tgQuestions, title: "Questions", caption: "Who makes the decisions, how it is validated, and what this site is not." },
+  { image: tgHero, title: "Gold & oil", caption: "TUMACAY GROUP — trade gold and oil with machine precision. A 100% machine learning model, no human intervention." },
+  { image: tgOverview, title: "At a glance", caption: "Two focused markets, holding periods of days to months, and every trade decided by the model." },
+  { image: tgMarkets, title: "Our markets", caption: "Gold (XAU · GC) and crude oil (WTI · Brent) only, so every strategy and risk limit is built for how they behave." },
+  { image: tgApproach, title: "Our approach", caption: "Macro and fundamentals, statistics and probability, machine learning, then risk and execution." },
+  { image: tgQuantified, title: "Real assets, quantified", caption: "Hard assets. Hard data. Hard rules. Gold bars, oil barrels and rising charts rendered in 3D." },
+  { image: tgRisk, title: "Risk management", caption: "Capital protection comes first: selective, tested out of sample, liquid markets only, no human in the trade." },
+  { image: tgAccess, title: "Get access", caption: "Request access to the model by email, then an introductory call, account setup and the model's signals." },
+  { image: tgFaq, title: "FAQ", caption: "Why only gold and oil, who makes the decisions, how long positions are held, and why it never manages your money." },
 ];
 
 const modelTags = [
+  { label: "Markets", value: "Gold & Oil" },
+  { label: "Holding period", value: "Days–months" },
   { label: "Model", value: "100% ML" },
-  { label: "Human override", value: "None" },
-  { label: "Pipeline", value: "4 stages" },
-  { label: "Investment advice", value: "None" },
+  { label: "Client funds", value: "None held" },
 ];
 
 const stages = [
-  { n: "01", icon: Database, name: "Data", tagline: "Everything begins as a number", body: "Captured, timestamped and reconciled before the model is allowed near it." },
-  { n: "02", icon: BrainCircuit, name: "Training", tagline: "Nobody tells it what to think", body: "Fitted from labelled history under regularisation and cross-validation." },
-  { n: "03", icon: FlaskConical, name: "Validation", tagline: "Tested where it was never trained", body: "Held-out data, walk-forward windows and full costs. Most candidates end here." },
-  { n: "04", icon: Radio, name: "Live", tagline: "No hand on it", body: "Goes live at a fraction of target size and places its own orders." },
+  { n: "01", icon: Landmark, name: "Macro & Fundamentals", tagline: "What really moves the market", body: "Interest rates, the dollar, inflation, growth, and the supply and demand of gold and oil." },
+  { n: "02", icon: Sigma, name: "Statistics & Probability", tagline: "Only when the odds favour it", body: "Every idea is tested with mathematics and statistics. No edge, no trade." },
+  { n: "03", icon: BrainCircuit, name: "Machine Learning", tagline: "The model decides", body: "Learns from macro, fundamental and market data, and makes every trading decision itself." },
+  { n: "04", icon: Gauge, name: "Risk & Execution", tagline: "No hand on it", body: "Sized and managed automatically, held for days, weeks or months, with no human intervention." },
 ];
 
 const terms = [
-  { word: "Feature", say: "fea · ture", meaning: "A measurable quantity derived from raw data that a model takes as input. Price alone is not a feature until it is turned into one." },
-  { word: "Overfitting", say: "o · ver · fit · ting", meaning: "A model that has learned the noise in its training sample instead of the structure underneath it." },
-  { word: "Out-of-sample", say: "out · of · sam · ple", meaning: "Data withheld from training so the model can be judged on something it has never seen." },
-  { word: "Posterior", say: "pos · te · ri · or", meaning: "The probability of something being true after the evidence has been taken into account, rather than before." },
-  { word: "Alpha", say: "al · pha", meaning: "Return that cannot be explained by exposure to the market or to any known risk factor." },
-  { word: "Drawdown", say: "draw · down", meaning: "The decline from a peak in equity to the trough that follows, measured before any recovery." },
+  { word: "Selective", say: "by design", meaning: "The model only trades when the signal is clear. When there is no edge, it stays out." },
+  { word: "Tested", say: "rigorously", meaning: "Strategies are tested on data they have never seen before they go anywhere near live capital." },
+  { word: "Hands-off", say: "no human intervention", meaning: "Every decision comes from the model, so fear and greed never enter the trade." },
+  { word: "Liquid", say: "markets only", meaning: "Gold and crude oil are among the deepest markets in the world, so positions can be adjusted quickly." },
+  { word: "Preserve", say: "capital first", meaning: "Protecting the downside comes before chasing the upside." },
+  { word: "Report", say: "transparently", meaning: "Clear, regular reporting on performance, drawdown and every trade." },
 ];
 
 const plate = (i: number) => String.fromCharCode(65 + i);
@@ -74,12 +76,13 @@ const TumacayGroupSection = () => {
       <div className="gutter relative">
         <SectionHeading
           code="Doc · 03B"
-          kicker="Machine learning · researched & developed by Ivan"
+          kicker="Gold & oil · researched & developed by Ivan"
           title="Tumacay"
           accent="Group"
         >
-          A 100% machine learning trading model. It reads the data, produces a probability, sizes the position inside
-          its own risk constraints and places the order itself. No discretion, no override, no hand to stay it.
+          A 100% machine learning model for higher-timeframe swing trading in gold and crude oil. Built on mathematics,
+          statistics and probability, with macro and fundamental data. Every trade is decided by the model, with no
+          human intervention.
         </SectionHeading>
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-line/15 border border-line/15 mb-10 max-w-3xl">
@@ -158,27 +161,27 @@ const TumacayGroupSection = () => {
           </div>
         </div>
 
-        {/* THE BLINDFOLD */}
+        {/* HARD RULES */}
         <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-8 items-center mb-20 border-y border-line/15 py-12">
           <blockquote className="display text-3xl sm:text-5xl text-ink">
-            The model wears the <span className="ignited">blindfold.</span> It never sees whose position it is closing.
+            Hard assets. <span className="ignited">Hard data.</span> Hard rules.
           </blockquote>
           <div>
             <div className="slug mb-3 flex items-center gap-2">
-              <Scale className="w-4 h-4" /> The principle
+              <Scale className="w-4 h-4" /> Real assets, quantified
             </div>
             <p className="text-ink-dim text-lg leading-relaxed">
-              Mathematics, statistics and probability decide every trade. Judgment goes into what to measure, how to
-              test it and which constraints to impose, and stops the moment the model goes live.
+              Gold and oil have shaped markets for a century. The model brings mathematics, statistics, machine
+              learning, and macro and fundamental analysis to both, and holds swing trades for days, weeks or months.
             </p>
           </div>
         </div>
 
-        {/* FOUR STAGES */}
+        {/* OUR APPROACH */}
         <div className="flex items-center gap-4 mb-8">
-          <h3 className="display text-3xl sm:text-4xl text-ink">How the model is built</h3>
+          <h3 className="display text-3xl sm:text-4xl text-ink">A systematic trading process</h3>
           <span className="flex-1 h-px bg-line/20" />
-          <span className="slug slug-dim">Data → live</span>
+          <span className="slug slug-dim">Signal → execution</span>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-20">
           {stages.map((s, i) => (
@@ -201,9 +204,9 @@ const TumacayGroupSection = () => {
           ))}
         </div>
 
-        {/* QUANTGUAGE */}
+        {/* RISK MANAGEMENT */}
         <div className="flex items-center gap-4 mb-8">
-          <h3 className="display text-3xl sm:text-4xl text-ink">Quantguage</h3>
+          <h3 className="display text-3xl sm:text-4xl text-ink">Capital protection first</h3>
           <span className="flex-1 h-px bg-line/20" />
           <span className="slug slug-dim">Tap a card to turn it</span>
         </div>
@@ -251,8 +254,8 @@ const TumacayGroupSection = () => {
               <ExternalLink className="w-4 h-4" /> Visit Tumacay Group
             </span>
           </a>
-          <a href={`${SITE_URL}#process`} target="_blank" rel="noopener noreferrer" className="btn-quiet">
-            <span>See how it is built</span>
+          <a href={`${SITE_URL}#approach`} target="_blank" rel="noopener noreferrer" className="btn-quiet">
+            <span>How the model works</span>
           </a>
         </div>
 
@@ -260,9 +263,9 @@ const TumacayGroupSection = () => {
           <ShieldCheck className="w-4 h-4 shrink-0 mt-0.5 text-ember" />
           <span>
             <span className="slug !text-[10px] mr-2">Note for the record</span>
-            Nothing here is an offer to sell or a solicitation to buy any security, and nothing here is investment
-            advice. Ivan is not a licensed financial adviser. Trading carries risk — you can lose the entire capital
-            you put in.
+            Trading commodities, futures and derivatives carries substantial risk — you can lose some or all of your
+            capital. TUMACAY GROUP does not accept, hold or manage client funds, and nothing here is an offer, a
+            solicitation or investment advice. Ivan is not a licensed financial adviser.
           </span>
         </p>
       </div>
