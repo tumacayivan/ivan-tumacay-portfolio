@@ -208,11 +208,11 @@ const liveSites: LiveSite[] = [
   },
   {
     name: "TUMACAY GROUP",
-    tagline: "Machine Learning Quantitative Trading",
-    description: "Brand site for a fully autonomous machine learning trading model, with a rotating 3D Lady Justice statue, the model's building blocks, a data-to-live-trading pipeline with no human override, and a flip-card glossary of quant terms.",
+    tagline: "Gold & Oil Machine Learning Trading",
+    description: "Site for a 100% machine learning model that swing trades gold and crude oil on higher timeframes, with 3D gold bars and oil barrels, a strategy overview, market profiles, a four-step systematic process, risk-first rules, a request-access flow and an FAQ.",
     image: tumacayGroup,
     url: "https://tumacay-group.onrender.com/",
-    stack: "React · Quant Finance · 3D Statue",
+    stack: "React · Machine Learning · 3D Commodities",
   },
   {
     name: "Jolaida Niccolai Manila",
