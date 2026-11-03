@@ -160,7 +160,7 @@ export const rangeBuilds = [
   { name: "FUTXPERFORM", tag: "Football careers", image: futx, url: "https://futxperform.onrender.com/" },
   { name: "Cové Café", tag: "Pre-launch brand film", image: cove, url: "https://cove-cafe.onrender.com/" },
   { name: "Kalabuyo Breads", tag: "Small-batch bakery", image: kalabuyo, url: "https://kalabuyo-specialty-breads-dma.onrender.com/" },
-  { name: "TUMACAY GROUP", tag: "Machine learning quant trading", image: tumacayGroup, url: "https://tumacay-group.onrender.com/" },
+  { name: "TUMACAY GROUP", tag: "Gold & oil machine learning trading", image: tumacayGroup, url: "https://tumacay-group.onrender.com/" },
 ];
 
 export const services = [
