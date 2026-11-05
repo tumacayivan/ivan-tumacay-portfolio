@@ -45,7 +45,7 @@ const promises = [
   { word: "Shipping", say: "fast", meaning: "All orders ship within 24 hours with express two-day shipping." },
   { word: "Returns", say: "free", meaning: "Not happy with the purchase? Free returns for 14 days." },
   { word: "Coverage", say: "if you want more", meaning: "A shop-the-look section with pieces like the reversible tie side pant and the V wired flared tankini." },
-  { word: "Care", say: "& sustainability", meaning: "A dedicated page on caring for each piece and how Ataya actively contributes." },
+  { word: "Care", say: "& sustainability", meaning: "A dedicated page on caring for each piece and how Ataya actively contributes to sustainability." },
   { word: "Support", say: "world-class", meaning: "Fast, friendly support by email." },
 ];
 
