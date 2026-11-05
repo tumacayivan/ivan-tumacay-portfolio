@@ -8,6 +8,7 @@ const navItems = [
   { label: "Trading Bots", href: "#trading-bots", kanji: "自動売買" },
   { label: "Trading", href: "#trading-academy", kanji: "相場道" },
   { label: "Tumacay Group", href: "#tumacay-group", kanji: "正義" },
+  { label: "Ataya", href: "#ataya", kanji: "水着" },
   { label: "Showreel", href: "#portfolio", kanji: "作品" },
   { label: "Services", href: "#services", kanji: "サービス" },
   { label: "Experience", href: "#experience", kanji: "経歴" },
@@ -44,7 +45,7 @@ const Navbar = () => {
             <span className="tracking-[0.08em]">東京 26</span>
             <span className="text-[15px] tracking-[0.04em]">IT·01</span>
           </span>
-          <span className="hidden sm:flex lg:hidden xl:flex flex-col leading-none whitespace-nowrap">
+          <span className="hidden sm:flex min-[1200px]:hidden min-[1480px]:flex flex-col leading-none whitespace-nowrap">
             <span className="font-display text-lg tracking-tight text-ink uppercase">
               Ivan <span className="text-drift">Tumacay</span>
             </span>
@@ -52,18 +53,18 @@ const Navbar = () => {
           </span>
         </a>
 
-        <div className="hidden lg:flex items-center gap-1">
+        <div className="hidden min-[1200px]:flex items-center min-[1700px]:gap-1">
           {navItems.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="group relative whitespace-nowrap px-2.5 xl:px-4 py-2 font-hud text-[13px] font-semibold uppercase tracking-[0.14em] text-ink/80 hover:text-ink transition-colors"
+              className="group relative whitespace-nowrap px-2 min-[1700px]:px-4 py-2 font-hud text-[12px] min-[1700px]:text-[13px] font-semibold uppercase tracking-[0.08em] min-[1700px]:tracking-[0.14em] text-ink/80 hover:text-ink transition-colors"
             >
               <span className="absolute left-1/2 -translate-x-1/2 -top-2.5 text-[9px] tracking-[0.1em] text-sign opacity-0 group-hover:opacity-100 group-hover:-translate-y-0.5 transition-all">
                 {item.kanji}
               </span>
               {item.label}
-              <span className="absolute left-3 right-3 xl:left-4 xl:right-4 bottom-1 h-[2px] bg-drift scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 skew-x-[-20deg]" />
+              <span className="absolute left-2 right-2 min-[1700px]:left-4 min-[1700px]:right-4 bottom-1 h-[2px] bg-drift scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 skew-x-[-20deg]" />
             </a>
           ))}
         </div>
@@ -78,7 +79,7 @@ const Navbar = () => {
             title="Resume (PDF)"
           >
             <FileText className="w-4 h-4" />
-            <span className="hidden xl:inline font-hud text-[11px] font-semibold tracking-[0.18em] uppercase">Resume</span>
+            <span className="hidden min-[1480px]:inline font-hud text-[11px] font-semibold tracking-[0.18em] uppercase">Resume</span>
           </a>
           <PaintShop />
           <ThemeToggle />
@@ -88,7 +89,7 @@ const Navbar = () => {
             </span>
           </a>
           <button
-            className="icon-btn lg:hidden"
+            className="icon-btn min-[1200px]:hidden"
             onClick={() => setMobileOpen((o) => !o)}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
@@ -112,7 +113,7 @@ const Navbar = () => {
             animate={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}
             exit={{ clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" }}
             transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
-            className="lg:hidden bg-[hsl(var(--asphalt)/0.97)] backdrop-blur-xl border-b border-line/10"
+            className="min-[1200px]:hidden bg-[hsl(var(--asphalt)/0.97)] backdrop-blur-xl border-b border-line/10"
           >
             <div className="gutter py-6 flex flex-col">
               {navItems.map((item, i) => (
