@@ -7,6 +7,7 @@ const navItems = [
   { label: "Experience", href: "#experience", code: "SEC-05" },
   { label: "Trading", href: "#trading-academy", code: "SEC-07" },
   { label: "Tumacay Group", href: "#tumacay-group", code: "SEC-07B" },
+  { label: "Ataya", href: "#ataya", code: "SEC-07C" },
   { label: "Portfolio", href: "#portfolio", code: "SEC-04" },
   { label: "Education", href: "#education", code: "SEC-02" },
   { label: "Why Me", href: "#why", code: "SEC-06" },
@@ -54,17 +55,17 @@ const Navbar = () => {
             <span className="font-blackops text-xl sm:text-3xl tracking-[0.15em] text-ink uppercase">
               IVAN TUMACAY
             </span>
-            <span className="hidden md:inline font-courier text-[13px] tracking-widest text-ink-brown border border-dashed-ink px-2 py-0.5">
+            <span className="hidden min-[1400px]:inline font-courier text-[13px] tracking-widest text-ink-brown border border-dashed-ink px-2 py-0.5">
               SUBJECT
             </span>
           </a>
 
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden min-[1240px]:flex items-center min-[1400px]:gap-1">
             {navItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
-                className="group relative px-3 py-2 font-stencil text-base lg:text-base text-ink uppercase tracking-[0.18em] hover:text-ink transition-colors"
+                className="group relative px-2 min-[1400px]:px-3 py-2 font-stencil text-sm min-[1400px]:text-base text-ink uppercase tracking-[0.1em] min-[1400px]:tracking-[0.18em] hover:text-ink transition-colors"
               >
                 <span className="absolute -top-1 left-1/2 -translate-x-1/2 font-courier text-[11px] text-ink-brown opacity-60">
                   {item.code}
@@ -80,7 +81,7 @@ const Navbar = () => {
             </a>
           </div>
 
-          <div className="md:hidden flex items-center gap-3">
+          <div className="min-[1240px]:hidden flex items-center gap-3">
             <button
               className="text-ink border border-ink p-1.5"
               onClick={() => setMobileOpen(!mobileOpen)}
@@ -95,7 +96,7 @@ const Navbar = () => {
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
-            className="md:hidden border-t-2 border-[hsl(var(--ink-charcoal))] bg-paper-cream"
+            className="min-[1240px]:hidden border-t-2 border-[hsl(var(--ink-charcoal))] bg-paper-cream"
           >
             <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-20 py-5 flex flex-col gap-3">
               {navItems.map((item) => (
