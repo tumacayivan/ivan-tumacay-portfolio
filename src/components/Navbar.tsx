@@ -7,6 +7,7 @@ const navItems = [
   { label: "The apparatus", href: "#trading-bots", code: "03" },
   { label: "The curriculum", href: "#trading-academy", code: "03A" },
   { label: "The model", href: "#tumacay-group", code: "03B" },
+  { label: "Ataya", href: "#ataya", code: "03C" },
   { label: "Exposure sheets", href: "#portfolio", code: "04" },
   { label: "Programme", href: "#services", code: "05" },
   { label: "Test log", href: "#experience", code: "07" },
@@ -46,7 +47,7 @@ const Navbar = () => {
               01
             </span>
           </span>
-          <span className="hidden sm:flex lg:hidden xl:flex flex-col leading-none whitespace-nowrap">
+          <span className="hidden sm:flex min-[1440px]:hidden min-[1900px]:flex flex-col leading-none whitespace-nowrap">
             <span className="font-display text-xl tracking-tight text-ink uppercase">Ivan Tumacay</span>
             <span className="font-doc text-[10px] tracking-[0.2em] text-ink-dim uppercase mt-1">
               Engineer · Operator
@@ -54,16 +55,16 @@ const Navbar = () => {
           </span>
         </a>
 
-        <div className="hidden lg:flex items-center gap-0.5">
+        <div className="hidden min-[1440px]:flex items-center gap-0.5">
           {navItems.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="group relative whitespace-nowrap px-2.5 xl:px-3.5 py-2 font-doc text-[12px] font-medium uppercase tracking-[0.14em] text-ink/80 hover:text-ink transition-colors"
+              className="group relative whitespace-nowrap px-2 min-[1900px]:px-3.5 py-2 font-doc text-[12px] font-medium uppercase tracking-[0.08em] min-[1900px]:tracking-[0.14em] text-ink/80 hover:text-ink transition-colors"
             >
               <span className="text-ember/70 mr-1.5 group-hover:text-ember transition-colors">{item.code}</span>
               {item.label}
-              <span className="absolute left-2.5 right-2.5 xl:left-3.5 xl:right-3.5 bottom-1 h-px bg-ember scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
+              <span className="absolute left-2 right-2 min-[1900px]:left-3.5 min-[1900px]:right-3.5 bottom-1 h-px bg-ember scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
             </a>
           ))}
         </div>
@@ -78,7 +79,7 @@ const Navbar = () => {
             title="Resume (PDF)"
           >
             <FileText className="w-4 h-4" />
-            <span className="hidden xl:inline font-doc text-[11px] font-semibold tracking-[0.18em] uppercase">
+            <span className="hidden min-[1900px]:inline font-doc text-[11px] font-semibold tracking-[0.18em] uppercase">
               Resume
             </span>
           </a>
@@ -89,7 +90,7 @@ const Navbar = () => {
             </span>
           </a>
           <button
-            className="icon-btn lg:hidden"
+            className="icon-btn min-[1440px]:hidden"
             onClick={() => setMobileOpen((o) => !o)}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
@@ -113,7 +114,7 @@ const Navbar = () => {
             animate={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}
             exit={{ clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" }}
             transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
-            className="lg:hidden bg-[hsl(var(--base)/0.98)] backdrop-blur-xl border-b border-line/15"
+            className="min-[1440px]:hidden bg-[hsl(var(--base)/0.98)] backdrop-blur-xl border-b border-line/15"
           >
             <div className="gutter py-6 flex flex-col">
               {navItems.map((item, i) => (
