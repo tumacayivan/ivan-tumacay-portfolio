@@ -7,6 +7,7 @@ const navItems = [
   { label: "Trading Bots", href: "#trading-bots", stage: "03" },
   { label: "Trading", href: "#trading-academy", stage: "03B" },
   { label: "Tumacay Group", href: "#tumacay-group", stage: "03C" },
+  { label: "Ataya", href: "#ataya", stage: "03D" },
   { label: "Archive", href: "#portfolio", stage: "04" },
   { label: "Systems", href: "#services", stage: "05" },
   { label: "Mission Log", href: "#experience", stage: "07" },
@@ -60,7 +61,7 @@ const Navbar = () => {
           <span className="transition-transform duration-700 ease-transit group-hover:rotate-45">
             <Patch />
           </span>
-          <span className="hidden sm:flex lg:hidden xl:flex flex-col leading-none whitespace-nowrap">
+          <span className="hidden sm:flex min-[1240px]:hidden min-[1560px]:flex flex-col leading-none whitespace-nowrap">
             <span className="plate text-lg text-ice">
               Ivan <span className="text-gold">Tumacay</span>
             </span>
@@ -68,12 +69,12 @@ const Navbar = () => {
           </span>
         </a>
 
-        <div className="hidden lg:flex items-center gap-0.5">
+        <div className="hidden min-[1240px]:flex items-center gap-0.5">
           {navItems.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="group relative whitespace-nowrap px-3 xl:px-4 py-2 font-tele text-xs font-medium uppercase tracking-[0.18em] text-ice/75 hover:text-ice transition-colors"
+              className="group relative whitespace-nowrap px-2 min-[1560px]:px-4 py-2 font-tele text-xs font-medium uppercase tracking-[0.1em] min-[1560px]:tracking-[0.18em] text-ice/75 hover:text-ice transition-colors"
             >
               <span
                 aria-hidden
@@ -84,7 +85,7 @@ const Navbar = () => {
               {item.label}
               <span
                 aria-hidden
-                className="absolute left-3 right-3 xl:left-4 xl:right-4 bottom-1 h-px bg-gold scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-700 ease-transit"
+                className="absolute left-2 right-2 min-[1560px]:left-4 min-[1560px]:right-4 bottom-1 h-px bg-gold scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-700 ease-transit"
               />
             </a>
           ))}
@@ -100,7 +101,7 @@ const Navbar = () => {
             title="Resume (PDF)"
           >
             <FileText className="w-4 h-4" aria-hidden />
-            <span className="hidden xl:inline font-tele text-xs font-medium tracking-[0.18em] uppercase">Resume</span>
+            <span className="hidden min-[1560px]:inline font-tele text-xs font-medium tracking-[0.18em] uppercase">Resume</span>
           </a>
           <ThemeToggle />
           <a href="#contact" className="btn-primary hidden sm:inline-flex !py-2.5 !px-5 !text-xs">
@@ -109,7 +110,7 @@ const Navbar = () => {
             </span>
           </a>
           <button
-            className="icon-btn lg:hidden"
+            className="icon-btn min-[1240px]:hidden"
             onClick={() => setMobileOpen((o) => !o)}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
@@ -133,7 +134,7 @@ const Navbar = () => {
             animate={{ clipPath: "inset(0 0 0% 0)" }}
             exit={{ clipPath: "inset(0 0 100% 0)" }}
             transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
-            className="lg:hidden bg-[hsl(var(--deep)/0.97)] backdrop-blur-xl border-b border-rule/10"
+            className="min-[1240px]:hidden bg-[hsl(var(--deep)/0.97)] backdrop-blur-xl border-b border-rule/10"
           >
             <div className="gutter py-6 flex flex-col">
               {navItems.map((item, i) => (
