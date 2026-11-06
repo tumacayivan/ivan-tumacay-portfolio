@@ -25,6 +25,7 @@ import tumacayGroup from "@/assets/tumacay-group-website.png";
 import jolaidaNiccolai from "@/assets/jolaida-niccolai-website.png";
 import tumacayGroupTrading from "@/assets/tumacay-group-trading-website.png";
 import ataya from "@/assets/ataya-website.jpg";
+import ivanErvinsPastil from "@/assets/ivan-ervins-pastil-website.jpg";
 
 interface Project {
   name: string;
@@ -247,6 +248,14 @@ const liveSites: LiveSite[] = [
     image: ataya,
     url: "https://ataya.com.au/",
     stack: "Shopify · Fashion · E-commerce",
+  },
+  {
+    name: "Ivan & Ervin's Pastil",
+    tagline: "Chicken, Beef & Tuna Pastil",
+    description: "Tagalog ordering site for pastil wrapped in banana leaf, with a scroll-through cooking story, a three-item menu and basket, bilao orders for groups, a dark mode and a checkout that sends the order through Messenger.",
+    image: ivanErvinsPastil,
+    url: "https://ivan-ervins-pastil.onrender.com/",
+    stack: "Web · Food · Messenger Ordering",
   },
 ];
 
