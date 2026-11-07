@@ -26,6 +26,7 @@ import jolaidaNiccolai from "@/assets/jolaida-niccolai-website.png";
 import tumacayGroupTrading from "@/assets/tumacay-group-trading-website.png";
 import ataya from "@/assets/ataya-website.jpg";
 import ivanErvinsPastil from "@/assets/ivan-ervins-pastil-website.jpg";
+import goAndMakeDisciples from "@/assets/go-and-make-disciples-website.jpg";
 
 interface Project {
   name: string;
@@ -256,6 +257,14 @@ const liveSites: LiveSite[] = [
     image: ivanErvinsPastil,
     url: "https://ivan-ervins-pastil.onrender.com/",
     stack: "Web · Food · Messenger Ordering",
+  },
+  {
+    name: "Go and Make Disciples",
+    tagline: "Discipleship Network · Form Your 12",
+    description: "Site for Ivan Tumacay's discipleship network in Dasmariñas, Cavite, with a 3D world-map hero, a rotatable 3D model of twelve leaders, a network tree, the win, consolidate, disciple, send journey, a private form-your-12 tracker saved on the device, a Philippines map and a multiplication chart.",
+    image: goAndMakeDisciples,
+    url: "https://goandmakedisciples.onrender.com/",
+    stack: "Web · 3D · Ministry",
   },
 ];
 
