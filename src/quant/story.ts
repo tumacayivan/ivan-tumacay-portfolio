@@ -28,6 +28,7 @@ import kalabuyo from "@/assets/quant/kalabuyo-specialty-breads-website.jpg";
 import tumacayGroup from "@/assets/quant/tumacay-group-website.jpg";
 import ataya from "@/assets/ataya-website.jpg";
 import ivanErvinsPastil from "@/assets/ivan-ervins-pastil-website.jpg";
+import goAndMakeDisciples from "@/assets/go-and-make-disciples-website.jpg";
 import itb1 from "@/assets/quant/itb-01-analytics.jpg";
 import itb2 from "@/assets/quant/itb-02-track-record.jpg";
 import itb3 from "@/assets/quant/itb-03-server-console.jpg";
@@ -165,6 +166,7 @@ export const rangeBuilds = [
   { name: "TUMACAY GROUP", tag: "Gold & oil machine learning trading", image: tumacayGroup, url: "https://tumacay-group.onrender.com/" },
   { name: "Ataya Swimwear", tag: "Luxury swimwear store", image: ataya, url: "https://ataya.com.au/" },
   { name: "Ivan & Ervin's Pastil", tag: "Banana leaf pastil ordering", image: ivanErvinsPastil, url: "https://ivan-ervins-pastil.onrender.com/" },
+  { name: "Go and Make Disciples", tag: "Discipleship network", image: goAndMakeDisciples, url: "https://goandmakedisciples.onrender.com/" },
 ];
 
 export const services = [
