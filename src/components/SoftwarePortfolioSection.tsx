@@ -23,7 +23,6 @@ import kalabuyo from "@/assets/kalabuyo-specialty-breads-website.png";
 import tumacayGroup from "@/assets/tumacay-group-website.png";
 import jolaidaNiccolai from "@/assets/jolaida-niccolai-website.png";
 import tumacayGroupTrading from "@/assets/tumacay-group-trading-website.png";
-import ataya from "@/assets/ataya-website.jpg";
 import ivanErvinsPastil from "@/assets/ivan-ervins-pastil-website.jpg";
 import goAndMakeDisciples from "@/assets/go-and-make-disciples-website.jpg";
 
@@ -232,14 +231,6 @@ const liveSites: LiveSite[] = [
     image: tumacayGroupTrading,
     url: "https://tumacay-group-trading.onrender.com/",
     stack: "React · Machine Learning · Commodities",
-  },
-  {
-    name: "Ataya Swimwear",
-    tagline: "Luxury Women's Swimwear Store",
-    description: "Online store for an Avalon Beach swimwear label designed by Natalie Hawkins, with six collections, shop-by-category tiles, shop-the-look hotspots, sizing guides, a full magazine shoot and a delivery destination picker with local currencies.",
-    image: ataya,
-    url: "https://ataya.com.au/",
-    stack: "Shopify · Fashion · E-commerce",
   },
   {
     name: "Ivan & Ervin's Pastil",
