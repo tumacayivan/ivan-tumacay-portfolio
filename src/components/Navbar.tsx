@@ -7,7 +7,6 @@ const navItems = [
   { label: "Experience", href: "#experience", code: "SEC-05" },
   { label: "Trading", href: "#trading-academy", code: "SEC-07" },
   { label: "Tumacay Group", href: "#tumacay-group", code: "SEC-07B" },
-  { label: "Ataya", href: "#ataya", code: "SEC-07C" },
   { label: "Portfolio", href: "#portfolio", code: "SEC-04" },
   { label: "Education", href: "#education", code: "SEC-02" },
   { label: "Why Me", href: "#why", code: "SEC-06" },
