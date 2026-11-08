@@ -19,7 +19,6 @@ import { useFilm } from "./useFilm";
 import Hud from "./Hud";
 import Academy from "./Academy";
 import TumacayGroup from "./TumacayGroup";
-import Ataya from "./Ataya";
 import "./quant.css";
 
 const World = lazy(() => import("./world/World"));
@@ -406,7 +405,6 @@ const Film = () => {
           </ul>
           <Academy />
           <TumacayGroup />
-          <Ataya kicker="Website client" />
         </Act>
 
         {/* ============ ACT VII — THE RANGE ============ */}

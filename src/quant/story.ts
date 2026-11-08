@@ -26,7 +26,6 @@ import futx from "@/assets/quant/futxperform-website.jpg";
 import cove from "@/assets/quant/cove-cafe-website.jpg";
 import kalabuyo from "@/assets/quant/kalabuyo-specialty-breads-website.jpg";
 import tumacayGroup from "@/assets/quant/tumacay-group-website.jpg";
-import ataya from "@/assets/ataya-website.jpg";
 import ivanErvinsPastil from "@/assets/ivan-ervins-pastil-website.jpg";
 import goAndMakeDisciples from "@/assets/go-and-make-disciples-website.jpg";
 import itb1 from "@/assets/quant/itb-01-analytics.jpg";
@@ -164,7 +163,6 @@ export const rangeBuilds = [
   { name: "Cové Café", tag: "Pre-launch brand film", image: cove, url: "https://cove-cafe.onrender.com/" },
   { name: "Kalabuyo Breads", tag: "Small-batch bakery", image: kalabuyo, url: "https://kalabuyo-specialty-breads-dma.onrender.com/" },
   { name: "TUMACAY GROUP", tag: "Gold & oil machine learning trading", image: tumacayGroup, url: "https://tumacay-group.onrender.com/" },
-  { name: "Ataya Swimwear", tag: "Luxury swimwear store", image: ataya, url: "https://ataya.com.au/" },
   { name: "Ivan & Ervin's Pastil", tag: "Banana leaf pastil ordering", image: ivanErvinsPastil, url: "https://ivan-ervins-pastil.onrender.com/" },
   { name: "Go and Make Disciples", tag: "Discipleship network", image: goAndMakeDisciples, url: "https://goandmakedisciples.onrender.com/" },
 ];
