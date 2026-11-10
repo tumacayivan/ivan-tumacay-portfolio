@@ -8,6 +8,7 @@ const navItems = [
   { label: "Trading Bots", href: "#trading-bots", kanji: "自動売買" },
   { label: "Trading", href: "#trading-academy", kanji: "相場道" },
   { label: "Tumacay Group", href: "#tumacay-group", kanji: "正義" },
+  { label: "Covenant", href: "#covenant", kanji: "誓約" },
   { label: "Showreel", href: "#portfolio", kanji: "作品" },
   { label: "Services", href: "#services", kanji: "サービス" },
   { label: "Experience", href: "#experience", kanji: "経歴" },
@@ -52,18 +53,18 @@ const Navbar = () => {
           </span>
         </a>
 
-        <div className="hidden min-[1200px]:flex items-center min-[1700px]:gap-1">
+        <div className="hidden min-[1200px]:flex items-center min-[1760px]:gap-1">
           {navItems.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="group relative whitespace-nowrap px-2 min-[1700px]:px-4 py-2 font-hud text-[12px] min-[1700px]:text-[13px] font-semibold uppercase tracking-[0.08em] min-[1700px]:tracking-[0.14em] text-ink/80 hover:text-ink transition-colors"
+              className="group relative whitespace-nowrap px-2 min-[1760px]:px-4 py-2 font-hud text-[12px] min-[1760px]:text-[13px] font-semibold uppercase tracking-[0.08em] min-[1760px]:tracking-[0.14em] text-ink/80 hover:text-ink transition-colors"
             >
               <span className="absolute left-1/2 -translate-x-1/2 -top-2.5 text-[9px] tracking-[0.1em] text-sign opacity-0 group-hover:opacity-100 group-hover:-translate-y-0.5 transition-all">
                 {item.kanji}
               </span>
               {item.label}
-              <span className="absolute left-2 right-2 min-[1700px]:left-4 min-[1700px]:right-4 bottom-1 h-[2px] bg-drift scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 skew-x-[-20deg]" />
+              <span className="absolute left-2 right-2 min-[1760px]:left-4 min-[1760px]:right-4 bottom-1 h-[2px] bg-drift scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 skew-x-[-20deg]" />
             </a>
           ))}
         </div>
