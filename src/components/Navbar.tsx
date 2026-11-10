@@ -61,7 +61,7 @@ const Navbar = () => {
             </span>
           </a>
 
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden xl:flex items-center gap-1">
             {navItems.map((item) => (
               <a
                 key={item.label}
@@ -83,7 +83,7 @@ const Navbar = () => {
             </a>
           </div>
 
-          <div className="md:hidden flex items-center gap-3">
+          <div className="xl:hidden flex items-center gap-3">
             <ThemeToggle />
             <button
               className="text-ink border border-ink p-1.5"
@@ -99,7 +99,7 @@ const Navbar = () => {
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
-            className="md:hidden border-t-2 border-[hsl(var(--ink-charcoal))] bg-paper-cream"
+            className="xl:hidden border-t-2 border-[hsl(var(--ink-charcoal))] bg-paper-cream"
           >
             <div className="max-w-7xl mx-auto px-6 lg:px-10 py-5 flex flex-col gap-3">
               {navItems.map((item) => (
