@@ -55,17 +55,17 @@ const Navbar = () => {
             <span className="font-blackops text-xl sm:text-3xl tracking-[0.15em] text-ink uppercase">
               IVAN TUMACAY
             </span>
-            <span className="hidden min-[1400px]:inline font-courier text-[13px] tracking-widest text-ink-brown border border-dashed-ink px-2 py-0.5">
+            <span className="hidden min-[1480px]:inline font-courier text-[13px] tracking-widest text-ink-brown border border-dashed-ink px-2 py-0.5">
               SUBJECT
             </span>
           </a>
 
-          <div className="hidden min-[1240px]:flex items-center min-[1400px]:gap-1">
+          <div className="hidden min-[1240px]:flex items-center min-[1480px]:gap-1">
             {navItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
-                className="group relative px-2 min-[1400px]:px-3 py-2 font-stencil text-sm min-[1400px]:text-base text-ink uppercase tracking-[0.1em] min-[1400px]:tracking-[0.18em] hover:text-ink transition-colors"
+                className="group relative px-2 min-[1480px]:px-3 py-2 font-stencil text-sm min-[1480px]:text-base text-ink uppercase tracking-[0.1em] min-[1480px]:tracking-[0.18em] hover:text-ink transition-colors"
               >
                 <span className="absolute -top-1 left-1/2 -translate-x-1/2 font-courier text-[11px] text-ink-brown opacity-60">
                   {item.code}
