@@ -7,6 +7,7 @@ import { useFilm } from "./useFilm";
 import Hud from "./Hud";
 import Academy from "./Academy";
 import TumacayGroup from "./TumacayGroup";
+import Covenant from "./Covenant";
 import "./quant.css";
 
 const World = lazy(() => import("./world/World"));
@@ -478,6 +479,7 @@ const Film = () => {
           </ul>
           <Academy kicker="Also built by Ivan" />
           <TumacayGroup kicker="Also built by Ivan" />
+          <Covenant kicker="Built by Ivan" />
         </Act>
 
         {/* ============ FINAL CUT — DAWN ============ */}
