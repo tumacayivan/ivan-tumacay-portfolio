@@ -7,6 +7,7 @@ import ServicesSection from "@/components/ServicesSection";
 import ExperienceSection from "@/components/ExperienceSection";
 import TradingAcademySection from "@/components/TradingAcademySection";
 import TumacayGroupSection from "@/components/TumacayGroupSection";
+import CovenantSection from "@/components/CovenantSection";
 import PortfolioSection from "@/components/PortfolioSection";
 import SoftwarePortfolioSection from "@/components/SoftwarePortfolioSection";
 import EducationSection from "@/components/EducationSection";
@@ -31,6 +32,7 @@ const Index = () => {
       <SectionDivider label="MACHINE LEARNING MODEL FILE" code="SEC-09" />
       <TumacayGroupSection />
       <SectionDivider label="WEBSITE CLIENT FILE" code="SEC-09B" />
+      <CovenantSection />
       <SectionDivider label="CASE FILES" code="SEC-04" />
       <PortfolioSection />
       <SectionDivider label="SERVICES OFFERED" code="SEC-03" />
