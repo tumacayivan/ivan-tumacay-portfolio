@@ -27,6 +27,7 @@ import jolaidaNiccolai from "@/assets/jolaida-niccolai-website.png";
 import tumacayGroupTrading from "@/assets/tumacay-group-trading-website.png";
 import ivanErvinsPastil from "@/assets/ivan-ervins-pastil-website.jpg";
 import goAndMakeDisciples from "@/assets/go-and-make-disciples-website.jpg";
+import ivanTumacayCovenant from "@/assets/ivan-tumacay-covenant-website.jpg";
 
 interface Project {
   name: string;
@@ -257,6 +258,14 @@ const liveSites: LiveSite[] = [
     image: goAndMakeDisciples,
     url: "https://goandmakedisciples.onrender.com/",
     stack: "Web · 3D · Ministry",
+  },
+  {
+    name: "My Covenant to the Lord",
+    tagline: "My Life · My All · His Kingdom",
+    description: "Site for Ivan Tumacay's covenant to the Lord, with an illustrated Lion of Judah hero, a declaration, eight articles each resting on a verse, Kingdom expansion and Kingdom financing pillars, and a signed closing prayer.",
+    image: ivanTumacayCovenant,
+    url: "https://ivan-tumacay-covenant.onrender.com/",
+    stack: "Web · Illustration · Faith",
   },
 ];
 
