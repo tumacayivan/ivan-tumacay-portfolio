@@ -35,7 +35,7 @@ const Navbar = () => {
           </span>
         </a>
 
-        <div className="hidden items-center gap-1 md:flex">
+        <div className="hidden items-center gap-1 lg:flex">
           {navItems.map((item) => (
             <a
               key={item.label}
@@ -47,7 +47,7 @@ const Navbar = () => {
           ))}
         </div>
 
-        <div className="hidden items-center gap-3 md:flex">
+        <div className="hidden items-center gap-3 lg:flex">
           <ThemeToggle />
           <a
             href="mailto:tumacayivan@gmail.com"
@@ -58,7 +58,7 @@ const Navbar = () => {
           </a>
         </div>
 
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-2 lg:hidden">
           <ThemeToggle />
           <button
             className="border border-border bg-card/70 p-2 text-foreground"
@@ -75,7 +75,7 @@ const Navbar = () => {
         <motion.div
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
-          className="border-t border-border/70 bg-background/95 md:hidden"
+          className="border-t border-border/70 bg-background/95 lg:hidden"
         >
           <div className="mx-auto flex max-w-7xl flex-col gap-2 px-5 py-5">
             {navItems.map((item) => (
