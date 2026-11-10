@@ -6,6 +6,7 @@ import SubjectProfileSection from "@/components/SubjectProfileSection";
 import SkillsMarquee from "@/components/SkillsMarquee";
 import TradingAcademySection from "@/components/TradingAcademySection";
 import TumacayGroupSection from "@/components/TumacayGroupSection";
+import CovenantSection from "@/components/CovenantSection";
 import ServicesSection from "@/components/ServicesSection";
 import ExperienceSection from "@/components/ExperienceSection";
 import PortfolioSection from "@/components/PortfolioSection";
@@ -25,6 +26,7 @@ const Index = () => {
       <SkillsMarquee />
       <TradingAcademySection />
       <TumacayGroupSection />
+      <CovenantSection />
       <PortfolioSection />
       <ServicesSection />
       <EducationSection />

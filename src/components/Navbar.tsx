@@ -10,6 +10,7 @@ const navItems = [
   { label: "Portfolio", href: "#portfolio", code: "SEC 04" },
   { label: "Trading", href: "#trading-academy", code: "SEC 07" },
   { label: "Tumacay Group", href: "#tumacay-group", code: "SEC 08" },
+  { label: "Covenant", href: "#covenant", code: "VOWS" },
   { label: "Education", href: "#education", code: "SEC 02" },
   { label: "Why Me", href: "#why", code: "SEC 06" },
 ];
