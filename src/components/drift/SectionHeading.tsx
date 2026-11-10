@@ -35,7 +35,7 @@ const SectionHeading = ({ kanji, kicker, title, accent, children, meta }: Sectio
         <span aria-hidden className="h-px w-10 bg-hud/50" />
         {meta && <span className="hud-label !text-ink-dim">{meta}</span>}
       </div>
-      <h2 className="display-xl text-[13vw] sm:text-7xl xl:text-8xl text-ink">
+      <h2 className="display-xl text-[13vw] sm:text-7xl lg:text-6xl xl:text-7xl 2xl:text-8xl text-ink">
         {title}
         {accent && (
           <>
