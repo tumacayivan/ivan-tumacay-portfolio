@@ -90,7 +90,7 @@ const Navbar = () => {
             </div>
           </a>
 
-          <div className="hidden md:flex items-center gap-0.5">
+          <div className="hidden min-[1200px]:flex items-center gap-0.5">
             {navItems.map((item) => (
               <a
                 key={item.label}
@@ -122,7 +122,7 @@ const Navbar = () => {
             </a>
           </div>
 
-          <div className="md:hidden flex items-center gap-3">
+          <div className="min-[1200px]:hidden flex items-center gap-3">
             <button
               className="text-[hsl(var(--ink-charcoal))] border border-[hsl(var(--accent-red))] p-2 hover:bg-[hsl(var(--accent-red))] hover:text-[hsl(40_45%_10%)] transition-colors"
               onClick={() => setMobileOpen(!mobileOpen)}
@@ -137,7 +137,7 @@ const Navbar = () => {
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
-            className="md:hidden border-t border-[hsl(var(--accent-red)/0.35)] bg-[hsl(45_36%_97%)]"
+            className="min-[1200px]:hidden border-t border-[hsl(var(--accent-red)/0.35)] bg-[hsl(45_36%_97%)]"
           >
             <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-20 py-5 flex flex-col gap-3">
               {navItems.map((item) => (
