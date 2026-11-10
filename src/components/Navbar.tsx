@@ -47,7 +47,7 @@ const Navbar = () => {
               01
             </span>
           </span>
-          <span className="hidden sm:flex min-[1440px]:hidden min-[1900px]:flex flex-col leading-none whitespace-nowrap">
+          <span className="hidden sm:flex min-[1480px]:hidden min-[1900px]:flex flex-col leading-none whitespace-nowrap">
             <span className="font-display text-xl tracking-tight text-ink uppercase">Ivan Tumacay</span>
             <span className="font-doc text-[10px] tracking-[0.2em] text-ink-dim uppercase mt-1">
               Engineer · Operator
@@ -55,7 +55,7 @@ const Navbar = () => {
           </span>
         </a>
 
-        <div className="hidden min-[1440px]:flex items-center gap-0.5">
+        <div className="hidden min-[1480px]:flex items-center gap-0.5">
           {navItems.map((item) => (
             <a
               key={item.href}
@@ -90,7 +90,7 @@ const Navbar = () => {
             </span>
           </a>
           <button
-            className="icon-btn min-[1440px]:hidden"
+            className="icon-btn min-[1480px]:hidden"
             onClick={() => setMobileOpen((o) => !o)}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
@@ -114,7 +114,7 @@ const Navbar = () => {
             animate={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}
             exit={{ clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" }}
             transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
-            className="min-[1440px]:hidden bg-[hsl(var(--base)/0.98)] backdrop-blur-xl border-b border-line/15"
+            className="min-[1480px]:hidden bg-[hsl(var(--base)/0.98)] backdrop-blur-xl border-b border-line/15"
           >
             <div className="gutter py-6 flex flex-col">
               {navItems.map((item, i) => (
