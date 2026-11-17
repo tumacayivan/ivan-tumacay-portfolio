@@ -29,6 +29,7 @@ import tumacayGroup from "@/assets/quant/tumacay-group-website.jpg";
 import ivanErvinsPastil from "@/assets/ivan-ervins-pastil-website.jpg";
 import goAndMakeDisciples from "@/assets/go-and-make-disciples-website.jpg";
 import ivanTumacayCovenant from "@/assets/ivan-tumacay-covenant-website.jpg";
+import ileObaSupperClub from "@/assets/ileoba-supper-club-website.jpg";
 import itb1 from "@/assets/quant/itb-01-analytics.jpg";
 import itb2 from "@/assets/quant/itb-02-track-record.jpg";
 import itb3 from "@/assets/quant/itb-03-server-console.jpg";
@@ -167,6 +168,7 @@ export const rangeBuilds = [
   { name: "Ivan & Ervin's Pastil", tag: "Banana leaf pastil ordering", image: ivanErvinsPastil, url: "https://ivan-ervins-pastil.onrender.com/" },
   { name: "Go and Make Disciples", tag: "Discipleship network", image: goAndMakeDisciples, url: "https://goandmakedisciples.onrender.com/" },
   { name: "My Covenant to the Lord", tag: "A covenant to the Lord", image: ivanTumacayCovenant, url: "https://ivan-tumacay-covenant.onrender.com/" },
+  { name: "ILÉ OBA Supper Club", tag: "Storytelling supper club", image: ileObaSupperClub, url: "https://ileobasupperclub.com/" },
 ];
 
 export const services = [
