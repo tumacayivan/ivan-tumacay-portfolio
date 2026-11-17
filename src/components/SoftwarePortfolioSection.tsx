@@ -28,6 +28,7 @@ import tumacayGroupTrading from "@/assets/tumacay-group-trading-website.png";
 import ivanErvinsPastil from "@/assets/ivan-ervins-pastil-website.jpg";
 import goAndMakeDisciples from "@/assets/go-and-make-disciples-website.jpg";
 import ivanTumacayCovenant from "@/assets/ivan-tumacay-covenant-website.jpg";
+import ileObaSupperClub from "@/assets/ileoba-supper-club-website.jpg";
 
 interface Project {
   name: string;
@@ -266,6 +267,14 @@ const liveSites: LiveSite[] = [
     image: ivanTumacayCovenant,
     url: "https://ivan-tumacay-covenant.onrender.com/",
     stack: "Web · Illustration · Faith",
+  },
+  {
+    name: "ILÉ OBA Supper Club",
+    tagline: "Private Storytelling Dinners",
+    description: "Site for Chef OBA's supper club, with a sound-on welcome, a video hero, the next table and reservations, the chef's story, the six-dinner Manila 2026 series with a story and menu for each evening, films, a 100-moment gallery and private dining over WhatsApp.",
+    image: ileObaSupperClub,
+    url: "https://ileobasupperclub.com/",
+    stack: "Web · Hospitality · Video",
   },
 ];
 
